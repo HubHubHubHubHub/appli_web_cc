@@ -29,3 +29,34 @@ let [word, functionName, caseType, gender] = infos;
         wordData?.[category]?.[word]?.[functionName]?.[caseType]?.[gender] ||
         null
       );
+
+Refactorisation du code: 
+pour mimer des modules (en ES6 on peut utiliser des modules, mais là on fait quelquechose de similaire en utilisant des objets)
+on encapsule les fonctions dans un objet, et on les appelle avec la notation objet.fonction() :
+
+Dans le fichier utils.js :
+
+var Utils = {
+  // Fonction pour parser l'information à partir de l'attribut data-info
+  parseInfo: function (info) {
+    return info.split(";");
+  },
+
+  // Fonction pour ajouter un accent au mot à la position spécifiée
+  addAccent: function (word, accentPosition) {
+    if (!word) {
+      return ""; // Retourne une chaîne vide si 'word' est null ou undefined
+    }
+    const accent = "\u0301"; // Accent aigu combiné
+    const chars = Array.from(word);
+    if (accentPosition > 0 && accentPosition <= chars.length) {
+      chars[accentPosition - 1] += accent;
+    }
+    return chars.join("");
+  },
+};
+
+On appelle ensuite les fonctions avec la notation objet.fonction() : Utils.parseInfo(info) et Utils.addAccent(word, accentPosition)
+
+Remarque: si on a besoin d'une variable globale (ce qui est le cas par défaut quand on 
+encapsule pas dans une autre variable ou fonction), on peut utiliser window.variable = valeur;
