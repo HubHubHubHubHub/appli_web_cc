@@ -30,7 +30,7 @@ let [word, functionName, caseType, gender] = infos;
         null
       );
 
-Refactorisation du code: 
+########  Refactorisation du code:  ########
 pour mimer des modules (en ES6 on peut utiliser des modules, mais là on fait quelquechose de similaire en utilisant des objets)
 on encapsule les fonctions dans un objet, et on les appelle avec la notation objet.fonction() :
 
@@ -60,3 +60,11 @@ On appelle ensuite les fonctions avec la notation objet.fonction() : Utils.parse
 
 Remarque: si on a besoin d'une variable globale (ce qui est le cas par défaut quand on 
 encapsule pas dans une autre variable ou fonction), on peut utiliser window.variable = valeur;
+
+
+######## Correspondance entre dataset et Attributs data-* ########
+
+En JavaScript, les attributs HTML personnalisés commençant par data- sont accessibles via la propriété dataset de l'élément DOM. Par exemple :
+
+Attribut HTML : data-original="valeur"
+Propriété JavaScript : element.dataset.original = "valeur"
