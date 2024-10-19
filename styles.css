@@ -13,30 +13,6 @@ body {
   height: 100%;
 }
 
-/*
-.sidebar {
-  width: 25%;
-  background-color: #f0f0f0;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar li {
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-
-.sidebar li:hover {
-  background-color: #e0e0e0;
-}
-*/
-
 /* Styles existants */
 .sidebar {
   width: 25%;
