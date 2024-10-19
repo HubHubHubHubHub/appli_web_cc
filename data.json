@@ -287,6 +287,44 @@
     }
   },
   "verb": {
+    "запитати": {
+      "inf": ["запитати", 6],
+      "conj": {
+        "imp": {
+          "1p": { "s": [null, -2], "pl": ["запитаємо", 6] },
+          "2p": { "s": ["запитай", "запитай-но", 6], "pl": ["запитайте", 6] }
+        },
+        "fut": {
+          "1p": {
+            "s": ["запитаю", 6],
+            "pl": ["запитаємо", 6]
+          },
+          "2p": { "s": ["запитаєш", 6], "pl": ["запитаєте", 6] },
+          "3p": { "s": ["запитає", 6], "pl": ["запитають", 6] }
+        },
+        "pass": {
+          "m": { "s": ["запитав", 6], "pl": ["запитали", 6] },
+          "f": { "s": ["запитала", 6], "pl": ["запитали", 6] },
+          "n": { "s": ["запитало", 6], "pl": ["запитали", 6] }
+        },
+        "imper": ["запитано", 4]
+      },
+      "asp": "perfectif",
+      "coupl": null,
+      "group": "1",
+      "base_html": "<span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span>",
+      "phrases": {
+        "Я можу запитати свого батька.": {
+          "inf": ["могти", 5],
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\";verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
+          "traduction": "Je peux demander à mon père."
+        },
+        "Він запитає мене про це завтра.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"це;pronoun;cas;acc\">це</span> <span class=\"ukr\" data-info=\"завтра;nom;cas;acc;s\">завтра</span>.",
+          "traduction": "Il me demandera cela demain."
+        }
+      }
+    },
     "класти": {
       "inf": ["класти", 3],
       "conj": {
@@ -322,6 +360,38 @@
           "traduction": "Je mets de l'argent dans ma poche."
         }
       }
+    },
+    "могти": {
+      "inf": ["могти", 5],
+      "conj": {
+        "imp": {
+          "1p": { "s": [null, -2], "pl": [null, -2] },
+          "2p": { "s": [null, -2], "pl": [null, -2] }
+        },
+        "fut": {
+          "1p": {
+            "s": ["могтиму", 5],
+            "pl": ["могтимемо", 5]
+          },
+          "2p": { "s": ["могтимеш", 5], "pl": ["могтимете", 5] },
+          "3p": { "s": ["могтиме", 5], "pl": ["могтимуть", 5] }
+        },
+        "pres": {
+          "1p": { "s": ["можу", 2], "pl": ["можемо", 2] },
+          "2p": { "s": ["можеш", 2], "pl": ["можете", 2] },
+          "3p": { "s": ["може", 2], "pl": ["можуть", 2] }
+        },
+        "pass": {
+          "m": { "s": ["міг", -1], "pl": ["могли", 5] },
+          "f": { "s": ["могла", 5], "pl": ["могли", 5] },
+          "n": { "s": ["могло", 5], "pl": ["могли", 5] }
+        },
+        "imper": [null, -1]
+      },
+      "asp": "imperfectif",
+      "coupl": "змогти",
+      "group": "1",
+      "base_html": "<span class=\"ukr\" data-info=\"могти;verb;inf\">могти</span>"
     },
     "підвищитися": {
       "inf": ["підвищитися", 4],
@@ -523,7 +593,7 @@
       "base_html": "<span class=\"ukr\" data-info=\"свій;proposs;cas;nom;m\">свій</span>",
       "phrases": {
         "Я можу запитати свого батька.": {
-          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"можу;verb;conj;pres;1p\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;noun;cas;acc;s\">батька</span>.",
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;noun;cas;acc;s\">батька</span>.",
           "traduction": "Je peux demander à mon père."
         }
       }
