@@ -350,7 +350,8 @@ function generateExamplePhrases(phrases) {
             ? `<p>${generateVerbForms(
                 phrase.genereVerbe.verbe,
                 phrase.genereVerbe.temps,
-                phrase.genereVerbe.sentence
+                phrase.genereVerbe.frag1,
+                phrase.genereVerbe.frag2
               )}</p>`
             : ""
         }
