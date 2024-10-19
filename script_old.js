@@ -234,106 +234,27 @@ function displayInfo(spanElement) {
   if (wordData[category] && wordData[category][word]) {
     const details = wordData[category][word];
     let htmlContent = `<h2>${word} (${category})</h2>`;
+
     switch (category) {
-      case "nom": {
-        if (details.cas) {
-          htmlContent += "<h3>Cas grammaticaux:</h3><ul>";
-          for (const [cas, form] of Object.entries(details.cas)) {
-            htmlContent += `<li><strong>${cas} s.</strong> : ${
-              form.s[0] || ""
-            } , <strong>p.</strong> : ${form.pl[0] || ""} </li>`;
-          }
-          htmlContent += "</ul>";
-        }
+      case "nom":
+        htmlContent += generateNounDetails(details);
         break;
-      }
       case "card":
-      case "adj": {
-        if (details.cas) {
-          htmlContent += '<table class="table"><tbody>';
-          // Ajouter la ligne d'en-tête
-          htmlContent += `<tr class="row column-header">
-                              <td class="cell">відмінок</td>
-                              <td class="cell" title="чоловічий рід">чол. р.</td>
-                              <td class="cell" title="жіночий рід">жін. р.</td>
-                              <td class="cell" title="середній рід">сер. р.</td>
-                              <td class="cell">множина</td>
-                            </tr>`;
-          // Mapping des codes de cas aux noms ukrainiens
-          const caseNames = {
-            nom: "називний",
-            gen: "родовий",
-            dat: "давальний",
-            acc: "знахідний",
-            ins: "орудний",
-            loc: "місцевий",
-            voc: "кличний",
-          };
-          // Pour chaque cas grammatical
-          for (const [caseKey, forms] of Object.entries(details.cas)) {
-            htmlContent += '<tr class="row">';
-            // Nom du cas en ukrainien
-            const caseDisplayName = caseNames[caseKey] || caseKey;
-            htmlContent += `<td class="cell header">${caseDisplayName}</td>`;
-            // Genders à parcourir
-            const genders = ["m", "f", "n", "pl"];
-            for (const gender of genders) {
-              const form = forms[gender];
-              if (form) {
-                // Ajouter l'accent au mot
-                const wordWithAccent = addAccent(form[0], form[1]);
-                htmlContent += `<td class="cell"><span class="word ">${wordWithAccent}</span></td>`;
-              } else {
-                htmlContent += `<td class="cell"></td>`;
-              }
-            }
-            htmlContent += "</tr>";
-          }
-          htmlContent += "</tbody></table>";
-        }
+      case "adj":
+        htmlContent += generateAdjectiveDetails(details);
         break;
-      }
-      case "verb": {
-        // Code pour gérer les verbes
-        if (details.conj) {
-          htmlContent += generateVerbTable(details);
-        }
+      case "verb":
+        htmlContent += generateVerbDetails(details);
         break;
-      }
       default:
         htmlContent += "<p>Catégorie non prise en charge.</p>";
     }
-    htmlContent += "</ul>";
-    // Charger les phrases d'exemple du fichier json
-    const phrases = details.phrases;
-    if (phrases) {
-      htmlContent += "<h3>Phrases d'exemple:</h3><ul>";
 
-      // parcourir les l'objet 'phrases'
-      for (const [phraseKey, phrase] of Object.entries(phrases)) {
-        htmlContent += `
-            <li>
-                ${phrase.phrase_html} <em>${phrase.traduction}</em>
-                ${
-                  phrase.genereVerbe
-                    ? `<p>${generateVerbForms(
-                        phrase.genereVerbe.verbe,
-                        phrase.genereVerbe.temps,
-                        phrase.genereVerbe.frag1,
-                        phrase.genereVerbe.frag2
-                      )}</p>`
-                    : ""
-                }
-                ${
-                  phrase.remarque
-                    ? `<p class='remarque'>${phrase.remarque}</p>`
-                    : ""
-                }
-            </li>
-        `;
-      }
-      htmlContent += "</ul>";
+    // Afficher les phrases d'exemple s'il y en a
+    if (details.phrases) {
+      htmlContent += generateExamplePhrases(details.phrases);
     }
+
     document.getElementById("word-details").innerHTML = htmlContent;
 
     // Réattacher la logique de mise en surbrillance après le chargement du nouveau contenu
@@ -343,6 +264,103 @@ function displayInfo(spanElement) {
     document.getElementById("word-details").innerHTML =
       "<p>Aucun détail disponible pour ce mot.</p>";
   }
+}
+
+// Fonction pour générer les détails des noms
+function generateNounDetails(details) {
+  let htmlContent = "";
+  if (details.cas) {
+    htmlContent += "<h3>Cas grammaticaux:</h3><ul>";
+    for (const [cas, form] of Object.entries(details.cas)) {
+      htmlContent += `<li><strong>${cas} s.</strong> : ${
+        form.s[0] || ""
+      } , <strong>p.</strong> : ${form.pl[0] || ""} </li>`;
+    }
+    htmlContent += "</ul>";
+  }
+  return htmlContent;
+}
+
+// Fonction pour générer les détails des adjectifs et des cardinaux
+function generateAdjectiveDetails(details) {
+  let htmlContent = "";
+  if (details.cas) {
+    htmlContent += '<table class="table"><tbody>';
+    // Ajouter la ligne d'en-tête
+    htmlContent += `<tr class="row column-header">
+                      <td class="cell">відмінок</td>
+                      <td class="cell" title="чоловічий рід">чол. р.</td>
+                      <td class="cell" title="жіночий рід">жін. р.</td>
+                      <td class="cell" title="середній рід">сер. р.</td>
+                      <td class="cell">множина</td>
+                    </tr>`;
+    // Mapping des codes de cas aux noms ukrainiens
+    const caseNames = {
+      nom: "називний",
+      gen: "родовий",
+      dat: "давальний",
+      acc: "знахідний",
+      ins: "орудний",
+      loc: "місцевий",
+      voc: "кличний",
+    };
+    // Pour chaque cas grammatical
+    for (const [caseKey, forms] of Object.entries(details.cas)) {
+      htmlContent += '<tr class="row">';
+      // Nom du cas en ukrainien
+      const caseDisplayName = caseNames[caseKey] || caseKey;
+      htmlContent += `<td class="cell header">${caseDisplayName}</td>`;
+      // Genres à parcourir
+      const genders = ["m", "f", "n", "pl"];
+      for (const gender of genders) {
+        const form = forms[gender];
+        if (form) {
+          // Ajouter l'accent au mot
+          const wordWithAccent = addAccent(form[0], form[1]);
+          htmlContent += `<td class="cell"><span class="word ">${wordWithAccent}</span></td>`;
+        } else {
+          htmlContent += `<td class="cell"></td>`;
+        }
+      }
+      htmlContent += "</tr>";
+    }
+    htmlContent += "</tbody></table>";
+  }
+  return htmlContent;
+}
+
+// Fonction pour générer les détails des verbes
+function generateVerbDetails(details) {
+  let htmlContent = "";
+  if (details.conj) {
+    htmlContent += generateVerbTable(details);
+  }
+  return htmlContent;
+}
+
+// Fonction pour générer les phrases d'exemple
+function generateExamplePhrases(phrases) {
+  let htmlContent = "<h3>Phrases d'exemple:</h3><ul>";
+  for (const [phraseKey, phrase] of Object.entries(phrases)) {
+    htmlContent += `
+      <li>
+        ${phrase.phrase_html} <em>${phrase.traduction}</em>
+        ${
+          phrase.genereVerbe
+            ? `<p>${generateVerbForms(
+                phrase.genereVerbe.verbe,
+                phrase.genereVerbe.temps,
+                phrase.genereVerbe.frag1,
+                phrase.genereVerbe.frag2
+              )}</p>`
+            : ""
+        }
+        ${phrase.remarque ? `<p class='remarque'>${phrase.remarque}</p>` : ""}
+      </li>
+    `;
+  }
+  htmlContent += "</ul>";
+  return htmlContent;
 }
 
 function generateVerbTable(details) {
