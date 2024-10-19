@@ -23,21 +23,6 @@ function parseInfo(info) {
 }
 
 // Fonction pour récupérer les données depuis le JSON
-/*
-function getDataFromJson(word, category, functionName, caseType, gender) {
-  if (
-    wordData &&
-    wordData[category] &&
-    wordData[category][word] &&
-    wordData[category][word][functionName] &&
-    wordData[category][word][functionName][caseType] &&
-    wordData[category][word][functionName][caseType][gender]
-  ) {
-    return wordData[category][word][functionName][caseType][gender];
-  }
-  return null; // Retourne null si une des propriétés n'existe pas
-}*/
-// avec opérateur d'enchainement optionnel (?.) :
 function getDataFromJson(category, infos) {
   switch (category) {
     case "prep": {
