@@ -68,3 +68,11 @@ En JavaScript, les attributs HTML personnalisés commençant par data- sont acce
 
 Attribut HTML : data-original="valeur"
 Propriété JavaScript : element.dataset.original = "valeur"
+
+####### Checkbox accent #######
+
+Pour qu'elle soit cochée par défaut, on ajoute l'attribut checked à la balise <input> :
+ <input type="checkbox" id="accent-check" checked />
+ au lieu de : 
+
+  <input type="checkbox" id="accent-check"/>
