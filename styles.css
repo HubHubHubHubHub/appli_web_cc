@@ -196,3 +196,20 @@ body {
     padding: 6px 8px;
   }
 }
+
+/* Styles pour la case à cocher flottante */
+.floating-checkbox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.floating-checkbox label {
+  margin-left: 5px;
+  font-weight: bold;
+}
