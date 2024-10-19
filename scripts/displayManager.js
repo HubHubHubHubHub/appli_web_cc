@@ -66,6 +66,7 @@ let displayManager = {
         case "nom":
           htmlContent += displayManager.generateNounDetails(details);
           break;
+        case "proposs":
         case "card":
         case "adj":
           htmlContent += displayManager.generateAdjectiveDetails(details);
