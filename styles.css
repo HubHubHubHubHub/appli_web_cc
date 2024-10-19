@@ -1,0 +1,222 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+.sidebar {
+  width: 25%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar li:hover {
+  background-color: #e0e0e0;
+}
+*/
+
+/* Styles existants */
+.sidebar {
+  width: 25%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+  /* Ajouts pour occuper toute la hauteur et utiliser Flexbox */
+  height: 100vh; /* Occupe 100% de la hauteur de la fenêtre */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titre de la sidebar */
+.sidebar h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Liste des mots (wordList) */
+.sidebar ul#wordList {
+  list-style-type: none;
+  padding: 0;
+
+  /* Flexbox pour s'étendre et être défilable */
+  flex-grow: 1; /* Prend tout l'espace disponible */
+  overflow-y: auto; /* Active le défilement vertical si nécessaire */
+}
+
+/* Styles des éléments de la liste */
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Stylisation optionnelle de l'ascenseur pour les navigateurs WebKit (Chrome, Safari) */
+.sidebar ul#wordList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar ul#wordList::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+.sidebar ul#wordList::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+  border-radius: 4px;
+}
+
+.sidebar ul#wordList::-webkit-scrollbar-thumb:hover {
+  background: #909090;
+}
+
+/* Stylisation de l'ascenseur pour Firefox */
+.sidebar ul#wordList {
+  scrollbar-width: thin; /* "auto" ou "thin" */
+  scrollbar-color: #b0b0b0 #e0e0e0; /* Couleur du pouce et de la piste */
+}
+
+/* Styles additionnels pour les phrases */
+.phrase-item {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.phrase-item p {
+  margin: 0 0 10px 0;
+}
+
+.ukr {
+  font-weight: bold;
+  color: #2a7ae2; /* Couleur bleue harmonisée */
+}
+
+.content {
+  width: 75%;
+  padding: 20px;
+}
+
+#infoDisplay {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accent {
+  color: crimson;
+}
+
+.remarque {
+  color: brown;
+}
+
+/* Styles pour le conteneur des détails du mot */
+#word-details {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+}
+
+/* Styles spécifiques pour le tableau de conjugaison */
+.conj-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.conj-table th,
+.conj-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.conj-table .conj-tense-header {
+  background-color: #d9edf7;
+  font-size: 1.1em;
+  color: #31708f;
+}
+
+.conj-table .conj-person-header {
+  background-color: #f7f7f9;
+  font-weight: bold;
+}
+
+.conj-table .conj-infinitive {
+  background-color: #fcf8e3;
+}
+
+.conj-table .conj-tense-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+.conj-table .conj-person {
+  text-align: left;
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.conj-table .conj-singular-header,
+.conj-table .conj-plural-header {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.conj-table .conj-word {
+  color: #337ab7;
+  font-weight: bold;
+}
+
+/* Styles pour les sous-titres */
+.conj-table .conj-subgroup-header {
+  background-color: #dff0d8;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto; /* Ajuste la hauteur automatiquement */
+  }
+
+  #word-details {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .conj-table th,
+  .conj-table td {
+    padding: 6px 8px;
+  }
+}

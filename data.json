@@ -1,0 +1,526 @@
+{
+  "prep": {
+    "в": {
+      "base": ["в", -1],
+      "base_html": "<span class=\"ukr\" data-info=\"в;prep;base\">в</span>"
+    },
+    "на": {
+      "base": ["на", -1],
+      "base_html": "<span class=\"ukr\" data-info=\"на;prep;base\">на</span>"
+    },
+    "під": {
+      "base": ["під", -1],
+      "base_html": "<span class=\"ukr\" data-info=\"під;prep;base\">під</span>"
+    }
+  },
+  "card": {
+    "один": {
+      "cas": {
+        "nom": {
+          "m": ["один", 3],
+          "f": ["одна", 4],
+          "n": ["одне", 4],
+          "pl": ["одні", 4]
+        },
+        "gen": {
+          "m": ["одного", 6],
+          "f": ["однієї", 5],
+          "n": ["одного", 6],
+          "pl": ["одних", 4]
+        },
+        "dat": {
+          "m": ["одному", 6],
+          "f": ["одній", 4],
+          "n": ["одному", 6],
+          "pl": ["одним", 4]
+        },
+        "acc": {
+          "m": ["одного", 6],
+          "f": ["одну", 4],
+          "n": ["одне", 4],
+          "pl": ["одних", 4]
+        },
+        "ins": {
+          "m": ["одним", 4],
+          "f": ["одною", 4],
+          "n": ["одним", 4],
+          "pl": ["одними", 4]
+        },
+        "loc": {
+          "m": ["одному", 4],
+          "f": ["одній", 4],
+          "n": ["одному", 4],
+          "pl": ["одних", 4]
+        },
+        "voc": {
+          "m": ["один", 3],
+          "f": ["одна", 4],
+          "n": ["одне", 4],
+          "pl": ["одні", 4]
+        }
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;m\">один</span>",
+      "phrases": {
+        "Я бачив один раз у житті.": {
+          "phrase_html": "Я бачив <span class=\"ukr\" data-info=\"один;card;cas;nom;m\">один</span> раз у житті.",
+          "traduction": "J'ai vu une fois dans ma vie"
+        },
+        "Одна з багатьох історій, які він розповів.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;f\">Одна</span> з багатьох історій, які він розповів.",
+          "traduction": "Une des nombreuses histoires qu'il a racontées."
+        },
+        "Одне з найкращих місць у місті.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;n\">Одне</span> з найкращих місць у місті.",
+          "traduction": "Un des meilleurs endroits de la ville."
+        }
+      }
+    }
+  },
+  "nom": {
+    "війна": {
+      "cas": {
+        "nom": { "s": ["війна", 5], "pl": ["війни", 2] },
+        "gen": { "s": ["війни", 5], "pl": ["війн", 2] },
+        "dat": { "s": ["війні", 5], "pl": ["війнам", 2] },
+        "acc": { "s": ["війну", 5], "pl": ["війни", 2] },
+        "ins": { "s": ["війною", 5], "pl": ["війнами", 2] },
+        "loc": { "s": ["війні", 5], "pl": ["війнах", 2] },
+        "voc": { "s": ["війно", 5], "pl": ["війни", 2] }
+      },
+      "genre": "f",
+      "base_html": "<span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">війна</span>",
+      "html_data_info": "війна;nom;cas;nom;s",
+      "phrases": {
+        "Що ти знаєш про війну": {
+          "phrase_html": "Що ти знаєш про <span class=\"ukr\" data-info=\"війна;nom;cas;acc;s\">війну</span>?",
+          "traduction": "Que sais-tu de la guerre?"
+        },
+        "Я не люблю війни": {
+          "phrase_html": "Я не люблю <span class=\"ukr\" data-info=\"війна;nom;cas;gen;s\">війни</span>",
+          "traduction": "Je n'aime pas la guerre"
+        },
+        "Війна</span> між Україною та Росією триває вже багато років.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">Війна</span> між Україною та Росією триває вже багато років.",
+          "traduction": "La guerre entre l'Ukraine et la Russie dure depuis de nombreuses années."
+        },
+        "Ця війна принесла багато страждань.": {
+          "phrase_html": "Ця <span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">війна</span> принесла багато страждань.",
+          "traduction": "Cette guerre a causé beaucoup de souffrances."
+        },
+        "Після війни настали важкі часи": {
+          "phrase_html": "Після <span class=\"ukr\" data-info=\"війна;nom;cas;gen;s\">війни</span> настали важкі часи",
+          "traduction": "Après la guerre, des temps difficiles sont venus"
+        }
+      }
+    },
+    "гроші": {
+      "cas": {
+        "nom": { "s": [null, 3], "pl": ["гроші", 3] },
+        "gen": { "s": [null, 3], "pl": ["грошей", 3] },
+        "dat": { "s": [null, 3], "pl": ["грошам", 3] },
+        "acc": { "s": [null, 3], "pl": ["гроші", 3] },
+        "ins": { "s": [null, 3], "pl": ["грошами", 5] },
+        "loc": { "s": [null, 3], "pl": ["грошах", 3] },
+        "voc": { "s": [null, 3], "pl": ["гроші", 3] }
+      },
+      "genre": "m",
+      "pluralia_tantum": true,
+      "base_html": "<span class=\"ukr\" data-info=\"гроші;nom;cas;nom;pl\">гроші</span>",
+      "phrases": {
+        "Я кладу гроші в свою кишеню.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+          "traduction": "Je mets de l'argent dans ma poche.",
+          "genereVerbe": {
+            "verbe": "класти",
+            "temps": "pres",
+            "frag1": "",
+            "frag2": "<span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>."
+          }
+        }
+      }
+    },
+    "кашель": {
+      "cas": {
+        "nom": { "s": ["кашель", 2], "pl": ["кашлі", -2] },
+        "gen": { "s": ["кашлю", 2], "pl": ["кашлів", -2] },
+        "dat": { "s": ["кашлю", 2], "pl": ["кашлям", -2] },
+        "acc": { "s": ["кашель", 2], "pl": ["кашлі", -2] },
+        "ins": { "s": ["кашлем", 2], "pl": ["кашлями", -2] },
+        "loc": { "s": ["кашлі", 2], "pl": ["кашлях", -2] },
+        "voc": { "s": ["кашлю", 2], "pl": ["кашлі", -2] }
+      },
+      "genre": "m",
+      "base_html": "<span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>",
+      "phrases": {
+        "На ранок Оксані Терентіївні погіршало: підівищилася температура, посилився кашель.": {
+          "phrase_html": "<p>На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдівищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.</p> <p>\" <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>\" (qui signifie \"toux\") est au nominatif. Le nominatif est utilisé ici parce que \" <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>\" est le sujet de la deuxième partie de la phrase. La structure indique que la toux s'est intensifiée, et c'est la toux qui fait l'action dans cette partie de la phrase, d'où l'usage du nominatif.</p>",
+          "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée.",
+          "remarque": "Le mot \"кашель\" (qui signifie \"toux\") est au nominatif. Le nominatif est utilisé ici parce que \"кашель\" est le sujet de la deuxième partie de la phrase. La structure indique que la toux s'est intensifiée, et c'est la toux qui fait l'action dans cette partie de la phrase, d'où l'usage du nominatif."
+        }
+      }
+    },
+    "кишеня": {
+      "cas": {
+        "nom": { "s": ["кишеня", 4], "pl": ["кишені", 4] },
+        "gen": { "s": ["кишені", 4], "pl": ["кишень", 4] },
+        "dat": { "s": ["кишені", 4], "pl": ["кишеням", 4] },
+        "acc": { "s": ["кишеню", 4], "pl": ["кишені", 4] },
+        "ins": { "s": ["кишенею", 4], "pl": ["кишенями", 4] },
+        "loc": { "s": ["кишені", 4], "pl": ["кишенях", 4] },
+        "voc": { "s": ["кишене", 4], "pl": ["кишені", 4] }
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"кишеня;nom;cas;nom;s\">кишеня</span>",
+      "phrases": {
+        "Я кладу гроші в свою кишеню.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+          "traduction": "Je mets de l'argent dans ma poche."
+        }
+      }
+    },
+    "порада": {
+      "cas": {
+        "nom": { "s": ["порада", 4], "pl": ["поради", 4] },
+        "gen": { "s": ["поради", 4], "pl": ["порад", 4] },
+        "dat": { "s": ["пораді", 4], "pl": ["порадам", 4] },
+        "acc": { "s": ["пораду", 4], "pl": ["поради", 4] },
+        "ins": { "s": ["порадою", 4], "pl": ["порадами", 4] },
+        "loc": { "s": ["пораді", 4], "pl": ["порадах", 4] },
+        "voc": { "s": ["порадо", 4], "pl": ["поради", 4] }
+      },
+      "genre": "f",
+      "base_html": "<span class=\"ukr\" data-info=\"порада;nom;cas;nom;s\">порада</span>",
+      "phrases": {
+        "За порадою аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.": {
+          "phrase_html": "За <span class=\"ukr\" data-info=\"порада;nom;cas;ins;s\">порадою</span> аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.",
+          "traduction": "Sur les conseils du pharmacien, Sasha a également pris des vitamines curatives, espérant que la grand-mère se rétablira assez rapidement."
+        }
+      }
+    },
+    "ранок": {
+      "cas": {
+        "nom": { "s": ["ранок", 2], "pl": ["ранки", 2] },
+        "gen": { "s": ["ранку", 2], "pl": ["ранків", 2] },
+        "dat": { "s": ["ранку", 2], "pl": ["ранкам", 2] },
+        "acc": { "s": ["ранок", 2], "pl": ["ранки", 2] },
+        "ins": { "s": ["ранком", 2], "pl": ["ранками", 2] },
+        "loc": { "s": ["ранку", 2], "pl": ["ранках", 2] },
+        "voc": { "s": ["ранку", 2], "pl": ["ранки", 2] }
+      },
+      "genre": "m",
+      "base_html": "<span class=\"ukr\" data-info=\"ранок;nom;cas;nom;s\">ранок</span>",
+      "phrases": {
+        "Доброго ранку, ми з України.": {
+          "phrase_html": "Доброго <span class=\"ukr\" data-info=\"ранок;nom;cas;gen;s\">ранку</span>, ми з України.",
+          "traduction": "Bonjour, nous sommes d'Ukraine.",
+          "remarque": "En ukrainien, après l'adjectif \"доброго\" (qui est au génitif masculin singulier), le nom \"ранок\" (qui signifie \"matin\") est également mis au génitif pour correspondre à la construction de la salutation. C'est une forme courante dans les salutations comme \"доброго ранку\" (bon matin) ou \"доброго дня\" (bonne journée), où le génitif est utilisé pour exprimer un souhait."
+        },
+        "На ранок Оксані Тере́нтiївнi погiршало: пiдвищилася температура, посилився кашель.": {
+          "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдвищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+          "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée.",
+          "remarque": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span>: <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> est ici à l'accusatif (on s'attendait à un locatif, <span class=\"ukr\" data-info=\"ранок;nom;cas;loc;s\">ранку</span> ). L'accusatif est utilisé ici avec la préposition \"на\" pour indiquer un moment précis dans le temps, souvent dans un contexte futur ou pour marquer un changement. Dans ce cas, \"на <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span>\" signifie \"pour le matin\" ou \"le matin venu\"."
+        }
+      }
+    },
+    "температура": {
+      "cas": {
+        "nom": { "s": ["температура", 9], "pl": ["температури", 9] },
+        "gen": { "s": ["температури", 9], "pl": ["температур", 9] },
+        "dat": { "s": ["температурі", 9], "pl": ["температурам", 9] },
+        "acc": { "s": ["температуру", 9], "pl": ["температури", 9] },
+        "ins": { "s": ["температурою", 9], "pl": ["температурами", 9] },
+        "loc": { "s": ["температурі", 9], "pl": ["температурах", 9] },
+        "voc": { "s": ["температуро", 9], "pl": ["температури", 9] }
+      },
+      "genre": "f",
+      "base_html": "<span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>",
+      "phrases": {
+        "На ранок Оксані Тере́нтiївнi погiршало: пiдвищилася температура, посилився кашель.": {
+          "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдвищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+          "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
+        }
+      }
+    },
+    "школа": {
+      "cas": {
+        "nom": { "s": ["школа", 3], "pl": ["школи", 3] },
+        "gen": { "s": ["школи", 3], "pl": ["шкіл", 3] },
+        "dat": { "s": ["школі", 3], "pl": ["школам", 3] },
+        "acc": { "s": ["школу", 3], "pl": ["школи", 3] },
+        "ins": { "s": ["школою", 3], "pl": ["школами", 3] },
+        "loc": { "s": ["школі", 3], "pl": ["школах", 3] },
+        "voc": { "s": ["школо", 3], "pl": ["школи", 3] }
+      },
+      "genre": "f",
+      "base_html": "<span class=\"ukr\" data-info=\"школа;nom;cas;nom;s\">школа</span>",
+      "phrases": {
+        "Сашковi довелося перед школа школою</span> сходити до аптеки.": {
+          "phrase_html": "Сашковi довелося перед <span class=\"ukr\" data-info=\"школа;nom;cas;ins;s\">школою</span> сходити до аптеки.",
+          "traduction": "Sasha a dû aller avant l'école à la pharmacie."
+        }
+      }
+    },
+    "як": {
+      "cas": {
+        "nom": { "s": ["як", -1], "pl": ["яки", 1] },
+        "gen": { "s": ["яка", 1], "pl": ["яків", 1] },
+        "dat": { "s": ["якові", 1], "pl": ["якам", 1] },
+        "acc": { "s": ["яка", 1], "pl": ["яки", 1] },
+        "ins": { "s": ["яком", 1], "pl": ["яками", 1] },
+        "loc": { "s": ["якові", 1], "pl": ["яках", 1] },
+        "voc": { "s": ["яче", 1], "pl": ["яки", 1] }
+      },
+      "genre": "m",
+      "base_html": "<span class=\"ukr\" data-info=\"як;nom;cas;nom;s\">як</span>"
+    }
+  },
+  "proper": {
+    "я": {
+      "cas": {
+        "nom": ["я", -1],
+        "gen": ["мене", 4],
+        "dat": ["мені", 4],
+        "acc": ["мене", 4],
+        "ins": ["мною", 3],
+        "loc": ["мені", 4]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">я</span>"
+    }
+  },
+  "verb": {
+    "класти": {
+      "inf": ["класти", 3],
+      "conj": {
+        "imp": {
+          "1p": { "s": null, "pl": ["кладімо", 5] },
+          "2p": { "s": ["клади", "клади-но", 5], "pl": ["кладіть", 5] }
+        },
+        "fut": {
+          "1p": { "s": ["кластиму", 3], "pl": ["кластимемо", 3] },
+          "2p": { "s": ["кластимеш", 3], "pl": ["кластимете", 3] },
+          "3p": { "s": ["кластиме", 3], "pl": ["кластимуть", 3] }
+        },
+        "pres": {
+          "1p": { "s": ["кладу", 5], "pl": ["кладемо", 7] },
+          "2p": { "s": ["кладеш", 5], "pl": ["кладете", 7] },
+          "3p": { "s": ["кладе", 5], "pl": ["кладуть", 5] }
+        },
+        "pass": {
+          "m": { "s": ["клав", 3], "pl": ["клали", 3] },
+          "f": { "s": ["клала", 3], "pl": ["клали", 3] },
+          "n": { "s": ["клало", 3], "pl": ["клали", 3] }
+        },
+        "imper": ["кладено", 3]
+      },
+      "asp": "imperfectif",
+      "coupl": "покласти",
+      "group": "1",
+      "ref": { "Chinkarouk": "L1,grammaireTheo,p46" },
+      "base_html": "<span class=\"ukr\" data-info=\"класти;verb;inf\">класти</span>",
+      "phrases": {
+        "Я кладу гроші в свою кишеню.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+          "traduction": "Je mets de l'argent dans ma poche."
+        }
+      }
+    },
+    "підвищитися": {
+      "inf": ["підвищитися", 4],
+      "conj": {
+        "imp": {
+          "1p": { "s": [null, 4], "pl": ["підвищімося", 4] },
+          "2p": {
+            "s": ["підвищся", "підвищся-но", 4],
+            "pl": ["підвищіться", 4]
+          }
+        },
+        "fut": {
+          "1p": {
+            "s": ["підвищуся", 4],
+            "pl": ["підвищимося", 4]
+          },
+          "2p": { "s": ["підвищишся", 4], "pl": ["підвищитеся", 4] },
+          "3p": { "s": ["підвищиться", 4], "pl": ["підвищаться", 4] }
+        },
+        "pass": {
+          "m": { "s": ["підвищився", 4], "pl": ["підвищилися", 4] },
+          "f": { "s": ["підвищилася", 4], "pl": ["підвищилися", 4] },
+          "n": { "s": ["підвищилося", 4], "pl": ["підвищилися", 4] }
+        },
+        "imper": ["підвищено", 4]
+      },
+      "asp": "perfectif",
+      "coupl": null,
+      "group": "1",
+      "base_html": "<span class=\"ukr\" data-info=\"підвищитися;verb;inf\">підвищитися</span>"
+    },
+    "погіршати": {
+      "inf": ["погіршати", 4],
+      "conj": {
+        "imp": {
+          "1p": { "s": [null, 4], "pl": ["погіршаймо", 4] },
+          "2p": { "s": ["погіршай", "погіршай-но", 4], "pl": ["погіршіть", 4] }
+        },
+        "fut": {
+          "1p": {
+            "s": ["погіршаю", 4],
+            "pl": ["погіршаємо", 4]
+          },
+          "2p": { "s": ["погіршаєш", 4], "pl": ["погіршаєте", 4] },
+          "3p": { "s": ["погіршає", 4], "pl": ["погіршають", 4] }
+        },
+        "pass": {
+          "m": { "s": ["погіршав", 4], "pl": ["погіршали", 4] },
+          "f": { "s": ["погіршала", 4], "pl": ["погіршали", 4] },
+          "n": { "s": ["погіршало", 4], "pl": ["погіршали", 4] }
+        },
+        "imper": ["погіршано", 4]
+      },
+      "asp": "perfectif",
+      "coupl": null,
+      "group": "1",
+      "base_html": "<span class=\"ukr\" data-info=\"погіршати;verb;inf\">погіршати</span>",
+      "phrases": {
+        "На ранок Оксані Терентіївні погіршало: підівищилася температура, посилився кашель.": {
+          "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi <span class=\"ukr\" data-info=\"погіршати;verb;conj;pass;n;s\">погiршало</span>: пiдівищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+          "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
+        }
+      }
+    },
+    "читати": {
+      "inf": ["читати", 4],
+      "conj": {
+        "imp": {
+          "1p": { "s": [null, 4], "pl": ["читаймо", 4] },
+          "2p": { "s": ["читай", "читай-но", 4], "pl": ["читайте", 4] }
+        },
+        "fut": {
+          "1p": {
+            "s": ["читатиму", 4],
+            "pl": ["читатимем", "читатимемо", 4]
+          },
+          "2p": { "s": ["читатимеш", 4], "pl": ["читатимете", 4] },
+          "3p": { "s": ["читатиме", 4], "pl": ["читатимуть", 4] }
+        },
+        "pres": {
+          "1p": { "s": ["читаю", 4], "pl": ["читаєм", "читаємо", 4] },
+          "2p": { "s": ["читаєш", 4], "pl": ["читаєте", 4] },
+          "3p": { "s": ["читає", "чита", 4], "pl": ["читають", 4] }
+        },
+        "pass": {
+          "m": { "s": ["читав", 4], "pl": ["читали", 4] },
+          "f": { "s": ["читала", 4], "pl": ["читали", 4] },
+          "n": { "s": ["читало", 4], "pl": ["читали", 4] }
+        },
+        "imper": ["читано", 4]
+      },
+      "asp": "imperfectif",
+      "coupl": "прочитати",
+      "group": "1",
+      "base_html": "<span class=\"ukr\" data-info=\"читати;verb;inf\">читати</span>",
+      "phrases": {
+        "Я читаю мінімум одну книжку на місяць.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;1p;s\">читаю</span> мінімум одну книжку на місяць.",
+          "traduction": "Je lis au moins un livre tous les mois."
+        }
+      }
+    }
+  },
+  "adj": {
+    "швидкий": {
+      "cas": {
+        "nom": {
+          "m": ["швидкий", 6],
+          "f": ["швидка", 6],
+          "n": ["швидке", 6],
+          "pl": ["швидкі", 6]
+        },
+        "gen": {
+          "m": ["швидкого", 6],
+          "f": ["швидкої", 6],
+          "n": ["швидкого", 6],
+          "pl": ["швидких", 6]
+        },
+        "dat": {
+          "m": ["швидкому", 6],
+          "f": ["швидкій", 6],
+          "n": ["швидкому", 6],
+          "pl": ["швидким", 6]
+        },
+        "acc": {
+          "m": ["швидкого", 6],
+          "f": ["швидку", 6],
+          "n": ["швидке", 6],
+          "pl": ["швидкі", 6]
+        },
+        "ins": {
+          "m": ["швидким", 6],
+          "f": ["швидкою", 6],
+          "n": ["швидким", 6],
+          "pl": ["швидкими", 6]
+        },
+        "loc": {
+          "m": ["швидкому", 6],
+          "f": ["швидкій", 6],
+          "n": ["швидкому", 6],
+          "pl": ["швидких", 6]
+        },
+        "voc": {
+          "m": ["швидкий", 6],
+          "f": ["швидка", 6],
+          "n": ["швидке", 6],
+          "pl": ["швидкі", 6]
+        }
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"швидкий;adj;cas;nom;m\">швидкий</span>"
+    }
+  },
+  "proposs": {
+    "свій": {
+      "cas": {
+        "nom": {
+          "m": ["свій", 3],
+          "f": ["своя", 4],
+          "n": ["своє", 4],
+          "pl": ["свої", 4]
+        },
+        "gen": {
+          "m": ["свого", 5],
+          "f": ["своєї", 5],
+          "n": ["свого", 5],
+          "pl": ["своїх", 4]
+        },
+        "dat": {
+          "m": ["своєму", 4],
+          "f": ["своїй", 4],
+          "n": ["своєму", 4],
+          "pl": ["своїм", 4]
+        },
+        "acc": {
+          "m": ["свого", 4],
+          "f": ["свою", 4],
+          "n": ["своє", 4],
+          "pl": ["свої", 4]
+        },
+        "ins": {
+          "m": ["своїм", 4],
+          "f": ["своєю", 4],
+          "n": ["своїм", 4],
+          "pl": ["своїми", 4]
+        },
+        "loc": {
+          "m": ["своєму", 4],
+          "f": ["своїй", 4],
+          "n": ["своєму", 4],
+          "pl": ["своїх", 4]
+        },
+        "voc": {
+          "m": ["свій", 3],
+          "f": ["своя", 3],
+          "n": ["своє", 3],
+          "pl": ["свої", 3]
+        }
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"свій;proposs;cas;nom;m\">свій</span>"
+    }
+  }
+}
