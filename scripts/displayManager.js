@@ -84,6 +84,9 @@ let displayManager = {
 
       document.getElementById("word-details").innerHTML = htmlContent;
 
+      // Appeler la fonction depuis eventHandlers
+      eventHandlers.setupExamplePhrasesEventHandlers();
+
       // Réattacher la logique de mise en surbrillance après le chargement du nouveau contenu
       accentManager.attachOriginalText();
       accentManager.highlightWords(); // Pour appliquer la logique de surbrillance sur les nouveaux éléments
@@ -169,22 +172,29 @@ let displayManager = {
   generateExamplePhrases: function (phrases) {
     let htmlContent = "<h3>Phrases d'exemple:</h3><ul>";
     for (const [phraseKey, phrase] of Object.entries(phrases)) {
-      htmlContent += `
-        <li>
-          ${phrase.phrase_html} <em>${phrase.traduction}</em>
-          ${
-            phrase.genereVerbe
-              ? `<p>${gramFunc.generateVerbForms(
-                  phrase.genereVerbe.verbe,
-                  phrase.genereVerbe.temps,
-                  phrase.genereVerbe.frag1,
-                  phrase.genereVerbe.frag2
-                )}</p>`
-              : ""
-          }
-          ${phrase.remarque ? `<p class='remarque'>${phrase.remarque}</p>` : ""}
-        </li>
+      htmlContent += `<li>`;
+      htmlContent += `${phrase.phrase_html} <em>${phrase.traduction}</em>`;
+      if (phrase.remarque) {
+        htmlContent += `<p class='remarque'>${phrase.remarque}</p>`;
+      }
+
+      // Vérifier si "genereVerbe" existe
+      if (phrase.genereVerbe) {
+        // Générer un identifiant unique pour la checkbox et le conteneur des formes verbales
+        const uniqueId = Math.random().toString(36).slice(2, 11);
+        const checkboxId = `show-verb-forms-${uniqueId}`;
+        const verbFormsContainerId = `verb-forms-container-${uniqueId}`;
+
+        htmlContent += `
+        <div>
+          <input type="checkbox" id="${checkboxId}" class="show-verb-forms-checkbox" data-verbe="${phrase.genereVerbe.verbe}" data-temps="${phrase.genereVerbe.temps}" data-frag1='${phrase.genereVerbe.frag1}' data-frag2='${phrase.genereVerbe.frag2}' data-container="${verbFormsContainerId}">
+          <label for="${checkboxId}">Afficher les formes verbales</label>
+        </div>
+        <div id="${verbFormsContainerId}" class="verb-forms-container" style="display: none;"></div>
       `;
+      }
+
+      htmlContent += `</li>`;
     }
     htmlContent += "</ul>";
     return htmlContent;
