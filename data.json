@@ -496,7 +496,7 @@
           "pl": ["своїм", 4]
         },
         "acc": {
-          "m": ["свого", 4],
+          "m": ["свого", 5],
           "f": ["свою", 4],
           "n": ["своє", 4],
           "pl": ["свої", 4]
@@ -520,7 +520,13 @@
           "pl": ["свої", 3]
         }
       },
-      "base_html": "<span class=\"ukr\" data-info=\"свій;proposs;cas;nom;m\">свій</span>"
+      "base_html": "<span class=\"ukr\" data-info=\"свій;proposs;cas;nom;m\">свій</span>",
+      "phrases": {
+        "Я можу запитати свого батька.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"можу;verb;conj;pres;1p\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;noun;cas;acc;s\">батька</span>.",
+          "traduction": "Je peux demander à mon père."
+        }
+      }
     }
   }
 }
