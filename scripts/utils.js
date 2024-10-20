@@ -92,4 +92,42 @@ let Utils = {
       }
     }
   },
+  classesToColors: {
+    nomi: "inherit",
+    gen: "rgb(19, 132, 46)",
+    acc: "rgb(57, 4, 248)",
+    loc: "rgb(132, 93, 19)",
+    inst: "rgb(231, 40, 155)",
+  },
+  /* coloration des groupes de mots par cas au survol */
+
+  applyHoverStyles: function (classesToColors) {
+    const elements = document.querySelectorAll(".ukr"); // Sélectionne tous les éléments avec la classe 'ukr', du coup également les éléments de word-List... à corriger, éventuellement
+    elements.forEach((element) => {
+      Object.entries(classesToColors).forEach(([className, color]) => {
+        const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
+        if (dataInfo.includes(className)) {
+          element.addEventListener("mouseenter", function () {
+            // Vérifie si l'élément <sup> a déjà été ajouté
+            if (!this.classList.contains("info-added")) {
+              this.style.color = color;
+              this.innerHTML += `<sup><em> ${dataInfo
+                .filter((_, index) => index !== 2)
+                .join()}</em></sup>`;
+              this.classList.add("info-added"); // Marque l'élément comme ayant un <sup>
+            }
+          });
+
+          element.addEventListener("mouseleave", function () {
+            this.style.color = ""; // Réinitialise à la couleur par défaut
+            // Supprime uniquement le dernier <sup> ajouté
+            if (this.classList.contains("info-added")) {
+              this.innerHTML = this.innerHTML.split("<sup>")[0]; // Reset à l'original sans <sup>
+              this.classList.remove("info-added"); // Retire la marque
+            }
+          });
+        }
+      });
+    });
+  },
 };

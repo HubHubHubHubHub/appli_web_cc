@@ -91,6 +91,9 @@ let displayManager = {
       // Réattacher la logique de mise en surbrillance après le chargement du nouveau contenu
       accentManager.attachOriginalText();
       accentManager.highlightWords(); // Pour appliquer la logique de surbrillance sur les nouveaux éléments
+
+      // Appliquer les styles de survol après l'affichage des mots
+      Utils.applyHoverStyles(Utils.classesToColors);
     } else {
       document.getElementById("word-details").innerHTML =
         "<p>Aucun détail disponible pour ce mot.</p>";
