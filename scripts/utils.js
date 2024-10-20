@@ -106,14 +106,34 @@ let Utils = {
     elements.forEach((element) => {
       Object.entries(classesToColors).forEach(([className, color]) => {
         const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
+        const [word, category, ...infos] = dataInfo;
         if (dataInfo.includes(className)) {
           element.addEventListener("mouseenter", function () {
             // Vérifie si l'élément <sup> a déjà été ajouté
             if (!this.classList.contains("info-added")) {
               this.style.color = color;
-              this.innerHTML += `<sup><em> ${dataInfo
-                .filter((_, index) => index !== 2)
-                .join()}</em></sup>`;
+              let displayedInfo;
+              if (
+                dataManager?.wordData[category]?.[word]?.["cas"]?.["nomi"]?.[
+                  "s"
+                ]
+              ) {
+                let posAcc =
+                  dataManager.wordData[category][word]["cas"]["nomi"]["s"][1];
+                let motNomi =
+                  dataManager.wordData[category][word]["cas"]["nomi"]["s"][0];
+                displayedInfo =
+                  Utils.addAccent(motNomi, posAcc) +
+                  "," +
+                  dataInfo
+                    .filter((_, index) => index !== 2 && index !== 0)
+                    .join();
+              } else {
+                displayedInfo = dataInfo
+                  .filter((_, index) => index !== 2)
+                  .join();
+              }
+              this.innerHTML += `<sup><em> ${displayedInfo}</em></sup>`;
               this.classList.add("info-added"); // Marque l'élément comme ayant un <sup>
             }
           });
