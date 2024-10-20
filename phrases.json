@@ -1,14 +1,14 @@
 {
   "Я бачив один раз у житті.": {
-    "phrase_html": "Я бачив <span class=\"ukr\" data-info=\"один;card;cas;nom;m\">один</span> раз у житті.",
+    "phrase_html": "Я бачив <span class=\"ukr\" data-info=\"один;card;cas;nomi;m\">один</span> раз у житті.",
     "traduction": "J'ai vu une fois dans ma vie"
   },
   "Одна з багатьох історій, які він розповів.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;f\">Одна</span> з багатьох історій, які він розповів.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nomi;f\">Одна</span> з багатьох історій, які він розповів.",
     "traduction": "Une des nombreuses histoires qu'il a racontées."
   },
   "Одне з найкращих місць у місті.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;n\">Одне</span> з найкращих місць у місті.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nomi;n\">Одне</span> з найкращих місць у місті.",
     "traduction": "Un des meilleurs endroits de la ville."
   },
   "Що ти знаєш про війну": {
@@ -20,11 +20,11 @@
     "traduction": "Je n'aime pas la guerre"
   },
   "Війна</span> між Україною та Росією триває вже багато років.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">Війна</span> між Україною та Росією триває вже багато років.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"війна;nom;cas;nomi;s\">Війна</span> між Україною та Росією триває вже багато років.",
     "traduction": "La guerre entre l'Ukraine et la Russie dure depuis de nombreuses années."
   },
   "Ця війна принесла багато страждань.": {
-    "phrase_html": "Ця <span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">війна</span> принесла багато страждань.",
+    "phrase_html": "Ця <span class=\"ukr\" data-info=\"війна;nom;cas;nomi;s\">війна</span> принесла багато страждань.",
     "traduction": "Cette guerre a causé beaucoup de souffrances."
   },
   "Після війни настали важкі часи": {
@@ -42,7 +42,7 @@
     }
   },
   "На ранок Оксані Терентіївні погіршало: підівищилася температура, посилився кашель.": {
-    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi <span class=\"ukr\" data-info=\"погіршати;verb;conj;pass;n;s\">погiршало</span>: пiдівищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi <span class=\"ukr\" data-info=\"погіршати;verb;conj;pass;n;s\">погiршало</span>: пiдівищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nomi;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nomi;s\">кашель</span>.",
     "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
   },
   "За порадою аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.": {
@@ -55,7 +55,7 @@
     "remarque": "En ukrainien, après l'adjectif \"доброго\" (qui est au génitif masculin singulier), le nom \"ранок\" (qui signifie \"matin\") est également mis au génitif pour correspondre à la construction de la salutation. C'est une forme courante dans les salutations comme \"доброго ранку\" (bon matin) ou \"доброго дня\" (bonne journée), où le génitif est utilisé pour exprimer un souhait."
   },
   "На ранок Оксані Тере́нтiївнi погiршало: пiдвищилася температура, посилився кашель.": {
-    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдвищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдвищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nomi;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nomi;s\">кашель</span>.",
     "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
   },
   "Сашковi довелося перед школа школою</span> сходити до аптеки.": {
