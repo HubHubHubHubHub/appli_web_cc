@@ -127,7 +127,7 @@ let displayManager = {
                       </tr>`;
       // Mapping des codes de cas aux noms ukrainiens
       const caseNames = {
-        nom: "називний",
+        nomi: "називний",
         gen: "родовий",
         dat: "давальний",
         acc: "знахідний",
