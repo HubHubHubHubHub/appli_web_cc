@@ -32,7 +32,7 @@
     "traduction": "Après la guerre, des temps difficiles sont venus"
   },
   "Я кладу гроші в свою кишеню.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;f\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
     "traduction": "Je mets de l'argent dans ma poche.",
     "genereVerbe": {
       "verbe": "класти",
