@@ -174,13 +174,14 @@ let displayManager = {
     let htmlContent = "<h3>Phrases d'exemple:</h3><ul>";
     for (const [phraseKey, phrase] of Object.entries(phrases)) {
       htmlContent += `<li>`;
-      htmlContent += `${phrase.phrase_html} <em>${phrase.traduction}</em>`;
-      if (phrase.remarque) {
-        htmlContent += `<p class='remarque'>${phrase.remarque}</p>`;
+      htmlContent += `${dataManager.phraseData[phraseKey].phrase_html} <em>${dataManager.phraseData[phraseKey].traduction}</em>`;
+      if (dataManager.phraseData[phraseKey].remarque) {
+        htmlContent += `<p class='remarque'>${dataManager.phraseData[phraseKey].remarque}</p>`;
       }
 
       // Vérifier si "genereVerbe" existe
-      if (phrase.genereVerbe) {
+      console.log(dataManager.phraseData[phraseKey].genereVerbe);
+      if (dataManager.phraseData[phraseKey].genereVerbe) {
         // Générer un identifiant unique pour la checkbox et le conteneur des formes verbales
         const uniqueId = Math.random().toString(36).slice(2, 11);
         const checkboxId = `show-verb-forms-${uniqueId}`;
@@ -188,7 +189,7 @@ let displayManager = {
 
         htmlContent += `
         <div>
-          <input type="checkbox" id="${checkboxId}" class="show-verb-forms-checkbox" data-verbe="${phrase.genereVerbe.verbe}" data-temps="${phrase.genereVerbe.temps}" data-frag1='${phrase.genereVerbe.frag1}' data-frag2='${phrase.genereVerbe.frag2}' data-container="${verbFormsContainerId}">
+          <input type="checkbox" id="${checkboxId}" class="show-verb-forms-checkbox" data-verbe="${dataManager.phraseData[phraseKey].genereVerbe.verbe}" data-temps="${dataManager.phraseData[phraseKey].genereVerbe.temps}" data-frag1='${dataManager.phraseData[phraseKey].genereVerbe.frag1}' data-frag2='${dataManager.phraseData[phraseKey].genereVerbe.frag2}' data-container="${verbFormsContainerId}">
           <label for="${checkboxId}">Afficher les formes verbales</label>
         </div>
         <div id="${verbFormsContainerId}" class="verb-forms-container" style="display: none;"></div>

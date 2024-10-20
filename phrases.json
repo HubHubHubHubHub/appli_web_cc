@@ -1,77 +1,83 @@
 {
-    "Я бачив один раз у житті.": {
-        "phrase_html": "Я бачив <span class=\"ukr\" data-info=\"один;card;cas;nom;m\">один</span> раз у житті.",
-        "traduction": "J'ai vu une fois dans ma vie"
-    },
-    "Одна з багатьох історій, які він розповів.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;f\">Одна</span> з багатьох історій, які він розповів.",
-        "traduction": "Une des nombreuses histoires qu'il a racontées."
-    },
-    "Одне з найкращих місць у місті.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;n\">Одне</span> з найкращих місць у місті.",
-        "traduction": "Un des meilleurs endroits de la ville."
-    },
-    "Що ти знаєш про війну": {
-        "phrase_html": "Що ти знаєш про <span class=\"ukr\" data-info=\"війна;nom;cas;acc;s\">війну</span>?",
-        "traduction": "Que sais-tu de la guerre?"
-    },
-    "Я не люблю війни": {
-        "phrase_html": "Я не люблю <span class=\"ukr\" data-info=\"війна;nom;cas;gen;s\">війни</span>",
-        "traduction": "Je n'aime pas la guerre"
-    },
-    "Війна</span> між Україною та Росією триває вже багато років.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">Війна</span> між Україною та Росією триває вже багато років.",
-        "traduction": "La guerre entre l'Ukraine et la Russie dure depuis de nombreuses années."
-    },
-    "Ця війна принесла багато страждань.": {
-        "phrase_html": "Ця <span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">війна</span> принесла багато страждань.",
-        "traduction": "Cette guerre a causé beaucoup de souffrances."
-    },
-    "Після війни настали важкі часи": {
-        "phrase_html": "Після <span class=\"ukr\" data-info=\"війна;nom;cas;gen;s\">війни</span> настали важкі часи",
-        "traduction": "Après la guerre, des temps difficiles sont venus"
-    },
-    "Я кладу гроші в свою кишеню.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
-        "traduction": "Je mets de l'argent dans ma poche."
-    },
-    "На ранок Оксані Терентіївні погіршало: підівищилася температура, посилився кашель.": {
-        "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi <span class=\"ukr\" data-info=\"погіршати;verb;conj;pass;n;s\">погiршало</span>: пiдівищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
-        "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
-    },
-    "За порадою аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.": {
-        "phrase_html": "За <span class=\"ukr\" data-info=\"порада;nom;cas;ins;s\">порадою</span> аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.",
-        "traduction": "Sur les conseils du pharmacien, Sasha a également pris des vitamines curatives, espérant que la grand-mère se rétablira assez rapidement."
-    },
-    "Доброго ранку, ми з України.": {
-        "phrase_html": "Доброго <span class=\"ukr\" data-info=\"ранок;nom;cas;gen;s\">ранку</span>, ми з України.",
-        "traduction": "Bonjour, nous sommes d'Ukraine.",
-        "remarque": "En ukrainien, après l'adjectif \"доброго\" (qui est au génitif masculin singulier), le nom \"ранок\" (qui signifie \"matin\") est également mis au génitif pour correspondre à la construction de la salutation. C'est une forme courante dans les salutations comme \"доброго ранку\" (bon matin) ou \"доброго дня\" (bonne journée), où le génitif est utilisé pour exprimer un souhait."
-    },
-    "На ранок Оксані Тере́нтiївнi погiршало: пiдвищилася температура, посилився кашель.": {
-        "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдвищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
-        "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
-    },
-    "Сашковi довелося перед школа школою</span> сходити до аптеки.": {
-        "phrase_html": "Сашковi довелося перед <span class=\"ukr\" data-info=\"школа;nom;cas;ins;s\">школою</span> сходити до аптеки.",
-        "traduction": "Sasha a dû aller avant l'école à la pharmacie."
-    },
-    "Я можу запитати свого батька.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
-        "traduction": "Je peux demander à mon père.",
-        "genereVerbe": {
-            "verbe": "могти",
-            "temps": "pres",
-            "frag1": "",
-            "frag2": "<span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>."
-        }
-    },
-    "Він запитає мене про це завтра.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"це;pronoun;cas;acc\">це</span> <span class=\"ukr\" data-info=\"завтра;nom;cas;acc;s\">завтра</span>.",
-        "traduction": "Il me demandera cela demain."
-    },
-    "Я читаю мінімум одну книжку на місяць.": {
-        "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;1p;s\">читаю</span> мінімум одну книжку на місяць.",
-        "traduction": "Je lis au moins un livre tous les mois."
+  "Я бачив один раз у житті.": {
+    "phrase_html": "Я бачив <span class=\"ukr\" data-info=\"один;card;cas;nom;m\">один</span> раз у житті.",
+    "traduction": "J'ai vu une fois dans ma vie"
+  },
+  "Одна з багатьох історій, які він розповів.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;f\">Одна</span> з багатьох історій, які він розповів.",
+    "traduction": "Une des nombreuses histoires qu'il a racontées."
+  },
+  "Одне з найкращих місць у місті.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"один;card;cas;nom;n\">Одне</span> з найкращих місць у місті.",
+    "traduction": "Un des meilleurs endroits de la ville."
+  },
+  "Що ти знаєш про війну": {
+    "phrase_html": "Що ти знаєш про <span class=\"ukr\" data-info=\"війна;nom;cas;acc;s\">війну</span>?",
+    "traduction": "Que sais-tu de la guerre?"
+  },
+  "Я не люблю війни": {
+    "phrase_html": "Я не люблю <span class=\"ukr\" data-info=\"війна;nom;cas;gen;s\">війни</span>",
+    "traduction": "Je n'aime pas la guerre"
+  },
+  "Війна</span> між Україною та Росією триває вже багато років.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">Війна</span> між Україною та Росією триває вже багато років.",
+    "traduction": "La guerre entre l'Ukraine et la Russie dure depuis de nombreuses années."
+  },
+  "Ця війна принесла багато страждань.": {
+    "phrase_html": "Ця <span class=\"ukr\" data-info=\"війна;nom;cas;nom;s\">війна</span> принесла багато страждань.",
+    "traduction": "Cette guerre a causé beaucoup de souffrances."
+  },
+  "Після війни настали важкі часи": {
+    "phrase_html": "Після <span class=\"ukr\" data-info=\"війна;nom;cas;gen;s\">війни</span> настали важкі часи",
+    "traduction": "Après la guerre, des temps difficiles sont venus"
+  },
+  "Я кладу гроші в свою кишеню.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+    "traduction": "Je mets de l'argent dans ma poche.",
+    "genereVerbe": {
+      "verbe": "класти",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>."
     }
+  },
+  "На ранок Оксані Терентіївні погіршало: підівищилася температура, посилився кашель.": {
+    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi <span class=\"ukr\" data-info=\"погіршати;verb;conj;pass;n;s\">погiршало</span>: пiдівищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+    "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
+  },
+  "За порадою аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.": {
+    "phrase_html": "За <span class=\"ukr\" data-info=\"порада;nom;cas;ins;s\">порадою</span> аптекаря Сашко узяв також якихось цiлющих вiтамiнiв, сподiваючись, що бабуся видужає досить швидко.",
+    "traduction": "Sur les conseils du pharmacien, Sasha a également pris des vitamines curatives, espérant que la grand-mère se rétablira assez rapidement."
+  },
+  "Доброго ранку, ми з України.": {
+    "phrase_html": "Доброго <span class=\"ukr\" data-info=\"ранок;nom;cas;gen;s\">ранку</span>, ми з України.",
+    "traduction": "Bonjour, nous sommes d'Ukraine.",
+    "remarque": "En ukrainien, après l'adjectif \"доброго\" (qui est au génitif masculin singulier), le nom \"ранок\" (qui signifie \"matin\") est également mis au génitif pour correspondre à la construction de la salutation. C'est une forme courante dans les salutations comme \"доброго ранку\" (bon matin) ou \"доброго дня\" (bonne journée), où le génitif est utilisé pour exprimer un souhait."
+  },
+  "На ранок Оксані Тере́нтiївнi погiршало: пiдвищилася температура, посилився кашель.": {
+    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;nom;cas;acc;s\">ранок</span> Оксані Тере́нтiївнi погiршало: пiдвищилася <span class=\"ukr\" data-info=\"температура;nom;cas;nom;s\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;nom;cas;nom;s\">кашель</span>.",
+    "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
+  },
+  "Сашковi довелося перед школа школою</span> сходити до аптеки.": {
+    "phrase_html": "Сашковi довелося перед <span class=\"ukr\" data-info=\"школа;nom;cas;ins;s\">школою</span> сходити до аптеки.",
+    "traduction": "Sasha a dû aller avant l'école à la pharmacie."
+  },
+  "Я можу запитати свого батька.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
+    "traduction": "Je peux demander à mon père.",
+    "genereVerbe": {
+      "verbe": "могти",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>."
+    }
+  },
+  "Він запитає мене про це завтра.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"це;pronoun;cas;acc\">це</span> <span class=\"ukr\" data-info=\"завтра;nom;cas;acc;s\">завтра</span>.",
+    "traduction": "Il me demandera cela demain."
+  },
+  "Я читаю мінімум одну книжку на місяць.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;1p;s\">читаю</span> мінімум одну книжку на місяць.",
+    "traduction": "Je lis au moins un livre tous les mois."
+  }
 }
