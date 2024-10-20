@@ -77,6 +77,19 @@
     }
   },
   "nom": {
+    "батько": {
+      "cas": {
+        "nom": { "s": ["батько", 2], "pl": ["батьки", 6] },
+        "gen": { "s": ["батька", 2], "pl": ["батьків", 6] },
+        "dat": { "s": ["батькові", 2], "pl": ["батькам", 6] },
+        "acc": { "s": ["батька", 2], "pl": ["батьків", 6] },
+        "ins": { "s": ["батьком", 2], "pl": ["батьками", 6] },
+        "loc": { "s": ["батькові", 2], "pl": ["батьках", 6] },
+        "voc": { "s": ["батьку", 2], "pl": ["батьки", 6] }
+      },
+      "genre": "m",
+      "base_html": "<span class=\"ukr\" data-info=\"батько;nom;cas;nom;s\">батько</span>"
+    },
     "війна": {
       "cas": {
         "nom": { "s": ["війна", 5], "pl": ["війни", 2] },
@@ -315,8 +328,7 @@
       "base_html": "<span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span>",
       "phrases": {
         "Я можу запитати свого батька.": {
-          "inf": ["могти", 5],
-          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\";verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
           "traduction": "Je peux demander à mon père."
         },
         "Він запитає мене про це завтра.": {
@@ -593,8 +605,14 @@
       "base_html": "<span class=\"ukr\" data-info=\"свій;proposs;cas;nom;m\">свій</span>",
       "phrases": {
         "Я можу запитати свого батька.": {
-          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;noun;cas;acc;s\">батька</span>.",
-          "traduction": "Je peux demander à mon père."
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
+          "traduction": "Je peux demander à mon père.",
+          "genereVerbe": {
+            "verbe": "могти",
+            "temps": "pres",
+            "frag1": "",
+            "frag2": "<span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>."
+          }
         }
       }
     }
