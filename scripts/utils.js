@@ -97,12 +97,15 @@ let Utils = {
     gen: "rgb(19, 132, 46)",
     acc: "rgb(57, 4, 248)",
     loc: "rgb(132, 93, 19)",
-    inst: "rgb(231, 40, 155)",
+    ins: "rgb(231, 40, 155)",
   },
   /* coloration des groupes de mots par cas au survol */
 
   applyHoverStyles: function (classesToColors) {
-    const elements = document.querySelectorAll(".ukr"); // Sélectionne tous les éléments avec la classe 'ukr', du coup également les éléments de word-List... à corriger, éventuellement
+    //const elements = document.querySelectorAll(".ukr"); // Sélectionne tous les éléments avec la classe 'ukr', du coup également les éléments de word-List... à corriger, éventuellement
+    const elements = document
+      .getElementById("word-details")
+      .querySelectorAll(".ukr");
     elements.forEach((element) => {
       Object.entries(classesToColors).forEach(([className, color]) => {
         const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
