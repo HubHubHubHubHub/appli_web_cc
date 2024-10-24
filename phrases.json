@@ -79,5 +79,20 @@
   "Я читаю мінімум одну книжку на місяць.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;1p;s\">читаю</span> мінімум одну книжку на місяць.",
     "traduction": "Je lis au moins un livre tous les mois."
+  },
+  "Я вішатиму картини на стіну.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom;s\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;fut;1p;s\">вішатиму</span> <span class=\"ukr\" data-info=\"картини;nom;cas;acc;pl\">картини</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіну;nom;cas;acc;s\">стіну</span>.",
+    "traduction": "Je vais accrocher des tableaux au mur."
+  },
+  "Я вішаю костюм у шафу.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom;s\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"костюм;nom;cas;acc;s\">костюм</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шафа;nom;cas;acc;s\">шафу</span>.",
+    "traduction": "J'accroche un costume dans l'armoire.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p2" },
+    "genereVerbe": {
+      "verbe": "вішати",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"костюм;nom;cas;acc;s\">костюм</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шафа;nom;cas;acc;s\">шафу</span>."
+    }
   }
 }
