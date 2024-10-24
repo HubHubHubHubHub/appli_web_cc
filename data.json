@@ -150,6 +150,23 @@
         "Я кладу гроші в свою кишеню.": "futurref?"
       }
     },
+    "костюм": {
+      "cas": {
+        "nomi": { "s": ["костюм", 5], "pl": ["костюми", 5] },
+        "gen": { "s": ["костюма", 5], "pl": ["костюмів", 5] },
+        "dat": { "s": ["костюму", 5], "pl": ["костюмам", 5] },
+        "acc": { "s": ["костюм", 5], "pl": ["костюми", 5] },
+        "ins": { "s": ["костюмом", 5], "pl": ["костюмами", 5] },
+        "loc": { "s": ["костюмі", 5], "pl": ["костюмах", 5] },
+        "voc": { "s": ["костюме", 5], "pl": ["костюми", 5] }
+      },
+      "genre": "m",
+      "base_html": "<span class=\"ukr\" data-info=\"костюм;nom;cas;nomi;s\">костюм</span>",
+      "html_data_info": "костюм;nom;cas;nomi;s",
+      "phrases": {
+        "Я вішаю костюм у шафу.": "futurref?"
+      }
+    },
     "порада": {
       "cas": {
         "nomi": { "s": ["порада", 4], "pl": ["поради", 4] },
@@ -199,6 +216,23 @@
         "На ранок Оксані Тере́нтiївнi погiршало: пiдвищилася температура, посилився кашель.": "futurref?"
       }
     },
+    "шафа": {
+      "cas": {
+        "nomi": { "s": ["шафа", 2], "pl": ["шафи", 2] },
+        "gen": { "s": ["шафи", 2], "pl": ["шаф", 2] },
+        "dat": { "s": ["шафі", 2], "pl": ["шафам", 2] },
+        "acc": { "s": ["шафу", 2], "pl": ["шафи", 2] },
+        "ins": { "s": ["шафою", 2], "pl": ["шафами", 2] },
+        "loc": { "s": ["шафі", 2], "pl": ["шафах", 2] },
+        "voc": { "s": ["шафо", 2], "pl": ["шафи", 2] }
+      },
+      "genre": "f",
+      "base_html": "<span class=\"ukr\" data-info=\"шафа;nom;cas;nomi;s\">шафа</span>",
+      "html_data_info": "шафа;nom;cas;nomi;s",
+      "phrases": {
+        "Я вішаю костюм у шафу.": "futurref?"
+      }
+    },
     "школа": {
       "cas": {
         "nomi": { "s": ["школа", 3], "pl": ["школи", 3] },
@@ -243,6 +277,56 @@
     }
   },
   "verb": {
+    "вішати": {
+      "inf": ["вішати", 2],
+      "conj": {
+        "imp": {
+          "1p": { "s": [null, 2], "pl": ["вішаємо", 2] },
+          "2p": { "s": ["вішай", "вішай-но", 2], "pl": ["вішайте", 2] }
+        },
+        "fut": {
+          "1p": {
+            "s": ["вішатиму", 2],
+            "pl": ["вішатимем", "вішатимемо", 2]
+          },
+          "2p": { "s": ["вішатимеш", 2], "pl": ["вішатимете", 2] },
+          "3p": { "s": ["вішатиме", 2], "pl": ["вішатимуть", 2] }
+        },
+        "pres": {
+          "1p": { "s": ["вішаю", 2], "pl": ["вішаємо", 2] },
+          "2p": { "s": ["вішаєш", 2], "pl": ["вішаєте", 2] },
+          "3p": { "s": ["вішає", 2], "pl": ["вішають", 2] }
+        },
+        "pass": {
+          "m": { "s": ["вішав", 2], "pl": ["вішали", 2] },
+          "f": { "s": ["вішала", 2], "pl": ["вішали", 2] },
+          "n": { "s": ["вішало", 2], "pl": ["вішали", 2] }
+        },
+        "imper": ["вішано", 2]
+      },
+      "asp": "imperfectif",
+      "coupl": "повісити",
+      "group": "1",
+      "base_html": "<span class=\"ukr\" data-info=\"вішати;verb;inf\">вішати</span>",
+      "phrases": {
+        "Я вішатиму картини на стіну.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom;s\">Я</span> <span class=\"ukr\" data-info=\"вішатиму;verb;conj;fut;1p;s\">вішатиму</span> <span class=\"ukr\" data-info=\"картини;nom;cas;acc;pl\">картини</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіну;nom;cas;acc;s\">стіну</span>.",
+          "traduction": "Je vais accrocher des tableaux au mur."
+        },
+        "Я вішаю костюм у шафу.": {
+          "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom;s\">Я</span> <span class=\"ukr\" data-info=\"вішаю;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"костюм;nom;cas;acc;s\">костюм</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шафу;nom;cas;acc;s\">шафу</span>.",
+          "traduction": "J'accroche un costume dans l'armoire.",
+          "ref": { "Chinkarouk": "L1,grammairePra,p2" },
+          "genereVerbe": {
+            "verbe": "могти",
+            "temps": "pres",
+            "frag1": "",
+            "frag2": "<span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>."
+          }
+        }
+      }
+    },
+
     "запитати": {
       "inf": ["запитати", 6],
       "conj": {
