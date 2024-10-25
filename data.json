@@ -267,13 +267,90 @@
     "я": {
       "cas": {
         "nomi": ["я", -1],
-        "gen": ["мене", 4],
+        "gen": ["мене", 4, "мене", 2],
         "dat": ["мені", 4],
-        "acc": ["мене", 4],
+        "acc": ["мене", 4, "мене", 2],
         "ins": ["мною", 3],
         "loc": ["мені", 4]
       },
       "base_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">я</span>"
+    },
+    "ти": {
+      "cas": {
+        "nomi": ["ти", -1],
+        "gen": ["тебе", 4, "тебе", 2],
+        "dat": ["тобі", 4],
+        "acc": ["тебе", 4, "тебе", 2],
+        "ins": ["тобою", 4],
+        "loc": ["тобі", 4]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ти;proper;cas;nomi\">ти</span>"
+    },
+    "він": {
+      "cas": {
+        "nomi": ["він", -1],
+        "gen": ["його", 4, "нього", 3],
+        "dat": ["йому", 4],
+        "acc": ["його", 4, "нього", 3],
+        "ins": ["ним", 1],
+        "loc": ["ньому", 3]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">він</span>"
+    },
+    "вона": {
+      "cas": {
+        "nomi": ["вона", 4],
+        "gen": ["її", 2, "неї", 2],
+        "dat": ["їй", -1],
+        "acc": ["її", 2, "неї", 2],
+        "ins": ["нею", 2],
+        "loc": ["ній", -1]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"вона;proper;cas;nomi\">вона</span>"
+    },
+    "воно": {
+      "cas": {
+        "nomi": ["воно", 4],
+        "gen": ["його", 4, "нього", 3],
+        "dat": ["йому", 4],
+        "acc": ["його", 4, "нього", 3],
+        "ins": ["ним", -1],
+        "loc": ["ньому", 3]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"воно;proper;cas;nomi\">воно</span>"
+    },
+    "ми": {
+      "cas": {
+        "nomi": ["ми", -1],
+        "gen": ["нас", -1],
+        "dat": ["нам", -1],
+        "acc": ["нас", -1],
+        "ins": ["нами", 2],
+        "loc": ["нас", -1]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">ми</span>"
+    },
+    "ви": {
+      "cas": {
+        "nomi": ["ви", -1],
+        "gen": ["вас", -1],
+        "dat": ["вам", -1],
+        "acc": ["вас", -1],
+        "ins": ["вами", 2],
+        "loc": ["вас", -1]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ви;proper;cas;nomi\">ви</span>"
+    },
+    "вони": {
+      "cas": {
+        "nomi": ["вони", 4],
+        "gen": ["їх", -1],
+        "dat": ["їм", -1],
+        "acc": ["їх", -1],
+        "ins": ["ними", 2],
+        "loc": ["них", -1]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"вони;proper;cas;nomi\">вони</span>"
     }
   },
   "verb": {
