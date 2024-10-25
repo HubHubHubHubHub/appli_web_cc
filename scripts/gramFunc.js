@@ -5,9 +5,18 @@ let gramFunc = {
 
     // Définir les pronoms personnels
     const pronouns = {
-      "1p": { s: "я", pl: "ми" },
-      "2p": { s: "ти", pl: "ви" },
-      "3p": { s: "він/вона/воно", pl: "вони" },
+      "1p": {
+        s: '<span class="ukr" data-info="я;proper;cas;nomi">я</span>',
+        pl: '<span class="ukr" data-info="ми;proper;cas;nomi">ми</span>',
+      },
+      "2p": {
+        s: '<span class="ukr" data-info="ти;proper;cas;nomi">ти</span>',
+        pl: '<span class="ukr" data-info="ви;proper;cas;nomi">ви</span>',
+      },
+      "3p": {
+        s: '<span class="ukr" data-info="він;proper;cas;nomi">він</span>/<span class="ukr" data-info="вона;proper;cas;nomi">вона</span>/<span class="ukr" data-info="воно;proper;cas;nomi">воно</span>',
+        pl: '<span class="ukr" data-info="вони;proper;cas;nomi">вони</span>',
+      },
     };
 
     // Récupérer les données de conjugaison pour le verbe et le temps

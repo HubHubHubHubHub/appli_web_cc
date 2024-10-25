@@ -183,7 +183,6 @@ let displayManager = {
       }
 
       // Vérifier si "genereVerbe" existe
-      console.log(dataManager.phraseData[phraseKey].genereVerbe);
       if (dataManager.phraseData[phraseKey].genereVerbe) {
         // Générer un identifiant unique pour la checkbox et le conteneur des formes verbales
         const uniqueId = Math.random().toString(36).slice(2, 11);
