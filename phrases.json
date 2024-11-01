@@ -314,5 +314,278 @@
     "phrase_html": "<span class=\"ukr\" data-info=\"об’ява;nom;cas;nomi;s\">Об’ява</span> <span class=\"ukr\" data-info=\"висіти;verb;conj;pres;3p;s\">висить</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"двері;nom;cas;loc;pl\">дверях</span>.",
     "traduction": "L'annonce est accrochée sur la porte.",
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я кладу ложечку у чашку.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>.",
+    "traduction": "Je mets la cuillère dans la tasse.",
+    "genereVerbe": {
+      "verbe": "класти",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поклав ложечку у чашку.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>.",
+    "traduction": "J'ai mis la cuillère dans la tasse.",
+    "genereVerbe": {
+      "verbe": "покласти",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Ложечка стоїть у чашці.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"ложечка;nom;cas;nomi;s\">Ложечка</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоїть</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;loc;s\">чашці</span>.",
+    "traduction": "La cuillère est dans la tasse.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я ставлю вазон на балкон.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>.",
+    "traduction": "Je mets le vase sur le balcon.",
+    "genereVerbe": {
+      "verbe": "ставити",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поставив вазон на балкон.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>.",
+    "traduction": "J'ai mis le vase sur le balcon.",
+    "genereVerbe": {
+      "verbe": "поставити",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Вазон стоїть на балконі.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"вазон;nom;cas;nomi;s\">Вазон</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоїть</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;loc;s\">балконі</span>.",
+    "traduction": "Le vase est sur le balcon.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я кладу журнали на столик.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>.",
+    "traduction": "Je mets des journaux sur la table basse.",
+    "genereVerbe": {
+      "verbe": "класти",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поклав журнали на столик.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>.",
+    "traduction": "J'ai mis des journaux sur la table basse.",
+    "genereVerbe": {
+      "verbe": "покласти",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Журнали лежать на столику.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"журнал;nom;cas;nomi;pl\">Журнали</span> <span class=\"ukr\" data-info=\"лежати;verb;conj;pres;3p;s\">лежать</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;loc;s\">столику</span>.",
+    "traduction": "Les journaux sont sur la table basse.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я вішаю календар у кухню.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>.",
+    "traduction": "J'accroche le calendrier dans la cuisine.",
+    "genereVerbe": {
+      "verbe": "вішати",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я повісив календар у кухню.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>.",
+    "traduction": "J'ai accroché le calendrier dans la cuisine.",
+    "genereVerbe": {
+      "verbe": "повісити",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Календар висить у кухні.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"календар;nom;cas;nomi;s\">Календар</span> <span class=\"ukr\" data-info=\"висіти;verb;conj;pres;3p;s\">висить</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;loc;s\">кухні</span>.",
+    "traduction": "Le calendrier est dans la cuisine.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я кладу цукор у чай.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>.",
+    "traduction": "Je mets du sucre dans le thé.",
+    "genereVerbe": {
+      "verbe": "класти",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поклав цукор у чай.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>.",
+    "traduction": "J'ai mis du sucre dans le thé.",
+    "genereVerbe": {
+      "verbe": "покласти",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Цукор — у чаї.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цукор;nom;cas;nomi;s\">Цукор</span> <span class=\"ukr\" data-info=\"—;punct\">—</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;loc;s\">чаї</span>.",
+    "traduction": "Le sucre est dans le thé.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я ставлю квіти у вазу.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>.",
+    "traduction": "Je mets des fleurs dans le vase.",
+    "genereVerbe": {
+      "verbe": "ставити",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поставив квіти у вазу.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>.",
+    "traduction": "J'ai mis des fleurs dans le vase.",
+    "genereVerbe": {
+      "verbe": "поставити",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Квіти стоять у вазі.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"квіт;nom;cas;nomi;pl\">Квіти</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоять</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;loc;s\">вазі</span>.",
+    "traduction": "Les fleurs sont dans le vase.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я вішаю люстру в кімнату.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>.",
+    "traduction": "J'accroche le lustre dans la chambre.",
+    "genereVerbe": {
+      "verbe": "вішати",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я повісив люстру в кімнату.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>.",
+    "traduction": "J'ai accroché le lustre dans la chambre.",
+    "genereVerbe": {
+      "verbe": "повісити",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Люстра висить у кімнаті.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"люстра;nom;cas;nomi;s\">Люстра</span> <span class=\"ukr\" data-info=\"висіти;verb;conj;pres;3p;s\">висить</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;loc;s\">кімнаті</span>.",
+    "traduction": "Le lustre est (accroché) dans la chambre.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я кладу документи у шухляду.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>.",
+    "traduction": "Je mets des documents dans le tiroir.",
+    "genereVerbe": {
+      "verbe": "класти",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поклав документи у шухляду.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>.",
+    "traduction": "J'ai mis des documents dans le tiroir.",
+    "genereVerbe": {
+      "verbe": "покласти",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Документи лежать у шухляді.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"документ;nom;cas;nomi;pl\">Документи</span> <span class=\"ukr\" data-info=\"лежати;verb;conj;pres;3p;s\">лежать</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;loc;s\">шухляді</span>.",
+    "traduction": "Les documents sont dans le tiroir.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я ставлю словник на полицю.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>.",
+    "traduction": "Je mets le dictionnaire sur l'étagère.",
+    "genereVerbe": {
+      "verbe": "ставити",
+      "temps": "pres",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Я поставив словник на полицю.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>.",
+    "traduction": "J'ai mis le dictionnaire sur l'étagère.",
+    "genereVerbe": {
+      "verbe": "поставити",
+      "temps": "pass",
+      "frag1": "",
+      "frag2": "<span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>."
+    },
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Словник стоїть на полиці.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"словник;nom;cas;nomi;s\">Словник</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоїть</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;loc;s\">полиці</span>.",
+    "traduction": "Le dictionnaire est sur l'étagère.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Дідусь сідає на диван.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дідусь;nom;cas;nomi;s\">Дідусь</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;s\">сідає</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"диван;nom;cas;acc;s\">диван</span>.",
+    "traduction": "Le grand-père s'assoit sur le canapé.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Дідусь сів на диван.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дідусь;nom;cas;nomi;s\">Дідусь</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;m;s\">сів</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"диван;nom;cas;acc;s\">диван</span>.",
+    "traduction": "Le grand-père s'est assis sur le canapé.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Дідусь сидить на дивані.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дідусь;nom;cas;nomi;s\">Дідусь</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;s\">сидить</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"диван;nom;cas;loc;s\">дивані</span>.",
+    "traduction": "Le grand-père est assis sur le canapé.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Дарина лягає в ліжко.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дарина;proper;cas;nom\">Дарина</span> <span class=\"ukr\" data-info=\"лягати;verb;conj;pres;3p;s\">лягає</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"ліжко;nom;cas;acc;s\">ліжко</span>.",
+    "traduction": "Daryna se couche dans le lit.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Дарина лягла в ліжко.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дарина;proper;cas;nom\">Дарина</span> <span class=\"ukr\" data-info=\"лягти;verb;conj;pass;f;s\">лягла</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"ліжко;nom;cas;acc;s\">ліжко</span>.",
+    "traduction": "Daryna s'est couchée dans le lit.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Дарина лежить в ліжку.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дарина;proper;cas;nom\">Дарина</span> <span class=\"ukr\" data-info=\"лежати;verb;conj;pres;3p;s\">лежить</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"ліжко;nom;cas;loc;s\">ліжку</span>.",
+    "traduction": "Daryna est couchée dans le lit.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   }
 }
