@@ -98,6 +98,9 @@ let Utils = {
     acc: "rgb(57, 4, 248)",
     loc: "rgb(132, 93, 19)",
     ins: "rgb(231, 40, 155)",
+    dat: "rgb(231, 40, 155)",
+    voc: "rgb(132, 19, 19)",
+    conj: "inherit",
   },
   /* coloration des groupes de mots par cas au survol */
 
@@ -116,15 +119,32 @@ let Utils = {
             if (!this.classList.contains("info-added")) {
               this.style.color = color;
               let displayedInfo;
-              if (
-                dataManager?.wordData[category]?.[word]?.["cas"]?.["nomi"]?.[
-                  "s"
-                ]
-              ) {
-                let posAcc =
-                  dataManager.wordData[category][word]["cas"]["nomi"]["s"][1];
-                let motNomi =
-                  dataManager.wordData[category][word]["cas"]["nomi"]["s"][0];
+              let data;
+              switch (category) {
+                case "nom":
+                  data =
+                    dataManager?.wordData[category]?.[word]?.["cas"]?.[
+                      "nomi"
+                    ]?.["s"];
+                  break;
+                case "proposs":
+                case "card":
+                case "adj":
+                  data =
+                    dataManager?.wordData[category]?.[word]?.["cas"]?.[
+                      "nomi"
+                    ]?.["m"];
+                  break;
+                case "verb":
+                  data = dataManager?.wordData[category]?.[word]?.["inf"];
+                  break;
+                default:
+                  data = null;
+              }
+
+              if (data) {
+                let posAcc = data[1];
+                let motNomi = data[0];
                 displayedInfo =
                   Utils.addAccent(motNomi, posAcc) +
                   "," +
