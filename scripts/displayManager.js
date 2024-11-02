@@ -94,6 +94,8 @@ let displayManager = {
 
       // Appliquer les styles de survol après l'affichage des mots
       Utils.applyHoverStyles(Utils.classesToColors);
+      // Activer les infos gramaticales au survol
+      Utils.applyHoverInfo();
     } else {
       document.getElementById("word-details").innerHTML =
         "<p>Aucun détail disponible pour ce mot.</p>";

@@ -173,4 +173,61 @@ let Utils = {
       });
     });
   },
+  // Fonction pour afficher les informations d'un mot
+  applyHoverInfo: function () {
+    let tablegrammar = document.getElementById("table-grammar");
+    const elements = document
+      .getElementById("word-details")
+      .querySelectorAll(".ukr");
+    elements.forEach((element) => {
+      const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
+      const [word, category, ...infos] = dataInfo;
+      element.addEventListener("mouseenter", function () {
+        if (dataInfo) {
+          const data = dataManager?.wordData[category]?.[word]?.["cas"];
+          //const data = getDataFromJson(info[0], info[1], info[2]);
+          //const tableHTML = generateTable(data, info[3], info[4]);
+          const tableHTML = Utils.generateTableNoun(data, infos[0], infos[1]);
+          tablegrammar.innerHTML = tableHTML;
+          tablegrammar.style.display = "block";
+        }
+      });
+
+      element.addEventListener("mouseleave", function () {
+        tablegrammar.style.display = "none";
+      });
+    });
+  },
+  // Fonction pour créer la table d'un nom
+  generateTableNoun: function (data, cas, gender) {
+    let tableHTML = "<table>";
+    Object.entries(data).forEach(([caseName, forms]) => {
+      // Ajoute une ligne pour le nom du cas
+      tableHTML += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
+      // Itère sur masculin (m) et pluriel (pl)
+      Object.entries(forms).forEach(([form, value]) => {
+        const wordWithAccent = value[0]
+          .split("")
+          .map((char, index) => {
+            return value[1] === index + 1
+              ? `<span class="accent-permanent">${char}</span>`
+              : char;
+          })
+          .join("");
+
+        tableHTML += `
+              <tr>
+                <td><em>${form}.</em></td>
+                <td>${
+                  caseName === cas && form === gender
+                    ? "<strong>" + wordWithAccent + "</strong>"
+                    : wordWithAccent
+                }</td>
+              </tr>
+            `;
+      });
+    });
+    tableHTML += "</table>";
+    return tableHTML;
+  },
 };
