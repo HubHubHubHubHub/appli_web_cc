@@ -1,10 +1,14 @@
 body {
-  font-family: Arial, sans-serif;
+  /*font-family: Arial, sans-serif;*/
+  font-family: "Times New Roman", serif;
   margin: 0;
   padding: 0;
   display: flex;
   height: 100vh;
   box-sizing: border-box;
+  /*background-color: #f5f5dc; /* Couleur beige pour imiter la page d'un livre */
+  /*color: #333; /* Couleur de texte foncée pour une lecture facile */
+  font-size: 1.5rem;
 }
 
 .container {
@@ -232,4 +236,20 @@ body {
 
 .verb-forms-container p {
   margin: 5px 0;
+}
+
+/* Style pour la fenêtre additionnelle */
+
+#table-grammar {
+  position: fixed;
+  display: none;
+  right: 0; /* Aligné à droite de l'écran */
+  top: 50%; /* Positionné à la moitié de la hauteur de l'écran */
+  transform: translateY(-50%); /* Centre l'élément verticalement */
+  /* Autres styles comme bordure, taille, etc. */
+  border: 1px solid #ccc; /* Exemple de bordure */
+  background-color: white; /* Exemple de couleur de fond */
+  padding: 10px; /* Exemple de padding */
+  /*width: 200px; /* Définissez une largeur */
+  font-size: 1.5rem;
 }
