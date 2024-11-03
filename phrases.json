@@ -632,5 +632,95 @@
     "phrase_html": "<span class=\"ukr\" data-info=\"Петро;nom;cas;nomi;s\">Петро</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;s\">сидить</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"шезлонг;nom;cas;loc;s\">шезлонгу</span>.",
     "traduction": "Petro est assis sur le transat.",
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Закохані сідають в останній ряд.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;p\">сідають</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;acc;m\">останній</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;acc;s\">ряд</span>.",
+    "traduction": "Les amoureux s'assoient au dernier rang.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Закохані сіли в останній ряд.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;p\">сіли</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;acc;m\">останній</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;acc;s\">ряд</span>.",
+    "traduction": "Les amoureux se sont assis au dernier rang.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Закохані сидять в останньому ряду.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;p\">сидять</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;loc;m\">останньому</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;loc;s\">ряду</span>.",
+    "traduction": "Les amoureux sont assis au dernier rang.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Спортсмен лягає на підлогу.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"спортсмен;nom;cas;nomi;s\">Спортсмен</span> <span class=\"ukr\" data-info=\"лягати;verb;conj;pres;3p;s\">лягає</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"підлога;nom;cas;acc;s\">підлогу</span>.",
+    "traduction": "Le sportif se couche sur le sol.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Спортсмен ліг на підлогу.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"спортсмен;nom;cas;nomi;s\">Спортсмен</span> <span class=\"ukr\" data-info=\"лягти;verb;conj;pass;m;s\">ліг</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"підлога;nom;cas;acc;s\">підлогу</span>.",
+    "traduction": "Le sportif s'est couché sur le sol.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Спортсмен лежить на підлозі та робить вправи.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"спортсмен;nom;cas;nomi;s\">Спортсмен</span> <span class=\"ukr\" data-info=\"лежати;verb;conj;pres;3p;s\">лежить</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"підлога;nom;cas;loc;s\">підлозі</span> <span class=\"ukr\" data-info=\"та;conj\">та</span> <span class=\"ukr\" data-info=\"робити;verb;conj;pres;3p;s\">робить</span> <span class=\"ukr\" data-info=\"вправа;nom;cas;acc;pl\">вправи</span>.",
+    "traduction": "Le sportif est allongé sur le sol et fait des exercices.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Подруги сідають на лаву.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"подруга;nom;cas;nomi;pl\">Подруги</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;pl\">сідають</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"лава;nom;cas;acc;s\">лаву</span>.",
+    "traduction": "Les amies s'assoient sur le banc.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Подруги сіли на лаву.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"подруга;nom;cas;nomi;pl\">Подруги</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;f;pl\">сіли</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"лава;nom;cas;acc;s\">лаву</span>.",
+    "traduction": "Les amies se sont assises sur le banc.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Подруги сидять на лаві.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"подруга;nom;cas;nomi;pl\">Подруги</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;pl\">сидять</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"лава;nom;cas;loc;s\">лаві</span>.",
+    "traduction": "Les amies sont assises sur le banc.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Електрик стає на стіл.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"електрик;nom;cas;nomi;s\">Електрик</span> <span class=\"ukr\" data-info=\"ставати;verb;conj;pres;3p;s\">стає</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;acc;s\">стіл</span>.",
+    "traduction": "L'électricien monte sur la table.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Електрик став на стіл.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"електрик;nom;cas;nomi;s\">Електрик</span> <span class=\"ukr\" data-info=\"стати;verb;conj;pass;m;s\">став</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;acc;s\">стіл</span>.",
+    "traduction": "L'électricien est monté sur la table.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Електрик стоїть на столі та міняє лампочку.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"електрик;nom;cas;nomi;s\">Електрик</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоїть</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;loc;s\">столі</span> <span class=\"ukr\" data-info=\"та;conj\">та</span> <span class=\"ukr\" data-info=\"міняти;verb;conj;pres;3p;s\">міняє</span> <span class=\"ukr\" data-info=\"лампочка;nom;cas;acc;s\">лампочку</span>.",
+    "traduction": "L'électricien est sur la table et change l'ampoule.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Гості сідають за стіл.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"гість;nom;cas;nomi;pl\">Гості</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;pl\">сідають</span> <span class=\"ukr\" data-info=\"за;prep\">за</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;acc;s\">стіл</span>.",
+    "traduction": "Les invités s'assoient à la table.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Гості сіли за стіл.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"гість;nom;cas;nomi;pl\">Гості</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;m;pl\">сіли</span> <span class=\"ukr\" data-info=\"за;prep\">за</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;acc;s\">стіл</span>.",
+    "traduction": "Les invités se sont assis à la table.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Гості сидять за столом.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"гість;nom;cas;nomi;pl\">Гості</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;pl\">сидять</span> <span class=\"ukr\" data-info=\"за;prep\">за</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;loc;s\">столом</span>.",
+    "traduction": "Les invités sont assis à la table.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Артур сідає на поїзд.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Артур;nom;cas;nomi;s\">Артур</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;s\">сідає</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"поїзд;nom;cas;acc;s\">поїзд</span>.",
+    "traduction": "Arthur monte dans le train.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Артур сів на поїзд.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Артур;nom;cas;nomi;s\">Артур</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;m;s\">сів</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"поїзд;nom;cas;acc;s\">поїзд</span>.",
+    "traduction": "Arthur est monté dans le train.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
+  },
+  "Артур сидить у поїзді.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Артур;nom;cas;nomi;s\">Артур</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;s\">сидить</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"поїзд;nom;cas;loc;s\">поїзді</span>.",
+    "traduction": "Arthur est assis dans le train.",
+    "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   }
 }
