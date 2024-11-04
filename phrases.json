@@ -208,29 +208,29 @@
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу речі у валізу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;s\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
     "traduction": "Je mets des choses dans la valise.",
     "genereVerbe": {
       "verbe": "класти",
       "temps": "pres",
       "frag1": "",
-      "frag2": "<span class=\"ukr\" data-info=\"річ;nom;cas;acc;s\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>."
+      "frag2": "<span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>."
     },
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав речі у валізу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;s\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
     "traduction": "J'ai mis des choses dans la valise.",
     "genereVerbe": {
       "verbe": "покласти",
       "temps": "pass",
       "frag1": "",
-      "frag2": "<span class=\"ukr\" data-info=\"річ;nom;cas;acc;s\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>."
+      "frag2": "<span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>."
     },
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
   "Речі лежать у валізі.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"річ;nom;cas;nomi;s\">Речі</span> <span class=\"ukr\" data-info=\"лежати;verb;conj;pres;3p;s\">лежать</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;loc;s\">валізі</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"річ;nom;cas;nomi;pl\">Речі</span> <span class=\"ukr\" data-info=\"лежати;verb;conj;pres;3p;s\">лежать</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;loc;s\">валізі</span>.",
     "traduction": "Les choses sont dans la valise.",
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
@@ -634,17 +634,17 @@
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
   "Закохані сідають в останній ряд.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;p\">сідають</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;acc;m\">останній</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;acc;s\">ряд</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сідати;verb;conj;pres;3p;pl\">сідають</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;acc;m\">останній</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;acc;s\">ряд</span>.",
     "traduction": "Les amoureux s'assoient au dernier rang.",
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
   "Закохані сіли в останній ряд.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;p\">сіли</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;acc;m\">останній</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;acc;s\">ряд</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сісти;verb;conj;pass;m;pl\">сіли</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;acc;m\">останній</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;acc;s\">ряд</span>.",
     "traduction": "Les amoureux se sont assis au dernier rang.",
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },
   "Закохані сидять в останньому ряду.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;p\">сидять</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;loc;m\">останньому</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;loc;s\">ряду</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"закохані;nom;cas;nomi;pl\">Закохані</span> <span class=\"ukr\" data-info=\"сидіти;verb;conj;pres;3p;pl\">сидять</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"останній;adj;cas;loc;m\">останньому</span> <span class=\"ukr\" data-info=\"ряд;nom;cas;loc;s\">ряду</span>.",
     "traduction": "Les amoureux sont assis au dernier rang.",
     "ref": { "Chinkarouk": "L1,grammairePra,p32" }
   },

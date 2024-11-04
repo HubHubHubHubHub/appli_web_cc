@@ -22,12 +22,14 @@ let Utils = {
     if (position < 0 || position >= word.length) {
       return word;
     }
-
+    // Si on veut rajouter un accent
+    const accent = "\u0301"; // Accent aigu combiné
     // Crée le mot avec la lettre entourée d'un span
     const highlightedWord =
       word.slice(0, position) +
       `<span class="${classe}">` +
       word[position] +
+      accent +
       "</span>" +
       word.slice(position + 1);
 
