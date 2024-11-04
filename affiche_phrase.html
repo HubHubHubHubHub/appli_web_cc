@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recherche de Phrases</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Ajoutez ici vos styles CSS */
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #searchBar {
+        margin-bottom: 20px;
+      }
+      #phraseList {
+        list-style-type: none;
+        padding: 0;
+      }
+      #phraseList li {
+        margin-bottom: 15px;
+      }
+      .phrase-html {
+        font-weight: bold;
+      }
+      .traduction {
+        font-style: italic;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Recherche de Phrases</h1>
+    <input type="text" id="searchBar" placeholder="Rechercher..." />
+    <ul id="phraseList"></ul>
+
+    <!-- Case à cocher flottante -->
+    <div class="floating-checkbox">
+      <input type="checkbox" id="accent-check" checked />
+      <label for="accent-check">Accents</label>
+    </div>
+    <!-- Inclusion des scripts ; scripts communs à index.html -->
+    <script src="scripts/dataManager.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/accentManager.js"></script>
+    <script src="scripts/eventHandlers.js"></script>
+    <script src="scripts/displayManager.js"></script>
+    <script src="scripts/gramFunc.js"></script>
+    <!-- script particulier -->
+    <script src="scripts/phrases.js"></script>
+    <script src="scripts/script_phrases.js"></script>
+  </body>
+</html>
