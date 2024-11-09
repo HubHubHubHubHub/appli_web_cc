@@ -15,8 +15,8 @@ let eventHandlers = {
     }
   },
   // Fonction pour attacher les événements des phrases d'exemple
-  setupExamplePhrasesEventHandlers: function () {
-    const wordDetailsContainer = document.getElementById("word-details");
+  setupExamplePhrasesEventHandlers: function (divId) {
+    const wordDetailsContainer = document.getElementById(divId);
     if (wordDetailsContainer) {
       wordDetailsContainer.addEventListener("change", function (event) {
         const target = event.target;
