@@ -106,11 +106,9 @@ let Utils = {
   },
   /* coloration des groupes de mots par cas au survol */
 
-  applyHoverStyles: function (classesToColors) {
+  applyHoverStyles: function (classesToColors, divId) {
     //const elements = document.querySelectorAll(".ukr"); // Sélectionne tous les éléments avec la classe 'ukr', du coup également les éléments de word-List... à corriger, éventuellement
-    const elements = document
-      .getElementById("word-details")
-      .querySelectorAll(".ukr");
+    const elements = document.getElementById(divId).querySelectorAll(".ukr");
     elements.forEach((element) => {
       Object.entries(classesToColors).forEach(([className, color]) => {
         const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
@@ -176,11 +174,9 @@ let Utils = {
     });
   },
   // Fonction pour afficher les informations d'un mot
-  applyHoverInfo: function () {
+  applyHoverInfo: function (divId) {
     let tablegrammar = document.getElementById("table-grammar");
-    const elements = document
-      .getElementById("word-details")
-      .querySelectorAll(".ukr");
+    const elements = document.getElementById(divId).querySelectorAll(".ukr");
     elements.forEach((element) => {
       const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
       const [word, category, ...infos] = dataInfo;

@@ -26,11 +26,26 @@
         font-style: italic;
         color: #555;
       }
+
+      /* Styles pour la boite de recherche */
+      .search-example {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
     </style>
   </head>
   <body>
     <h1>Recherche de Phrases</h1>
-    <input type="text" id="searchBar" placeholder="Rechercher..." />
+    <div class="search-example">
+      <input type="text" id="searchBar" placeholder="Rechercher..." />
+    </div>
+
     <ul id="phraseList"></ul>
 
     <!-- Case à cocher flottante -->
