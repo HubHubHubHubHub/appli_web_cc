@@ -204,15 +204,7 @@ let Utils = {
       tableHTML += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
       // Itère sur masculin (m) et pluriel (pl)
       Object.entries(forms).forEach(([form, value]) => {
-        const wordWithAccent = value[0]
-          .split("")
-          .map((char, index) => {
-            return value[1] === index + 1
-              ? `<span class="accent-permanent">${char}</span>`
-              : char;
-          })
-          .join("");
-
+        const wordWithAccent = Utils.addAccent(value[0], value[1]);
         tableHTML += `
               <tr>
                 <td><em>${form}.</em></td>
