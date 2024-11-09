@@ -61,6 +61,10 @@ function displayPhrases(phrasesData) {
     accentManager.attachOriginalText();
     accentManager.highlightWords();
   }
+  // Appliquer les styles de survol après l'affichage des mots
+  Utils.applyHoverStyles(Utils.classesToColors, "phraseList");
+  // Activer les infos gramaticales au survol
+  Utils.applyHoverInfo("phraseList");
 }
 
 // Fonction pour filtrer les phrases en fonction de la requête de recherche
