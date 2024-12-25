@@ -766,7 +766,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.7" }
   },
   "Ми йшли вузькою вулицею.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"йти;verb;conj;pass;1p;pl\">йшли</span> <span class=\"ukr\" data-info=\"вузький;adj;cas;instr;m\">вузькою</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;instr;s\">вулицею</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"йти;verb;conj;pass;1p;pl\">йшли</span> <span class=\"ukr\" data-info=\"вузький;adj;cas;ins;m\">вузькою</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;s\">вулицею</span>.",
     "traduction": "Nous marchions dans une rue étroite.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.8" }
   },
@@ -816,17 +816,17 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.17" }
   },
   "Він був дуже розумним і сильним чоловіком.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;s\">був</span> <span class=\"ukr\" data-info=\"дуже;adv\">дуже</span> <span class=\"ukr\" data-info=\"розумний;adj;cas;instr;m\">розумним</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"сильний;adj;cas;instr;m\">сильним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;instr;s\">чоловіком</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;s\">був</span> <span class=\"ukr\" data-info=\"дуже;adv\">дуже</span> <span class=\"ukr\" data-info=\"розумний;adj;cas;ins;m\">розумним</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"сильний;adj;cas;ins;m\">сильним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;ins;s\">чоловіком</span>.",
     "traduction": "Il était un homme très intelligent et fort.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.18" }
   },
   "Його здоров'я було слабким.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"його;pron;cas;nom\">Його</span> <span class=\"ukr\" data-info=\"здоров'я;nom;cas;nomi;s\">здоров'я</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;n;s\">було</span> <span class=\"ukr\" data-info=\"слабкий;adj;cas;instr;m\">слабким</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"його;pron;cas;nom\">Його</span> <span class=\"ukr\" data-info=\"здоров'я;nom;cas;nomi;s\">здоров'я</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;n;s\">було</span> <span class=\"ukr\" data-info=\"слабкий;adj;cas;ins;m\">слабким</span>.",
     "traduction": "Sa santé était faible.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.19" }
   },
   "Молода дівчина була тонкою, як квітка.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"молодий;adj;cas;nomi;m\">Молода</span> <span class=\"ukr\" data-info=\"дівчина;nom;cas;nomi;s\">дівчина</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;f;s\">була</span> <span class=\"ukr\" data-info=\"тонкий;adj;cas;instr;m\">тонкою</span>, <span class=\"ukr\" data-info=\"як;conj\">як</span> <span class=\"ukr\" data-info=\"квітка;nom;cas;nomi;s\">квітка</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"молодий;adj;cas;nomi;m\">Молода</span> <span class=\"ukr\" data-info=\"дівчина;nom;cas;nomi;s\">дівчина</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;f;s\">була</span> <span class=\"ukr\" data-info=\"тонкий;adj;cas;ins;m\">тонкою</span>, <span class=\"ukr\" data-info=\"як;conj\">як</span> <span class=\"ukr\" data-info=\"квітка;nom;cas;nomi;s\">квітка</span>.",
     "traduction": "La jeune fille était mince comme une fleur.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.20" }
   },
@@ -861,7 +861,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.3" }
   },
   "Ми любимо гуляти у міському парку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">любимо</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;inf\">гуляти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"міський;adj;cas;loc;m\">міському</span> <span class=\"ukr\" data-info=\"парк;nom;cas;loc;s\">парку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;pl\">любимо</span> <span class=\"ukr\" data-info=\"гуляти;verb;inf\">гуляти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"міський;adj;cas;loc;m\">міському</span> <span class=\"ukr\" data-info=\"парк;nom;cas;loc;s\">парку</span>.",
     "traduction": "Nous nous aimons nous promener dans le parc de la ville.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.4" }
   },
@@ -871,7 +871,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.5" }
   },
   "Ми гуляємо паризькими вулицями.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;s\">гуляємо</span> <span class=\"ukr\" data-info=\"паризький;adj;cas;instr;m\">паризькими</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;instr;s\">вулицями</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;s\">гуляємо</span> <span class=\"ukr\" data-info=\"паризький;adj;cas;ins;pl\">паризькими</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;pl\">вулицями</span>.",
     "traduction": "Nous nous promenons dans les rues parisiennes.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.6" }
   },
