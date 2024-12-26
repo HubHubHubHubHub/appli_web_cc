@@ -39,7 +39,7 @@
     "traduction": "Après la guerre, des temps difficiles sont venus"
   },
   "Я кладу гроші в свою кишеню.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;f\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;f\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
     "traduction": "Je mets de l'argent dans ma poche.",
     "genereVerbe": {
       "verbe": "класти",
@@ -70,7 +70,7 @@
     "traduction": "Sasha a dû aller avant l'école à la pharmacie."
   },
   "Я можу запитати свого батька.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"запитати;verb;inf\">запитати</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;m\">свого</span> <span class=\"ukr\" data-info=\"батько;nom;cas;acc;s\">батька</span>.",
     "traduction": "Je peux demander à mon père.",
     "genereVerbe": {
       "verbe": "могти",
@@ -80,11 +80,11 @@
     }
   },
   "Він запитає мене про це завтра.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"це;pronoun;cas;acc\">це</span> <span class=\"ukr\" data-info=\"завтра;nom;cas;acc;s\">завтра</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"це;pronoun;cas;acc\">це</span> <span class=\"ukr\" data-info=\"завтра;nom;cas;acc;s\">завтра</span>.",
     "traduction": "Il me demandera cela demain."
   },
   "Я читаю мінімум одну книжку на місяць.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;1p;s\">читаю</span> мінімум одну книжку на місяць.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;1p;s\">читаю</span> мінімум одну книжку на місяць.",
     "traduction": "Je lis au moins un livre tous les mois."
   },
   "Я вішатиму картини на стіну.": {
@@ -103,7 +103,7 @@
     }
   },
   "Я покладу гроші в свою кишеню.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"гроші;nom;cas;acc;pl\">гроші</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;s\">свою</span> <span class=\"ukr\" data-info=\"кишеня;nom;cas;acc;s\">кишеню</span>.",
     "traduction": "Je mettais de l'argent dans ma poche.",
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" },
     "genereVerbe": {
@@ -140,7 +140,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я ставлю машину в гараж.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"машина;nom;cas;acc;s\">машину</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"гараж;nom;cas;acc;s\">гараж</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"машина;nom;cas;acc;s\">машину</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"гараж;nom;cas;acc;s\">гараж</span>.",
     "traduction": "Je mets la voiture dans le garage.",
     "genereVerbe": {
       "verbe": "ставити",
@@ -151,7 +151,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поставив машину в гараж.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"машина;nom;cas;acc;s\">машину</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"гараж;nom;cas;acc;s\">гараж</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"машина;nom;cas;acc;s\">машину</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"гараж;nom;cas;acc;s\">гараж</span>.",
     "traduction": "J'ai mis la voiture dans le garage.",
     "genereVerbe": {
       "verbe": "поставити",
@@ -162,7 +162,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу лист у конверт.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"лист;nom;cas;acc;s\">лист</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"конверт;nom;cas;acc;s\">конверт</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"лист;nom;cas;acc;s\">лист</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"конверт;nom;cas;acc;s\">конверт</span>.",
     "traduction": "Je mets la lettre dans l'enveloppe.",
     "genereVerbe": {
       "verbe": "класти",
@@ -173,7 +173,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав лист у конверт.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"лист;nom;cas;acc;s\">лист</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"конверт;nom;cas;acc;s\">конверт</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"лист;nom;cas;acc;s\">лист</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"конверт;nom;cas;acc;s\">конверт</span>.",
     "traduction": "J'ai mis la lettre dans l'enveloppe.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -188,7 +188,7 @@
     "traduction": "La lettre est dans l'enveloppe."
   },
   "Я кладу гаманець у сумку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гаманець;nom;cas;acc;s\">гаманець</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;acc;s\">сумку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"гаманець;nom;cas;acc;s\">гаманець</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;acc;s\">сумку</span>.",
     "traduction": "Je mets le portefeuille dans le sac.",
     "genereVerbe": {
       "verbe": "класти",
@@ -199,7 +199,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав гаманець у сумку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"гаманець;nom;cas;acc;s\">гаманець</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;acc;s\">сумку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"гаманець;nom;cas;acc;s\">гаманець</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;acc;s\">сумку</span>.",
     "traduction": "J'ai mis le portefeuille dans le sac.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -215,7 +215,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу речі у валізу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
     "traduction": "Je mets des choses dans la valise.",
     "genereVerbe": {
       "verbe": "класти",
@@ -226,7 +226,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав речі у валізу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"річ;nom;cas;acc;pl\">речі</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;acc;s\">валізу</span>.",
     "traduction": "J'ai mis des choses dans la valise.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -242,7 +242,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я ставлю крісло в куток.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"крісло;nom;cas;acc;s\">крісло</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"куток;nom;cas;acc;s\">куток</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"крісло;nom;cas;acc;s\">крісло</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"куток;nom;cas;acc;s\">куток</span>.",
     "traduction": "Je mets le fauteuil dans le coin.",
     "genereVerbe": {
       "verbe": "ставити",
@@ -253,7 +253,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поставив крісло в куток.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"крісло;nom;cas;acc;s\">крісло</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"куток;nom;cas;acc;s\">куток</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"крісло;nom;cas;acc;s\">крісло</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"куток;nom;cas;acc;s\">куток</span>.",
     "traduction": "J'ai mis le fauteuil dans le coin.",
     "genereVerbe": {
       "verbe": "поставити",
@@ -269,7 +269,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я вішаю картини на стіни.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"картина;nom;cas;acc;pl\">картини</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіна;nom;cas;acc;pl\">стіни</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"картина;nom;cas;acc;pl\">картини</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіна;nom;cas;acc;pl\">стіни</span>.",
     "traduction": "J'accroche des tableaux sur les murs.",
     "genereVerbe": {
       "verbe": "вішати",
@@ -280,7 +280,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я повісив картини на стіни.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"картина;nom;cas;acc;pl\">картини</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіна;nom;cas;acc;pl\">стіни</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"картина;nom;cas;acc;pl\">картини</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"стіна;nom;cas;acc;pl\">стіни</span>.",
     "traduction": "J'ai accroché des tableaux sur les murs.",
     "genereVerbe": {
       "verbe": "повісити",
@@ -296,7 +296,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я вішаю об’яву на двері.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"об’ява;nom;cas;acc;s\">об’яву</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"двері;nom;cas;acc;s\">двері</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"об’ява;nom;cas;acc;s\">об’яву</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"двері;nom;cas;acc;s\">двері</span>.",
     "traduction": "J'accroche une annonce sur la porte.",
     "genereVerbe": {
       "verbe": "вішати",
@@ -307,7 +307,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я повісив об’яву на двері.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"об’ява;nom;cas;acc;s\">об’яву</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"двері;nom;cas;acc;s\">двері</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"об’ява;nom;cas;acc;s\">об’яву</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"двері;nom;cas;acc;s\">двері</span>.",
     "traduction": "J'ai accroché une annonce sur la porte.",
     "genereVerbe": {
       "verbe": "повісити",
@@ -323,7 +323,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу ложечку у чашку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>.",
     "traduction": "Je mets la cuillère dans la tasse.",
     "genereVerbe": {
       "verbe": "класти",
@@ -334,7 +334,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав ложечку у чашку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"ложечка;nom;cas;acc;s\">ложечку</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чашка;nom;cas;acc;s\">чашку</span>.",
     "traduction": "J'ai mis la cuillère dans la tasse.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -350,7 +350,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я ставлю вазон на балкон.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>.",
     "traduction": "Je mets le vase sur le balcon.",
     "genereVerbe": {
       "verbe": "ставити",
@@ -361,7 +361,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поставив вазон на балкон.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"вазон;nom;cas;acc;s\">вазон</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"балкон;nom;cas;acc;s\">балкон</span>.",
     "traduction": "J'ai mis le vase sur le balcon.",
     "genereVerbe": {
       "verbe": "поставити",
@@ -377,7 +377,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу журнали на столик.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>.",
     "traduction": "Je mets des journaux sur la table basse.",
     "genereVerbe": {
       "verbe": "класти",
@@ -388,7 +388,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав журнали на столик.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"журнал;nom;cas;acc;pl\">журнали</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"столик;nom;cas;acc;s\">столик</span>.",
     "traduction": "J'ai mis des journaux sur la table basse.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -404,7 +404,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я вішаю календар у кухню.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>.",
     "traduction": "J'accroche le calendrier dans la cuisine.",
     "genereVerbe": {
       "verbe": "вішати",
@@ -415,7 +415,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я повісив календар у кухню.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"календар;nom;cas;acc;s\">календар</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"кухня;nom;cas;acc;s\">кухню</span>.",
     "traduction": "J'ai accroché le calendrier dans la cuisine.",
     "genereVerbe": {
       "verbe": "повісити",
@@ -431,7 +431,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу цукор у чай.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>.",
     "traduction": "Je mets du sucre dans le thé.",
     "genereVerbe": {
       "verbe": "класти",
@@ -442,7 +442,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав цукор у чай.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"цукор;nom;cas;acc;s\">цукор</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"чай;nom;cas;acc;s\">чай</span>.",
     "traduction": "J'ai mis du sucre dans le thé.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -458,7 +458,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я ставлю квіти у вазу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>.",
     "traduction": "Je mets des fleurs dans le vase.",
     "genereVerbe": {
       "verbe": "ставити",
@@ -469,7 +469,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поставив квіти у вазу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"квіт;nom;cas;acc;pl\">квіти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ваза;nom;cas;acc;s\">вазу</span>.",
     "traduction": "J'ai mis des fleurs dans le vase.",
     "genereVerbe": {
       "verbe": "поставити",
@@ -485,7 +485,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я вішаю люстру в кімнату.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"вішати;verb;conj;pres;1p;s\">вішаю</span> <span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>.",
     "traduction": "J'accroche le lustre dans la chambre.",
     "genereVerbe": {
       "verbe": "вішати",
@@ -496,7 +496,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я повісив люстру в кімнату.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"повісити;verb;conj;pass;m;s\">повісив</span> <span class=\"ukr\" data-info=\"люстра;nom;cas;acc;s\">люстру</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;acc;s\">кімнату</span>.",
     "traduction": "J'ai accroché le lustre dans la chambre.",
     "genereVerbe": {
       "verbe": "повісити",
@@ -512,7 +512,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я кладу документи у шухляду.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"класти;verb;conj;pres;1p;s\">кладу</span> <span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>.",
     "traduction": "Je mets des documents dans le tiroir.",
     "genereVerbe": {
       "verbe": "класти",
@@ -523,7 +523,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поклав документи у шухляду.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"покласти;verb;conj;pass;m;s\">поклав</span> <span class=\"ukr\" data-info=\"документ;nom;cas;acc;pl\">документи</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"шухляда;nom;cas;acc;s\">шухляду</span>.",
     "traduction": "J'ai mis des documents dans le tiroir.",
     "genereVerbe": {
       "verbe": "покласти",
@@ -539,7 +539,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я ставлю словник на полицю.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"ставити;verb;conj;pres;1p;s\">ставлю</span> <span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>.",
     "traduction": "Je mets le dictionnaire sur l'étagère.",
     "genereVerbe": {
       "verbe": "ставити",
@@ -550,7 +550,7 @@
     "ref": { "Oleg Chinkarouk": "L1,grammairePra,p32" }
   },
   "Я поставив словник на полицю.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"поставити;verb;conj;pass;m;s\">поставив</span> <span class=\"ukr\" data-info=\"словник;nom;cas;acc;s\">словник</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"полиця;nom;cas;acc;s\">полицю</span>.",
     "traduction": "J'ai mis le dictionnaire sur l'étagère.",
     "genereVerbe": {
       "verbe": "поставити",
@@ -741,7 +741,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.2" }
   },
   "У Франції це відома особа.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"Франція;nom;cas;loc;s\">Франції</span> <span class=\"ukr\" data-info=\"це;pron;cas;nomi\">це</span> <span class=\"ukr\" data-info=\"відомий;adj;cas;nomi;m\">відома</span> <span class=\"ukr\" data-info=\"особа;nom;cas;nomi;s\">особа</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"Франція;nom;cas;loc;s\">Франції</span> <span class=\"ukr\" data-info=\"це;part\">це</span> <span class=\"ukr\" data-info=\"відомий;adj;cas;nomi;m\">відома</span> <span class=\"ukr\" data-info=\"особа;nom;cas;nomi;s\">особа</span>.",
     "traduction": "En France, c'est une personne connue.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.3" }
   },
@@ -751,22 +751,22 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.4" }
   },
   "Він нам розповів основні новини": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"ми;pron;cas;dat\">нам</span> <span class=\"ukr\" data-info=\"розповів;verb;conj;pass;m;s\">розповів</span> <span class=\"ukr\" data-info=\"основний;adj;cas;acc;m\">основні</span> <span class=\"ukr\" data-info=\"новина;nom;cas;acc;pl\">новини</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"ми;proper;cas;dat\">нам</span> <span class=\"ukr\" data-info=\"розповів;verb;conj;pass;m;s\">розповів</span> <span class=\"ukr\" data-info=\"основний;adj;cas;acc;m\">основні</span> <span class=\"ukr\" data-info=\"новина;nom;cas;acc;pl\">новини</span>.",
     "traduction": "Il nous a raconté les nouvelles principales.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.5" }
   },
   "Це близький родич": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"це;pron;cas;nomi\">Це</span> <span class=\"ukr\" data-info=\"близький;adj;cas;nomi;m\">близький</span> <span class=\"ukr\" data-info=\"родич;nom;cas;nomi;s\">родич</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"близький;adj;cas;nomi;m\">близький</span> <span class=\"ukr\" data-info=\"родич;nom;cas;nomi;s\">родич</span>.",
     "traduction": "C'est un proche parent.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.6" }
   },
   "Він живе у далекій країні.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"жити;verb;conj;pres;3p;s\">живе</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"далекий;adj;cas;loc;m\">далекій</span> <span class=\"ukr\" data-info=\"країна;nom;cas;loc;s\">країні</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"жити;verb;conj;pres;3p;s\">живе</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"далекий;adj;cas;loc;m\">далекій</span> <span class=\"ukr\" data-info=\"країна;nom;cas;loc;s\">країні</span>.",
     "traduction": "Il vit dans un pays lointain.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.7" }
   },
   "Ми йшли вузькою вулицею.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"йти;verb;conj;pass;1p;pl\">йшли</span> <span class=\"ukr\" data-info=\"вузький;adj;cas;ins;m\">вузькою</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;s\">вулицею</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"йти;verb;conj;pass;1p;pl\">йшли</span> <span class=\"ukr\" data-info=\"вузький;adj;cas;ins;m\">вузькою</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;s\">вулицею</span>.",
     "traduction": "Nous marchions dans une rue étroite.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.8" }
   },
@@ -776,12 +776,12 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.9" }
   },
   "Я купив дорогу сумку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;s\">купив</span> <span class=\"ukr\" data-info=\"дорогий;adj;cas;acc;m\">дорогу</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;acc;s\">сумку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;s\">купив</span> <span class=\"ukr\" data-info=\"дорогий;adj;cas;acc;m\">дорогу</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;acc;s\">сумку</span>.",
     "traduction": "J'ai acheté un sac cher.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.10" }
   },
   "У нас молодий викладач.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"ми;pron;cas;nom\">нас</span> <span class=\"ukr\" data-info=\"молодий;adj;cas;nomi;m\">молодий</span> <span class=\"ukr\" data-info=\"викладач;nom;cas;nomi;s\">викладач</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"ми;proper;cas;loc\">нас</span> <span class=\"ukr\" data-info=\"молодий;adj;cas;nomi;m\">молодий</span> <span class=\"ukr\" data-info=\"викладач;nom;cas;nomi;s\">викладач</span>.",
     "traduction": "Nous avons un jeune enseignant.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.11" }
   },
@@ -796,7 +796,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.13" }
   },
   "Ми робили прості вправи.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"робити;verb;conj;pass;1p;pl\">робили</span> <span class=\"ukr\" data-info=\"простий;adj;cas;acc;m\">прості</span> <span class=\"ukr\" data-info=\"вправа;nom;cas;acc;pl\">вправи</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"робити;verb;conj;pass;1p;pl\">робили</span> <span class=\"ukr\" data-info=\"простий;adj;cas;acc;m\">прості</span> <span class=\"ukr\" data-info=\"вправа;nom;cas;acc;pl\">вправи</span>.",
     "traduction": "Nous avons fait des exercices simples.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.14" }
   },
@@ -806,22 +806,22 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.15" }
   },
   "У моєї сестри густе волосся, а в мене — тонке.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"мій;adj;cas;gen;m\">моєї</span> <span class=\"ukr\" data-info=\"сестра;nom;cas;gen;s\">сестри</span> <span class=\"ukr\" data-info=\"густий;adj;cas;nomi;m\">густе</span> <span class=\"ukr\" data-info=\"волосся;nom;cas;nomi;s\">волосся</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"я;pron;cas;gen\">мене</span> — <span class=\"ukr\" data-info=\"тонкий;adj;cas;nomi;m\">тонке</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"мій;adj;cas;gen;m\">моєї</span> <span class=\"ukr\" data-info=\"сестра;nom;cas;gen;s\">сестри</span> <span class=\"ukr\" data-info=\"густий;adj;cas;nomi;m\">густе</span> <span class=\"ukr\" data-info=\"волосся;nom;cas;nomi;s\">волосся</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"я;proper;cas;gen\">мене</span> — <span class=\"ukr\" data-info=\"тонкий;adj;cas;nomi;m\">тонке</span>.",
     "traduction": "Ma sœur a les cheveux épais, et moi, j'ai les cheveux fins.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.16" }
   },
   "Ти розповідаєш дурні історії!": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ти;proper;cas;nom\">Ти</span> <span class=\"ukr\" data-info=\"розповідати;verb;conj;pres;2p;s\">розповідаєш</span> <span class=\"ukr\" data-info=\"дурний;adj;cas;acc;m\">дурні</span> <span class=\"ukr\" data-info=\"історія;nom;cas;acc;pl\">історії</span>!",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ти;proper;cas;nomi\">Ти</span> <span class=\"ukr\" data-info=\"розповідати;verb;conj;pres;2p;s\">розповідаєш</span> <span class=\"ukr\" data-info=\"дурний;adj;cas;acc;m\">дурні</span> <span class=\"ukr\" data-info=\"історія;nom;cas;acc;pl\">історії</span>!",
     "traduction": "Tu racontes des histoires stupides !",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.17" }
   },
   "Він був дуже розумним і сильним чоловіком.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nom\">Він</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;s\">був</span> <span class=\"ukr\" data-info=\"дуже;adv\">дуже</span> <span class=\"ukr\" data-info=\"розумний;adj;cas;ins;m\">розумним</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"сильний;adj;cas;ins;m\">сильним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;ins;s\">чоловіком</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;s\">був</span> <span class=\"ukr\" data-info=\"дуже;adv\">дуже</span> <span class=\"ukr\" data-info=\"розумний;adj;cas;ins;m\">розумним</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"сильний;adj;cas;ins;m\">сильним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;ins;s\">чоловіком</span>.",
     "traduction": "Il était un homme très intelligent et fort.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.18" }
   },
   "Його здоров'я було слабким.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"його;pron;cas;nom\">Його</span> <span class=\"ukr\" data-info=\"здоров'я;nom;cas;nomi;s\">здоров'я</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;n;s\">було</span> <span class=\"ukr\" data-info=\"слабкий;adj;cas;ins;m\">слабким</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"його;proper;cas;nomi\">Його</span> <span class=\"ukr\" data-info=\"здоров'я;nom;cas;nomi;s\">здоров'я</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;n;s\">було</span> <span class=\"ukr\" data-info=\"слабкий;adj;cas;ins;m\">слабким</span>.",
     "traduction": "Sa santé était faible.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.19" }
   },
@@ -831,7 +831,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.20" }
   },
   "Я люблю солодке.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"солодкий;adj;cas;acc;m\">солодке</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"солодкий;adj;cas;acc;m\">солодке</span>.",
     "traduction": "J'aime le sucré.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.21" }
   },
@@ -846,12 +846,12 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème1.23" }
   },
   "Я купив дитячу книгу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;s\">купив</span> <span class=\"ukr\" data-info=\"дитячий;adj;cas;acc;f\">дитячу</span> <span class=\"ukr\" data-info=\"книга;nom;cas;acc;s\">книгу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;s\">купив</span> <span class=\"ukr\" data-info=\"дитячий;adj;cas;acc;f\">дитячу</span> <span class=\"ukr\" data-info=\"книга;nom;cas;acc;s\">книгу</span>.",
     "traduction": "J'ai acheté un livre pour enfants.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.1" }
   },
   "Ми говорили про студентські роки.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pass;m;pl\">говорили</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"студентський;adj;cas;acc;m\">студентські</span> <span class=\"ukr\" data-info=\"рік;nom;cas;acc;pl\">роки</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pass;m;pl\">говорили</span> <span class=\"ukr\" data-info=\"про;prep\">про</span> <span class=\"ukr\" data-info=\"студентський;adj;cas;acc;m\">студентські</span> <span class=\"ukr\" data-info=\"рік;nom;cas;acc;pl\">роки</span>.",
     "traduction": "Nous avons parlé des années étudiantes.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.2" }
   },
@@ -861,7 +861,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.3" }
   },
   "Ми любимо гуляти у міському парку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;pl\">любимо</span> <span class=\"ukr\" data-info=\"гуляти;verb;inf\">гуляти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"міський;adj;cas;loc;m\">міському</span> <span class=\"ukr\" data-info=\"парк;nom;cas;loc;s\">парку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;pl\">любимо</span> <span class=\"ukr\" data-info=\"гуляти;verb;inf\">гуляти</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"міський;adj;cas;loc;m\">міському</span> <span class=\"ukr\" data-info=\"парк;nom;cas;loc;s\">парку</span>.",
     "traduction": "Nous nous aimons nous promener dans le parc de la ville.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.4" }
   },
@@ -871,7 +871,7 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.5" }
   },
   "Ми гуляємо паризькими вулицями.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;pron;cas;nom\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;s\">гуляємо</span> <span class=\"ukr\" data-info=\"паризький;adj;cas;ins;pl\">паризькими</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;pl\">вулицями</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;s\">гуляємо</span> <span class=\"ukr\" data-info=\"паризький;adj;cas;ins;pl\">паризькими</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;pl\">вулицями</span>.",
     "traduction": "Nous nous promenons dans les rues parisiennes.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.6" }
   },
@@ -881,47 +881,47 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.7" }
   },
   "Це був гарний зимовий день.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"це;pron;cas;nomi\">Це</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;s\">був</span> <span class=\"ukr\" data-info=\"гарний;adj;cas;nomi;m\">гарний</span> <span class=\"ukr\" data-info=\"зимовий;adj;cas;nomi;m\">зимовий</span> <span class=\"ukr\" data-info=\"день;nom;cas;nomi;s\">день</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;s\">був</span> <span class=\"ukr\" data-info=\"гарний;adj;cas;nomi;m\">гарний</span> <span class=\"ukr\" data-info=\"зимовий;adj;cas;nomi;m\">зимовий</span> <span class=\"ukr\" data-info=\"день;nom;cas;nomi;s\">день</span>.",
     "traduction": "C'était une belle journée d’hiver.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.8" }
   },
   "Я люблю літній дощ.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"літній;adj;cas;acc;m\">літній</span> <span class=\"ukr\" data-info=\"дощ;nom;cas;acc;s\">дощ</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"літній;adj;cas;acc;m\">літній</span> <span class=\"ukr\" data-info=\"дощ;nom;cas;acc;s\">дощ</span>.",
     "traduction": "J'aime la pluie d’été.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.9" }
   },
   "Вона працює в книжковій крамниці.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"вона;proper;cas;nom\">Вона</span> <span class=\"ukr\" data-info=\"працювати;verb;conj;pres;3p;s\">працює</span> <span class=\"ukr\" data-info=\"у;prep\">в</span> <span class=\"ukr\" data-info=\"книжковий;adj;cas;loc;m\">книжковій</span> <span class=\"ukr\" data-info=\"крамниця;nom;cas;loc;s\">крамниці</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"вона;proper;cas;nomi\">Вона</span> <span class=\"ukr\" data-info=\"працювати;verb;conj;pres;3p;s\">працює</span> <span class=\"ukr\" data-info=\"у;prep\">в</span> <span class=\"ukr\" data-info=\"книжковий;adj;cas;loc;m\">книжковій</span> <span class=\"ukr\" data-info=\"крамниця;nom;cas;loc;s\">крамниці</span>.",
     "traduction": "Elle travaille dans la librairie.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.10" }
   },
   "Я вивчив учорашній урок.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"вивчити;verb;conj;pass;m;s\">вивчив</span> <span class=\"ukr\" data-info=\"учорашній;adj;cas;acc;m\">учорашній</span> <span class=\"ukr\" data-info=\"урок;nom;cas;acc;s\">урок</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"вивчити;verb;conj;pass;m;s\">вивчив</span> <span class=\"ukr\" data-info=\"учорашній;adj;cas;acc;m\">учорашній</span> <span class=\"ukr\" data-info=\"урок;nom;cas;acc;s\">урок</span>.",
     "traduction": "J'ai appris la leçon d’hier.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.11" }
   },
   "У вас є сьогоднішня газета?": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"ви;pron;cas;gen\">вас</span> <span class=\"ukr\" data-info=\"є;verb;conj;pres;2p;s\">є</span> <span class=\"ukr\" data-info=\"сьогоднішній;adj;cas;nomi;m\">сьогоднішня</span> <span class=\"ukr\" data-info=\"газета;nom;cas;nomi;s\">газета</span>?",
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"ви;pron;cas;gen\">вас</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pres;3p;s\">є</span> <span class=\"ukr\" data-info=\"сьогоднішній;adj;cas;nomi;m\">сьогоднішня</span> <span class=\"ukr\" data-info=\"газета;nom;cas;nomi;s\">газета</span>?",
     "traduction": "Vous avez le journal d'aujourd'hui ?",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.12" }
   },
   "Ти пам'ятаєш свою колишню роботу?": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ти;proper;cas;nom\">Ти</span> <span class=\"ukr\" data-info=\"пам'ятати;verb;conj;pres;2p;s\">пам'ятаєш</span> <span class=\"ukr\" data-info=\"свій;adj;cas;acc;m\">свою</span> <span class=\"ukr\" data-info=\"колишній;adj;cas;acc;m\">колишню</span> <span class=\"ukr\" data-info=\"робота;nom;cas;acc;s\">роботу</span>?",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ти;proper;cas;nomi\">Ти</span> <span class=\"ukr\" data-info=\"пам'ятати;verb;conj;pres;2p;s\">пам'ятаєш</span> <span class=\"ukr\" data-info=\"свій;proposs;cas;acc;f\">свою</span> <span class=\"ukr\" data-info=\"колишній;adj;cas;acc;f\">колишню</span> <span class=\"ukr\" data-info=\"робота;nom;cas;acc;s\">роботу</span>?",
     "traduction": "Tu te souviens de ton travail d'avant ?",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.13" }
   },
   "Я познайомився з моєю дружиною на теперішньому місці роботи.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"познайомитися;verb;conj;pass;m;s\">познайомився</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"мій;adj;cas;ins;m\">моєю</span> <span class=\"ukr\" data-info=\"дружина;nom;cas;ins;s\">дружиною</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"теперішній;adj;cas;loc;m\">теперішньому</span> <span class=\"ukr\" data-info=\"місце;nom;cas;loc;s\">місці</span> <span class=\"ukr\" data-info=\"робота;nom;cas;loc;s\">роботи</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"познайомитися;verb;conj;pass;m;s\">познайомився</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"мій;proposs;cas;ins;m\">моєю</span> <span class=\"ukr\" data-info=\"дружина;nom;cas;ins;s\">дружиною</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"теперішній;adj;cas;loc;m\">теперішньому</span> <span class=\"ukr\" data-info=\"місце;nom;cas;loc;s\">місці</span> <span class=\"ukr\" data-info=\"робота;nom;cas;gen;s\">роботи</span>.",
     "traduction": "J'ai fait la connaissance avec ma femme sur mon actuel lieu de travail.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.14" }
   },
   "У моїй кімнаті стоїть дерев'яний стіл.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"мій;adj;cas;loc;m\">моїй</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;loc;s\">кімнаті</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоїть</span> <span class=\"ukr\" data-info=\"дерев'яний;adj;cas;nomi;m\">дерев'яний</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;nomi;s\">стіл</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"мій;proposs;cas;loc;m\">моїй</span> <span class=\"ukr\" data-info=\"кімната;nom;cas;loc;s\">кімнаті</span> <span class=\"ukr\" data-info=\"стояти;verb;conj;pres;3p;s\">стоїть</span> <span class=\"ukr\" data-info=\"дерев'яний;adj;cas;nomi;m\">дерев'яний</span> <span class=\"ukr\" data-info=\"стіл;nom;cas;nomi;s\">стіл</span>.",
     "traduction": "Dans ma chambre, il y a une table en bois.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.15" }
   },
   "Я купив срібні ложки.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;s\">купив</span> <span class=\"ukr\" data-info=\"срібний;adj;cas;acc;m\">срібні</span> <span class=\"ukr\" data-info=\"ложка;nom;cas;acc;pl\">ложки</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;s\">купив</span> <span class=\"ukr\" data-info=\"срібний;adj;cas;acc;m\">срібні</span> <span class=\"ukr\" data-info=\"ложка;nom;cas;acc;pl\">ложки</span>.",
     "traduction": "J'ai acheté des cuillères en argent.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.16" }
   },
@@ -931,18 +931,118 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.17" }
   },
   "Я відвідую читацький клуб.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"відвідувати;verb;conj;pres;1p;s\">відвідую</span> <span class=\"ukr\" data-info=\"читацький;adj;cas;acc;m\">читацький</span> <span class=\"ukr\" data-info=\"клуб;nom;cas;acc;s\">клуб</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"відвідувати;verb;conj;pres;1p;s\">відвідую</span> <span class=\"ukr\" data-info=\"читацький;adj;cas;acc;m\">читацький</span> <span class=\"ukr\" data-info=\"клуб;nom;cas;acc;s\">клуб</span>.",
     "traduction": "Je fréquente un club de lecture.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.18" }
   },
   "Лікар дав мені медичну довідку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"лікар;nom;cas;nomi;s\">Лікар</span> <span class=\"ukr\" data-info=\"дати;verb;conj;pass;m;s\">дав</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"медичний;adj;cas;acc;m\">медичну</span> <span class=\"ukr\" data-info=\"довідка;nom;cas;acc;s\">довідку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"лікар;nom;cas;nomi;s\">Лікар</span> <span class=\"ukr\" data-info=\"дати;verb;conj;pass;m;s\">дав</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"медичний;adj;cas;acc;f\">медичну</span> <span class=\"ukr\" data-info=\"довідка;nom;cas;acc;s\">довідку</span>.",
     "traduction": "Le médecin m'a donné un certificat médical.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.19" }
   },
   "Це лікарські трави.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"це;pron;cas;nomi\">Це</span> <span class=\"ukr\" data-info=\"лікарський;adj;cas;nomi;m\">лікарські</span> <span class=\"ukr\" data-info=\"трава;nom;cas;nomi;s\">трави</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"лікарський;adj;cas;nomi;m\">лікарські</span> <span class=\"ukr\" data-info=\"трава;nom;cas;nomi;pl\">трави</span>.",
     "traduction": "Ce sont des herbes médicinales.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème2.20" }
+  },
+  "Ігор – мамин брат.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Ігор;nom;cas;nomi;s\">Ігор</span> — <span class=\"ukr\" data-info=\"мамин;adj;cas;nomi;m\">мамин</span> <span class=\"ukr\" data-info=\"брат;nom;cas;nomi;s\">брат</span>.",
+    "traduction": "Igor est le frère de ma mère.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.1" }
+  },
+  "Це Оксанина сумка.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"Оксанина;adj;cas;nomi;f\">Оксанина</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;nomi;s\">сумка</span>.",
+    "traduction": "C’est le sac d’Oksana.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.2" }
+  },
+  "Дядькову дружину звати Надія, а дядькового сина звати Олексій.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дядьковий;adj;cas;acc;f\">Дядькову</span> <span class=\"ukr\" data-info=\"дружина;nom;cas;acc;s\">дружину</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Надія;nom;cas;nomi;s\">Надія</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"дядьковий;adj;cas;acc;m\">дядькового</span> <span class=\"ukr\" data-info=\"син;nom;cas;acc;s\">сина</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Олексій;nom;cas;nomi;s\">Олексій</span>.",
+    "traduction": "La femme de mon oncle s'appelle Nadiya et le fils de mon oncle s'appelle Oleksiy.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.3" }
+  },
+  "Я люблю відпочивати у батьковій хаті.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"відпочивати;verb;inf\">відпочивати</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"батьковий;adj;cas;loc;f\">батьковій</span> <span class=\"ukr\" data-info=\"хата;nom;cas;loc;s\">хаті</span>.",
+    "traduction": "J'aime me reposer dans la maison de mon père.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.4" }
+  },
+  "Мамина любов та батькова любов допомогли мені у житті.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"мамина;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"та;conj\">та</span> <span class=\"ukr\" data-info=\"батькова;adj;cas;nomi;f\">батькова</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"допомогти;verb;conj;pass;pl\">допомогли</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"життя;nom;cas;loc;s\">житті</span>.",
+    "traduction": "L'amour de ma mère et de mon père m'a aidé dans la vie.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.5" }
+  },
+  "Я працюю з сестриним чоловіком.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"працювати;verb;conj;pres;1p;s\">працюю</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"сестриний;adj;cas;ins;m\">сестриним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;ins;s\">чоловіком</span>.",
+    "traduction": "Je travaille avec le mari de ma sœur.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.6" }
+  },
+  "Ми гуляємо з братовими дітьми.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;pl\">гуляємо</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"братовий;adj;cas;ins;pl\">братовими</span> <span class=\"ukr\" data-info=\"діти;nom;cas;ins;pl\">дітьми</span>.",
+    "traduction": "Nous nous promenons avec les enfants de mon frère.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.7" }
+  },
+  "Це тітчина машина. тітчине авто.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"тітчин;adj;cas;nomi;f\">тітчина</span> <span class=\"ukr\" data-info=\"машина;nom;cas;nomi;s\">машина</span>. <span class=\"ukr\" data-info=\"тітчин;adj;cas;nomi;n\">тітчине</span> <span class=\"ukr\" data-info=\"авто;nom;cas;nomi;s\">авто</span>.",
+    "traduction": "C'est la voiture (l’auto) de ma tante.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.8" }
+  },
+  "Ми купили Кирилову квартиру.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;pl\">купили</span> <span class=\"ukr\" data-info=\"Кириловий;adj;cas;acc;f\">Кирилову</span> <span class=\"ukr\" data-info=\"квартира;nom;cas;acc;s\">квартиру</span>.",
+    "traduction": "Nous avons acheté l'appartement de Kyrylo.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.9" }
+  },
+  "Ми були у Шевченковій хаті у Моринцях.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;pl\">були</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Шевченків;adj;cas;loc;f\">Шевченковій</span> <span class=\"ukr\" data-info=\"хата;nom;cas;loc;s\">хаті</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Моринці;nom;cas;loc;pl\">Моринцях</span>.",
+    "traduction": "Nous avons visité (nous avons été à) la maison de Chevtchenko à Moryntsi.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.10" }
+  },
+  "Я люблю Лесині поеми.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"Лесин;adj;cas;acc;pl\">Лесині</span> <span class=\"ukr\" data-info=\"поема;nom;cas;acc;pl\">поеми</span>.",
+    "traduction": "J'aime les poèmes de Lessiya.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.11" }
+  },
+  "Я завжди можу розраховувати на другову допомогу.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"завжди;adv\">завжди</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"розраховувати;verb;inf\">розраховувати</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"друговий;adj;cas;acc;f\">другову</span> <span class=\"ukr\" data-info=\"допомога;nom;cas;acc;s\">допомогу</span>.",
+    "traduction": "Je peux toujours compter sur l'aide de mon ami.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.12" }
+  },
+  "Мати зустрічалася із синовою подругою.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"мати;nom;cas;nomi;s\">Мати</span> <span class=\"ukr\" data-info=\"зустрічатися;verb;conj;pass;f;s\">зустрічалася</span> <span class=\"ukr\" data-info=\"із;prep\">із</span> <span class=\"ukr\" data-info=\"синовий;adj;cas;ins;f\">синовою</span> <span class=\"ukr\" data-info=\"подруга;nom;cas;ins;s\">подругою</span>.",
+    "traduction": "La mère a rencontré l'amie de son fils.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.13" }
+  },
+  "Ярина і Андрій – мої онуки, це доньчині діти.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Ярина;nom;cas;nomi;s\">Ярина</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Андрій;nom;cas;nomi;s\">Андрій</span> — <span class=\"ukr\" data-info=\"мій;adj;cas;nomi;pl\">мої</span> <span class=\"ukr\" data-info=\"онуки;nom;cas;nomi;pl\">онуки</span>, <span class=\"ukr\" data-info=\"це;part\">це</span> <span class=\"ukr\" data-info=\"доньчин;adj;cas;nomi;pl\">доньчині</span> <span class=\"ukr\" data-info=\"діти;nom;cas;nomi;pl\">діти</span>.",
+    "traduction": "Yaryna et Andriy sont mes petits-enfants, ce sont les enfants de ma fille.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.14" }
+  },
+  "Я послухав викладачеву пораду.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"послухати;verb;conj;pass;m;s\">послухав</span> <span class=\"ukr\" data-info=\"викладачевий;adj;cas;acc;f\">викладачеву</span> <span class=\"ukr\" data-info=\"порада;nom;cas;acc;s\">пораду</span>.",
+    "traduction": "J'ai écouté le conseil de mon professeur.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.15" }
+  },
+  "Це кошенятине місце.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"кошенятине;adj;cas;nomi;n\">кошенятине</span> <span class=\"ukr\" data-info=\"місце;nom;cas;nomi;s\">місце</span>.",
+    "traduction": "C'est la place de mon chaton.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.16" }
+  },
+  "Сестрина донька буде жити у нас.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"сестрина;adj;cas;nomi;f\">Сестрина</span> <span class=\"ukr\" data-info=\"донька;nom;cas;nomi;s\">донька</span> <span class=\"ukr\" data-info=\"бути;verb;conj;fut;3p;s\">буде</span> <span class=\"ukr\" data-info=\"жити;verb;inf\">жити</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ми;pron;cas;gen\">нас</span>.",
+    "traduction": "La fille de ma sœur va vivre chez nous.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.17" }
+  },
+  "Мамина сестра у лікарні.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"мамина;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"сестра;nom;cas;nomi;s\">сестра</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"лікарня;nom;cas;loc;s\">лікарні</span>.",
+    "traduction": "La sœur de ma mère est à l'hôpital.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.18" }
+  },
+  "Дядьків пес гавкає всю ніч.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"дядьків;adj;cas;nomi;m\">Дядьків</span> <span class=\"ukr\" data-info=\"пес;nom;cas;nomi;s\">пес</span> <span class=\"ukr\" data-info=\"гавкати;verb;conj;pres;3p;s\">гавкає</span> <span class=\"ukr\" data-info=\"весь;adj;cas;acc;f\">всю</span> <span class=\"ukr\" data-info=\"ніч;nom;cas;acc;s\">ніч</span>.",
+    "traduction": "Le chien de mon oncle aboie toute la nuit.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.19" }
+  },
+  "Сусідчин син вчиться зі мною.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"сусідчин;adj;cas;nomi;m\">Сусідчин</span> <span class=\"ukr\" data-info=\"син;nom;cas;nomi;s\">син</span> <span class=\"ukr\" data-info=\"вчитися;verb;conj;pres;3p;s\">вчиться</span> <span class=\"ukr\" data-info=\"зі;prep\">зі</span> <span class=\"ukr\" data-info=\"я;proper;cas;ins\">мною</span>.",
+    "traduction": "Le fils de ma voisine étudie avec moi.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.20" }
   }
 }
