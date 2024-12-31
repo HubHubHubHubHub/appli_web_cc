@@ -951,32 +951,32 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.1" }
   },
   "Це Оксанина сумка.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"Оксанина;adj;cas;nomi;f\">Оксанина</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;nomi;s\">сумка</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"Оксанин;adj;cas;nomi;f\">Оксанина</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;nomi;s\">сумка</span>.",
     "traduction": "C’est le sac d’Oksana.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.2" }
   },
   "Дядькову дружину звати Надія, а дядькового сина звати Олексій.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"дядьковий;adj;cas;acc;f\">Дядькову</span> <span class=\"ukr\" data-info=\"дружина;nom;cas;acc;s\">дружину</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Надія;nom;cas;nomi;s\">Надія</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"дядьковий;adj;cas;acc;m\">дядькового</span> <span class=\"ukr\" data-info=\"син;nom;cas;acc;s\">сина</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Олексій;nom;cas;nomi;s\">Олексій</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"дядьків;adj;cas;acc;f\">Дядькову</span> <span class=\"ukr\" data-info=\"дружина;nom;cas;acc;s\">дружину</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Надія;nom;cas;nomi;s\">Надія</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"дядьків;adj;cas;acc;m\">дядькового</span> <span class=\"ukr\" data-info=\"син;nom;cas;acc;s\">сина</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Олексій;nom;cas;nomi;s\">Олексій</span>.",
     "traduction": "La femme de mon oncle s'appelle Nadiya et le fils de mon oncle s'appelle Oleksiy.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.3" }
   },
   "Я люблю відпочивати у батьковій хаті.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"відпочивати;verb;inf\">відпочивати</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"батьковий;adj;cas;loc;f\">батьковій</span> <span class=\"ukr\" data-info=\"хата;nom;cas;loc;s\">хаті</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"любити;verb;conj;pres;1p;s\">люблю</span> <span class=\"ukr\" data-info=\"відпочивати;verb;inf\">відпочивати</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"батьків;adj;cas;loc;f\">батьковій</span> <span class=\"ukr\" data-info=\"хата;nom;cas;loc;s\">хаті</span>.",
     "traduction": "J'aime me reposer dans la maison de mon père.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.4" }
   },
   "Мамина любов та батькова любов допомогли мені у житті.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"мамина;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"та;conj\">та</span> <span class=\"ukr\" data-info=\"батькова;adj;cas;nomi;f\">батькова</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"допомогти;verb;conj;pass;pl\">допомогли</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"життя;nom;cas;loc;s\">житті</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"мамин;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"та;conj\">та</span> <span class=\"ukr\" data-info=\"батьків;adj;cas;nomi;f\">батькова</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"допомогти;verb;conj;pass;m;pl\">допомогли</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"життя;nom;cas;loc;s\">житті</span>.",
     "traduction": "L'amour de ma mère et de mon père m'a aidé dans la vie.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.5" }
   },
   "Я працюю з сестриним чоловіком.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"працювати;verb;conj;pres;1p;s\">працюю</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"сестриний;adj;cas;ins;m\">сестриним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;ins;s\">чоловіком</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"працювати;verb;conj;pres;1p;s\">працюю</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"сестрин;adj;cas;ins;m\">сестриним</span> <span class=\"ukr\" data-info=\"чоловік;nom;cas;ins;s\">чоловіком</span>.",
     "traduction": "Je travaille avec le mari de ma sœur.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.6" }
   },
   "Ми гуляємо з братовими дітьми.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;pl\">гуляємо</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"братовий;adj;cas;ins;pl\">братовими</span> <span class=\"ukr\" data-info=\"діти;nom;cas;ins;pl\">дітьми</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;pl\">гуляємо</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"братів;adj;cas;ins;pl\">братовими</span> <span class=\"ukr\" data-info=\"дитина;nom;cas;ins;pl\">дітьми</span>.",
     "traduction": "Nous nous promenons avec les enfants de mon frère.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.7" }
   },
@@ -986,12 +986,12 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.8" }
   },
   "Ми купили Кирилову квартиру.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;pl\">купили</span> <span class=\"ukr\" data-info=\"Кириловий;adj;cas;acc;f\">Кирилову</span> <span class=\"ukr\" data-info=\"квартира;nom;cas;acc;s\">квартиру</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;m;pl\">купили</span> <span class=\"ukr\" data-info=\"Кирилів;adj;cas;acc;f\">Кирилову</span> <span class=\"ukr\" data-info=\"квартира;nom;cas;acc;s\">квартиру</span>.",
     "traduction": "Nous avons acheté l'appartement de Kyrylo.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.9" }
   },
   "Ми були у Шевченковій хаті у Моринцях.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;pl\">були</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Шевченків;adj;cas;loc;f\">Шевченковій</span> <span class=\"ukr\" data-info=\"хата;nom;cas;loc;s\">хаті</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Моринці;nom;cas;loc;pl\">Моринцях</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">Ми</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;m;pl\">були</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Шевченків;adj;cas;loc;f\">Шевченковій</span> <span class=\"ukr\" data-info=\"хата;nom;cas;loc;s\">хаті</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Моринці;nom;cas;loc;pl\">Моринцях</span>.",
     "traduction": "Nous avons visité (nous avons été à) la maison de Chevtchenko à Moryntsi.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.10" }
   },
@@ -1001,17 +1001,17 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.11" }
   },
   "Я завжди можу розраховувати на другову допомогу.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"завжди;adv\">завжди</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"розраховувати;verb;inf\">розраховувати</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"друговий;adj;cas;acc;f\">другову</span> <span class=\"ukr\" data-info=\"допомога;nom;cas;acc;s\">допомогу</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">Я</span> <span class=\"ukr\" data-info=\"завжди;adv;base\">завжди</span> <span class=\"ukr\" data-info=\"могти;verb;conj;pres;1p;s\">можу</span> <span class=\"ukr\" data-info=\"розраховувати;verb;inf\">розраховувати</span> <span class=\"ukr\" data-info=\"на;prep\">на</span> <span class=\"ukr\" data-info=\"другів;adj;cas;acc;f\">другову</span> <span class=\"ukr\" data-info=\"допомога;nom;cas;acc;s\">допомогу</span>.",
     "traduction": "Je peux toujours compter sur l'aide de mon ami.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.12" }
   },
   "Мати зустрічалася із синовою подругою.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"мати;nom;cas;nomi;s\">Мати</span> <span class=\"ukr\" data-info=\"зустрічатися;verb;conj;pass;f;s\">зустрічалася</span> <span class=\"ukr\" data-info=\"із;prep\">із</span> <span class=\"ukr\" data-info=\"синовий;adj;cas;ins;f\">синовою</span> <span class=\"ukr\" data-info=\"подруга;nom;cas;ins;s\">подругою</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"мати;nom;cas;nomi;s\">Мати</span> <span class=\"ukr\" data-info=\"зустрічатися;verb;conj;pass;f;s\">зустрічалася</span> <span class=\"ukr\" data-info=\"із;prep\">із</span> <span class=\"ukr\" data-info=\"синів;adj;cas;ins;f\">синовою</span> <span class=\"ukr\" data-info=\"подруга;nom;cas;ins;s\">подругою</span>.",
     "traduction": "La mère a rencontré l'amie de son fils.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.13" }
   },
   "Ярина і Андрій – мої онуки, це доньчині діти.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"Ярина;nom;cas;nomi;s\">Ярина</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Андрій;nom;cas;nomi;s\">Андрій</span> — <span class=\"ukr\" data-info=\"мій;adj;cas;nomi;pl\">мої</span> <span class=\"ukr\" data-info=\"онуки;nom;cas;nomi;pl\">онуки</span>, <span class=\"ukr\" data-info=\"це;part\">це</span> <span class=\"ukr\" data-info=\"доньчин;adj;cas;nomi;pl\">доньчині</span> <span class=\"ukr\" data-info=\"діти;nom;cas;nomi;pl\">діти</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"Ярина;nom;cas;nomi;s\">Ярина</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Андрій;nom;cas;nomi;s\">Андрій</span> — <span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;pl\">мої</span> <span class=\"ukr\" data-info=\"онук;nom;cas;nomi;pl\">онуки</span>, <span class=\"ukr\" data-info=\"це;part\">це</span> <span class=\"ukr\" data-info=\"доньчин;adj;cas;nomi;pl\">доньчині</span> <span class=\"ukr\" data-info=\"дитина;nom;cas;nomi;pl\">діти</span>.",
     "traduction": "Yaryna et Andriy sont mes petits-enfants, ce sont les enfants de ma fille.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.14" }
   },
@@ -1026,12 +1026,12 @@
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.16" }
   },
   "Сестрина донька буде жити у нас.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"сестрина;adj;cas;nomi;f\">Сестрина</span> <span class=\"ukr\" data-info=\"донька;nom;cas;nomi;s\">донька</span> <span class=\"ukr\" data-info=\"бути;verb;conj;fut;3p;s\">буде</span> <span class=\"ukr\" data-info=\"жити;verb;inf\">жити</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ми;pron;cas;gen\">нас</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"сестрин;adj;cas;nomi;f\">Сестрина</span> <span class=\"ukr\" data-info=\"донька;nom;cas;nomi;s\">донька</span> <span class=\"ukr\" data-info=\"бути;verb;conj;fut;3p;s\">буде</span> <span class=\"ukr\" data-info=\"жити;verb;inf\">жити</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"ми;proper;cas;gen\">нас</span>.",
     "traduction": "La fille de ma sœur va vivre chez nous.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.17" }
   },
   "Мамина сестра у лікарні.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"мамина;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"сестра;nom;cas;nomi;s\">сестра</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"лікарня;nom;cas;loc;s\">лікарні</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"мамин;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"сестра;nom;cas;nomi;s\">сестра</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"лікарня;nom;cas;loc;s\">лікарні</span>.",
     "traduction": "La sœur de ma mère est à l'hôpital.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.18" }
   },
@@ -1044,5 +1044,144 @@
     "phrase_html": "<span class=\"ukr\" data-info=\"сусідчин;adj;cas;nomi;m\">Сусідчин</span> <span class=\"ukr\" data-info=\"син;nom;cas;nomi;s\">син</span> <span class=\"ukr\" data-info=\"вчитися;verb;conj;pres;3p;s\">вчиться</span> <span class=\"ukr\" data-info=\"зі;prep\">зі</span> <span class=\"ukr\" data-info=\"я;proper;cas;ins\">мною</span>.",
     "traduction": "Le fils de ma voisine étudie avec moi.",
     "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème3.20" }
+  },
+  "У Черкаській області є шістнадцять міст.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"черкаський;adj;cas;loc;f\">Черкаській</span> <span class=\"ukr\" data-info=\"область;nom;cas;loc;s\">області</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pres;3p;s\">є</span> <span class=\"ukr\" data-info=\"шістнадцять;num;card\">шістнадцять</span> <span class=\"ukr\" data-info=\"місто;nom;cas;gen;pl\">міст</span>.",
+    "traduction": "Il y a 16 villes dans la région de Tcherkassy.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.1" }
+  },
+
+  "Запорiзька Січ спочатку була військовим центром українського козацтва, а потім політичним та адміністративним центром козацької держави з другої половини сімнадцятого століття до кінця вісімнадцятого століття.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"запорізький;adj;cas;nomi;f\">Запорізька</span> <span class=\"ukr\" data-info=\"Січ;nom;cas;nomi;s\">Січ</span> <span class=\"ukr\" data-info=\"спочатку;adv;base\">спочатку</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;f;s\">була</span> <span class=\"ukr\" data-info=\"військовий;adj;cas;ins;m\">військовим</span> <span class=\"ukr\" data-info=\"центр;nom;cas;ins;s\">центром</span> <span class=\"ukr\" data-info=\"український;adj;cas;gen;m\">українського</span> <span class=\"ukr\" data-info=\"козацтво;nom;cas;gen;s\">козацтва</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"потім;adv\">потім</span> <span class=\"ukr\" data-info=\"політичний;adj;cas;ins;m\">політичним</span> <span class=\"ukr\" data-info=\"та;conj\">та</span> <span class=\"ukr\" data-info=\"адміністративний;adj;cas;ins;m\">адміністративним</span> <span class=\"ukr\" data-info=\"центр;nom;cas;ins;s\">центром</span> <span class=\"ukr\" data-info=\"козацький;adj;cas;gen;f\">козацької</span> <span class=\"ukr\" data-info=\"держава;nom;cas;gen;s\">держави</span> <span class=\"ukr\" data-info=\"з;prep\">з</span> <span class=\"ukr\" data-info=\"другий;adj;cas;gen;f\">другої</span> <span class=\"ukr\" data-info=\"половина;nom;cas;gen;s\">половини</span> <span class=\"ukr\" data-info=\"сімнадцятий;adj;cas;gen;m\">сімнадцятого</span> <span class=\"ukr\" data-info=\"століття;nom;cas;gen;s\">століття</span> <span class=\"ukr\" data-info=\"до;prep\">до</span> <span class=\"ukr\" data-info=\"кінець;nom;cas;gen;m\">кінця</span> <span class=\"ukr\" data-info=\"вісімнадцятий;adj;cas;gen;m\">вісімнадцятого</span> <span class=\"ukr\" data-info=\"століття;nom;cas;gen;s\">століття</span>.",
+    "traduction": "La Sitch zaporogue était d’abord le centre militaire des cosaques ukrainiens, puis le centre politique et administratif de l’État cosaque de la seconde moitié du XVIIe jusqu’à la fin du XVIIIe siècle.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.2" }
+  },
+
+  "Чернівецька область – найменша область України.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"чернівецький;adj;cas;nomi;f\">Чернівецька</span> <span class=\"ukr\" data-info=\"область;nom;cas;nomi;s\">область</span> <span class=\"ukr\" data-info=\"–;part\">–</span> <span class=\"ukr\" data-info=\"найменший;adj;cas;nomi;f\">найменша</span> <span class=\"ukr\" data-info=\"область;nom;cas;nomi;s\">область</span> <span class=\"ukr\" data-info=\"Україна;nom;cas;gen;s\">України</span>.",
+    "traduction": "L’oblast de Tchernivtsi est le plus petit oblast d’Ukraine.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.3" }
+  },
+
+  "Донецький Національний університет імені Василя Стуса зараз знаходиться у Вінниці.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"донецький;adj;cas;nomi;m\">Донецький</span> <span class=\"ukr\" data-info=\"національний;adj;cas;nomi;m\">Національний</span> <span class=\"ukr\" data-info=\"університет;nom;cas;nomi;s\">університет</span> <span class=\"ukr\" data-info=\"ім'я;nom;cas;gen;s\">імені</span> <span class=\"ukr\" data-info=\"Василь;nom;cas;gen;s\">Василя</span> <span class=\"ukr\" data-info=\"Стус;nom;cas;gen;s\">Стуса</span> <span class=\"ukr\" data-info=\"зараз;adv;base\">зараз</span> <span class=\"ukr\" data-info=\"знаходитися;verb;conj;pres;3p;s\">знаходиться</span> <span class=\"ukr\" data-info=\"у;prep\">у</span> <span class=\"ukr\" data-info=\"Вінниця;nom;cas;loc;s\">Вінниці</span>.",
+    "traduction": "L’université nationale Vasyl’ Stous de Donetsk se trouve actuellement à Vinnytsia.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.4" }
+  },
+
+  "Зараз в Одеському національному оперному театрі йде опера Аїда Джузеппе Верді.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"зараз;adv\">Зараз</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"одеський;adj;cas;loc;m\">Одеському</span> <span class=\"ukr\" data-info=\"національний;adj;cas;loc;m\">національному</span> <span class=\"ukr\" data-info=\"оперний;adj;cas;loc;m\">оперному</span> <span class=\"ukr\" data-info=\"театр;nom;cas;loc;s\">театрі</span> <span class=\"ukr\" data-info=\"йти;verb;conj;pres;3p;s\">йде</span> <span class=\"ukr\" data-info=\"опера;nom;cas;nomi;s\">опера</span> <span class=\"ukr\" data-info=\"Аїда;nom;cas;nomi;s\"><em>Аїда</em></span> <span class=\"ukr\" data-info=\"Джузеппе;nom;cas;gen;s\">Джузеппе</span> <span class=\"ukr\" data-info=\"Верді;nom;cas;gen;s\">Верді</span>.",
+    "traduction": "Actuellement, dans l’Opéra national d’Odessa, passe l’opéra Aïda de Giuseppe Verdi.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.5" }
+  },
+
+  "Сьогодні в Ужгородській області йде дощ.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"сьогодні;adv\">Сьогодні</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"ужгородський;adj;cas;loc;f\">Ужгородській</span> <span class=\"ukr\" data-info=\"область;nom;cas;loc;s\">області</span> <span class=\"ukr\" data-info=\"йти;verb;conj;pres;3p;s\">йде</span> <span class=\"ukr\" data-info=\"дощ;nom;cas;nomi;s\">дощ</span>.",
+    "traduction": "Aujourd’hui, dans la région d’Oujhorod, il pleut.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.6" }
+  },
+
+  "Цей гід пропонує прогулянки паризькими вулицями.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;m\">Цей</span> <span class=\"ukr\" data-info=\"гід;nom;cas;nomi;s\">гід</span> <span class=\"ukr\" data-info=\"пропонувати;verb;conj;pres;3p;s\">пропонує</span> <span class=\"ukr\" data-info=\"прогулянка;nom;cas;acc;pl\">прогулянки</span> <span class=\"ukr\" data-info=\"паризький;adj;cas;ins;pl\">паризькими</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;ins;pl\">вулицями</span>.",
+    "traduction": "Ce guide propose des balades dans les rues de Paris.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.7" }
+  },
+
+  "У Сумському музеї ми бачили багато гарних картин.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"у;prep\">У</span> <span class=\"ukr\" data-info=\"сумський;adj;cas;loc;m\">Сумському</span> <span class=\"ukr\" data-info=\"музей;nom;cas;loc;s\">музеї</span> <span class=\"ukr\" data-info=\"ми;proper;cas;nom\">ми</span> <span class=\"ukr\" data-info=\"бачити;verb;conj;past;1p;pl;m\">бачили</span> <span class=\"ukr\" data-info=\"багато;quant\">багато</span> <span class=\"ukr\" data-info=\"гарний;adj;cas;gen;pl\">гарних</span> <span class=\"ukr\" data-info=\"картина;nom;cas;gen;pl\">картин</span>.",
+    "traduction": "Dans le musée de Soumy, nous avons vu beaucoup de beaux tableaux.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.8" }
+  },
+
+  "Чорнобильська катастрофа була / відбулася / сталася двадцять шостого квітня тисяча дев’ятсот вісімдесят шостого року.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"чорнобильський;adj;cas;nomi;f\">Чорнобильська</span> <span class=\"ukr\" data-info=\"катастрофа;nom;cas;nomi;s\">катастрофа</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;f;s\">була</span> / <span class=\"ukr\" data-info=\"відбутися;verb;conj;pass;f;s\">відбулася</span> / <span class=\"ukr\" data-info=\"статися;verb;conj;pass;f;s\">сталася</span> <span class=\"ukr\" data-info=\"двадцять шостий;num;ord;cas;gen;m\">двадцять шостого</span> <span class=\"ukr\" data-info=\"квітень;nom;cas;gen;s\">квітня</span> <span class=\"ukr\" data-info=\"тисяча дев’ятсот вісімдесят шостий;num;card;cas;gen\">тисяча дев’ятсот вісімдесят шостого</span> <span class=\"ukr\" data-info=\"рік;nom;cas;gen;s\">року</span>.",
+    "traduction": "L’accident de Tchernobyl s’est produit le 26 avril 1986.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.9" }
+  },
+
+  "Вінницький фонтан дуже відомий в Україні.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"вінницький;adj;cas;nomi;m\">Вінницький</span> <span class=\"ukr\" data-info=\"фонтан;nom;cas;nomi;s\">фонтан</span> <span class=\"ukr\" data-info=\"дуже;adv\">дуже</span> <span class=\"ukr\" data-info=\"відомий;adj;cas;nomi;m\">відомий</span> <span class=\"ukr\" data-info=\"в;prep\">в</span> <span class=\"ukr\" data-info=\"Україна;nom;cas;loc;s\">Україні</span>.",
+    "traduction": "La fontaine de Vinnytsia est très connue en Ukraine.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème4.10" }
+  },
+  "Це пальто дешевше, ніж моє.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;n\">Це</span> <span class=\"ukr\" data-info=\"пальто;nom;cas;nomi;s\">пальто</span> <span class=\"ukr\" data-info=\"дешевший;adj;cas;nomi;n\">дешевше</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;n\">моє</span>.",
+    "traduction": "Ce manteau est moins cher que le mien.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.1" }
+  },
+  "Ця вулиця довга, а та ще довша.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;f\">Ця</span> <span class=\"ukr\" data-info=\"вулиця;nom;cas;nomi;s\">вулиця</span> <span class=\"ukr\" data-info=\"довгий;adj;cas;nomi;f\">довга</span> <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"той;adj;cas;nomi;f\">та</span> <span class=\"ukr\" data-info=\"ще;adv\">ще</span> <span class=\"ukr\" data-info=\"довгий;adj;cas;nomi;f\">довша</span>.",
+    "traduction": "Cette rue est longue et celle-ci encore plus longue.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.2" }
+  },
+  "Моя спідниця коротша, ніж твоя.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;f\">Моя</span> <span class=\"ukr\" data-info=\"спідниця;nom;cas;nomi;s\">спідниця</span> <span class=\"ukr\" data-info=\"коротший;adj;cas;nomi;f\">коротша</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"твій;proposs;cas;nomi;f\">твоя</span>.",
+    "traduction": "Ma jupe est plus courte que la tienne.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.3" }
+  },
+  "Проспект Тараса Шевченка ширший за проспект Лесі Українки.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"проспект;nom;cas;nomi;s\">Проспект</span> <span class=\"ukr\" data-info=\"Тарас;nom;cas;gen;s\">Тараса</span> <span class=\"ukr\" data-info=\"Шевченко;nom;cas;gen;s\">Шевченка</span> <span class=\"ukr\" data-info=\"ширший;adj;cas;nomi;m\">ширший</span> <span class=\"ukr\" data-info=\"за;prep\">за</span> <span class=\"ukr\" data-info=\"проспект;nom;cas;acc;s\">проспект</span> <span class=\"ukr\" data-info=\"Леся;nom;cas;gen;s\">Лесі</span> <span class=\"ukr\" data-info=\"Українка;nom;cas;gen;s\">Українки</span>.",
+    "traduction": "L’avenue Taras Chevtchenko est plus large que l’avenue Lessya Ukraïnka.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.4" }
+  },
+  "Я купила дешевшу сукню від твоєї.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"купити;verb;conj;pass;f;s\">купила</span> <span class=\"ukr\" data-info=\"дешевший;adj;cas;acc;f\">дешевшу</span> <span class=\"ukr\" data-info=\"сукня;nom;cas;acc;s\">сукню</span> <span class=\"ukr\" data-info=\"від;prep\">від</span> <span class=\"ukr\" data-info=\"твій;proposs;cas;gen;f\">твоєї</span>.",
+    "traduction": "J’ai acheté une robe moins chère que la tienne.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.5" }
+  },
+  "Ці цукерки солодші за ті.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;pl\">Ці</span> <span class=\"ukr\" data-info=\"цукерка;nom;cas;nomi;pl\">цукерки</span> <span class=\"ukr\" data-info=\"солодший;adj;cas;nomi;pl\">солодші</span> <span class=\"ukr\" data-info=\"за;prep\">за</span> <span class=\"ukr\" data-info=\"той;adj;cas;acc;pl\">ті</span>.",
+    "traduction": "Ces bonbons sont plus sucrés que ceux-là.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.6" }
+  },
+  "Вправа два легша, ніж вправа номер три.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"вправа;nom;cas;nomi;s\">Вправа</span> <span class=\"ukr\" data-info=\"два;num;card\">два</span> <span class=\"ukr\" data-info=\"легкий;adj;cas;nomi;f\">легша</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"вправа;nom;cas;nomi;s\">вправа</span> <span class=\"ukr\" data-info=\"номер;nom;cas;acc;s\">номер</span> <span class=\"ukr\" data-info=\"три;num;card\">три</span>.",
+    "traduction": "L’exercice n°2 est plus facile que l’exercice n°3.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.7" }
+  },
+  "Дніпро глибший, ніж Сена.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Дніпро;nom;cas;nomi;s\">Дніпро</span> <span class=\"ukr\" data-info=\"глибший;adj;cas;nomi;m\">глибший</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"Сена;nom;cas;nomi;s\">Сена</span>.",
+    "traduction": "Dnipro est plus profond que la Seine.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.8" }
+  },
+  "Площа України більша від площі Франції.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"площа;nom;cas;nomi;s\">Площа</span> <span class=\"ukr\" data-info=\"Україна;nom;cas;gen;s\">України</span> <span class=\"ukr\" data-info=\"більший;adj;cas;nomi;f\">більша</span> <span class=\"ukr\" data-info=\"від;prep\">від</span> <span class=\"ukr\" data-info=\"площа;nom;cas;gen;s\">площі</span> <span class=\"ukr\" data-info=\"Франція;nom;cas;gen;s\">Франції</span>.",
+    "traduction": "La superficie de l’Ukraine est plus grande que celle de la France.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.9" }
+  },
+  "Вона вища, ніж її мати.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"вона;proper;cas;nom\">Вона</span> <span class=\"ukr\" data-info=\"високий;adj;cas;nomi;f\">вища</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"її;proposs;cas;nomi;s\">її</span> <span class=\"ukr\" data-info=\"мати;nom;cas;nomi;s\">мати</span>.",
+    "traduction": "Elle est plus grande que sa mère.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.10" }
+  },
+  "Цей будинок нижчий за той.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;m\">Цей</span> <span class=\"ukr\" data-info=\"будинок;nom;cas;nomi;s\">будинок</span> <span class=\"ukr\" data-info=\"нижчий;adj;cas;nomi;m\">нижчий</span> <span class=\"ukr\" data-info=\"за;prep\">за</span> <span class=\"ukr\" data-info=\"той;adj;cas;acc;m\">той</span>.",
+    "traduction": "Cet immeuble est moins haut que celui-là.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.11" }
+  },
+  "Ця робота погана, а та ще гірша.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;f\">Ця</span> <span class=\"ukr\" data-info=\"робота;nom;cas;nomi;s\">робота</span> <span class=\"ukr\" data-info=\"поганий;adj;cas;nomi;f\">погана</span> <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"той;adj;cas;nomi;f\">та</span> <span class=\"ukr\" data-info=\"ще;adv\">ще</span> <span class=\"ukr\" data-info=\"поганий;adj;cas;nomi;f\">гірша</span>.",
+    "traduction": "Ce travail est mauvais, et celui-là encore pire.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.12" }
+  },
+  "Сєргійко значно менший, ніж Павло.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"сєргійко;nom;cas;nomi;s\">Сєргійко</span> <span class=\"ukr\" data-info=\"значно;adv\">значно</span> <span class=\"ukr\" data-info=\"менший;adj;cas;nomi;m\">менший</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"павло;nom;cas;nomi;s\">Павло</span>.",
+    "traduction": "Serghiyko est bien plus petit que Pavlo.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.13" }
+  },
+  "Я взяла яблуко трохи більше, ніж твоє.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nom\">Я</span> <span class=\"ukr\" data-info=\"взяти;verb;conj;pass;f;s\">взяла</span> <span class=\"ukr\" data-info=\"яблуко;nom;cas;acc;s\">яблуко</span> <span class=\"ukr\" data-info=\"трохи;adv\">трохи</span> <span class=\"ukr\" data-info=\"більший;adj;cas;nomi;n\">більше</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"твій;proposs;cas;nomi;n\">твоє</span>.",
+    "traduction": "J’ai pris une pomme un peu plus grande que la tienne.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.14" }
+  },
+  "Мій дядько трохи товстіший, ніж моя тітка.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;m\">Мій</span> <span class=\"ukr\" data-info=\"дядько;nom;cas;nomi;s\">дядько</span> <span class=\"ukr\" data-info=\"трохи;adv\">трохи</span> <span class=\"ukr\" data-info=\"товстіший;adj;cas;nomi;m\">товстіший</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;f\">моя</span> <span class=\"ukr\" data-info=\"тітка;nom;cas;nomi;s\">тітка</span>.",
+    "traduction": "Mon oncle est un peu plus gros que ma tante.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.15" }
+  },
+  "Моя сумка набагато важча, ніж твоя.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;f\">Моя</span> <span class=\"ukr\" data-info=\"сумка;nom;cas;nomi;s\">сумка</span> <span class=\"ukr\" data-info=\"набагато;adv\">набагато</span> <span class=\"ukr\" data-info=\"важчий;adj;cas;nomi;f\">важча</span> <span class=\"ukr\" data-info=\"ніж;conj\">ніж</span> <span class=\"ukr\" data-info=\"твій;proposs;cas;nomi;f\">твоя</span>.",
+    "traduction": "Mon sac est beaucoup plus lourd que le tien.",
+    "ref": { "Olena Saint-Joanis": "L2,Cours2,Thème5.16" }
   }
 }
