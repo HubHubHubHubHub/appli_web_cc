@@ -103,6 +103,7 @@ let Utils = {
     dat: "rgb(231, 40, 155)",
     voc: "rgb(132, 19, 19)",
     conj: "inherit",
+    inf: "inherit",
   },
   /* coloration des groupes de mots par cas au survol */
 
@@ -141,21 +142,20 @@ let Utils = {
                 default:
                   data = null;
               }
-
               if (data) {
-                let posAcc = data[1];
-                let motNomi = data[0];
-                displayedInfo =
-                  Utils.addAccent(motNomi, posAcc) +
-                  "," +
-                  dataInfo
-                    .filter((_, index) => index !== 2 && index !== 0)
-                    .join();
+                const posAcc = data[1];
+                const motNomi = data[0];
+                const rest = dataInfo.filter((token, index) => {
+                  if (index === 0) return false;                         // on enlève le lemme (réaffiché avec accent)
+                  if (index === 2 && token === "conj") return false;     // on masque seulement "conj"
+                  return true;                                           // on GARDE "inf"/"imper"
+                });
+                displayedInfo = Utils.addAccent(motNomi, posAcc) + "," + rest.join();
               } else {
-                displayedInfo = dataInfo
-                  .filter((_, index) => index !== 2)
-                  .join();
+                const rest = dataInfo.filter((token, index) => !(index === 2 && token === "conj"));
+                displayedInfo = rest.join();
               }
+              
               this.innerHTML += `<sup><em> ${displayedInfo}</em></sup>`;
               this.classList.add("info-added"); // Marque l'élément comme ayant un <sup>
             }
