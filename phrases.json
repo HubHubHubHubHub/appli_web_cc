@@ -1234,10 +1234,131 @@
     "traduction": "– Comment vous appelez-vous ? – Nous nous appelons Ulyana et Volodymyr.",
     "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
   },
-  "– Як Вас звати? – Мене звати Йосип.": {
+  "– Як Вас звати? – Мене звати Йосип.":{
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"ви;proper;cas;acc\">Вас</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"я;proper;cas;acc\">Мене</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Йосип;nom;cas;nomi;s\">Йосип</span>.",
     "traduction": "– Comment vous appelez-vous ? (forme polie) – Je m’appelle Yosyp.",
     "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+  },
+    "Це наш урок. Викладач говорить, а ми не слухаємо, а розмовляємо.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"наш;proposs;cas;nomi;m\">наш</span> <span class=\"ukr\" data-info=\"урок;nom;cas;nomi;s\">урок</span>. <span class=\"ukr\" data-info=\"викладач;nom;cas;nomi;s\">Викладач</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">ми</span> <span class=\"ukr\" data-info=\"не;part\">не</span> <span class=\"ukr\" data-info=\"слухати;verb;conj;pres;1p;pl\">слухаємо</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"розмовляти;verb;conj;pres;1p;pl\">розмовляємо</span>.",
+    "traduction": "C’est notre leçon. Le professeur parle, et nous n’écoutons pas mais nous bavardons.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.1" }
+  },
+  "Ось концерт. Артисти співають і грають.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"ось;part\">Ось</span> <span class=\"ukr\" data-info=\"концерт;nom;cas;nomi;s\">концерт</span>. <span class=\"ukr\" data-info=\"артист;nom;cas;nomi;pl\">Артисти</span> <span class=\"ukr\" data-info=\"співати;verb;conj;pres;3p;pl\">співають</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"грати;verb;conj;pres;3p;pl\">грають</span>.",
+    "traduction": "Voici un concert. Les artistes chantent et jouent.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.2" }
+  },
+  "Ось новий парк. Вже вечір. Олеся і Іванка тут гуляють.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"ось;part\">Ось</span> <span class=\"ukr\" data-info=\"новий;adj;cas;nomi;m\">новий</span> <span class=\"ukr\" data-info=\"парк;nom;cas;nomi;s\">парк</span>. <span class=\"ukr\" data-info=\"вже;adv;base\">Вже</span> <span class=\"ukr\" data-info=\"вечір;nom;cas;nomi;s\">вечір</span>. <span class=\"ukr\" data-info=\"Олеся;nom;cas;nomi;s\">Олеся</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Іванка;nom;cas;nomi;s\">Іванка</span> <span class=\"ukr\" data-info=\"тут;adv;base\">тут</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;pl\">гуляють</span>.",
+    "traduction": "Voici un nouveau parc. Il est déjà le soir. Olesia et Ivanka s’y promènent.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.3" }
+  },
+  "Це моя дружина. Її звати Ніна.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;f\">моя</span> <span class=\"ukr\" data-info=\"дружина;nom;cas;nomi;s\">дружина</span>. <span class=\"ukr\" data-info=\"вона;proper;cas;acc\">Її</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Ніна;nom;cas;nomi;s\">Ніна</span>.",
+    "traduction": "C’est ma femme. Elle s’appelle Nina.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.4" }
+  },
+  "Це мої донька і син. Їх звати Ілона і Вадим.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"мій;proposs;cas;nomi;pl\">мої</span> <span class=\"ukr\" data-info=\"донька;nom;cas;nomi;s\">донька</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"син;nom;cas;nomi;s\">син</span>. <span class=\"ukr\" data-info=\"вони;proper;cas;acc\">Їх</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Ілона;nom;cas;nomi;s\">Ілона</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Вадим;nom;cas;nomi;s\">Вадим</span>.",
+    "traduction": "Ce sont ma fille et mon fils. Ils s’appellent Ilona et Vadym.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.5" }
+  },
+  "Це зима, але небо синє.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"зима;nom;cas;nomi;s\">зима</span>, <span class=\"ukr\" data-info=\"але;conj\">але</span> <span class=\"ukr\" data-info=\"небо;nom;cas;nomi;s\">небо</span> <span class=\"ukr\" data-info=\"синій;adj;cas;nomi;n\">синє</span>.",
+    "traduction": "C’est l’hiver, mais le ciel est bleu.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.6" }
+  },
+  "– Де бабуся? – Вона читає. – А де онук і онука? – Вони гуляють.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"де;adv;base\">Де</span> <span class=\"ukr\" data-info=\"бабуся;nom;cas;nomi;s\">бабуся</span>? – <span class=\"ukr\" data-info=\"вона;proper;cas;nomi\">Вона</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>. – <span class=\"ukr\" data-info=\"а;conj\">А</span> <span class=\"ukr\" data-info=\"де;adv;base\">де</span> <span class=\"ukr\" data-info=\"онук;nom;cas;nomi;s\">онук</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"онука;nom;cas;nomi;s\">онука</span>? – <span class=\"ukr\" data-info=\"вони;proper;cas;nomi\">Вони</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;pl\">гуляють</span>.",
+    "traduction": "– Où est la grand-mère ? – Elle lit. – Et où sont le petit-fils et la petite-fille ? – Ils se promènent.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.7" }
+  },
+  "Студент говорить, а студентка читає.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"студент;nom;cas;nomi;s\">Студент</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"студентка;nom;cas;nomi;s\">студентка</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>.",
+    "traduction": "L’étudiant parle, et l’étudiante lit.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.8" }
+  },
+  "Батько і син гуляють.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"батько;nom;cas;nomi;s\">Батько</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"син;nom;cas;nomi;s\">син</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;pl\">гуляють</span>.",
+    "traduction": "Le père et le fils se promènent.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.9" }
+  },
+  "Оксана читає. Максим гуляє. Олег говорить.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Оксана;nom;cas;nomi;s\">Оксана</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>. <span class=\"ukr\" data-info=\"Максим;nom;cas;nomi;s\">Максим</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>. <span class=\"ukr\" data-info=\"Олег;nom;cas;nomi;s\">Олег</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>.",
+    "traduction": "Oksana lit. Maksym se promène. Oleh parle.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.10" }
+  },
+  "Ірина і Володя гуляють і говорять.": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Ірина;nom;cas;nomi;s\">Ірина</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Володя;nom;cas;nomi;s\">Володя</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;pl\">гуляють</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;pl\">говорять</span>.",
+    "traduction": "Iryna et Volodia se promènent et parlent.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.11" }
+  },
+  "– Брат і сестра читають? – Ні, вони гуляють.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"брат;nom;cas;nomi;s\">Брат</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"сестра;nom;cas;nomi;s\">сестра</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;pl\">читають</span>? – <span class=\"ukr\" data-info=\"ні;part\">Ні</span>, <span class=\"ukr\" data-info=\"вони;proper;cas;nomi\">вони</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;pl\">гуляють</span>.",
+    "traduction": "– Le frère et la sœur lisent-ils ? – Non, ils se promènent.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.12" }
+  },
+  "Оксана читає?": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Оксана;nom;cas;nomi;s\">Оксана</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>?",
+    "traduction": "Oksana lit-elle ?",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.13" }
+  },
+  "Максим гуляє?": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Максим;nom;cas;nomi;s\">Максим</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>?",
+    "traduction": "Maksym se promène-t-il ?",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.14" }
+  },
+  "Олег говорить?": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"Олег;nom;cas;nomi;s\">Олег</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>?",
+    "traduction": "Oleh parle-t-il ?",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.15" }
+  },
+  "– Оксана читає? – Так, читає.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"Оксана;nom;cas;nomi;s\">Оксана</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>? – <span class=\"ukr\" data-info=\"так;part\">Так</span>, <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>.",
+    "traduction": "– Oksana lit ? – Oui, elle lit.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.16" }
+  },
+  "– Максим гуляє? – Так, він гуляє.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"Максим;nom;cas;nomi;s\">Максим</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>? – <span class=\"ukr\" data-info=\"так;part\">Так</span>, <span class=\"ukr\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>.",
+    "traduction": "– Maksym se promène ? – Oui, il se promène.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.17" }
+  },
+  "– Олег говорить? – Так, він говорить.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"Олег;nom;cas;nomi;s\">Олег</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>? – <span class=\"ukr\" data-info=\"так;part\">Так</span>, <span class=\"ukr\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>.",
+    "traduction": "– Oleh parle ? – Oui, il parle.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.18" }
+  },
+  "– Оксана читає? – Ні, вона не читає.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"Оксана;nom;cas;nomi;s\">Оксана</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>? – <span class=\"ukr\" data-info=\"ні;part\">Ні</span>, <span class=\"ukr\" data-info=\"вона;proper;cas;nomi\">вона</span> <span class=\"ukr\" data-info=\"не;part\">не</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>.",
+    "traduction": "– Oksana lit ? – Non, elle ne lit pas.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.19" }
+  },
+  "– Максим гуляє? – Ні, він не гуляє.": {
+    "phrase_html": "– <span class=\"ukr\" data-info=\"Максим;nom;cas;nomi;s\">Максим</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>? – <span class=\"ukr\" data-info=\"ні;part\">Ні</span>, <span class=\"ukр\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukр\" data-info=\"не;part\">не</span> <span class=\"ukр\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>.",
+    "traduction": "– Maksym se promène ? – Non, il ne se promène pas.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.20" }
+  },
+  "– Олег говорить? – Ні, він не говорить.": {
+    "phrase_html": "– <span class=\"ukр\" data-info=\"Олег;nom;cas;nomi;s\">Олег</span> <span class=\"ukр\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>? – <span class=\"ukр\" data-info=\"ні;part\">Ні</span>, <span class=\"ukр\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukр\" data-info=\"не;part\">не</span> <span class=\"ukр\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>.",
+    "traduction": "– Oleh parle ? – Non, il ne parle pas.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.21" }
+  },
+  "– Оксана читає? – Ні, вона не читає, а говорить.": {
+    "phrase_html": "– <span class=\"ukр\" data-info=\"Оксана;nom;cas;nomi;s\">Оксана</span> <span class=\"ukр\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>? – <span class=\"ukр\" data-info=\"ні;part\">Ні</span>, <span class=\"ukр\" data-info=\"вона;proper;cas;nomi\">вона</span> <span class=\"ukр\" data-info=\"не;part\">не</span> <span class=\"ukр\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>, <span class=\"ukр\" data-info=\"а;conj\">а</span> <span class=\"ukр\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>.",
+    "traduction": "– Oksana lit ? – Non, elle ne lit pas, elle parle.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.22" }
+  },
+  "– Максим гуляє? – Ні, він не гуляє, а читає. – Олег говорить? – Ні, він не говорить, він гуляє.": {
+    "phrase_html": "– <span class=\"ukр\" data-info=\"Максим;nom;cas;nomi;s\">Максим</span> <span class=\"ukр\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>? – <span class=\"ukр\" data-info=\"ні;part\">Ні</span>, <span class=\"ukр\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukр\" data-info=\"не;part\">не</span> <span class=\"ukр\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>, <span class=\"ukр\" data-info=\"а;conj\">а</span> <span class=\"ukр\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>. – <span class=\"ukр\" data-info=\"Олег;nom;cas;nomi;s\">Олег</span> <span class=\"ukр\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>? – <span class=\"ukр\" data-info=\"ні;part\">Ні</span>, <span class=\"ukр\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukр\" data-info=\"не;part\">не</span> <span class=\"ukр\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>, <span class=\"ukр\" data-info=\"він;proper;cas;nomi\">він</span> <span class=\"ukр\" data-info=\"гуляти;verb;conj;pres;3p;s\">гуляє</span>.",
+    "traduction": "– Maksym se promène ? – Non, il ne se promène pas, il lit. – Oleh parle ? – Non, il ne parle pas, il se promène.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.23" }
+  },
+  "– Ти читаєш? – Ні, я гуляю. – А батько? – Він читає.": {
+    "phrase_html": "– <span class=\"ukр\" data-info=\"ти;proper;cas;nomi\">Ти</span> <span class=\"ukр\" data-info=\"читати;verb;conj;pres;2p;s\">читаєш</span>? – <span class=\"ukр\" data-info=\"ні;part\">Ні</span>, <span class=\"ukр\" data-info=\"я;proper;cas;nomi\">я</span> <span class=\"ukр\" data-info=\"гуляти;verb;conj;pres;1p;s\">гуляю</span>. – <span class=\"ukр\" data-info=\"а;conj\">А</span> <span class=\"ukр\" data-info=\"батько;nom;cas;nomi;s\">батько</span>? – <span class=\"ukр\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukр\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>.",
+    "traduction": "– Est-ce que tu lis ? – Non, je me promène. – Et le père ? – Il lit.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.24" }
   }
-}
+  }
+  
 
