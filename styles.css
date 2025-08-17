@@ -240,7 +240,8 @@ body {
 
 /* Style pour la fenêtre additionnelle */
 
-#table-grammar {
+
+#table-grammar-old {
   position: fixed;
   display: none;
   right: 0; /* Aligné à droite de l'écran */
@@ -252,4 +253,60 @@ body {
   padding: 10px; /* Exemple de padding */
   /*width: 200px; /* Définissez une largeur */
   font-size: 1.5rem;
+  
 }
+
+/* Fenêtre latérale des déclinaisons : compacte et scrollable */
+#table-grammar {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2000;
+
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  /* largeur compacte, pas 100% */
+  width: auto;               /* ← largeur selon contenu */
+  max-width: 380px;          /* garde une limite pour les longues formes */
+  max-height: 85vh;          /* ← ne dépasse pas l’écran */
+  overflow-y: auto;          /* ← scroll interne si besoin */
+
+  /* texte plus petit et serré que le corps de page */
+  font-size: 0.95rem;        /* ajuste à 0.9 si tu veux encore plus compact */
+  line-height: 1.2;
+  padding: 8px 10px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.15);
+}
+
+/* Table interne : pas de 100%, cellules compactes */
+#table-grammar table {
+  width: auto;               /* ← évite l’espace vide à droite */
+  border-collapse: separate; 
+  border-spacing: 0;
+}
+
+#table-grammar th,
+#table-grammar td {
+  padding: 2px 6px;          /* ← resserre les cellules */
+  vertical-align: top;
+}
+
+#table-grammar th {
+  text-align: left;
+  font-style: italic;
+  font-weight: 700;
+  background: #f7f7f7;
+  position: sticky;          /* entêtes visibles au scroll */
+  top: 0;
+}
+
+/* Optionnel : style quand « épinglé » */
+#table-grammar.pinned {
+  border-color: #6aa0ff;
+  box-shadow: 0 6px 22px rgba(28,94,255,.18);
+}
+
+
