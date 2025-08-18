@@ -205,8 +205,10 @@ applyHoverInfo: function (divId) {
           const cas    = infos[1]; // e.g. "nomi"
           const gender = infos[2]; // "m" | "f" | "n" | "pl"
           if (data) tableHTML = Utils.generateTableAdj(data, cas, gender);
+        } else if (category === "verb") {
+          const v = dataManager?.wordData.verb?.[word];
+          if (v) tableHTML = Utils.generateTableVerb(v);
         } else {
-          // autres catégories: pas de tableau (verbs/adv/prep…)
           box.style.display = "none";
           return;
         }
@@ -389,6 +391,116 @@ applyHoverInfo: function (divId) {
     tableHTML += "</table>";
     return tableHTML;
   },
+
+  // --------- Fonction pour créer la table d'un VERBE (fenêtre latérale) ---------
+  generateTableVerb: function (verbDetails) {
+    if (!verbDetails) return "<table></table>";
+
+    // petit util pour rendre une cellule à partir de n'importe quel format
+    const renderCell = (entry) => {
+      const pairs = Utils.toPairs(entry);
+      if (!pairs.length) return "";
+      return pairs
+        .filter(([t]) => t)
+        .map(([t, p]) => Utils.addAccent(t, p))
+        .join(" / ");
+    };
+
+    let html = "<table>";
+
+    // Infinitif
+    html += `<tr><th colspan="3"><em>inf.</em></th></tr>`;
+    html += `<tr><td colspan="3">${renderCell(verbDetails.inf)}</td></tr>`;
+
+    const hasPres = !!(verbDetails.conj && verbDetails.conj.pres);
+    const persons = ["1p", "2p", "3p"];
+
+    // Présent (si présent)
+    if (hasPres) {
+      html += `<tr><th colspan="3"><em>pres.</em></th></tr>`;
+      persons.forEach((p) => {
+        const pd = verbDetails.conj.pres?.[p];
+        if (!pd) return;
+        html += `
+          <tr>
+            <td><em>${p}.</em></td>
+            <td>${renderCell(pd.s)}</td>
+            <td>${renderCell(pd.pl)}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Futur
+    if (verbDetails.conj?.fut) {
+      html += `<tr><th colspan="3"><em>fut.</em></th></tr>`;
+      persons.forEach((p) => {
+        const pd = verbDetails.conj.fut?.[p];
+        if (!pd) return;
+        html += `
+          <tr>
+            <td><em>${p}.</em></td>
+            <td>${renderCell(pd.s)}</td>
+            <td>${renderCell(pd.pl)}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Passé
+    if (verbDetails.conj?.pass) {
+      html += `<tr><th colspan="3"><em>pass.</em></th></tr>`;
+      ["m", "f", "n"].forEach((g) => {
+        const gd = verbDetails.conj.pass?.[g];
+        if (!gd) return;
+        html += `
+          <tr>
+            <td><em>${g}.</em></td>
+            <td>${renderCell(gd.s)}</td>
+            <td>${renderCell(gd.pl)}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Impératif
+    if (verbDetails.conj?.imp) {
+      html += `<tr><th colspan="3"><em>imp.</em></th></tr>`;
+      ["1p", "2p"].forEach((p) => {
+        const pd = verbDetails.conj.imp?.[p];
+        if (!pd) return;
+        html += `
+          <tr>
+            <td><em>${p}.</em></td>
+            <td>${renderCell(pd.s)}</td>
+            <td>${renderCell(pd.pl)}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Impersonnel (ex. читано)
+    if (verbDetails.conj?.imper) {
+      html += `<tr><th colspan="3"><em>impers.</em></th></tr>`;
+      html += `<tr><td colspan="3">${renderCell(verbDetails.conj.imper)}</td></tr>`;
+    }
+
+    html += "</table>";
+
+    // Pied : Couple aspectuel (optionnel)
+    const coupl = (verbDetails.coupl || "").trim();
+    if (coupl) {
+      // si la paire existe dans la base, on affiche sa forme d’infinitif accentuée
+      const couplInf = dataManager.wordData?.verb?.[coupl]?.inf;
+      const couplDisplay = couplInf ? renderCell(couplInf) : coupl;
+      html += `<div style="text-align:right; font-style:italic; margin-top:6px;">
+                Couple aspectuel : ${couplDisplay}
+              </div>`;
+    }
+
+    return html;
+  },
+
 
 
 };
