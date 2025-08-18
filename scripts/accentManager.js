@@ -23,31 +23,28 @@ let accentManager = {
     const words = document.querySelectorAll(".ukr");
     words.forEach(function (word) {
       if (accentManager.isAccentChecked) {
-        // Récupérer les informations depuis l'attribut data-info
         const dataInfo = Utils.parseInfo(word.getAttribute("data-info"));
-        // Déstructuration
-        let [a, b, ...tab2] = dataInfo;
-        // Assignations
-        const categorie = b;
-        const infos = [a, ...tab2];
-        if (categorie && infos) {
-          // Récupérer la position de l'accent depuis le fichier JSON
-          const jsonData = Utils.getDataFromJson(categorie, infos);
-          if (jsonData) {
-            const position = jsonData[1] - 1; // La position est à l'index 1 du tableau
-            word.innerHTML = Utils.highlightLetter(
-              word.dataset.original,
-              position,
-              "accent"
-            );
+        const [lemma, categorie, ...rest] = dataInfo;
+        const infos = [lemma, ...rest];
+        const variantIndex = Utils.getVariantIndex(dataInfo);
+
+        const entry = Utils.getDataFromJson(categorie, infos);
+        if (entry) {
+          const pair = Utils.firstPair(entry, variantIndex); // [[form,pos],...] → 1er par pour variantIndex=0
+          if (pair && Number.isInteger(pair[1]) && pair[1] > 0) {
+            const pos0 = pair[1] - 1;
+            word.innerHTML = Utils.highlightLetter(word.dataset.original, pos0, "accent");
+            return;
           }
         }
+        // pas d’info d’accent → texte brut
+        word.innerHTML = word.dataset.original;
       } else {
-        // Réinitialiser le texte d'origine
         word.innerHTML = word.dataset.original;
       }
     });
   },
+
   // Fonction pour sauvegarder le texte original des éléments
   attachOriginalText: function () {
     const words = document.querySelectorAll(".ukr");

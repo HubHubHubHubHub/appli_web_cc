@@ -85,6 +85,74 @@ let Utils = {
     }
   },
 
+  // --- Normalisation rétro-compatible vers [[form, pos], ...] ---
+  toPairs(entry) {
+    // null/undefined
+    if (!entry) return [];
+    // déjà sous forme [[form,pos], ...]
+    if (Array.isArray(entry) && Array.isArray(entry[0])) return entry;
+
+    // [form,pos] simple
+    if (Array.isArray(entry) &&
+        entry.length === 2 &&
+        typeof entry[0] === "string" &&
+        Number.isInteger(entry[1])) {
+      return [entry];
+    }
+
+    // format aplati: [f1,pos1, f2,pos2, ...]
+    if (Array.isArray(entry) &&
+        entry.length >= 2 &&
+        typeof entry[0] === "string" &&
+        Number.isInteger(entry[1])) {
+      const out = [];
+      for (let i = 0; i + 1 < entry.length; i += 2) {
+        const f = entry[i], p = entry[i + 1];
+        if (typeof f === "string" && Number.isInteger(p)) out.push([f, p]);
+      }
+      if (out.length) return out;
+    }
+
+    // ancien format verbe (ex: ["читаєм","читаємо",4]) → partager même accent
+    if (Array.isArray(entry)) {
+      const lastNum = [...entry].reverse().find(v => Number.isInteger(v));
+      const forms = entry.filter(v => typeof v === "string");
+      if (Number.isInteger(lastNum) && forms.length) {
+        return forms.map(f => [f, lastNum]);
+      }
+    }
+
+    return [];
+  },
+
+  firstPair(entry, variantIndex = 0) {
+    const pairs = this.toPairs(entry);
+    if (!pairs.length) return null;
+    // si la 1ère variante est vide, on prend la suivante non vide
+    for (let i = variantIndex; i < pairs.length; i++) {
+      const [t, p] = pairs[i] || [];
+      if (typeof t === "string" && t) return [t, p];
+    }
+    return pairs[variantIndex] || null;
+  },
+
+  firstText(entry, variantIndex = 0) {
+    const p = this.firstPair(entry, variantIndex);
+    return p && p[0] ? p[0] : "";
+  },
+
+  firstAccent(entry, variantIndex = 0) {
+    const p = this.firstPair(entry, variantIndex);
+    return p && Number.isInteger(p[1]) ? p[1] : -1;
+  },
+
+  // Renvoie l'index de variante demandé dans data-info, sinon 0
+  getVariantIndex: function (dataInfoTokens) {
+    const t = dataInfoTokens.find(s => /^var=\d+$/.test(s));
+    return t ? parseInt(t.split("=")[1], 10) : 0;
+  },
+  
+
   // couleurs/activation par classes (tokens présents dans data-info)
   classesToColors: {
     nomi: "inherit",
@@ -99,150 +167,167 @@ let Utils = {
     adv:  "inherit"
   },
 
-  /* coloration des groupes + infobulle */
+
+  // Fonction pour afficher les informations d'un mot au survol
+  /* coloration des groupes + infobulle (idempotent + pairs compatible) */
+  /* coloration des groupes + infobulle (défensive + idempotent) */
+  /* coloration des groupes de mots par cas au survol — version proche de l’original */
+ // --- Affichage de la table grammaticale au survol (noms / pronoms / adjectifs)
+applyHoverInfo: function (divId) {
+  const box = document.getElementById("table-grammar");
+  const container = document.getElementById(divId);
+  if (!box || !container) return;
+
+  const elements = container.querySelectorAll(".ukr");
+
+  elements.forEach((el) => {
+    const dataInfo = Utils.parseInfo(el.getAttribute("data-info"));
+    if (!dataInfo) return;
+    const [word, category, ...infos] = dataInfo;
+
+    el.addEventListener("mouseenter", function () {
+      let tableHTML = "";
+      try {
+        if (category === "nom") {
+          // data-info: mot;nom;cas;CASE;NUMBER
+          const data = dataManager?.wordData.nom?.[word]?.cas;
+          const cas    = infos[1]; // e.g. "gen"
+          const number = infos[2]; // "s" | "pl"
+          if (data) tableHTML = Utils.generateTableNoun(data, cas, number);
+        } else if (category === "proper") {
+          // data-info: mot;proper;cas;CASE
+          const data = dataManager?.wordData.proper?.[word]?.cas;
+          const cas  = infos[1]; // e.g. "nomi"
+          if (data) tableHTML = Utils.generateTableProper(data, cas);
+        } else if (category === "adj" || category === "card" || category === "proposs") {
+          // data-info: mot;adj|card|proposs;cas;CASE;GENDER
+          const data   = dataManager?.wordData[category]?.[word]?.cas;
+          const cas    = infos[1]; // e.g. "nomi"
+          const gender = infos[2]; // "m" | "f" | "n" | "pl"
+          if (data) tableHTML = Utils.generateTableAdj(data, cas, gender);
+        } else {
+          // autres catégories: pas de tableau (verbs/adv/prep…)
+          box.style.display = "none";
+          return;
+        }
+
+        if (tableHTML) {
+          box.innerHTML = tableHTML;
+          box.style.display = "block";
+        }
+      } catch (e) {
+        // En cas de clé manquante on cache proprement
+        box.style.display = "none";
+      }
+    });
+
+    el.addEventListener("mouseleave", function () {
+      box.style.display = "none";
+    });
+  });
+},
+
+  /* coloration + infobulle — version proche de l’original, rétro-compatible avec [[forme,pos],…] */
   applyHoverStyles: function (classesToColors, divId) {
-    const elements = document.getElementById(divId).querySelectorAll(".ukr");
+    const container = document.getElementById(divId);
+    if (!container) return;
+
+    const elements = container.querySelectorAll(".ukr");
+
     elements.forEach((element) => {
-      Object.entries(classesToColors).forEach(([className, color]) => {
-        const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
-        const [word, category, ...infos] = dataInfo;
+      // Évite les double-attachments
+      if (element.dataset.hoverBound === "1") return;
+      element.dataset.hoverBound = "1";
 
-        if (dataInfo.includes(className)) {
-          element.addEventListener("mouseenter", function () {
-            // Vérifie si l'élément <sup> a déjà été ajouté
-            if (!this.classList.contains("info-added")) {
-              this.style.color = color;
-              let displayedInfo;
-              let data;
+      const raw = element.getAttribute("data-info");
+      if (!raw) return;
+      const dataInfo = Utils.parseInfo(raw);
+      const [word, category, ...infos] = dataInfo;
 
-              // Choisir un "lemme" d'affichage (forme + position d’accent) selon la catégorie
-              switch (category) {
-                case "nom":
-                  data = dataManager?.wordData[category]?.[word]?.["cas"]?.["nomi"]?.["s"];
-                  break;
-                case "proposs":
-                case "card":
-                case "adj":
-                  data = dataManager?.wordData[category]?.[word]?.["cas"]?.["nomi"]?.["m"];
-                  break;
-                case "proper":
-                  // proper: le nominatif est stocké directement comme [forme, posAccent]
-                  data = dataManager?.wordData[category]?.[word]?.["cas"]?.["nomi"] || null;
-                  break;
-                case "verb":
-                  // verbe: utiliser l’infinitif comme lemme
-                  data = dataManager?.wordData[category]?.[word]?.["inf"];
-                  break;
-                case "adv":
-                  // adverbe: adv[word].base = [forme, posAccent]
-                  data = dataManager?.wordData?.adv?.[word]?.base || null;
-                  break;
-                default:
-                  data = null;
-              }
+      // couleur de survol (1re classe correspondante trouvée)
+      let hoverColor = "inherit";
+      for (const [className, color] of Object.entries(classesToColors)) {
+        if (dataInfo.includes(className)) { hoverColor = color; break; }
+      }
 
-              if (data) {
-                const posAcc = data[1];
-                const motNomi = data[0];
-                const rest = dataInfo.filter((token, index) => {
-                  if (index === 0) return false;                         // retire le lemme brut (on le réaffiche avec accent)
-                  if (index === 2 && token === "conj") return false;     // masque seulement "conj"
-                  return true;                                           // garde "inf", "base", etc.
-                });
-                displayedInfo = Utils.addAccent(motNomi, posAcc) + "," + rest.join();
-              } else {
-                const rest = dataInfo.filter((token, index) => !(index === 2 && token === "conj"));
-                displayedInfo = rest.join();
-              }
+      element.addEventListener("mouseenter", function () {
+        if (this.classList.contains("info-added")) return;
+        this.style.color = hoverColor;
 
-              this.innerHTML += `<sup><em> ${displayedInfo}</em></sup>`;
-              this.classList.add("info-added"); // Marque l'élément comme ayant un <sup>
-            }
+        // lemme nominal/verbal selon la catégorie
+        let lemmaEntry = null;
+        switch (category) {
+          case "nom":
+            lemmaEntry = dataManager?.wordData.nom?.[word]?.cas?.nomi?.s;
+            break;
+          case "proposs":
+          case "card":
+          case "adj":
+            lemmaEntry = dataManager?.wordData[category]?.[word]?.cas?.nomi?.m;
+            break;
+          case "proper":
+            lemmaEntry = dataManager?.wordData.proper?.[word]?.cas?.nomi;
+            break;
+          case "verb":
+            lemmaEntry = dataManager?.wordData.verb?.[word]?.inf;
+            break;
+          case "adv":
+            lemmaEntry = dataManager?.wordData.adv?.[word]?.base;
+            break;
+          default:
+            lemmaEntry = null;
+        }
+
+        let displayedInfo = "";
+        const variantIndex = Utils.getVariantIndex(dataInfo);
+        const pair = Utils.firstPair(lemmaEntry, variantIndex); // ← prend la bonne variante
+
+        if (pair) {
+          const [mot, pos] = pair;
+          const rest = dataInfo.filter((token, index) => {
+            if (index === 0) return false;                 // retire le lemme
+            if (index === 2 && token === "conj") return false; // masque seulement "conj"
+            return true;                                   // garde inf/base/etc.
           });
+          displayedInfo = Utils.addAccent(mot, pos) + (rest.length ? "," + rest.join() : "");
+        } else {
+          const rest = dataInfo.filter((t, i) => !(i === 2 && t === "conj"));
+          displayedInfo = rest.join();
+        }
 
-          element.addEventListener("mouseleave", function () {
-            this.style.color = ""; // Réinitialise à la couleur par défaut
-            // Supprime uniquement le dernier <sup> ajouté
-            if (this.classList.contains("info-added")) {
-              this.innerHTML = this.innerHTML.split("<sup>")[0]; // Reset à l'original sans <sup>
-              this.classList.remove("info-added"); // Retire la marque
-            }
-          });
+        // n’ajoute pas de <sup> si vide → évite la micro-bulle “fantôme”
+        if (displayedInfo && displayedInfo.trim()) {
+          this.innerHTML += `<sup><em> ${displayedInfo}</em></sup>`;
+          this.classList.add("info-added");
+        }
+      });
+
+      element.addEventListener("mouseleave", function () {
+        this.style.color = "";
+        if (this.classList.contains("info-added")) {
+          this.innerHTML = this.innerHTML.split("<sup>")[0];
+          this.classList.remove("info-added");
         }
       });
     });
   },
-
-  // Fonction pour afficher les informations d'un mot au survol
-  applyHoverInfo: function (divId) {
-  let tablegrammar = document.getElementById("table-grammar");
-  const elements = document.getElementById(divId).querySelectorAll(".ukr");
-
-  elements.forEach((element) => {
-    const dataInfo = Utils.parseInfo(element.getAttribute("data-info"));
-    const [word, category, ...infos] = dataInfo;
-
-    element.addEventListener("mouseenter", function () {
-      if (!dataInfo) return;
-
-      // NOMS (structure: nom[word].cas[caseName][gender] = [forme, pos])
-      if (category === "nom") {
-        const data = dataManager?.wordData?.nom?.[word]?.cas;
-        // infos pour un nom: ["cas", caseType, number] → on veut (caseType, number)
-        const tableHTML = Utils.generateTableNoun(data, infos[1], infos[2]);
-        tablegrammar.innerHTML = tableHTML;
-        tablegrammar.style.display = "block";
-        return;
-      }
-
-      // PROPER / pronoms (structure: proper[word].cas[caseName] = [forme, pos, (forme2, pos2)...])
-      if (category === "proper") {
-        const data = dataManager?.wordData?.proper?.[word]?.cas;
-        // infos pour proper: ["cas", caseType] → on veut surligner (caseType)
-        const currentCase = infos[1];
-        const tableHTML = Utils.generateTableProper(data, currentCase);
-        tablegrammar.innerHTML = tableHTML;
-        tablegrammar.style.display = "block";
-        return;
-      }
-
-      // ADJECTIFS (structure: adj[word].cas[caseName][gender] = [form1,pos1, form2,pos2, ...])
-      if (category === "adj") {
-        const data = dataManager?.wordData?.adj?.[word]?.cas;
-        // infos = ["cas", caseType, gender] → on veut surligner (caseType, gender)
-        const currentCase = infos[1];
-        const currentGender = infos[2];
-        const tableHTML = Utils.generateTableAdj(data, currentCase, currentGender);
-        tablegrammar.innerHTML = tableHTML;
-        tablegrammar.style.display = "block";
-        return;
-      }
-    });
-
-    element.addEventListener("mouseleave", function () {
-      tablegrammar.style.display = "none";
-    });
-  });
-},
 
   // Fonction pour créer la table d'un nom
   generateTableNoun: function (data, cas, gender) {
     if (!data) return "<table></table>";
     let tableHTML = "<table>";
     Object.entries(data).forEach(([caseName, forms]) => {
-      // Ajoute une ligne pour le nom du cas
       tableHTML += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
-      // Itère sur m/f/n/s/pl selon la structure
-      Object.entries(forms).forEach(([form, value]) => {
-        const wordWithAccent = Utils.addAccent(value[0], value[1]);
+      Object.entries(forms).forEach(([formKey, entry]) => {
+        const pairs = Utils.toPairs(entry);
+        const cell = pairs
+          .filter(([t]) => t)
+          .map(([t, p]) => Utils.addAccent(t, p))
+          .join(" / ");
         tableHTML += `
           <tr>
-            <td><em>${form}.</em></td>
-            <td>${
-              caseName === cas && form === gender
-                ? "<strong>" + wordWithAccent + "</strong>"
-                : wordWithAccent
-            }</td>
+            <td><em>${formKey}.</em></td>
+            <td>${caseName === cas && formKey === gender ? "<strong>" + cell + "</strong>" : cell}</td>
           </tr>
         `;
       });
@@ -251,74 +336,59 @@ let Utils = {
     return tableHTML;
   },
 
+
   // Fonction pour créer la table d'un PROPER (pronom) : structure plate par cas
-generateTableProper: function (data, currentCase) {
-  if (!data) return "<table></table>";
-
-  // helper: transforme [form1,pos1, form2,pos2, ...] → "fórm1 / fórm2"
-  const accentJoin = (arr) => {
-    if (!Array.isArray(arr)) return "";
-    const out = [];
-    for (let i = 0; i < arr.length; i += 2) {
-      const form = arr[i];
-      const pos  = arr[i + 1];
-      out.push(Utils.addAccent(form, pos));
-    }
-    return out.join(" / ");
-  };
-
-  let tableHTML = "<table>";
-  Object.entries(data).forEach(([caseName, value]) => {
-    const cell = accentJoin(value);
-    tableHTML += `<tr><th><em>${caseName}.</em></th></tr>`;
-    tableHTML += `
-      <tr>
-        <td>${caseName === currentCase ? "<strong>" + cell + "</strong>" : cell}</td>
-      </tr>
-    `;
-  });
-  tableHTML += "</table>";
-  return tableHTML;
-},
-// Fonction pour créer la table d'un ADJECTIF
-// data: adj[word].cas
-// cas/gender à surligner: strings comme "nomi", "m" etc.
-generateTableAdj: function (data, cas, gender) {
-  if (!data) return "<table></table>";
-
-  const renderForms = (arr) => {
-    if (!Array.isArray(arr)) return "";
-    const out = [];
-    for (let i = 0; i < arr.length; i += 2) {
-      out.push(Utils.addAccent(arr[i], arr[i + 1]));
-    }
-    return out.join(" / ");
-  };
-
-  const gendersOrder = ["m", "f", "n", "pl"];
-
-  let tableHTML = "<table>";
-  // ⬇️ on MASQUE la section 'voc' (identique à 'nomi' pour les adj.)
-  Object.entries(data)
-    .filter(([caseName]) => caseName !== "voc")
-    .forEach(([caseName, formsByGender]) => {
-      tableHTML += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
-      gendersOrder.forEach((g) => {
-        if (!formsByGender[g]) return;
-        const cell = renderForms(formsByGender[g]);
-        const content =
-          caseName === cas && g === gender ? "<strong>" + cell + "</strong>" : cell;
-        tableHTML += `
-          <tr>
-            <td><em>${g}.</em></td>
-            <td>${content}</td>
-          </tr>
-        `;
-      });
+  generateTableProper: function (data, currentCase) {
+    if (!data) return "<table></table>";
+    let tableHTML = "<table>";
+    Object.entries(data).forEach(([caseName, entry]) => {
+      const pairs = Utils.toPairs(entry);
+      const cell = pairs
+        .filter(([t]) => t)
+        .map(([t, p]) => Utils.addAccent(t, p))
+        .join(" / ");
+      tableHTML += `<tr><th><em>${caseName}.</em></th></tr>`;
+      tableHTML += `
+        <tr>
+          <td>${caseName === currentCase ? "<strong>" + cell + "</strong>" : cell}</td>
+        </tr>
+      `;
     });
+    tableHTML += "</table>";
+    return tableHTML;
+  },
 
-  tableHTML += "</table>";
-  return tableHTML;
-},
+  // Fonction pour créer la table d'un ADJECTIF
+  // data: adj[word].cas
+  // cas/gender à surligner: strings comme "nomi", "m" etc.
+  generateTableAdj: function (data, cas, gender) {
+    if (!data) return "<table></table>";
+    const gendersOrder = ["m", "f", "n", "pl"];
+    let tableHTML = "<table>";
+    Object.entries(data)
+      .filter(([caseName]) => caseName !== "voc") // on cache vocatif pour compacité
+      .forEach(([caseName, formsByGender]) => {
+        tableHTML += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
+        gendersOrder.forEach((g) => {
+          const entry = formsByGender[g];
+          if (!entry) return;
+          const pairs = Utils.toPairs(entry);
+          const cell = pairs
+            .filter(([t]) => t)
+            .map(([t, p]) => Utils.addAccent(t, p))
+            .join(" / ");
+          const content = (caseName === cas && g === gender) ? "<strong>" + cell + "</strong>" : cell;
+          tableHTML += `
+            <tr>
+              <td><em>${g}.</em></td>
+              <td>${content}</td>
+            </tr>
+          `;
+        });
+      });
+    tableHTML += "</table>";
+    return tableHTML;
+  },
+
 
 };
