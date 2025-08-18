@@ -149,15 +149,16 @@ let displayManager = {
         // Genres à parcourir
         const genders = ["m", "f", "n", "pl"];
         for (const gender of genders) {
-          const form = forms[gender];
-          if (form) {
-            // Ajouter l'accent au mot
-            const wordWithAccent = Utils.addAccent(form[0], form[1]);
-            htmlContent += `<td class="cell"><span class="word ">${wordWithAccent}</span></td>`;
+          const entry = forms[gender];
+          if (entry) {
+            const pair = Utils.firstPair(entry);
+            const cell = pair ? Utils.addAccent(pair[0], pair[1]) : "";
+            htmlContent += `<td class="cell"><span class="word ">${cell}</span></td>`;
           } else {
             htmlContent += `<td class="cell"></td>`;
           }
         }
+
         htmlContent += "</tr>";
       }
       htmlContent += "</tbody></table>";
@@ -209,20 +210,26 @@ let displayManager = {
   generateVerbTable: function (details) {
     let html = '<table class="conj-table"><tbody>';
 
-    // Ajouter la ligne pour l'infinitif
+    const renderCell = (entry) => {
+      const pairs = Utils.toPairs(entry);
+      if (!pairs.length) return "";
+      return pairs
+        .filter(([t]) => t)
+        .map(([t, p]) => `<span class="conj-word">${Utils.addAccent(t, p)}</span>`)
+        .join(", ");
+    };
+
+    // Infinitif
+    const infPair = Utils.firstPair(details.inf);
     html += `
       <tr class="conj-row conj-infinitive">
         <td class="conj-cell conj-inf-label">Інфінітив</td>
         <td colspan="2" class="conj-cell conj-inf-word">
-          <span class="conj-word">${Utils.addAccent(
-            details.inf[0],
-            details.inf[1]
-          )}</span>
+          <span class="conj-word">${infPair ? Utils.addAccent(infPair[0], infPair[1]) : ""}</span>
         </td>
       </tr>
     `;
 
-    // Les temps et modes à parcourir
     const tenses = {
       imp: "Наказовий спосіб",
       fut: "Майбутній час",
@@ -231,7 +238,6 @@ let displayManager = {
       imper: "Безособова форма",
     };
 
-    // Les personnes et genres
     const persons = {
       "1p": "1 особа",
       "2p": "2 особа",
@@ -241,106 +247,52 @@ let displayManager = {
       n: "сер. р.",
     };
 
-    // Boucle sur les temps/modes
     for (const [tenseKey, tenseName] of Object.entries(tenses)) {
       const tenseData = details.conj[tenseKey];
-      if (tenseData) {
-        // Ajouter une ligne pour le nom du temps/mode
+      if (!tenseData) continue;
+
+      html += `
+        <tr class="conj-row conj-tense-header">
+          <td colspan="3" class="conj-cell conj-tense-name">${tenseName}</td>
+        </tr>
+      `;
+
+      if (tenseKey === "pass") {
+        // passé : genres
+        for (const [gKey, forms] of Object.entries(tenseData)) {
+          html += '<tr class="conj-row conj-form-row">';
+          html += `<td class="conj-cell conj-person">${persons[gKey]}</td>`;
+          // singulier
+          html += `<td class="conj-cell conj-singular">${renderCell(forms.s)}</td>`;
+          // pluriel (affiché sur la ligne du masculin comme avant)
+          if (gKey === "m") {
+            html += `<td rowspan="3" class="conj-cell conj-plural">${renderCell(forms.pl)}</td>`;
+          }
+          html += "</tr>";
+        }
+      } else if (tenseKey === "imper") {
         html += `
-          <tr class="conj-row conj-tense-header">
-            <td colspan="3" class="conj-cell conj-tense-name">${tenseName}</td>
+          <tr class="conj-row conj-impersonal">
+            <td colspan="3" class="conj-cell conj-impersonal-form">
+              ${renderCell(tenseData)}
+            </td>
           </tr>
         `;
-
-        // Cas particulier pour le temps passé (pass) et la forme impersonnelle
-        if (tenseKey === "pass") {
-          // Boucle sur les genres
-          for (const [genderKey, forms] of Object.entries(tenseData)) {
-            html += '<tr class="conj-row conj-form-row">';
-            html += `<td class="conj-cell conj-person">${persons[genderKey]}</td>`;
-            // Forme singulier
-            if (forms.s) {
-              const wordWithAccent = Utils.addAccent(forms.s[0], forms.s[1]);
-              html += `<td class="conj-cell conj-singular"><span class="conj-word">${wordWithAccent}</span></td>`;
-            } else {
-              html += `<td class="conj-cell conj-singular"></td>`;
-            }
-            // Forme pluriel (même pour tous les genres)
-            if (forms.pl && genderKey === "m") {
-              const wordWithAccent = Utils.addAccent(forms.pl[0], forms.pl[1]);
-              // Fusionner les cellules pour le pluriel
-              html += `<td rowspan="3" class="conj-cell conj-plural"><span class="conj-word">${wordWithAccent}</span></td>`;
-            } else if (genderKey !== "m") {
-              // Les autres genres n'ont pas besoin d'ajouter une cellule pour le pluriel
-            }
-            html += "</tr>";
-          }
-        } else if (tenseKey === "imper") {
-          // Forme impersonnelle
-          html += `
-            <tr class="conj-row conj-impersonal">
-              <td colspan="3" class="conj-cell conj-impersonal-form">
-                <span class="conj-word">${Utils.addAccent(
-                  tenseData[0],
-                  tenseData[1]
-                )}</span>
-              </td>
-            </tr>
-          `;
-        } else {
-          // Pour les autres temps/modes
-          // Ajouter les en-têtes pour les personnes
-          html += `
-            <tr class="conj-row conj-person-header">
-              <td class="conj-cell conj-person-label">&nbsp;</td>
-              <td class="conj-cell conj-singular-header">Однина</td>
-              <td class="conj-cell conj-plural-header">Множина</td>
-            </tr>
-          `;
-
-          // Boucle sur les personnes
-          for (const [personKey, forms] of Object.entries(tenseData)) {
-            html += '<tr class="conj-row conj-form-row">';
-            html += `<td class="conj-cell conj-person">${persons[personKey]}</td>`;
-
-            // Forme singulier
-            if (forms.s) {
-              const words = Array.isArray(forms.s)
-                ? forms.s.slice(0, -1)
-                : [forms.s];
-              const position = Array.isArray(forms.s)
-                ? forms.s[forms.s.length - 1]
-                : null;
-              const accentedWords = words.map((word) =>
-                Utils.addAccent(word, position)
-              );
-              html += `<td class="conj-cell conj-singular">${accentedWords
-                .map((word) => `<span class="conj-word">${word}</span>`)
-                .join(", ")}</td>`;
-            } else {
-              html += `<td class="conj-cell conj-singular"></td>`;
-            }
-
-            // Forme pluriel
-            if (forms.pl) {
-              const words = Array.isArray(forms.pl)
-                ? forms.pl.slice(0, -1)
-                : [forms.pl];
-              const position = Array.isArray(forms.pl)
-                ? forms.pl[forms.pl.length - 1]
-                : null;
-              const accentedWords = words.map((word) =>
-                Utils.addAccent(word, position)
-              );
-              html += `<td class="conj-cell conj-plural">${accentedWords
-                .map((word) => `<span class="conj-word">${word}</span>`)
-                .join(", ")}</td>`;
-            } else {
-              html += `<td class="conj-cell conj-plural"></td>`;
-            }
-
-            html += "</tr>";
-          }
+      } else {
+        // autres temps : personnes
+        html += `
+          <tr class="conj-row conj-person-header">
+            <td class="conj-cell conj-person-label">&nbsp;</td>
+            <td class="conj-cell conj-singular-header">Однина</td>
+            <td class="conj-cell conj-plural-header">Множина</td>
+          </tr>
+        `;
+        for (const [pKey, forms] of Object.entries(tenseData)) {
+          html += '<tr class="conj-row conj-form-row">';
+          html += `<td class="conj-cell conj-person">${persons[pKey]}</td>`;
+          html += `<td class="conj-cell conj-singular">${renderCell(forms.s)}</td>`;
+          html += `<td class="conj-cell conj-plural">${renderCell(forms.pl)}</td>`;
+          html += "</tr>";
         }
       }
     }
@@ -348,4 +300,5 @@ let displayManager = {
     html += "</tbody></table>";
     return html;
   },
+
 };

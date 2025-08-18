@@ -1,6 +1,6 @@
 Alphabet Ukrainien sur une ligne :
 А Б В Г Ґ Д Е Є Ж З И І Ї Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ь Ю Я
-  
+
 
 
 Accents
@@ -80,3 +80,36 @@ Pour qu'elle soit cochée par défaut, on ajoute l'attribut checked à la balise
  au lieu de : 
 
   <input type="checkbox" id="accent-check"/>
+
+
+###### Gestion des accents et format bdd ###############
+
+
+Il peut y a avoir plusieurs variantes d'accent pour le même mot. 
+
+On choisit donc le format suivant pour la bdd 
+
+    "я": {
+      "cas": {
+        "nomi": [["я", -1]],
+        "gen": [["мене", 4], ["мене", 2]],
+        "dat": [["мені", 4]],
+        "acc": [["мене", 4], ["мене", 2]],
+        "ins": [["мною", 3]],
+        "loc": [["мені", 4]]
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"я;proper;cas;nomi\">я</span>"
+    },
+
+Remarque : l'application accepte des formats plus anciens grâce à des 
+fonctions de conversion dans utils.js
+
+Comment choisir la variante d'accent ? Si ce n'est pas le premier 
+choix de la liste (choix par défaut), on précise la variante dans 
+le format html dans data-info par var=n : 
+
+  "expl":{
+    "phrase_html":"<span class=\"ukr\" data-info=\"я;proper;cas;acc;var=1\">мене</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span>",
+    "traduction":"– Moi ? – Non, pas moi.",
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.25" }
+  }
