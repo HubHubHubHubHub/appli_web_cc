@@ -1187,57 +1187,57 @@
   "Мене звати Олена.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"я;proper;cas;acc\">Мене</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Олена;nom;cas;nomi;s\">Олена</span>.",
     "traduction": "Je m’appelle Olena.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a.1" }
   },
   "Її звати Галина.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"вона;proper;cas;acc\">Її</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Галина;nom;cas;nomi;s\">Галина</span>.",
     "traduction": "Elle s’appelle Halyna.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a.2" }
   },
   "Його звати Василь.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;acc\">Його</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Василь;nom;cas;nomi;s\">Василь</span>.",
     "traduction": "Il s’appelle Vasyl’.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a.3" }
   },
   "Їх звати Сергій і Степан.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"вони;proper;cas;acc\">Їх</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Сергій;nom;cas;nomi;s\">Сергій</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Степан;nom;cas;nomi;s\">Степан</span>.",
     "traduction": "Ils s’appellent Serghiy et Stepan.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a.4" }
   },
   "Їх звати Світлана і Мар’яна.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"вони;proper;cas;acc\">Їх</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Світлана;nom;cas;nomi;s\">Світлана</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Мар'яна;nom;cas;nomi;s\">Мар’яна</span>.",
     "traduction": "Elles s’appellent Svitlana et Mar’iana.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.a.5" }
   },
   "– Як тебе звати? – Мене звати Семен.": {
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"ти;proper;cas;acc\">тебе</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"я;proper;cas;acc\">Мене</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Семен;nom;cas;nomi;s\">Семен</span>.",
     "traduction": "– Comment t’appelles-tu ? – Je m’appelle Semen.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b.1" }
   },
   "– Як її звати? – Її звати Галина.": {
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"вона;proper;cas;acc\">її</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"вона;proper;cas;acc\">Її</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Галина;nom;cas;nomi;s\">Галина</span>.",
     "traduction": "– Comment s’appelle-t-elle ? – Elle s’appelle Halyna.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b.2" }
   },
   "– Як його звати? – Його звати Василь.": {
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"він;proper;cas;acc\">його</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"він;proper;cas;acc\">Його</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Василь;nom;cas;nomi;s\">Василь</span>.",
     "traduction": "– Comment s’appelle-t-il ? – Il s’appelle Vasyl’.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b.3" }
   },
   "– Як їх звати? – Їх звати Сергій і Олена.": {
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"вони;proper;cas;acc\">їх</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"вони;proper;cas;acc\">Їх</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Сергій;nom;cas;nomi;s\">Сергій</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Олена;nom;cas;nomi;s\">Олена</span>.",
     "traduction": "– Comment s’appellent-ils ? – Ils s’appellent Serghiy et Olena.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b.4" }
   },
   "– Як вас звати? – Нас звати Уляна і Володимир.": {
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"ви;proper;cas;acc\">вас</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"ми;proper;cas;acc\">Нас</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Уляна;nom;cas;nomi;s\">Уляна</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"Володимир;nom;cas;nomi;s\">Володимир</span>.",
     "traduction": "– Comment vous appelez-vous ? – Nous nous appelons Ulyana et Volodymyr.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b.5" }
   },
   "– Як Вас звати? – Мене звати Йосип.":{
     "phrase_html": "– <span class=\"ukr\" data-info=\"як;adv\">Як</span> <span class=\"ukr\" data-info=\"ви;proper;cas;acc\">Вас</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span>? – <span class=\"ukr\" data-info=\"я;proper;cas;acc\">Мене</span> <span class=\"ukr\" data-info=\"звати;verb;inf\">звати</span> <span class=\"ukr\" data-info=\"Йосип;nom;cas;nomi;s\">Йосип</span>.",
     "traduction": "– Comment vous appelez-vous ? (forme polie) – Je m’appelle Yosyp.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b" }
+    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.6.b.6" }
   },
     "Це наш урок. Викладач говорить, а ми не слухаємо, а розмовляємо.": {
     "phrase_html": "<span class=\"ukr\" data-info=\"це;part\">Це</span> <span class=\"ukr\" data-info=\"наш;proposs;cas;nomi;m\">наш</span> <span class=\"ukr\" data-info=\"урок;nom;cas;nomi;s\">урок</span>. <span class=\"ukr\" data-info=\"викладач;nom;cas;nomi;s\">Викладач</span> <span class=\"ukr\" data-info=\"говорити;verb;conj;pres;3p;s\">говорить</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"ми;proper;cas;nomi\">ми</span> <span class=\"ukr\" data-info=\"не;part\">не</span> <span class=\"ukr\" data-info=\"слухати;verb;conj;pres;1p;pl\">слухаємо</span>, <span class=\"ukr\" data-info=\"а;conj\">а</span> <span class=\"ukr\" data-info=\"розмовляти;verb;conj;pres;1p;pl\">розмовляємо</span>.",
@@ -1358,11 +1358,6 @@
     "phrase_html": "– <span class=\"ukr\" data-info=\"ти;proper;cas;nomi\">Ти</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;2p;s\">читаєш</span>? – <span class=\"ukr\" data-info=\"ні;part\">Ні</span>, <span class=\"ukr\" data-info=\"я;proper;cas;nomi\">я</span> <span class=\"ukr\" data-info=\"гуляти;verb;conj;pres;1p;s\">гуляю</span>. – <span class=\"ukr\" data-info=\"а;conj\">А</span> <span class=\"ukr\" data-info=\"батько;nom;cas;nomi;s\">батько</span>? – <span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"читати;verb;conj;pres;3p;s\">читає</span>.",
     "traduction": "– Est-ce que tu lis ? – Non, je me promène. – Et le père ? – Il lit.",
     "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.24" }
-  },
-  "expl":{
-    "phrase_html":"<span class=\"ukr\" data-info=\"я;proper;cas;acc;var=1\">мене</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span>",
-    "traduction":"– Moi ? – Non, pas moi.",
-    "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.25" }
   }
   }
   

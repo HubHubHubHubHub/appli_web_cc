@@ -219,7 +219,7 @@ let displayManager = {
         .join(", ");
     };
 
-    // Infinitif
+    // Інфінітив
     const infPair = Utils.firstPair(details.inf);
     html += `
       <tr class="conj-row conj-infinitive">
@@ -230,12 +230,12 @@ let displayManager = {
       </tr>
     `;
 
+    // On boucle sur les temps/personnes standard (sans l’impersonnel ici)
     const tenses = {
-      imp: "Наказовий спосіб",
-      fut: "Майбутній час",
-      pres: "Теперішній час",
+      imp:  "Наказовий спосіб",
+      fut:  "Майбутній час",
+      pres: "Теперішній час",   // si absent (perfectif) → la section sera sautée
       pass: "Минулий час",
-      imper: "Безособова форма",
     };
 
     const persons = {
@@ -258,7 +258,7 @@ let displayManager = {
       `;
 
       if (tenseKey === "pass") {
-        // passé : genres
+        // Passé : genres
         for (const [gKey, forms] of Object.entries(tenseData)) {
           html += '<tr class="conj-row conj-form-row">';
           html += `<td class="conj-cell conj-person">${persons[gKey]}</td>`;
@@ -270,14 +270,6 @@ let displayManager = {
           }
           html += "</tr>";
         }
-      } else if (tenseKey === "imper") {
-        html += `
-          <tr class="conj-row conj-impersonal">
-            <td colspan="3" class="conj-cell conj-impersonal-form">
-              ${renderCell(tenseData)}
-            </td>
-          </tr>
-        `;
       } else {
         // autres temps : personnes
         html += `
@@ -297,8 +289,38 @@ let displayManager = {
       }
     }
 
+    // ---- Безособова форма (impersonnel) : nouvelle clé 'impers', fallback 'imper' (legacy)
+    const impersData = details.conj?.impers ?? details.conj?.imper;
+    if (impersData) {
+      html += `
+        <tr class="conj-row conj-tense-header">
+          <td colspan="3" class="conj-cell conj-tense-name">Безособова форма</td>
+        </tr>
+        <tr class="conj-row conj-impersonal">
+          <td colspan="3" class="conj-cell conj-impersonal-form">
+            ${renderCell(impersData)}
+          </td>
+        </tr>
+      `;
+    }
+
+    // ---- Pied : couple aspectuel (optionnel)
+    const coupl = (details.coupl || "").trim();
+    if (coupl) {
+      const couplInf = dataManager.wordData?.verb?.[coupl]?.inf;
+      const couplDisplay = couplInf ? renderCell(couplInf) : coupl;
+      html += `
+        <tr class="conj-row">
+          <td colspan="3" class="conj-cell" style="text-align:right; font-style:italic;">
+            Couple aspectuel : ${couplDisplay}
+          </td>
+        </tr>
+      `;
+    }
+
     html += "</tbody></table>";
     return html;
   },
+
 
 };
