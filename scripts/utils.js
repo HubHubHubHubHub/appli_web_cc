@@ -480,9 +480,9 @@ applyHoverInfo: function (divId) {
     }
 
     // Impersonnel (ex. читано)
-    if (verbDetails.conj?.imper) {
+    if (verbDetails.conj?.impers) {
       html += `<tr><th colspan="3"><em>impers.</em></th></tr>`;
-      html += `<tr><td colspan="3">${renderCell(verbDetails.conj.imper)}</td></tr>`;
+      html += `<tr><td colspan="3">${renderCell(verbDetails.conj.impers)}</td></tr>`;
     }
 
     html += "</table>";
