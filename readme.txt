@@ -113,3 +113,9 @@ le format html dans data-info par var=n :
     "traduction":"– Moi ? – Non, pas moi.",
     "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.25" }
   }
+
+
+  ############## Formatage des json ###########################
+
+
+  à la demande : ⇧⌥F (maj + option + F)
