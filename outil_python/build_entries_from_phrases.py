@@ -3,31 +3,30 @@
 build_entries_from_phrases
 ==========================
 
-Lit automatiquement `phrases_a_traiter.json` placé dans le **même dossier** que ce script,
-scanne les `phrase_html`, et génère :
-- un **rapport HTML** (sans JSON embarqué) listant les lemmes à créer (adj/nom/verb),
-  avec la phrase, le span source et la table goroh
-- un fichier **out.json** contenant les **entrées “type data”** (nouveau format), sans `table_html`,
-  **dans l'ordre d'apparition** des mots dans `phrases_a_traiter.json`.
+Lit automatiquement `phrases_a_traiter.json` (même dossier que ce script),
+puis génère :
+- un **rapport HTML** (sans JSON embarqué) qui affiche, dans l'ordre d'apparition,
+  la phrase, le span source et la table goroh des **lemmes nouveaux** (adj/nom/verb) ;
+- un **out.json** ordonné, au format **{ "lemma": {entry}, ... }**, prêt à consommer.
 
-⚠️ Le script **ne modifie pas** `data.json` : il s’en sert **uniquement en lecture** pour ignorer
-les lemmes qui possèdent déjà un champ `nooj`.
+Règles :
+- On **ignore** totalement tout (pos, lemma) déjà présent avec un champ `nooj` dans `data.json`.
+- **Dédup stricte** par exécution : un (pos, lemma) n'est traité qu'une fois.
+- En cas de **collision** (même lemma mais **POS différent**), la clé JSON devient
+  `lemma__<pos>` pour éviter d’écraser (ex.: "замок__nom" vs "замок__verb").
 
-Gestion des doublons :
-----------------------
-- Un couple `(pos, lemme)` n’est traité **qu’une seule fois** par exécution.
-- Les réapparitions ultérieures dans `phrases_a_traiter.json` sont **ignorées** (ni JSON, ni HTML).
+Entrées JSON (nouveau format & ordre des clés) :
+- **adj**  : {"pos","cas", **"nooj"**, "base_html","phrases"}
+- **nom**  : {"pos","cas", **"genre"**, **"nooj"**,"base_html","phrases"}  ← genre est placé **juste après** cas s'il est connu
+- **verb** : {"pos","inf","conj","asp", **"nooj"**,"base_html","phrases"}
 
 Usage :
 -------
-Place `build_entries_from_phrases.py` et `phrases_a_traiter.json` dans le même dossier, puis :
-    python build_entries_from_phrases.py
-
-Options :
-- --data     : chemin du data.json (lecture seule). Défaut : ../data.json (relatif au script)
-- --out      : fichier HTML de sortie. Défaut : entries_report.html (dans le même dossier)
-- --json-out : fichier JSON des entrées générées. Défaut : out.json (dans le même dossier)
-- --limit    : limite (max) de lemmes uniques à traiter (debug)
+python build_entries_from_phrases.py
+    --data ../data.json
+    --out entries_report.html
+    --json-out out.json
+    --limit 50
 """
 
 from __future__ import annotations
@@ -40,7 +39,6 @@ from typing import Dict, Any, Optional, Tuple, Iterable, List
 
 from bs4 import BeautifulSoup
 
-# Module précédent (doit être présent dans le PYTHONPATH / dossier courant)
 from ukr_morph_parser import (
     fetch_html,
     extract_article_blocks,
@@ -50,22 +48,27 @@ from ukr_morph_parser import (
     parse_verb_perfective_table,
 )
 
-# POS internes -> étiquette ukrainienne affichée sur goroh
 UKR_POS_TAG = {
     "adj": "прикметник",
     "nom": "іменник",
     "verb": "дієслово",
 }
 
-# Détection aspect
 ASPECT_UKR = {
     "perfectif": "доконаний вид",
     "imperfectif": "недоконаний вид",
 }
 
+# Tags → genre court
+GENDER_TAG_MAP = {
+    "чоловічий рід": "m",
+    "жіночий рід": "f",
+    "середній рід": "n",
+    # "спільний рід": "c",  # si besoin
+}
 
 # --------------------------
-# Utilitaires I/O JSON
+# I/O utils
 # --------------------------
 
 def load_json(path: str) -> Any:
@@ -74,43 +77,28 @@ def load_json(path: str) -> Any:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
 def save_json(path: str, obj: Any) -> None:
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
 
-
 # --------------------------
-# Parsing helpers
+# parsing helpers
 # --------------------------
 
 def parse_data_info(data_info: str) -> Tuple[str, str]:
-    """
-    Retourne (lemme, pos) extraits de data-info. Ex :
-      "новий;adj;cas;nomi;m" -> ("новий", "adj")
-      "парк;nom;cas;nomi;s" -> ("парк", "nom")
-      "гуляти;verb;conj;pres;3p;pl" -> ("гуляти", "verb")
-    """
     parts = (data_info or "").split(";")
     if len(parts) < 2:
         return "", ""
     return parts[0].strip(), parts[1].strip()
 
-
 def is_target_pos(pos: str) -> bool:
     return pos in {"adj", "nom", "verb"}
 
-
 def pick_article_block_for_pos(articles: Iterable[Dict[str, Any]], pos: str) -> Optional[Dict[str, Any]]:
-    """
-    Sélectionne le bloc d’article/table correspondant au POS (via tags goroh).
-    Fallback : premier bloc avec un tableau.
-    """
     want_tag = UKR_POS_TAG.get(pos)
     if not want_tag:
         return None
-
     chosen = None
     for block in articles:
         tags = block.get("tags", [])
@@ -124,11 +112,7 @@ def pick_article_block_for_pos(articles: Iterable[Dict[str, Any]], pos: str) -> 
                 break
     return chosen
 
-
 def detect_aspect_from_tags(tags: Iterable[str]) -> Optional[str]:
-    """
-    Retourne "perfectif", "imperfectif" ou None.
-    """
     s = set(tags or [])
     if ASPECT_UKR["perfectif"] in s:
         return "perfectif"
@@ -136,6 +120,12 @@ def detect_aspect_from_tags(tags: Iterable[str]) -> Optional[str]:
         return "imperfectif"
     return None
 
+def detect_gender_from_tags(tags: Iterable[str]) -> Optional[str]:
+    s = set(tags or [])
+    for uk, g in GENDER_TAG_MAP.items():
+        if uk in s:
+            return g
+    return None
 
 def build_entry_from_table(
     pos: str,
@@ -146,15 +136,16 @@ def build_entry_from_table(
     phrase_text: str,
 ) -> Dict[str, Any]:
     """
-    Construit l’entrée “type data” au **nouveau format** à partir d’un tableau HTML.
-    - adj/nom : clé "cas"
-    - verb    : "inf"/"conj"/"asp"
-    + métadonnées "nooj"="", "base_html", "phrases"
-    (⚠️ aucun champ table_html dans la sortie JSON)
+    Construit l’entrée “type data” au nouveau format (sans table_html),
+    en respectant l'ordre de clés demandé :
+      - adj : {"pos","cas","nooj","base_html","phrases"}
+      - nom : {"pos","cas","genre","nooj","base_html","phrases"} (genre juste après cas si dispo)
+      - verb: {"pos","inf","conj","asp","nooj","base_html","phrases"}
     """
     if pos == "adj":
         parsed = parse_table_adj(table_html)  # {"cas": {...}}
-        entry = {
+        entry: Dict[str, Any] = {
+            "pos": "adj",
             "cas": parsed.get("cas", {}),
             "nooj": "",
             "base_html": base_span_html,
@@ -165,12 +156,18 @@ def build_entry_from_table(
     if pos == "nom":
         parsed = parse_table_nom(table_html)  # {"cas": {...}} (ou {lemma:{"cas":...}})
         cas = parsed.get("cas") or parsed.get(lemma, {}).get("cas", {})
-        entry = {
+        gender = detect_gender_from_tags(goroh_tags)
+
+        # Construire la dict dans l'ordre exact requis :
+        entry: Dict[str, Any] = {
+            "pos": "nom",
             "cas": cas,
-            "nooj": "",
-            "base_html": base_span_html,
-            "phrases": {phrase_text: ""},
         }
+        if gender:  # "genre" juste après "cas"
+            entry["genre"] = gender
+        entry["nooj"] = ""
+        entry["base_html"] = base_span_html
+        entry["phrases"] = {phrase_text: ""}
         return entry
 
     if pos == "verb":
@@ -179,7 +176,8 @@ def build_entry_from_table(
             parsed = parse_verb_perfective_table(table_html, lemma)
         else:
             parsed = parse_verb_imperfective_table(table_html, lemma)
-        entry = {
+        entry: Dict[str, Any] = {
+            "pos": "verb",
             "inf": parsed.get("inf", []),
             "conj": parsed.get("conj", {}),
             "asp": parsed.get("asp", aspect),
@@ -189,16 +187,16 @@ def build_entry_from_table(
         }
         return entry
 
-    # par défaut (ne devrait pas arriver)
+    # fallback
     return {
+        "pos": pos,
         "nooj": "",
         "base_html": base_span_html,
         "phrases": {phrase_text: ""},
     }
 
-
 # --------------------------
-# Rendu HTML (rapport)
+# HTML rendering
 # --------------------------
 
 MIN_CSS = """
@@ -225,11 +223,13 @@ def html_escape(s: str) -> str:
              .replace("<", "&lt;")
              .replace(">", "&gt;"))
 
-
-def render_entry_card(pos: str, lemma: str, entry: Dict[str, Any], aspect: Optional[str], table_html: str, phrase_text: str) -> str:
+def render_entry_card(lemma: str, entry: Dict[str, Any], table_html: str, phrase_text: str) -> str:
+    pos = entry.get("pos", "-")
     badges = [f"<span class='badge'>POS: {pos}</span>"]
     if pos == "verb":
-        badges.append(f"<span class='badge'>Aspect: {entry.get('asp') or aspect or '-'}</span>")
+        badges.append(f"<span class='badge'>Aspect: {entry.get('asp','-')}</span>")
+    if pos == "nom" and entry.get("genre"):
+        badges.append(f"<span class='badge'>Genre: {entry.get('genre')}</span>")
 
     base_html = entry.get("base_html", "")
 
@@ -252,13 +252,8 @@ def render_entry_card(pos: str, lemma: str, entry: Dict[str, Any], aspect: Optio
     </div>
     """
 
-
-def render_report_html(cards_html: str, created_counts: Dict[str, int], errors: List[str]) -> str:
-    n_total = sum(created_counts.values())
-    n_adj = created_counts.get("adj", 0)
-    n_nom = created_counts.get("nom", 0)
-    n_verb = created_counts.get("verb", 0)
-
+def render_report_html(cards_html: str, counts: Dict[str, int], errors: List[str]) -> str:
+    n_total = sum(counts.values())
     err_html = ""
     if errors:
         err_list = "".join(f"<li class='err'>{html_escape(e)}</li>" for e in errors)
@@ -280,8 +275,11 @@ def render_report_html(cards_html: str, created_counts: Dict[str, int], errors: 
   <div class="container">
     <h1>Entrées “type data” à créer</h1>
     <div class="summary">
-      <div><strong>Total</strong>: {n_total} &nbsp;|&nbsp; <strong>adj</strong>: {n_adj} &nbsp;|&nbsp; <strong>nom</strong>: {n_nom} &nbsp;|&nbsp; <strong>verb</strong>: {n_verb}</div>
-      <div class="footer-note">Les lemmes déjà présents avec un champ <code>nooj</code> ont été ignorés sans aucune modification.</div>
+      <div><strong>Total</strong>: {n_total} &nbsp;|&nbsp;
+           <strong>adj</strong>: {counts.get('adj',0)} &nbsp;|&nbsp;
+           <strong>nom</strong>: {counts.get('nom',0)} &nbsp;|&nbsp;
+           <strong>verb</strong>: {counts.get('verb',0)}</div>
+      <div class="footer-note">Les lemmes avec un champ <code>nooj</code> existent déjà et sont ignorés.</div>
     </div>
 
     <div class="list">
@@ -293,34 +291,31 @@ def render_report_html(cards_html: str, created_counts: Dict[str, int], errors: 
 </html>
 """
 
-
 # --------------------------
-# Moteur principal (ordre + dédup)
+# Moteur (ordre + dédup, sortie dict {lemma: entry})
 # --------------------------
 
 def process_phrases_ordered(
     phrases_dict: Dict[str, Any],
     data_path: str,
     limit: Optional[int] = None,
-) -> Tuple[List[Dict[str, Any]], List[str], List[str]]:
+):
     """
-    Traite les phrases dans l'ordre et renvoie :
-      - entries_list : **liste ordonnée** d'objets {"pos":..., "lemma":..., "entry": {...}}
-      - cards_list   : **liste ordonnée** de fragments HTML (cartes)
-      - errors       : liste (non ordonnée) de messages d'erreur
-
-    Dédup stricte : un (pos, lemma) n'apparaît au plus qu'une fois.
+    Retourne (entries_in_order, cards_in_order, errors) où :
+      - entries_in_order : liste ordonnée d'items:
+            { "lemma": str, "entry": dict, "pos": str, "table_html": str, "phrase": str }
+      - cards_in_order   : liste de fragments HTML (ordre d'apparition)
+      - errors           : liste de messages
     """
-    # data.json (lecture seule)
     data = load_json(data_path)
     for top in ("adj", "nom", "verb"):
         if top not in data or not isinstance(data[top], dict):
             data[top] = {}
 
-    entries_list: List[Dict[str, Any]] = []
-    cards_list: List[str] = []
-    errors: List[str] = []
     processed = set()  # (pos, lemma)
+    entries_in_order: List[Dict[str, Any]] = []
+    cards_in_order: List[str] = []
+    errors: List[str] = []
 
     remaining = limit
 
@@ -334,8 +329,7 @@ def process_phrases_ordered(
 
         soup = BeautifulSoup(phrase_html, "html.parser")
         for span in soup.find_all("span", class_="ukr"):
-            data_info = span.get("data-info", "")
-            lemma, pos = parse_data_info(data_info)
+            lemma, pos = parse_data_info(span.get("data-info", ""))
             if not lemma or not is_target_pos(pos):
                 continue
 
@@ -343,13 +337,12 @@ def process_phrases_ordered(
             if key in processed:
                 continue
 
-            # 1) Si l’entrée existe avec "nooj" → on ignore totalement
-            entry_existing = data[pos].get(lemma)
-            if entry_existing and isinstance(entry_existing, dict) and entry_existing.get("nooj"):
+            # Ignore si déjà dans data.json avec nooj
+            existing = data[pos].get(lemma)
+            if existing and isinstance(existing, dict) and existing.get("nooj"):
                 processed.add(key)
                 continue
 
-            # 2) Récupérer goroh & parser
             try:
                 html = fetch_html(lemma)
                 articles = extract_article_blocks(html)
@@ -359,24 +352,24 @@ def process_phrases_ordered(
                 table_html = block["table"]
                 goroh_tags = block.get("tags", [])
 
-                base_span_html = str(span)
                 entry = build_entry_from_table(
                     pos=pos,
                     lemma=lemma,
                     table_html=table_html,
                     goroh_tags=goroh_tags,
-                    base_span_html=base_span_html,
+                    base_span_html=str(span),
                     phrase_text=phrase,
                 )
 
-                # Ajoute dans la liste ordonnée
-                entries_list.append({"pos": pos, "lemma": lemma, "entry": entry})
+                entries_in_order.append({
+                    "lemma": lemma,
+                    "entry": entry,
+                    "pos": pos,
+                    "table_html": table_html,
+                    "phrase": phrase,
+                })
+                cards_in_order.append(render_entry_card(lemma, entry, table_html, phrase))
                 processed.add(key)
-
-                # Ajoute la carte HTML ordonnée
-                aspect = entry.get("asp") if pos == "verb" else None
-                card_html = render_entry_card(pos, lemma, entry, aspect, table_html, phrase)
-                cards_list.append(card_html)
 
                 if remaining is not None:
                     remaining -= 1
@@ -390,20 +383,18 @@ def process_phrases_ordered(
         if remaining is not None and remaining <= 0:
             break
 
-    return entries_list, cards_list, errors
+    return entries_in_order, cards_in_order, errors
 
 
 def main():
-    # Dossier du script
     try:
         script_dir = os.path.abspath(os.path.dirname(__file__))
     except NameError:
         script_dir = os.getcwd()
 
-    # Fichier des phrases (fixe, même dossier)
     phrases_path = os.path.join(script_dir, "phrases_a_traiter.json")
 
-    ap = argparse.ArgumentParser(description="Rapport HTML (sans JSON) + out.json ordonné des entrées à créer.")
+    ap = argparse.ArgumentParser(description="Rapport HTML ordonné + out.json {lemma: entry} (ordonné).")
     ap.add_argument("--data", default=os.path.join(script_dir, "..", "data.json"),
                     help="Chemin du data.json (lecture seule). Défaut: ../data.json (relatif au script).")
     ap.add_argument("--out", default=os.path.join(script_dir, "entries_report.html"),
@@ -419,29 +410,46 @@ def main():
         print(f"Le fichier attendu {phrases_path} doit contenir un dict {{phrase: meta}}.", file=sys.stderr)
         sys.exit(1)
 
-    entries_list, cards_list, errors = process_phrases_ordered(
+    entries_ordered, cards_ordered, errors = process_phrases_ordered(
         phrases_dict=phrases_dict,
         data_path=args.data,
         limit=args.limit,
     )
 
-    # 1) Écrire le JSON ordonné (liste)
+    # 1) Construire le dict {lemma: entry} en préservant l'ordre d'apparition
+    out_dict: Dict[str, Any] = {}
+    for item in entries_ordered:
+        lemma = item["lemma"]
+        entry = item["entry"]
+        # collision si un autre POS a déjà mis le même lemma :
+        if lemma in out_dict:
+            if out_dict[lemma].get("pos") != entry.get("pos"):
+                base_key = f"{lemma}__{entry.get('pos','x')}"
+                k = base_key
+                i = 2
+                while k in out_dict:
+                    k = f"{base_key}{i}"
+                    i += 1
+                out_dict[k] = entry
+            else:
+                continue
+        else:
+            out_dict[lemma] = entry
+
+    # 2) Écrire out.json (dict ordonné par insertion)
     try:
-        save_json(args.json_out, entries_list)
-        print(f"✅ JSON ordonné des entrées écrit dans {args.json_out}")
+        save_json(args.json_out, out_dict)
+        print(f"✅ JSON ordonné écrit dans {args.json_out}")
     except Exception as e:
         print(f"❌ Échec d'écriture de {args.json_out} : {e}", file=sys.stderr)
         sys.exit(2)
 
-    # 2) Écrire le HTML (dans le même ordre)
-    #    Comptage pour la synthèse
-    created_counts = {"adj": 0, "nom": 0, "verb": 0}
-    for item in entries_list:
-        created_counts[item["pos"]] = created_counts.get(item["pos"], 0) + 1
+    # 3) Écrire le HTML (même ordre)
+    counts = {"adj": 0, "nom": 0, "verb": 0}
+    for item in entries_ordered:
+        counts[item["entry"].get("pos","-")] = counts.get(item["entry"].get("pos","-"), 0) + 1
 
-    cards_html = "".join(cards_list)
-    html = render_report_html(cards_html, created_counts, errors)
-
+    html = render_report_html("".join(cards_ordered), counts, errors)
     try:
         with open(args.out, "w", encoding="utf-8") as f:
             f.write(html)
