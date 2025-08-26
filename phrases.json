@@ -1245,7 +1245,7 @@
     "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.1" }
   },
   "Ось концерт. Артисти співають і грають.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ось;adv\">Ось</span> <span class=\"ukr\" data-info=\"концерт;nom;cas;nomi;s\">концерт</span>. <span class=\"ukr\" data-info=\"артист;nom;cas;nomi;pl\">Артисти</span> <span class=\"ukr\" data-info=\"співати;verb;conj;pres;3p;pl\">співають</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"грати;verb;conj;pres;3p;pl\">грають</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"ось;part\">Ось</span> <span class=\"ukr\" data-info=\"концерт;nom;cas;nomi;s\">концерт</span>. <span class=\"ukr\" data-info=\"артист;nom;cas;nomi;pl\">Артисти</span> <span class=\"ukr\" data-info=\"співати;verb;conj;pres;3p;pl\">співають</span> <span class=\"ukr\" data-info=\"і;conj\">і</span> <span class=\"ukr\" data-info=\"грати;verb;conj;pres;3p;pl\">грають</span>.",
     "traduction": "Voici un concert. Les artistes chantent et jouent.",
     "ref": { "Olena Saint-Joanis": "L1,Cours5,Version5.7.2" }
   },
