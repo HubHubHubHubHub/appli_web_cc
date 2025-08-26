@@ -5,11 +5,18 @@ build_entries_from_phrases
 
 Lit automatiquement `phrases_a_traiter.json` placé dans le **même dossier** que ce script,
 scanne les `phrase_html`, et génère :
-- un **rapport HTML** (sans JSON) listant les lemmes à créer (adj/nom/verb), avec la phrase, le span source et la table goroh
-- un fichier **out.json** contenant les **entrées “type data”** (nouveau format), sans `table_html`
+- un **rapport HTML** (sans JSON embarqué) listant les lemmes à créer (adj/nom/verb),
+  avec la phrase, le span source et la table goroh
+- un fichier **out.json** contenant les **entrées “type data”** (nouveau format), sans `table_html`,
+  **dans l'ordre d'apparition** des mots dans `phrases_a_traiter.json`.
 
 ⚠️ Le script **ne modifie pas** `data.json` : il s’en sert **uniquement en lecture** pour ignorer
 les lemmes qui possèdent déjà un champ `nooj`.
+
+Gestion des doublons :
+----------------------
+- Un couple `(pos, lemme)` n’est traité **qu’une seule fois** par exécution.
+- Les réapparitions ultérieures dans `phrases_a_traiter.json` sont **ignorées** (ni JSON, ni HTML).
 
 Usage :
 -------
@@ -20,7 +27,7 @@ Options :
 - --data     : chemin du data.json (lecture seule). Défaut : ../data.json (relatif au script)
 - --out      : fichier HTML de sortie. Défaut : entries_report.html (dans le même dossier)
 - --json-out : fichier JSON des entrées générées. Défaut : out.json (dans le même dossier)
-- --limit    : limite de lemmes à traiter (debug)
+- --limit    : limite (max) de lemmes uniques à traiter (debug)
 """
 
 from __future__ import annotations
@@ -199,7 +206,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Noto 
 .container{max-width:1100px;margin:0 auto;}
 h1{font-size:22px;margin:0 0 16px;}
 .summary{background:#fff;padding:12px 16px;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:24px;}
-.grid{display:grid;grid-template-columns:1fr;gap:16px;}
+.list{display:grid;grid-template-columns:1fr;gap:16px;}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,0.04);padding:16px;}
 .card h2{font-size:18px;margin:0 0 8px;}
 .meta{font-size:13px;color:#555;margin-bottom:8px;}
@@ -220,7 +227,6 @@ def html_escape(s: str) -> str:
 
 
 def render_entry_card(pos: str, lemma: str, entry: Dict[str, Any], aspect: Optional[str], table_html: str, phrase_text: str) -> str:
-    # badges
     badges = [f"<span class='badge'>POS: {pos}</span>"]
     if pos == "verb":
         badges.append(f"<span class='badge'>Aspect: {entry.get('asp') or aspect or '-'}</span>")
@@ -278,7 +284,7 @@ def render_report_html(cards_html: str, created_counts: Dict[str, int], errors: 
       <div class="footer-note">Les lemmes déjà présents avec un champ <code>nooj</code> ont été ignorés sans aucune modification.</div>
     </div>
 
-    <div class="grid">
+    <div class="list">
       {cards_html if cards_html else '<div class="card"><em>Aucune nouvelle entrée à créer.</em></div>'}
       {err_html}
     </div>
@@ -289,19 +295,21 @@ def render_report_html(cards_html: str, created_counts: Dict[str, int], errors: 
 
 
 # --------------------------
-# Moteur principal
+# Moteur principal (ordre + dédup)
 # --------------------------
 
-def process_phrases_to_entries_and_cards(
+def process_phrases_ordered(
     phrases_dict: Dict[str, Any],
     data_path: str,
     limit: Optional[int] = None,
-) -> Tuple[Dict[str, Dict[str, Any]], Dict[str, str], List[str]]:
+) -> Tuple[List[Dict[str, Any]], List[str], List[str]]:
     """
-    Retourne:
-      - created: { pos: { lemma: entry, ... }, ... } — entrées JSON (sans toucher data.json)
-      - cards  : { (pos,lemma) -> html_card } — pour le rendu HTML (sans JSON)
-      - errors : [messages...]
+    Traite les phrases dans l'ordre et renvoie :
+      - entries_list : **liste ordonnée** d'objets {"pos":..., "lemma":..., "entry": {...}}
+      - cards_list   : **liste ordonnée** de fragments HTML (cartes)
+      - errors       : liste (non ordonnée) de messages d'erreur
+
+    Dédup stricte : un (pos, lemma) n'apparaît au plus qu'une fois.
     """
     # data.json (lecture seule)
     data = load_json(data_path)
@@ -309,8 +317,8 @@ def process_phrases_to_entries_and_cards(
         if top not in data or not isinstance(data[top], dict):
             data[top] = {}
 
-    created: Dict[str, Dict[str, Any]] = {"adj": {}, "nom": {}, "verb": {}}
-    cards: Dict[str, str] = {}
+    entries_list: List[Dict[str, Any]] = []
+    cards_list: List[str] = []
     errors: List[str] = []
     processed = set()  # (pos, lemma)
 
@@ -360,13 +368,15 @@ def process_phrases_to_entries_and_cards(
                     base_span_html=base_span_html,
                     phrase_text=phrase,
                 )
-                created[pos][lemma] = entry
+
+                # Ajoute dans la liste ordonnée
+                entries_list.append({"pos": pos, "lemma": lemma, "entry": entry})
                 processed.add(key)
 
-                # Carte HTML sans JSON (juste table + phrase + span)
+                # Ajoute la carte HTML ordonnée
                 aspect = entry.get("asp") if pos == "verb" else None
                 card_html = render_entry_card(pos, lemma, entry, aspect, table_html, phrase)
-                cards[f"{pos}::{lemma}"] = card_html
+                cards_list.append(card_html)
 
                 if remaining is not None:
                     remaining -= 1
@@ -380,7 +390,7 @@ def process_phrases_to_entries_and_cards(
         if remaining is not None and remaining <= 0:
             break
 
-    return created, cards, errors
+    return entries_list, cards_list, errors
 
 
 def main():
@@ -393,15 +403,15 @@ def main():
     # Fichier des phrases (fixe, même dossier)
     phrases_path = os.path.join(script_dir, "phrases_a_traiter.json")
 
-    ap = argparse.ArgumentParser(description="Génère un rapport HTML (sans JSON) et un out.json des entrées à créer.")
+    ap = argparse.ArgumentParser(description="Rapport HTML (sans JSON) + out.json ordonné des entrées à créer.")
     ap.add_argument("--data", default=os.path.join(script_dir, "..", "data.json"),
                     help="Chemin du data.json (lecture seule). Défaut: ../data.json (relatif au script).")
     ap.add_argument("--out", default=os.path.join(script_dir, "entries_report.html"),
                     help="Chemin du HTML de sortie. Défaut: entries_report.html (même dossier).")
     ap.add_argument("--json-out", default=os.path.join(script_dir, "out.json"),
-                    help="Chemin du JSON des entrées générées. Défaut: out.json (même dossier).")
+                    help="Chemin du JSON des entrées générées (ordonné). Défaut: out.json (même dossier).")
     ap.add_argument("--limit", type=int, default=None,
-                    help="Limiter le nombre de lemmes traités (debug).")
+                    help="Limiter le nombre de lemmes *uniques* traités (debug).")
     args = ap.parse_args()
 
     phrases_dict = load_json(phrases_path)
@@ -409,24 +419,29 @@ def main():
         print(f"Le fichier attendu {phrases_path} doit contenir un dict {{phrase: meta}}.", file=sys.stderr)
         sys.exit(1)
 
-    created, cards, errors = process_phrases_to_entries_and_cards(
+    entries_list, cards_list, errors = process_phrases_ordered(
         phrases_dict=phrases_dict,
         data_path=args.data,
         limit=args.limit,
     )
 
-    # 1) Écrire le JSON des entrées (sans table_html)
+    # 1) Écrire le JSON ordonné (liste)
     try:
-        save_json(args.json_out, created)
-        print(f"✅ JSON des entrées écrit dans {args.json_out}")
+        save_json(args.json_out, entries_list)
+        print(f"✅ JSON ordonné des entrées écrit dans {args.json_out}")
     except Exception as e:
         print(f"❌ Échec d'écriture de {args.json_out} : {e}", file=sys.stderr)
         sys.exit(2)
 
-    # 2) Écrire le HTML (sans JSON)
-    created_counts = {k: len(created.get(k, {})) for k in ("adj", "nom", "verb")}
-    cards_html = "".join(cards[k] for k in sorted(cards.keys()))
+    # 2) Écrire le HTML (dans le même ordre)
+    #    Comptage pour la synthèse
+    created_counts = {"adj": 0, "nom": 0, "verb": 0}
+    for item in entries_list:
+        created_counts[item["pos"]] = created_counts.get(item["pos"], 0) + 1
+
+    cards_html = "".join(cards_list)
     html = render_report_html(cards_html, created_counts, errors)
+
     try:
         with open(args.out, "w", encoding="utf-8") as f:
             f.write(html)
