@@ -16,9 +16,9 @@ Règles :
   `lemma__<pos>` pour éviter d’écraser (ex.: "замок__nom" vs "замок__verb").
 
 Entrées JSON (nouveau format & ordre des clés) :
-- **adj**  : {"pos","cas", **"nooj"**, "base_html","phrases"}
-- **nom**  : {"pos","cas", **"genre"**, **"nooj"**,"base_html","phrases"}  ← genre est placé **juste après** cas s'il est connu
-- **verb** : {"pos","inf","conj","asp", **"nooj"**,"base_html","phrases"}
+- **adj**  : {"cas","nooj","base_html","phrases"}
+- **nom**  : {"cas","genre"(si dispo),"nooj","base_html","phrases"}  ← genre est placé **juste après** cas
+- **verb** : {"inf","conj","asp","nooj","base_html","phrases"}
 
 Usage :
 -------
@@ -64,7 +64,7 @@ GENDER_TAG_MAP = {
     "чоловічий рід": "m",
     "жіночий рід": "f",
     "середній рід": "n",
-    # "спільний рід": "c",  # si besoin
+    # "спільний рід": "c",
 }
 
 # --------------------------
@@ -136,16 +136,14 @@ def build_entry_from_table(
     phrase_text: str,
 ) -> Dict[str, Any]:
     """
-    Construit l’entrée “type data” au nouveau format (sans table_html),
-    en respectant l'ordre de clés demandé :
-      - adj : {"pos","cas","nooj","base_html","phrases"}
-      - nom : {"pos","cas","genre","nooj","base_html","phrases"} (genre juste après cas si dispo)
-      - verb: {"pos","inf","conj","asp","nooj","base_html","phrases"}
+    Construit l’entrée “type data” au nouveau format (sans table_html) :
+      - adj : {"cas","nooj","base_html","phrases"}
+      - nom : {"cas","genre"(si dispo),"nooj","base_html","phrases"}
+      - verb: {"inf","conj","asp","nooj","base_html","phrases"}
     """
     if pos == "adj":
         parsed = parse_table_adj(table_html)  # {"cas": {...}}
         entry: Dict[str, Any] = {
-            "pos": "adj",
             "cas": parsed.get("cas", {}),
             "nooj": "",
             "base_html": base_span_html,
@@ -158,13 +156,12 @@ def build_entry_from_table(
         cas = parsed.get("cas") or parsed.get(lemma, {}).get("cas", {})
         gender = detect_gender_from_tags(goroh_tags)
 
-        # Construire la dict dans l'ordre exact requis :
+        # Ordre exact des clés requis
         entry: Dict[str, Any] = {
-            "pos": "nom",
             "cas": cas,
         }
-        if gender:  # "genre" juste après "cas"
-            entry["genre"] = gender
+        if gender:
+            entry["genre"] = gender  # juste après "cas"
         entry["nooj"] = ""
         entry["base_html"] = base_span_html
         entry["phrases"] = {phrase_text: ""}
@@ -177,7 +174,6 @@ def build_entry_from_table(
         else:
             parsed = parse_verb_imperfective_table(table_html, lemma)
         entry: Dict[str, Any] = {
-            "pos": "verb",
             "inf": parsed.get("inf", []),
             "conj": parsed.get("conj", {}),
             "asp": parsed.get("asp", aspect),
@@ -189,7 +185,6 @@ def build_entry_from_table(
 
     # fallback
     return {
-        "pos": pos,
         "nooj": "",
         "base_html": base_span_html,
         "phrases": {phrase_text: ""},
@@ -223,8 +218,7 @@ def html_escape(s: str) -> str:
              .replace("<", "&lt;")
              .replace(">", "&gt;"))
 
-def render_entry_card(lemma: str, entry: Dict[str, Any], table_html: str, phrase_text: str) -> str:
-    pos = entry.get("pos", "-")
+def render_entry_card(lemma: str, pos: str, entry: Dict[str, Any], table_html: str, phrase_text: str) -> str:
     badges = [f"<span class='badge'>POS: {pos}</span>"]
     if pos == "verb":
         badges.append(f"<span class='badge'>Aspect: {entry.get('asp','-')}</span>")
@@ -292,7 +286,7 @@ def render_report_html(cards_html: str, counts: Dict[str, int], errors: List[str
 """
 
 # --------------------------
-# Moteur (ordre + dédup, sortie dict {lemma: entry})
+# Moteur (ordre + dédup, sortie dict {lemma: entry} sans "pos")
 # --------------------------
 
 def process_phrases_ordered(
@@ -303,7 +297,7 @@ def process_phrases_ordered(
     """
     Retourne (entries_in_order, cards_in_order, errors) où :
       - entries_in_order : liste ordonnée d'items:
-            { "lemma": str, "entry": dict, "pos": str, "table_html": str, "phrase": str }
+            { "lemma": str, "entry": dict (sans pos), "pos": str, "table_html": str, "phrase": str }
       - cards_in_order   : liste de fragments HTML (ordre d'apparition)
       - errors           : liste de messages
     """
@@ -363,12 +357,12 @@ def process_phrases_ordered(
 
                 entries_in_order.append({
                     "lemma": lemma,
-                    "entry": entry,
-                    "pos": pos,
+                    "entry": entry,     # sans "pos"
+                    "pos": pos,         # conservé seulement pour l'HTML / dédup / statistiques
                     "table_html": table_html,
                     "phrase": phrase,
                 })
-                cards_in_order.append(render_entry_card(lemma, entry, table_html, phrase))
+                cards_in_order.append(render_entry_card(lemma, pos, entry, table_html, phrase))
                 processed.add(key)
 
                 if remaining is not None:
@@ -420,19 +414,21 @@ def main():
     out_dict: Dict[str, Any] = {}
     for item in entries_ordered:
         lemma = item["lemma"]
-        entry = item["entry"]
+        entry = item["entry"]  # sans "pos"
+        pos = item["pos"]
+
         # collision si un autre POS a déjà mis le même lemma :
         if lemma in out_dict:
-            if out_dict[lemma].get("pos") != entry.get("pos"):
-                base_key = f"{lemma}__{entry.get('pos','x')}"
-                k = base_key
-                i = 2
-                while k in out_dict:
-                    k = f"{base_key}{i}"
-                    i += 1
-                out_dict[k] = entry
-            else:
-                continue
+            # comme les entrées JSON n'ont plus "pos", vérifier via pos conservé séparément
+            existing_pos = None
+            # on ne peut pas relire le pos depuis out_dict ; on évite l'écrasement :
+            base_key = f"{lemma}__{pos}"
+            k = base_key
+            i = 2
+            while k in out_dict:
+                k = f"{base_key}{i}"
+                i += 1
+            out_dict[k] = entry
         else:
             out_dict[lemma] = entry
 
@@ -447,7 +443,7 @@ def main():
     # 3) Écrire le HTML (même ordre)
     counts = {"adj": 0, "nom": 0, "verb": 0}
     for item in entries_ordered:
-        counts[item["entry"].get("pos","-")] = counts.get(item["entry"].get("pos","-"), 0) + 1
+        counts[item["pos"]] = counts.get(item["pos"], 0) + 1
 
     html = render_report_html("".join(cards_ordered), counts, errors)
     try:
