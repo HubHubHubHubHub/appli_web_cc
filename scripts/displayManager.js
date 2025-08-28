@@ -5,7 +5,10 @@ let displayManager = {
     const categories = {
       nom: "Noms",
       adj: "Adjectifs",
+      pron: "Pronoms (déterminants)",
       verb: "Verbes",
+      conj: "Conjonctions",
+      part: "Particules",
       card: "Cardinaux",
       proposs: "Pronoms possessifs",
       proper: "Pronoms personnels",
@@ -69,10 +72,15 @@ let displayManager = {
         case "proposs":
         case "card":
         case "adj":
+        case "pron":
           htmlContent += displayManager.generateAdjectiveDetails(details);
           break;
         case "verb":
           htmlContent += displayManager.generateVerbDetails(details);
+          break;
+        case "conj":
+        case "part":
+          htmlContent += displayManager.generateBaseDetails(details);
           break;
         default:
           htmlContent += "<p>Catégorie non prise en charge.</p>";
@@ -108,16 +116,18 @@ let displayManager = {
     if (details.cas) {
       htmlContent += "<h3>Cas grammaticaux:</h3><ul>";
       for (const [cas, form] of Object.entries(details.cas)) {
-        htmlContent += `<li><strong>${cas} s.</strong> : ${
-          form.s[0] || ""
-        } , <strong>p.</strong> : ${form.pl[0] || ""} </li>`;
+        const ps = Utils.firstPair(form.s);
+        const pp = Utils.firstPair(form.pl);
+        const sTxt = ps ? Utils.addAccent(ps[0], ps[1]) : "";
+        const pTxt = pp ? Utils.addAccent(pp[0], pp[1]) : "";
+        htmlContent += `<li><strong>${cas} s.</strong> : ${sTxt} , <strong>p.</strong> : ${pTxt}</li>`;
       }
       htmlContent += "</ul>";
     }
     return htmlContent;
   },
 
-  // Fonction pour générer les détails des adjectifs et des cardinaux
+  // Fonction pour générer les détails des adjectifs / pronoms à genres (adj, card, proposs, pron)
   generateAdjectiveDetails: function (details) {
     let htmlContent = "";
     if (details.cas) {
@@ -163,6 +173,15 @@ let displayManager = {
       }
       htmlContent += "</tbody></table>";
     }
+    return htmlContent;
+  },
+
+  // Détails pour conj/part : simple affichage de la forme de base avec accent
+  generateBaseDetails: function (details) {
+    let htmlContent = "<h3>Forme de base</h3>";
+    const pair = Utils.firstPair(details.base);
+    const cell = pair ? Utils.addAccent(pair[0], pair[1]) : "";
+    htmlContent += `<p><span class="word">${cell}</span></p>`;
     return htmlContent;
   },
 

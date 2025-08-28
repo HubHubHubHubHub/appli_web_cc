@@ -58,6 +58,14 @@ let Utils = {
           null
         );
       }
+      case "pron": {
+        // même structure que adj/card/proposs : cas -> m/f/n/pl
+        const [word, functionName, caseType, gender] = infos; // ex: ["цей","cas","gen","m"]
+        return (
+          dataManager.wordData?.pron?.[word]?.[functionName]?.[caseType]?.[gender] ||
+          null
+        );
+      }
       case "proper": {
         const [word, functionName, caseType] = infos; // ex: ["я","cas","nomi"]
         return dataManager.wordData?.proper?.[word]?.[functionName]?.[caseType] || null;
@@ -72,11 +80,26 @@ let Utils = {
         return null;
       }
       case "adv": {
-        // ta base: adv: { beaucoup: { base: ["багато",4], ... } }
         const [word, degree] = infos; // ex: ["багато","base"]
         const key = degree || "base";
         return dataManager.wordData?.adv?.[word]?.[key] ||
                dataManager.wordData?.adv?.[word]?.base ||
+               null;
+      }
+      case "conj": {
+        // ex data-info: "але;conj;base" → retourner wordData.conj[word].base
+        const [word, degree] = infos;
+        const key = degree || "base";
+        return dataManager.wordData?.conj?.[word]?.[key] ||
+               dataManager.wordData?.conj?.[word]?.base ||
+               null;
+      }
+      case "part": {
+        // ex data-info: "не;part;base" → retourner wordData.part[word].base
+        const [word, degree] = infos;
+        const key = degree || "base";
+        return dataManager.wordData?.part?.[word]?.[key] ||
+               dataManager.wordData?.part?.[word]?.base ||
                null;
       }
       default: {
@@ -164,7 +187,9 @@ let Utils = {
     voc: "rgb(132, 19, 19)",
     conj: "inherit",
     inf:  "inherit",
-    adv:  "inherit"
+    adv:  "inherit",
+    pron: "inherit",
+    part: "inherit"
   },
 
 
@@ -199,8 +224,8 @@ applyHoverInfo: function (divId) {
           const data = dataManager?.wordData.proper?.[word]?.cas;
           const cas  = infos[1]; // e.g. "nomi"
           if (data) tableHTML = Utils.generateTableProper(data, cas);
-        } else if (category === "adj" || category === "card" || category === "proposs") {
-          // data-info: mot;adj|card|proposs;cas;CASE;GENDER
+        } else if (category === "adj" || category === "card" || category === "proposs" || category === "pron") {
+          // data-info: mot;adj|card|proposs|pron;cas;CASE;GENDER
           const data   = dataManager?.wordData[category]?.[word]?.cas;
           const cas    = infos[1]; // e.g. "nomi"
           const gender = infos[2]; // "m" | "f" | "n" | "pl"
@@ -265,6 +290,7 @@ applyHoverInfo: function (divId) {
           case "proposs":
           case "card":
           case "adj":
+          case "pron":
             lemmaEntry = dataManager?.wordData[category]?.[word]?.cas?.nomi?.m;
             break;
           case "proper":
@@ -275,6 +301,12 @@ applyHoverInfo: function (divId) {
             break;
           case "adv":
             lemmaEntry = dataManager?.wordData.adv?.[word]?.base;
+            break;
+          case "conj":
+            lemmaEntry = dataManager?.wordData.conj?.[word]?.base;
+            break;
+          case "part":
+            lemmaEntry = dataManager?.wordData.part?.[word]?.base;
             break;
           default:
             lemmaEntry = null;
@@ -288,7 +320,7 @@ applyHoverInfo: function (divId) {
           const [mot, pos] = pair;
           const rest = dataInfo.filter((token, index) => {
             if (index === 0) return false;                 // retire le lemme
-            if (index === 2 && token === "conj") return false; // masque seulement "conj"
+            if (index === 2 && token === "conj") return false; // masque seulement "conj" (cas verb;conj;...)
             return true;                                   // garde inf/base/etc.
           });
           displayedInfo = Utils.addAccent(mot, pos) + (rest.length ? "," + rest.join() : "");
@@ -361,7 +393,7 @@ applyHoverInfo: function (divId) {
   },
 
   // Fonction pour créer la table d'un ADJECTIF
-  // data: adj[word].cas
+  // data: adj[word].cas (et pron[word].cas)
   // cas/gender à surligner: strings comme "nomi", "m" etc.
   generateTableAdj: function (data, cas, gender) {
     if (!data) return "<table></table>";
