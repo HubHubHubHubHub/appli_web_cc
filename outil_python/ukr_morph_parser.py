@@ -325,51 +325,74 @@ def parse_table_nom(html_table: str, lemma: Optional[str] = None) -> Dict[str, o
     return root
 
 
-def parse_verb_imperfective_table(html_table: str, main_infinitive: str) -> Dict[str, object]:
-    """
-    Parse un tableau **imperfectif** (Наказовий/Майбутній/Теперішній/Минулий).
-    Essaie d’identifier la forme infinitive accentuée correspondant à
-    `main_infinitive` (comparaison sans accents).
+# ----------------------------
+# Aide robuste pour trouver la cellule « Інфінітив »
+# ----------------------------
 
-    Returns
-    -------
-    dict
-        Voir le schéma dans le docstring de module.
+def _find_inf_cell(soup: BeautifulSoup):
     """
-    soup = BeautifulSoup(html_table, "html.parser")
+    Retourne la <td class="cell"> qui suit le header 'Інфінітив'.
+    Robuste aux espaces/nbsp et variations d'HTML.
+    """
+    for row in soup.select("tr.row"):
+        head = row.find("td", class_="cell header")
+        if not head:
+            continue
+        label = head.get_text(strip=True).replace("\xa0", " ")
+        if label == "Інфінітив":
+            cells = row.find_all("td", class_="cell")
+            if len(cells) >= 2:
+                return cells[-1]  # souvent la grosse cellule (colspan)
+            sib = head.find_next_sibling("td")
+            if sib:
+                return sib
+    return None
+
+
+# ----------------------------
+# Verbes : imperfectif & perfectif
+# ----------------------------
+
+def parse_verb_imperfective_table(html_content: str, main_infinitive: str):
+    """
+    Verbe imperfectif.
+    - 'inf' devient une liste de paires [[form, pos], ...] pour TOUTES les variantes
+      visibles dans la cellule «Інфінітив». Les formes sans accent reçoivent -1.
+    - L’ordre met d’abord les variantes correspondant à main_infinitive (sans accent),
+      puis les autres (tri stable).
+    """
+    soup = BeautifulSoup(html_content, "html.parser")
+
     out = {
-        "inf": [[main_infinitive, -1]],
+        "inf": [],
         "conj": {"imp": {}, "fut": {}, "pres": {}, "pass": {}},
         "asp": "imperfectif",
     }
 
-    # Infinitif
-    inf_hdr = soup.find("td", class_="cell header", string="Інфінітив")
-    if inf_hdr:
-        inf_cell = inf_hdr.find_next_sibling("td")
-        if inf_cell:
-            main_no = remove_all_accents(main_infinitive)
-            for sp in inf_cell.find_all("span", class_="word"):
-                raw = sp.get_text(strip=True)
-                if remove_all_accents(raw) == main_no:
-                    pairs = parse_ukrainian_word_accent_policy(raw)
-                    w, p = pairs[0]
-                    out["inf"] = [[w, p]]
-                    break
-            else:
-                # fallback : 1er <span> si présent
-                spans = inf_cell.find_all("span", class_="word")
-                if spans:
-                    pairs = parse_ukrainian_word_accent_policy(spans[0].get_text(strip=True))
-                    w, p = pairs[0]
-                    out["inf"] = [[w, p]]
+    # 1) Cellule des infinitifs (robuste)
+    inf_cell = _find_inf_cell(soup)
+    if inf_cell:
+        pairs = _collect_span_pairs(inf_cell)  # [[w, p], ...] (dédoublage si multi-accents)
+        if not pairs:
+            pairs = [[remove_all_accents(main_infinitive), -1]]
 
+        main_no = remove_all_accents(main_infinitive)
+
+        def _rank(pair):
+            return 0 if remove_all_accents(pair[0]) == main_no else 1
+
+        out["inf"] = sorted(pairs, key=lambda pr: (_rank(pr),))  # tri stable
+    else:
+        out["inf"] = [[remove_all_accents(main_infinitive), -1]]
+
+    # 2) Cartographie des blocs
     mode_map = {
         "Наказовий спосіб": "imp",
         "Майбутній час": "fut",
         "Теперішній час": "pres",
         "Минулий час": "pass",
     }
+
     person_map = {
         "1 особа": "1p",
         "2 особа": "2p",
@@ -379,127 +402,139 @@ def parse_verb_imperfective_table(html_table: str, main_infinitive: str) -> Dict
         "сер. р.": "n",
     }
 
-    cur_mode: Optional[str] = None
-    rows = soup.find_all("tr", class_="row")
-    for row in rows:
+    def ensure_sp(dct, key):
+        if key not in dct:
+            dct[key] = {"s": [], "pl": []}
+        return dct[key]
+
+    def ensure_mfn(dct, key):
+        if key not in dct:
+            dct[key] = {"s": [], "pl": []}
+        return dct[key]
+
+    cur = None
+    for row in soup.find_all("tr", class_="row"):
         if "subgroup-header" in row.get("class", []):
-            cur_mode = mode_map.get(row.get_text(strip=True), None)
+            cur = mode_map.get(row.get_text(strip=True))
             continue
 
         tds = row.find_all("td", class_="cell")
-        if not tds or not cur_mode:
+        if not tds or cur is None:
             continue
 
-        head = tds[0].get_text(strip=True)
-        # Temps simples (imp/fut/pres)
-        if cur_mode in ("imp", "fut", "pres"):
+        hdr = tds[0].get_text(strip=True)
+
+        if cur in ("imp", "fut", "pres"):
             if len(tds) < 3:
                 continue
-            key = person_map.get(head)
+            key = person_map.get(hdr)
             if not key:
                 continue
-            out["conj"][cur_mode].setdefault(key, {"s": [], "pl": []})  # type: ignore[index]
-            out["conj"][cur_mode][key]["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]  # type: ignore[index]
-            out["conj"][cur_mode][key]["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]  # type: ignore[index]
+            slot = ensure_sp(out["conj"][cur], key)
+            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
+            slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
-        # Passé (m/f/n ; 3e colonne mutualisée via rowspan)
-        elif cur_mode == "pass":
+        elif cur == "pass":
             if len(tds) < 2:
                 continue
-            key = person_map.get(head)
-            if not key:
+            g = person_map.get(hdr)
+            if not g:
                 continue
-            out["conj"]["pass"].setdefault(key, {"s": [], "pl": []})  # type: ignore[index]
-            out["conj"]["pass"][key]["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]  # type: ignore[index]
+            slot = ensure_mfn(out["conj"]["pass"], g)
+            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
             if len(tds) == 3:
-                out["conj"]["pass"][key]["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]  # type: ignore[index]
+                slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
     return out
 
 
-def parse_verb_perfective_table(html_table: str, main_infinitive: str) -> Dict[str, object]:
+def parse_verb_perfective_table(html_content: str, main_infinitive: str):
     """
-    Parse un tableau **perfectif** (Наказовий/Майбутній/Минулий).
+    Verbe perfectif.
+    - 'inf' devient une liste de paires [[form, pos], ...] pour TOUTES les variantes
+      visibles dans la cellule «Інфінітив». Les formes sans accent reçoivent -1.
+    - L’ordre met d’abord les variantes correspondant à main_infinitive (sans accent),
+      puis les autres (tri stable).
+    """
+    soup = BeautifulSoup(html_content, "html.parser")
 
-    Returns
-    -------
-    dict
-        Voir le schéma dans le docstring de module.
-    """
-    soup = BeautifulSoup(html_table, "html.parser")
     out = {
-        "inf": [[main_infinitive, -1]],
+        "inf": [],
         "conj": {"imp": {}, "fut": {}, "pass": {}},
         "asp": "perfectif",
     }
 
-    # Infinitif
-    inf_hdr = soup.find("td", class_="cell header", string="Інфінітив")
-    if inf_hdr:
-        inf_cell = inf_hdr.find_next_sibling("td")
-        if inf_cell:
-            main_no = remove_all_accents(main_infinitive)
-            spans = inf_cell.find_all("span", class_="word")
-            chosen = None
-            for sp in spans:
-                raw = sp.get_text(strip=True)
-                if remove_all_accents(raw) == main_no:
-                    chosen = raw
-                    break
-            if not chosen and spans:
-                chosen = spans[0].get_text(strip=True)
-            if chosen:
-                pairs = parse_ukrainian_word_accent_policy(chosen)
-                w, p = pairs[0]
-                out["inf"] = [[w, p]]
+    # 1) Cellule des infinitifs (robuste)
+    inf_cell = _find_inf_cell(soup)
+    if inf_cell:
+        pairs = _collect_span_pairs(inf_cell) or [[remove_all_accents(main_infinitive), -1]]
+        main_no = remove_all_accents(main_infinitive)
 
+        def _rank(pair):
+            return 0 if remove_all_accents(pair[0]) == main_no else 1
+
+        out["inf"] = sorted(pairs, key=lambda pr: (_rank(pr),))
+    else:
+        out["inf"] = [[remove_all_accents(main_infinitive), -1]]
+
+    # 2) Cartographie des blocs
     mode_map = {
         "Наказовий спосіб": "imp",
         "Майбутній час": "fut",
         "Минулий час": "pass",
     }
+
     person_map = {
         "1 особа": "1p",
         "2 особа": "2p",
-        "3 особа": "3p",  # harmonisé
+        "3 особа": "5p",   # mapping souhaité pour perfectif
         "чол. р.": "m",
         "жін. р.": "f",
         "сер. р.": "n",
     }
 
-    cur_mode: Optional[str] = None
-    rows = soup.find_all("tr", class_="row")
-    for row in rows:
+    def ensure_sp(dct, key):
+        if key not in dct:
+            dct[key] = {"s": [], "pl": []}
+        return dct[key]
+
+    def ensure_mfn(dct, key):
+        if key not in dct:
+            dct[key] = {"s": [], "pl": []}
+        return dct[key]
+
+    cur = None
+    for row in soup.find_all("tr", class_="row"):
         if "subgroup-header" in row.get("class", []):
-            cur_mode = mode_map.get(row.get_text(strip=True), None)
+            cur = mode_map.get(row.get_text(strip=True))
             continue
 
         tds = row.find_all("td", class_="cell")
-        if not tds or not cur_mode:
+        if not tds or cur is None:
             continue
 
-        head = tds[0].get_text(strip=True)
+        hdr = tds[0].get_text(strip=True)
 
-        if cur_mode in ("imp", "fut"):
+        if cur in ("imp", "fut"):
             if len(tds) < 3:
                 continue
-            key = person_map.get(head)
+            key = person_map.get(hdr)
             if not key:
                 continue
-            out["conj"][cur_mode].setdefault(key, {"s": [], "pl": []})  # type: ignore[index]
-            out["conj"][cur_mode][key]["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]  # type: ignore[index]
-            out["conj"][cur_mode][key]["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]  # type: ignore[index]
+            slot = ensure_sp(out["conj"][cur], key)
+            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
+            slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
-        elif cur_mode == "pass":
+        elif cur == "pass":
             if len(tds) < 2:
                 continue
-            key = person_map.get(head)
-            if not key:
+            g = person_map.get(hdr)
+            if not g:
                 continue
-            out["conj"]["pass"].setdefault(key, {"s": [], "pl": []})  # type: ignore[index]
-            out["conj"]["pass"][key]["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]  # type: ignore[index]
+            slot = ensure_mfn(out["conj"]["pass"], g)
+            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
             if len(tds) == 3:
-                out["conj"]["pass"][key]["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]  # type: ignore[index]
+                slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
     return out
 

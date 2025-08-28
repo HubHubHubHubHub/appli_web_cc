@@ -15,18 +15,15 @@ Règles :
 - En cas de **collision** (même lemma mais **POS différent**), la clé JSON devient
   `lemma__<pos>` pour éviter d’écraser (ex.: "замок__nom" vs "замок__verb").
 
-Entrées JSON (nouveau format & ordre des clés) :
+Entrées JSON (ordre des clés) :
 - **adj**  : {"cas","nooj","base_html","phrases"}
-- **nom**  : {"cas","genre"(si dispo),"nooj","base_html","phrases"}  ← genre est placé **juste après** cas
+- **nom**  : {"cas","genre"(si dispo),"nooj","base_html","phrases"}  ← genre juste après cas
 - **verb** : {"inf","conj","asp","nooj","base_html","phrases"}
 
-Usage :
--------
-python build_entries_from_phrases.py
-    --data ../data.json
-    --out entries_report.html
-    --json-out out.json
-    --limit 50
+Note : `base_html` est **toujours canonique** :
+- verb  → `<span class="ukr" data-info="LEMMA;verb;inf">LEMMA</span>`
+- nom   → `<span class="ukr" data-info="LEMMA;nom;cas;nomi;s">LEMMA</span>`
+- adj   → `<span class="ukr" data-info="LEMMA;adj;cas;nomi;m">LEMMA</span>`
 """
 
 from __future__ import annotations
@@ -127,12 +124,22 @@ def detect_gender_from_tags(tags: Iterable[str]) -> Optional[str]:
             return g
     return None
 
+def make_base_html(pos: str, lemma: str) -> str:
+    """Construit le span `base_html` canonique selon le POS."""
+    if pos == "verb":
+        return f'<span class="ukr" data-info="{lemma};verb;inf">{lemma}</span>'
+    if pos == "nom":
+        return f'<span class="ukr" data-info="{lemma};nom;cas;nomi;s">{lemma}</span>'
+    if pos == "adj":
+        return f'<span class="ukr" data-info="{lemma};adj;cas;nomi;m">{lemma}</span>'
+    # fallback neutre si jamais
+    return f'<span class="ukr" data-info="{lemma}">{lemma}</span>'
+
 def build_entry_from_table(
     pos: str,
     lemma: str,
     table_html: str,
     goroh_tags: Iterable[str],
-    base_span_html: str,
     phrase_text: str,
 ) -> Dict[str, Any]:
     """
@@ -140,13 +147,16 @@ def build_entry_from_table(
       - adj : {"cas","nooj","base_html","phrases"}
       - nom : {"cas","genre"(si dispo),"nooj","base_html","phrases"}
       - verb: {"inf","conj","asp","nooj","base_html","phrases"}
+    `base_html` est canonique (voir make_base_html).
     """
+    base_html = make_base_html(pos, lemma)
+
     if pos == "adj":
         parsed = parse_table_adj(table_html)  # {"cas": {...}}
         entry: Dict[str, Any] = {
             "cas": parsed.get("cas", {}),
             "nooj": "",
-            "base_html": base_span_html,
+            "base_html": base_html,
             "phrases": {phrase_text: ""},
         }
         return entry
@@ -155,15 +165,13 @@ def build_entry_from_table(
         parsed = parse_table_nom(table_html)  # {"cas": {...}} (ou {lemma:{"cas":...}})
         cas = parsed.get("cas") or parsed.get(lemma, {}).get("cas", {})
         gender = detect_gender_from_tags(goroh_tags)
-
-        # Ordre exact des clés requis
         entry: Dict[str, Any] = {
             "cas": cas,
         }
         if gender:
             entry["genre"] = gender  # juste après "cas"
         entry["nooj"] = ""
-        entry["base_html"] = base_span_html
+        entry["base_html"] = base_html
         entry["phrases"] = {phrase_text: ""}
         return entry
 
@@ -178,7 +186,7 @@ def build_entry_from_table(
             "conj": parsed.get("conj", {}),
             "asp": parsed.get("asp", aspect),
             "nooj": "",
-            "base_html": base_span_html,
+            "base_html": base_html,
             "phrases": {phrase_text: ""},
         }
         return entry
@@ -186,7 +194,7 @@ def build_entry_from_table(
     # fallback
     return {
         "nooj": "",
-        "base_html": base_span_html,
+        "base_html": base_html,
         "phrases": {phrase_text: ""},
     }
 
@@ -232,7 +240,7 @@ def render_entry_card(lemma: str, pos: str, entry: Dict[str, Any], table_html: s
       <h2>{html_escape(lemma)}</h2>
       <div class="meta">{''.join(badges)}</div>
       <div class="section">
-        <h3>Base (span source)</h3>
+        <h3>Base (span canonique)</h3>
         <div>{base_html}</div>
       </div>
       <div class="section">
@@ -286,7 +294,7 @@ def render_report_html(cards_html: str, counts: Dict[str, int], errors: List[str
 """
 
 # --------------------------
-# Moteur (ordre + dédup, sortie dict {lemma: entry} sans "pos")
+# Moteur (ordre + dédup, sortie dict {lemma: entry})
 # --------------------------
 
 def process_phrases_ordered(
@@ -351,14 +359,13 @@ def process_phrases_ordered(
                     lemma=lemma,
                     table_html=table_html,
                     goroh_tags=goroh_tags,
-                    base_span_html=str(span),
                     phrase_text=phrase,
                 )
 
                 entries_in_order.append({
                     "lemma": lemma,
                     "entry": entry,     # sans "pos"
-                    "pos": pos,         # conservé seulement pour l'HTML / dédup / statistiques
+                    "pos": pos,         # conservé seulement pour l'HTML / dédup / stats
                     "table_html": table_html,
                     "phrase": phrase,
                 })
@@ -419,9 +426,6 @@ def main():
 
         # collision si un autre POS a déjà mis le même lemma :
         if lemma in out_dict:
-            # comme les entrées JSON n'ont plus "pos", vérifier via pos conservé séparément
-            existing_pos = None
-            # on ne peut pas relire le pos depuis out_dict ; on évite l'écrasement :
             base_key = f"{lemma}__{pos}"
             k = base_key
             i = 2
