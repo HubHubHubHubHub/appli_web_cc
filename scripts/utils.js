@@ -175,6 +175,8 @@ let Utils = {
     return t ? parseInt(t.split("=")[1], 10) : 0;
   },
   
+  // --- état de verrouillage (pinned) du panneau grammaire ---
+  pinnedEl: null,
 
   // couleurs/activation par classes (tokens présents dans data-info)
   classesToColors: {
@@ -197,62 +199,65 @@ let Utils = {
   /* coloration des groupes + infobulle (idempotent + pairs compatible) */
   /* coloration des groupes + infobulle (défensive + idempotent) */
   /* coloration des groupes de mots par cas au survol — version proche de l’original */
- // --- Affichage de la table grammaticale au survol (noms / pronoms / adjectifs)
-applyHoverInfo: function (divId) {
-  const box = document.getElementById("table-grammar");
-  const container = document.getElementById(divId);
-  if (!box || !container) return;
+  // --- Affichage de la table grammaticale au survol (noms / pronoms / adjectifs / verbes)
+  applyHoverInfo: function (divId) {
+    const box = document.getElementById("table-grammar");
+    const container = document.getElementById(divId);
+    if (!box || !container) return;
 
-  const elements = container.querySelectorAll(".ukr");
+    const elements = container.querySelectorAll(".ukr");
 
-  elements.forEach((el) => {
-    const dataInfo = Utils.parseInfo(el.getAttribute("data-info"));
-    if (!dataInfo) return;
-    const [word, category, ...infos] = dataInfo;
+    elements.forEach((el) => {
+      const dataInfo = Utils.parseInfo(el.getAttribute("data-info"));
+      if (!dataInfo) return;
+      const [word, category, ...infos] = dataInfo;
 
-    el.addEventListener("mouseenter", function () {
-      let tableHTML = "";
-      try {
-        if (category === "nom") {
-          // data-info: mot;nom;cas;CASE;NUMBER
-          const data = dataManager?.wordData.nom?.[word]?.cas;
-          const cas    = infos[1]; // e.g. "gen"
-          const number = infos[2]; // "s" | "pl"
-          if (data) tableHTML = Utils.generateTableNoun(data, cas, number);
-        } else if (category === "proper") {
-          // data-info: mot;proper;cas;CASE
-          const data = dataManager?.wordData.proper?.[word]?.cas;
-          const cas  = infos[1]; // e.g. "nomi"
-          if (data) tableHTML = Utils.generateTableProper(data, cas);
-        } else if (category === "adj" || category === "card" || category === "proposs" || category === "pron") {
-          // data-info: mot;adj|card|proposs|pron;cas;CASE;GENDER
-          const data   = dataManager?.wordData[category]?.[word]?.cas;
-          const cas    = infos[1]; // e.g. "nomi"
-          const gender = infos[2]; // "m" | "f" | "n" | "pl"
-          if (data) tableHTML = Utils.generateTableAdj(data, cas, gender);
-        } else if (category === "verb") {
-          const v = dataManager?.wordData.verb?.[word];
-          if (v) tableHTML = Utils.generateTableVerb(v);
+      el.addEventListener("mouseenter", function () {
+        // si une fiche est "pinnée", on ne remplace pas le contenu au survol
+        if (Utils.pinnedEl) return;
+
+        const html = Utils.buildGrammarTableHTML(word, category, infos);
+        if (html) {
+          box.innerHTML = html;
+          box.style.display = "block";
         } else {
+          box.style.display = "none";
+        }
+      });
+
+      el.addEventListener("mouseleave", function () {
+        // si une fiche est "pinnée", on ne masque pas au mouseleave
+        if (Utils.pinnedEl) return;
+        box.style.display = "none";
+      });
+
+      // --- NOUVEAU : clic pour “pinner/dépinner” la fiche ---
+      el.addEventListener("click", function (ev) {
+        ev.preventDefault();
+
+        // re-clic sur le même élément : on dépinne & on cache
+        if (Utils.pinnedEl === el) {
+          Utils.pinnedEl = null;
           box.style.display = "none";
           return;
         }
 
-        if (tableHTML) {
-          box.innerHTML = tableHTML;
-          box.style.display = "block";
-        }
-      } catch (e) {
-        // En cas de clé manquante on cache proprement
-        box.style.display = "none";
-      }
-    });
+        // clic sur un nouvel élément : on tente d'afficher sa fiche
+        const html = Utils.buildGrammarTableHTML(word, category, infos);
 
-    el.addEventListener("mouseleave", function () {
-      box.style.display = "none";
+        if (html) {
+          box.innerHTML = html;
+          box.style.display = "block";
+          Utils.pinnedEl = el; // on “pin”
+        } else {
+          // pas de fiche pour cet élément → fermer toute fiche existante
+          Utils.pinnedEl = null;
+          box.style.display = "none";
+        }
+      });
     });
-  });
-},
+  },
+
 
   /* coloration + infobulle — version proche de l’original, rétro-compatible avec [[forme,pos],…] */
   applyHoverStyles: function (classesToColors, divId) {
@@ -262,14 +267,14 @@ applyHoverInfo: function (divId) {
     const elements = container.querySelectorAll(".ukr");
 
     elements.forEach((element) => {
-      // Évite les double-attachments
+      // éviter les doubles attachements
       if (element.dataset.hoverBound === "1") return;
       element.dataset.hoverBound = "1";
 
       const raw = element.getAttribute("data-info");
       if (!raw) return;
       const dataInfo = Utils.parseInfo(raw);
-      const [word, category, ...infos] = dataInfo;
+      const [word, category] = dataInfo;
 
       // couleur de survol (1re classe correspondante trouvée)
       let hoverColor = "inherit";
@@ -278,10 +283,9 @@ applyHoverInfo: function (divId) {
       }
 
       element.addEventListener("mouseenter", function () {
-        if (this.classList.contains("info-added")) return;
         this.style.color = hoverColor;
 
-        // lemme nominal/verbal selon la catégorie
+        // 1) Récupère le lemme selon la catégorie (idem avant)
         let lemmaEntry = null;
         switch (category) {
           case "nom":
@@ -312,39 +316,62 @@ applyHoverInfo: function (divId) {
             lemmaEntry = null;
         }
 
-        let displayedInfo = "";
+        // 2) Construit le texte de l’infobulle
+        const tokens = dataInfo.slice(1); // on retire le lemme (index 0)
+        // on supprime *toutes* les occurrences de "cas" et "conj"
+        const filtered = tokens.filter(t => t !== "cas" && t !== "conj");
+
+        let bubbleHTML = "";
         const variantIndex = Utils.getVariantIndex(dataInfo);
-        const pair = Utils.firstPair(lemmaEntry, variantIndex); // ← prend la bonne variante
+        const pair = Utils.firstPair(lemmaEntry, variantIndex);
 
         if (pair) {
           const [mot, pos] = pair;
-          const rest = dataInfo.filter((token, index) => {
-            if (index === 0) return false;                 // retire le lemme
-            if (index === 2 && token === "conj") return false; // masque seulement "conj" (cas verb;conj;...)
-            return true;                                   // garde inf/base/etc.
-          });
-          displayedInfo = Utils.addAccent(mot, pos) + (rest.length ? "," + rest.join() : "");
+          const accented = Utils.addAccent(mot, pos);
+          bubbleHTML = `<strong>${accented}</strong>${filtered.length ? " &nbsp;<em>" + filtered.join(", ") + "</em>" : ""}`;
         } else {
-          const rest = dataInfo.filter((t, i) => !(i === 2 && t === "conj"));
-          displayedInfo = rest.join();
+          bubbleHTML = filtered.length ? `<em>${filtered.join(", ")}</em>` : "";
         }
 
-        // n’ajoute pas de <sup> si vide → évite la micro-bulle “fantôme”
-        if (displayedInfo && displayedInfo.trim()) {
-          this.innerHTML += `<sup><em> ${displayedInfo}</em></sup>`;
-          this.classList.add("info-added");
+        // 3) Affiche l’info-bulle au-dessus du mot (aucune insertion dans le flux)
+        if (bubbleHTML && bubbleHTML.trim()) {
+          Utils.showHoverBubble(this, bubbleHTML);
         }
       });
 
       element.addEventListener("mouseleave", function () {
         this.style.color = "";
-        if (this.classList.contains("info-added")) {
-          this.innerHTML = this.innerHTML.split("<sup>")[0];
-          this.classList.remove("info-added");
-        }
+        Utils.hideHoverBubble();
       });
     });
   },
+
+    // Construit le HTML de la fiche grammaire pour un <span.ukr>
+    buildGrammarTableHTML(word, category, infos) {
+      try {
+        if (category === "nom") {
+          const data = dataManager?.wordData.nom?.[word]?.cas;
+          const cas    = infos[1]; // e.g. "gen"
+          const number = infos[2]; // "s" | "pl"
+          if (data) return Utils.generateTableNoun(data, cas, number);
+        } else if (category === "proper") {
+          const data = dataManager?.wordData.proper?.[word]?.cas;
+          const cas  = infos[1]; // e.g. "nomi"
+          if (data) return Utils.generateTableProper(data, cas);
+        } else if (category === "adj" || category === "card" || category === "proposs" || category === "pron") {
+          const data   = dataManager?.wordData[category]?.[word]?.cas;
+          const cas    = infos[1]; // e.g. "nomi"
+          const gender = infos[2]; // "m" | "f" | "n" | "pl"
+          if (data) return Utils.generateTableAdj(data, cas, gender);
+        } else if (category === "verb") {
+          const v = dataManager?.wordData.verb?.[word];
+          if (v) return Utils.generateTableVerb(v);
+        }
+      } catch (_) {
+        // no-op
+      }
+      return ""; // aucun tableau
+    },
 
   // Fonction pour créer la table d'un nom
   generateTableNoun: function (data, cas, gender) {
@@ -533,6 +560,52 @@ applyHoverInfo: function (divId) {
     return html;
   },
 
+  // --- AJOUT : helpers pour l'info-bulle locale au survol ---
+  getOrCreateHoverBubble() {
+    let b = document.getElementById("hover-info-bubble");
+    if (!b) {
+      b = document.createElement("div");
+      b.id = "hover-info-bubble";
+      // style minimal inline pour éviter le CSS externe
+      b.style.position = "absolute";
+      b.style.zIndex = "9999";
+      b.style.maxWidth = "360px";
+      b.style.padding = "6px 8px";
+      b.style.borderRadius = "6px";
+      b.style.boxShadow = "0 4px 10px rgba(0,0,0,.15)";
+      b.style.background = "rgba(255,255,255,.98)";
+      b.style.border = "1px solid rgba(0,0,0,.1)";
+      b.style.fontSize = "14px";
+      b.style.lineHeight = "1.25";
+      b.style.display = "none";
+      b.style.pointerEvents = "none";
+      document.body.appendChild(b);
+    }
+    return b;
+  },
+
+  showHoverBubble(anchorEl, html) {
+    const b = this.getOrCreateHoverBubble();
+    b.innerHTML = html;
+    b.style.display = "block";
+
+    // Positionner au-dessus du mot (centré)
+    const rect = anchorEl.getBoundingClientRect();
+    // on force un layout pour connaître la taille réelle
+    const tmp = b.getBoundingClientRect();
+    const bw = tmp.width, bh = tmp.height;
+
+    const top  = window.scrollY + rect.top  - bh - 8;
+    const left = window.scrollX + rect.left + (rect.width - bw) / 2;
+
+    b.style.top  = `${Math.max(window.scrollY + 4, top)}px`;
+    b.style.left = `${Math.max(window.scrollX + 4, left)}px`;
+  },
+
+  hideHoverBubble() {
+    const b = document.getElementById("hover-info-bubble");
+    if (b) b.style.display = "none";
+  },
 
 
 };
