@@ -320,6 +320,14 @@ let Utils = {
         const tokens = dataInfo.slice(1); // on retire le lemme (index 0)
         // on supprime *toutes* les occurrences de "cas" et "conj"
         const filtered = tokens.filter(t => t !== "cas" && t !== "conj");
+        // 🔹 insertion du genre (si disponible) pour les NOMS
+        if (category === "nom") {
+          const g = dataManager?.wordData?.nom?.[word]?.genre; // "m" | "f" | "n"
+          if (g) {
+            // on l’insère juste après la catégorie: ["nom", <genre>, "gen", "s"]
+            filtered.splice(1, 0, g);
+          }
+        }
 
         let bubbleHTML = "";
         const variantIndex = Utils.getVariantIndex(dataInfo);
