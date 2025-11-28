@@ -1,4 +1,35 @@
 let Utils = {
+  // --- i18n / labels ---------------------------------------------------------
+  i18n: {
+    category: {
+      verb: "verbe",
+      adj: "adj.",
+      proposs: "pron. pos.",
+      proper: "pron. per.",
+      nom: "nom",
+      card: "card.",
+      conj: "conj.",   
+      adv: "adv.",     
+      part: "part.",
+      // (on peut compléter: pron, conj, part, adv, prep... si besoin)
+    },
+    tense: {
+      fut: "fut.",
+      pres: "prés.",
+      pass: "pass.",
+      imp: "imp.",
+      inf: "inf."
+    },
+    number: {
+      s: "sg",
+      pl: "pl"
+    }
+  },
+
+  labelCategory(cat) { return this.i18n.category[cat] || cat; },
+  labelTense(t)    { return this.i18n.tense[t]     || t;   },
+  labelNumber(n)   { return this.i18n.number[n]    || n;   },
+
   // -------- parsing & accents --------
   // Fonction pour parser l'information à partir de l'attribut data-info
   parseInfo: function (info) {
@@ -316,16 +347,25 @@ let Utils = {
             lemmaEntry = null;
         }
 
-        // 2) Construit le texte de l’infobulle
-        const tokens = dataInfo.slice(1); // on retire le lemme (index 0)
-        // on supprime *toutes* les occurrences de "cas" et "conj"
-        const filtered = tokens.filter(t => t !== "cas" && t !== "conj");
+        // 2) Construit le texte de l’infobulle (avec i18n)
+        const tokens = dataInfo.slice(1); // on retire le lemme
+        // supprimer "cas" et "base" qui n'apportent rien ici
+        const filtered = tokens.filter(t => t !== "cas" && t !== "base");
+
         // 🔹 insertion du genre (si disponible) pour les NOMS
         if (category === "nom") {
           const g = dataManager?.wordData?.nom?.[word]?.genre; // "m" | "f" | "n"
-          if (g) {
-            // on l’insère juste après la catégorie: ["nom", <genre>, "gen", "s"]
-            filtered.splice(1, 0, g);
+          if (g) filtered.splice(1, 0, g);
+        }
+
+        // i18n : on remappe la 1re position (catégorie), les temps, et le nombre
+        if (filtered.length) {
+          // catégorie
+          filtered[0] = Utils.labelCategory(filtered[0]);
+          // autres tokens (temps/nombre principalement)
+          for (let i = 1; i < filtered.length; i++) {
+            filtered[i] = Utils.labelTense(filtered[i]);
+            filtered[i] = Utils.labelNumber(filtered[i]);
           }
         }
 
@@ -341,6 +381,7 @@ let Utils = {
           bubbleHTML = filtered.length ? `<em>${filtered.join(", ")}</em>` : "";
         }
 
+
         // 3) Affiche l’info-bulle au-dessus du mot (aucune insertion dans le flux)
         if (bubbleHTML && bubbleHTML.trim()) {
           Utils.showHoverBubble(this, bubbleHTML);
@@ -354,32 +395,39 @@ let Utils = {
     });
   },
 
-    // Construit le HTML de la fiche grammaire pour un <span.ukr>
-    buildGrammarTableHTML(word, category, infos) {
-      try {
-        if (category === "nom") {
-          const data = dataManager?.wordData.nom?.[word]?.cas;
-          const cas    = infos[1]; // e.g. "gen"
-          const number = infos[2]; // "s" | "pl"
-          if (data) return Utils.generateTableNoun(data, cas, number);
-        } else if (category === "proper") {
-          const data = dataManager?.wordData.proper?.[word]?.cas;
-          const cas  = infos[1]; // e.g. "nomi"
-          if (data) return Utils.generateTableProper(data, cas);
-        } else if (category === "adj" || category === "card" || category === "proposs" || category === "pron") {
-          const data   = dataManager?.wordData[category]?.[word]?.cas;
-          const cas    = infos[1]; // e.g. "nomi"
-          const gender = infos[2]; // "m" | "f" | "n" | "pl"
-          if (data) return Utils.generateTableAdj(data, cas, gender);
-        } else if (category === "verb") {
-          const v = dataManager?.wordData.verb?.[word];
-          if (v) return Utils.generateTableVerb(v);
-        }
-      } catch (_) {
-        // no-op
+  // Construit le HTML de la fiche grammaire pour un <span.ukr>
+  // → ajoute une ligne d’en-tête au-dessus du tableau
+  buildGrammarTableHTML(word, category, infos) {
+    let table = "";
+    try {
+      if (category === "nom") {
+        const data = dataManager?.wordData.nom?.[word]?.cas;
+        const cas    = infos[1]; // e.g. "gen"
+        const number = infos[2]; // "s" | "pl"
+        if (data) table = Utils.generateTableNoun(data, cas, number);
+      } else if (category === "proper") {
+        const data = dataManager?.wordData.proper?.[word]?.cas;
+        const cas  = infos[1]; // e.g. "nomi"
+        if (data) table = Utils.generateTableProper(data, cas);
+      } else if (category === "adj" || category === "card" || category === "proposs" || category === "pron") {
+        const data   = dataManager?.wordData[category]?.[word]?.cas;
+        const cas    = infos[1]; // e.g. "nomi"
+        const gender = infos[2]; // "m" | "f" | "n" | "pl"
+        if (data) table = Utils.generateTableAdj(data, cas, gender);
+      } else if (category === "verb") {
+        const v = dataManager?.wordData.verb?.[word];
+        if (v) table = Utils.generateTableVerb(v);
       }
-      return ""; // aucun tableau
-    },
+    } catch (_) {
+      table = "";
+    }
+
+    if (!table) return "";
+
+    // 🔹 ajoute l’en-tête au-dessus du tableau
+    const header = Utils.buildHeaderLine(word, category);
+    return header + table;
+  },
 
   // Fonction pour créer la table d'un nom
   generateTableNoun: function (data, cas, gender) {
@@ -393,9 +441,10 @@ let Utils = {
           .filter(([t]) => t)
           .map(([t, p]) => Utils.addAccent(t, p))
           .join(" / ");
+        const numLbl = Utils.labelNumber(formKey) + ".";
         tableHTML += `
           <tr>
-            <td><em>${formKey}.</em></td>
+            <td><em>${numLbl}</em></td>
             <td>${caseName === cas && formKey === gender ? "<strong>" + cell + "</strong>" : cell}</td>
           </tr>
         `;
@@ -404,6 +453,7 @@ let Utils = {
     tableHTML += "</table>";
     return tableHTML;
   },
+
 
 
   // Fonction pour créer la table d'un PROPER (pronom) : structure plate par cas
@@ -476,15 +526,15 @@ let Utils = {
     let html = "<table>";
 
     // Infinitif
-    html += `<tr><th colspan="3"><em>inf.</em></th></tr>`;
+    html += `<tr><th colspan="3"><em>${Utils.labelTense("inf")}</em></th></tr>`;
     html += `<tr><td colspan="3">${renderCell(verbDetails.inf)}</td></tr>`;
 
     const hasPres = !!(verbDetails.conj && verbDetails.conj.pres);
     const persons = ["1p", "2p", "3p"];
 
-    // Présent (si présent)
+    // Présent
     if (hasPres) {
-      html += `<tr><th colspan="3"><em>pres.</em></th></tr>`;
+      html += `<tr><th colspan="3"><em>${Utils.labelTense("pres")}</em></th></tr>`;
       persons.forEach((p) => {
         const pd = verbDetails.conj.pres?.[p];
         if (!pd) return;
@@ -500,7 +550,7 @@ let Utils = {
 
     // Futur
     if (verbDetails.conj?.fut) {
-      html += `<tr><th colspan="3"><em>fut.</em></th></tr>`;
+      html += `<tr><th colspan="3"><em>${Utils.labelTense("fut")}</em></th></tr>`;
       persons.forEach((p) => {
         const pd = verbDetails.conj.fut?.[p];
         if (!pd) return;
@@ -516,7 +566,7 @@ let Utils = {
 
     // Passé
     if (verbDetails.conj?.pass) {
-      html += `<tr><th colspan="3"><em>pass.</em></th></tr>`;
+      html += `<tr><th colspan="3"><em>${Utils.labelTense("pass")}</em></th></tr>`;
       ["m", "f", "n"].forEach((g) => {
         const gd = verbDetails.conj.pass?.[g];
         if (!gd) return;
@@ -532,7 +582,7 @@ let Utils = {
 
     // Impératif
     if (verbDetails.conj?.imp) {
-      html += `<tr><th colspan="3"><em>imp.</em></th></tr>`;
+      html += `<tr><th colspan="3"><em>${Utils.labelTense("imp")}</em></th></tr>`;
       ["1p", "2p"].forEach((p) => {
         const pd = verbDetails.conj.imp?.[p];
         if (!pd) return;
@@ -614,6 +664,68 @@ let Utils = {
     const b = document.getElementById("hover-info-bubble");
     if (b) b.style.display = "none";
   },
+
+  // Rend la "forme principale" (avec accent) selon la catégorie
+  getPrincipalForm(word, category) {
+    try {
+      switch (category) {
+        case "nom": {
+          const entry = dataManager?.wordData?.nom?.[word];
+          const p = Utils.firstPair(entry?.cas?.nomi?.s);
+          if (p) return Utils.addAccent(p[0], p[1]);
+          break;
+        }
+        case "adj":
+        case "card":
+        case "proposs":
+        case "pron": {
+          const entry = dataManager?.wordData?.[category]?.[word];
+          const p = Utils.firstPair(entry?.cas?.nomi?.m);
+          if (p) return Utils.addAccent(p[0], p[1]);
+          break;
+        }
+        case "proper": {
+          const entry = dataManager?.wordData?.proper?.[word];
+          const p = Utils.firstPair(entry?.cas?.nomi);
+          if (p) return Utils.addAccent(p[0], p[1]);
+          break;
+        }
+        case "verb": {
+          const entry = dataManager?.wordData?.verb?.[word];
+          const p = Utils.firstPair(entry?.inf);
+          if (p) return Utils.addAccent(p[0], p[1]);
+          break;
+        }
+        default:
+          break;
+      }
+    } catch (_) {}
+    // fallback : on retourne le lemme nu
+    return word || "";
+  },
+
+  buildHeaderLine(word, category) {
+    // catégorie + compléments
+    let meta = Utils.labelCategory(category);
+    if (category === "verb") {
+      const asp = dataManager?.wordData?.verb?.[word]?.asp;
+      if (asp === "imperfectif") meta += ", imperf.";
+      else if (asp === "perfectif") meta += ", perf.";
+    } else if (category === "nom") {
+      const g = dataManager?.wordData?.nom?.[word]?.genre;
+      if (g) meta += `, ${g}`;
+    }
+    const head = Utils.getPrincipalForm(word, category);
+    return `
+      <div class="lemma-head"
+           style="margin:6px 0 8px; padding:6px 8px; border-radius:6px;
+                  background:rgba(0,0,0,.04); font-size:15px;">
+        <strong style="font-weight:600;">${head}</strong>
+        <span style="opacity:.8;"> — ${meta}</span>
+      </div>
+    `;
+  },
+
 
 
 };

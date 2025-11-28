@@ -13973,6 +13973,14 @@
         "Це не наш урок.": "futurref?"
       }
     },
+    "ось": {
+      "base":[["ось", -1]],
+      "nooj": "ось,PARTICLE",
+      "base_html": "<span class=\"ukr\" data-info=\"ось;part;base\">ось</span>",
+      "phrases": {
+        "Ось жіноче взуття, а там — чоловіче.": "futurref?"
+      }
+    },
     "це": {
       "base":[["це", -1]],
       "nooj": "це,PARTICLE",
