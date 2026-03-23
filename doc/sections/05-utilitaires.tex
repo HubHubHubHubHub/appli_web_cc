@@ -179,6 +179,26 @@ labelNumber("s")       // -> "sg"
 \textbf{Utilisé par :} \texttt{HtmlContent.buildBubbleHTML()}, \texttt{GrammarSidebar}, \texttt{GrammarTable}.
 
 % ================================================================
+\subsection{foldState.js --- État de pliage de la sidebar}
+
+\subsubsection{\texttt{hasAnyExpanded(groupedData, categoryOpen, letterOpen)}}
+
+Retourne \texttt{true} si au moins une catégorie est ouverte ou un groupe de lettres est déplié. Fonction pure utilisée par \texttt{WordList.svelte} pour piloter le label du bouton global «~Tout déplier / Tout replier~».
+
+\begin{lstlisting}[language=javascript]
+hasAnyExpanded(groupedData, {nom: true, adj: false}, {})
+// -> true (la categorie "nom" est ouverte)
+
+hasAnyExpanded(groupedData, {nom: false}, {"nom:A": true})
+// -> true (le groupe de lettres "A" est ouvert)
+
+hasAnyExpanded(groupedData, {nom: false}, {"nom:A": false})
+// -> false (tout est ferme)
+\end{lstlisting}
+
+\textbf{Utilisé par :} \texttt{WordList.svelte} (valeur dérivée \texttt{anyExpanded}).
+
+% ================================================================
 \subsection{phrases.js --- Filtrage de phrases}
 
 \subsubsection{\texttt{filterPhrases(phrasesData, searchQuery)}}
