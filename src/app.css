@@ -1,3 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-table: "Inter", system-ui, sans-serif;
+
+  --color-ukr-blue: #2a7ae2;
+  --color-ukr-word: #337ab7;
+  --color-accent-red: crimson;
+  --color-remarque: brown;
+  --color-sidebar-bg: #f0f0f0;
+  --color-border: #ccc;
+  --color-border-light: #eee;
+  --color-header-bg: #e9e9e9;
+  --color-row-bg: #f5f5f5;
+  --color-hover-bg: #e0e0e0;
+  --color-conj-tense-bg: #d9edf7;
+  --color-conj-tense-text: #31708f;
+  --color-conj-inf-bg: #fcf8e3;
+  --color-conj-number-bg: #f2f2f2;
+  --color-conj-person-bg: #f7f7f9;
+  --color-pinned-border: #6aa0ff;
+  --color-text-muted: #555;
+  --color-text-muted-light: #777;
+  --color-text-muted-lighter: #999;
+  --color-text-dark: #222;
+  --color-text-heading: #333;
+  --color-text-meta: #666;
+
+  --z-sticky-letter: 1;
+  --z-sticky-toggle: 2;
+  --z-floating: 1000;
+  --z-grammar-sidebar: 2000;
+  --z-hover-bubble: 9999;
+
+  --shadow-sidebar: 2px 0 5px rgba(0, 0, 0, 0.1);
+  --shadow-floating: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --shadow-grammar: 0 6px 22px rgba(0, 0, 0, 0.15);
+  --shadow-grammar-pinned: 0 6px 22px rgba(28, 94, 255, 0.18);
+  --shadow-bubble: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
 body {
   font-family: "Times New Roman", serif;
   margin: 0;
