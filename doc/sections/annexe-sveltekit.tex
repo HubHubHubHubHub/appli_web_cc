@@ -1,0 +1,178 @@
+\section{Annexe : SvelteKit pour les non-initiés}
+\label{sec:sveltekit}
+
+Cette annexe explique les concepts SvelteKit utilisés dans l'application, à destination de lecteurs familiers avec HTML/CSS/JS mais pas avec les frameworks modernes.
+
+\subsection{Qu'est-ce qu'un composant Svelte~?}
+
+Un fichier \texttt{.svelte} est un composant autonome qui regroupe HTML, JavaScript et CSS en un seul fichier~:
+
+\begin{lstlisting}[language=svelte, title=Exemple : un composant minimal]
+<script>
+  let count = $state(0);
+</script>
+
+<button onclick={() => count++}>
+  Compteur : {count}
+</button>
+
+<style>
+  button { font-size: 1.2rem; }
+</style>
+\end{lstlisting}
+
+\begin{itemize}
+  \item \texttt{<script>} : logique JavaScript.
+  \item Corps HTML : le template, avec des expressions \texttt{\{...\}} pour les valeurs dynamiques.
+  \item \texttt{<style>} : CSS \emph{scopé} --- il ne s'applique qu'à ce composant, pas aux autres.
+\end{itemize}
+
+\subsection{Réactivité Svelte~5}
+
+Svelte~5 utilise des \emph{runes} (fonctions spéciales préfixées par \texttt{\$}) pour la réactivité~:
+
+\subsubsection{\texttt{\$state} --- État local réactif}
+
+Déclare une variable dont les modifications sont automatiquement reflétées dans le DOM.
+
+\begin{lstlisting}[language=javascript]
+let count = $state(0);   // reactif
+count++;                  // le DOM se met a jour automatiquement
+\end{lstlisting}
+
+\textbf{Dans l'application :} \texttt{HtmlContent} utilise \texttt{let container = \$state(null)} pour stocker la référence DOM.
+
+\subsubsection{\texttt{\$derived} --- Valeur dérivée}
+
+Calcule une valeur qui se met à jour automatiquement quand ses dépendances changent.
+
+\begin{lstlisting}[language=javascript]
+let count = $state(0);
+let doubled = $derived(count * 2);  // toujours = count * 2
+\end{lstlisting}
+
+\textbf{Dans l'application :} \texttt{WordDetails} utilise \texttt{\$derived} pour calculer les détails du mot sélectionné à partir des stores.
+
+La variante \texttt{\$derived.by(() => ...)} permet des calculs plus complexes (multi-lignes).
+
+\subsubsection{\texttt{\$effect} --- Effet de bord réactif}
+
+Exécute du code quand ses dépendances réactives changent.
+
+\begin{lstlisting}[language=javascript]
+$effect(() => {
+  const enabled = $accentEnabled;  // dependance trackee
+  if (container) applyAccents(container);
+});
+\end{lstlisting}
+
+S'exécute :
+\begin{enumerate}
+  \item Au montage initial du composant.
+  \item À chaque fois qu'une dépendance trackée change.
+\end{enumerate}
+
+\textbf{Dans l'application :} \texttt{HtmlContent} utilise \texttt{\$effect} pour ré-appliquer les accents et les handlers de hover quand l'état change.
+
+\subsubsection{\texttt{\$props} --- Props du composant}
+
+Déclare les propriétés reçues du composant parent.
+
+\begin{lstlisting}[language=javascript]
+// Dans le composant enfant :
+let { html, disableHover = false } = $props();
+
+// Dans le composant parent :
+<HtmlContent html={wordInfo.base_html} disableHover={true} />
+\end{lstlisting}
+
+\subsection{Stores Svelte}
+
+Un \emph{store} est un conteneur de valeur partagé entre composants, sans avoir besoin de passer des props à travers l'arbre.
+
+\begin{lstlisting}[language=javascript, title=Creer un store]
+import { writable } from 'svelte/store';
+export const count = writable(0);
+\end{lstlisting}
+
+\begin{lstlisting}[language=javascript, title=Utiliser un store]
+// Ecriture :
+count.set(42);
+
+// Lecture dans un composant (syntaxe $) :
+<p>Valeur : {$count}</p>
+
+// Lecture hors composant :
+import { get } from 'svelte/store';
+const val = get(count);
+\end{lstlisting}
+
+La syntaxe \texttt{\$count} (préfixe \texttt{\$}) est un raccourci Svelte qui s'abonne automatiquement au store et réagit aux changements. Hors d'un composant (dans une fonction utilitaire), il faut utiliser \texttt{get(store)}.
+
+\textbf{Dans l'application :} Les stores sont définis dans \texttt{src/lib/stores/} et utilisés partout --- \texttt{\$wordData} dans les composants, \texttt{get(wordData)} dans \texttt{HtmlContent} (fonctions impératives).
+
+\subsection{Routage basé sur le système de fichiers}
+
+SvelteKit associe automatiquement les URLs aux fichiers dans \texttt{src/routes/}~:
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Fichier} & \textbf{URL} \\
+  \midrule
+  \texttt{src/routes/+page.svelte} & \texttt{/} \\
+  \texttt{src/routes/phrases/+page.svelte} & \texttt{/phrases} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+Fichiers spéciaux dans chaque dossier de route~:
+\begin{description}
+  \item[\texttt{+page.svelte}] Le contenu de la page.
+  \item[\texttt{+layout.svelte}] Template partagé par toutes les pages du dossier (et sous-dossiers). Affiche \texttt{\{@render children()\}} là où le contenu de la page doit apparaître.
+  \item[\texttt{+layout.server.js}] Code exécuté côté serveur (ou au build) pour charger des données. La fonction \texttt{load()} retourne un objet accessible dans le layout via \texttt{\$props().data}.
+\end{description}
+
+\subsection{Adapter-static et prérendu}
+
+Par défaut, SvelteKit génère une application serveur. L'option \texttt{adapter-static} transforme toutes les pages en HTML statique au moment du build~:
+
+\begin{lstlisting}[language=javascript, title=svelte.config.js]
+import adapter from '@sveltejs/adapter-static';
+
+export default {
+  kit: {
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build',
+      strict: true
+    })
+  }
+};
+\end{lstlisting}
+
+Avec \texttt{export const prerender = true} dans \texttt{+layout.server.js}, toutes les pages sont générées au build. Le résultat dans \texttt{build/} peut être déployé sur n'importe quel serveur statique (Apache, Nginx, GitHub Pages, etc.).
+
+\subsection{Comparaison avant/après migration}
+
+\begin{center}
+\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
+  \toprule
+  \textbf{Vanilla JS (avant)} & \textbf{SvelteKit (après)} \\
+  \midrule
+  Scripts dans \texttt{scripts/*.js} avec manipulation DOM manuelle & Composants \texttt{.svelte} déclaratifs \\
+  \midrule
+  État global via variables globales & Stores Svelte (\texttt{writable}) \\
+  \midrule
+  \texttt{innerHTML} pour les tableaux & Templates Svelte avec \texttt{\{#each\}}, \texttt{\{#if\}} \\
+  \midrule
+  \texttt{document.querySelector} pour cibler les zones & Binding avec \texttt{bind:this} et refs \\
+  \midrule
+  Pages HTML séparées (\texttt{index.html}, \texttt{affiche\_phrase.html}) & Routes SvelteKit (\texttt{/}, \texttt{/phrases}) \\
+  \midrule
+  Chargement JSON via \texttt{fetch} au runtime & Prérendu : JSON intégré au build \\
+  \midrule
+  CSS global unique (\texttt{styles.css}) & CSS scopé par composant + \texttt{app.css} global \\
+  \bottomrule
+\end{tabular}
+\end{center}

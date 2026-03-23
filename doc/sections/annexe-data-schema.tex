@@ -1,0 +1,193 @@
+\section{Annexe : Schéma des données JSON}
+\label{sec:data-schema}
+
+\subsection{data.json --- Dictionnaire}
+
+Le fichier \texttt{static/data.json} contient l'intégralité du dictionnaire, organisé par catégorie grammaticale au premier niveau.
+
+\subsubsection{Structure générale}
+
+\begin{lstlisting}[title=Structure de premier niveau]
+{
+  "prep":    { ... },    // Prepositions
+  "nom":     { ... },    // Noms
+  "adj":     { ... },    // Adjectifs
+  "card":    { ... },    // Cardinaux
+  "proposs": { ... },    // Pronoms possessifs
+  "pron":    { ... },    // Pronoms (determinants)
+  "proper":  { ... },    // Pronoms personnels
+  "verb":    { ... },    // Verbes
+  "adv":     { ... },    // Adverbes
+  "conj":    { ... },    // Conjonctions
+  "part":    { ... }     // Particules
+}
+\end{lstlisting}
+
+\subsubsection{Format des formes fléchies}
+
+Chaque forme fléchie est stockée sous l'un de ces formats~:
+
+\begin{enumerate}
+  \item \textbf{Paire simple} : \texttt{["текст", position]}
+
+  Exemple : \texttt{["будинку", 3]} signifie \ukr{буди́нку} (accent sur la 3\ieme{} lettre).
+
+  \item \textbf{Variantes multiples} : \texttt{[["варіант1", pos1], ["варіант2", pos2]]}
+
+  Pour les mots ayant plusieurs formes acceptées. La sélection se fait via \texttt{var=N} dans \texttt{data-info}.
+
+  \item \textbf{Ancien format (legacy)} : \texttt{["форма1", "форма2", position]}
+
+  Plusieurs formes partageant la même position d'accent. Converti automatiquement par \texttt{toPairs()}.
+\end{enumerate}
+
+Conventions de position~:
+\begin{itemize}
+  \item $> 0$ : position de l'accent (1-indexed).
+  \item $-1$ : mot monosyllabique (pas d'accent visible).
+  \item $-2$ : accent inconnu.
+\end{itemize}
+
+\subsubsection{Noms (\texttt{nom})}
+
+\begin{lstlisting}[language=javascript]
+"nom": {
+  "LEMME": {
+    "cas": {
+      "nomi": { "s": ["forme_s", pos], "pl": ["forme_pl", pos] },
+      "gen":  { "s": [...], "pl": [...] },
+      "dat":  { "s": [...], "pl": [...] },
+      "acc":  { "s": [...], "pl": [...] },
+      "ins":  { "s": [...], "pl": [...] },
+      "loc":  { "s": [...], "pl": [...] }
+    },
+    "genre": "m" | "f" | "n",
+    "base_html": "<span class=\"ukr\" data-info=\"LEMME;nom;cas;nomi;s\">...</span>",
+    "phrases": { "phraseKey1": true, ... }   // optionnel
+  }
+}
+\end{lstlisting}
+
+Les 6 cas ukrainiens~:
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Clé} & \textbf{Cas} & \textbf{Ukrainien} \\
+  \midrule
+  \texttt{nomi} & Nominatif & \ukr{називний} \\
+  \texttt{gen} & Génitif & \ukr{родовий} \\
+  \texttt{dat} & Datif & \ukr{давальний} \\
+  \texttt{acc} & Accusatif & \ukr{знахідний} \\
+  \texttt{ins} & Instrumental & \ukr{орудний} \\
+  \texttt{loc} & Locatif & \ukr{місцевий} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Adjectifs, pronoms possessifs, cardinaux, pronoms (\texttt{adj}, \texttt{proposs}, \texttt{card}, \texttt{pron})}
+
+Même structure que les noms, mais avec 4 genres au lieu de 2 nombres~:
+
+\begin{lstlisting}[language=javascript]
+"adj": {
+  "LEMME": {
+    "cas": {
+      "nomi": { "m": [...], "f": [...], "n": [...], "pl": [...] },
+      "gen":  { "m": [...], "f": [...], "n": [...], "pl": [...] },
+      // ... autres cas
+    },
+    "base_html": "...",
+    "phrases": { ... }
+  }
+}
+\end{lstlisting}
+
+\subsubsection{Pronoms personnels (\texttt{proper})}
+
+Pas de genre dans la déclinaison --- seulement les cas~:
+
+\begin{lstlisting}[language=javascript]
+"proper": {
+  "LEMME": {
+    "cas": {
+      "nomi": ["forme", pos],
+      "gen":  ["forme", pos],
+      // ...
+    },
+    "base_html": "..."
+  }
+}
+\end{lstlisting}
+
+\subsubsection{Verbes (\texttt{verb})}
+
+\begin{lstlisting}[language=javascript]
+"verb": {
+  "LEMME": {
+    "inf": ["infinitif", pos],
+    "conj": {
+      "pres": {           // present (verbes imperfectifs)
+        "1p": { "s": [...], "pl": [...] },
+        "2p": { "s": [...], "pl": [...] },
+        "3p": { "s": [...], "pl": [...] }
+      },
+      "fut": { ... },     // futur (meme structure que pres)
+      "pass": {            // passe (structure par genre)
+        "m":  { "s": [...], "pl": [...] },
+        "f":  { "s": [...], "pl": [...] },
+        "n":  { "s": [...], "pl": [...] }
+      },
+      "imp": {             // imperatif (seulement 1p et 2p)
+        "1p": { "s": [...], "pl": [...] },
+        "2p": { "s": [...], "pl": [...] }
+      },
+      "impers": [...]      // forme impersonnelle (optionnel)
+    },
+    "asp": "perfectif" | "imperfectif",
+    "coupl": "LEMME_ASPECT_OPPOSE",  // optionnel
+    "base_html": "...",
+    "phrases": { ... }
+  }
+}
+\end{lstlisting}
+
+\subsubsection{Mots invariables (\texttt{adv}, \texttt{conj}, \texttt{part}, \texttt{prep})}
+
+\begin{lstlisting}[language=javascript]
+"adv": {
+  "LEMME": {
+    "base": ["forme", pos],
+    "base_html": "..."
+  }
+}
+\end{lstlisting}
+
+% ================================================================
+\subsection{phrases.json --- Phrases d'exemple}
+
+\begin{lstlisting}[language=javascript]
+{
+  "CLE_PHRASE": {
+    "phrase_html": "<span class=\"ukr\" data-info=\"...\">mot</span> ...",
+    "traduction": "Traduction francaise",
+    "ref": {
+      "Auteur": "L1,Cours5,v1.0"
+    },
+    "remarque": "Note optionnelle",
+    "genereVerbe": {             // optionnel
+      "verbe": "LEMME_VERBE",
+      "temps": "pres",
+      "frag1": "texte avant",
+      "frag2": "texte apres"
+    }
+  }
+}
+\end{lstlisting}
+
+\begin{description}
+  \item[\texttt{phrase\_html}] Le contenu HTML de la phrase, avec des spans \texttt{.ukr} interactifs.
+  \item[\texttt{traduction}] Traduction française de la phrase.
+  \item[\texttt{ref}] Métadonnées de référence (auteur, cours, source). Utilisées pour le filtrage.
+  \item[\texttt{remarque}] Note optionnelle affichée sous la phrase.
+  \item[\texttt{genereVerbe}] Si présent, permet de générer toutes les formes conjuguées du verbe pour le temps indiqué, insérées dans le contexte \texttt{frag1 ... pronom ... forme ... frag2}.
+\end{description}
