@@ -53,7 +53,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 1;
-		background-color: white;
+		background-color: #f0f0f0;
 	}
 
 	.category-toggle {
