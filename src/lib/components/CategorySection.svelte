@@ -54,7 +54,7 @@
 		border-bottom: 2px solid #ccc;
 		padding-bottom: 4px;
 		position: sticky;
-		top: 0;
+		top: var(--global-toggle-height, 0px);
 		z-index: 1;
 		background-color: #f0f0f0;
 	}
