@@ -7,53 +7,11 @@
 	<title>Liste de mots avec fiches descriptives</title>
 </svelte:head>
 
-<div class="container">
-	<div class="sidebar">
+<div class="flex w-full h-full max-md:flex-col">
+	<div class="w-1/4 bg-sidebar-bg p-5 shadow-sidebar h-screen flex flex-col max-md:w-full max-md:h-auto">
 		<WordList />
 	</div>
-	<div class="content">
+	<div class="w-3/4 p-5 max-md:w-full">
 		<WordDetails />
 	</div>
 </div>
-
-<style>
-	.container {
-		display: flex;
-		width: 100%;
-		height: 100%;
-	}
-
-	.sidebar {
-		width: 25%;
-		background-color: #f0f0f0;
-		padding: 20px;
-		box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.sidebar :global(h3) {
-		margin-bottom: 10px;
-		font-size: 1.2em;
-		color: #333;
-	}
-
-	.content {
-		width: 75%;
-		padding: 20px;
-	}
-
-	@media (max-width: 768px) {
-		.container {
-			flex-direction: column;
-		}
-		.sidebar {
-			width: 100%;
-			height: auto;
-		}
-		.content {
-			width: 100%;
-		}
-	}
-</style>

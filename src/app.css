@@ -41,7 +41,7 @@
 }
 
 body {
-  font-family: "Times New Roman", serif;
+  font-family: "Inter", system-ui, sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -115,10 +115,3 @@ body {
   display: block;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-  }
-}
