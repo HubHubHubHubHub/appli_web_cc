@@ -132,6 +132,8 @@
 		overflow-y: auto;
 		scrollbar-width: thin;
 		scrollbar-color: #b0b0b0 #e0e0e0;
+		scrollbar-gutter: stable;
+		padding-right: 6px;
 	}
 
 	.global-toggle {
