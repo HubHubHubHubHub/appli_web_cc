@@ -1,0 +1,221 @@
+body {
+  font-family: "Times New Roman", serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+}
+
+.ukr {
+  font-weight: bold;
+  color: #2a7ae2;
+  cursor: pointer;
+}
+
+.accent {
+  color: crimson;
+}
+
+.remarque {
+  color: brown;
+}
+
+/* Floating accent checkbox */
+.floating-checkbox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.floating-checkbox label {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+/* Grammar sidebar */
+.grammar-sidebar {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2000;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: auto;
+  max-width: 380px;
+  max-height: 85vh;
+  overflow-y: auto;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  padding: 8px 10px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.15);
+}
+
+.grammar-sidebar.pinned {
+  border-color: #6aa0ff;
+  box-shadow: 0 6px 22px rgba(28,94,255,.18);
+}
+
+.grammar-sidebar table {
+  width: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.grammar-sidebar th,
+.grammar-sidebar td {
+  padding: 2px 6px;
+  vertical-align: top;
+}
+
+.grammar-sidebar th {
+  text-align: left;
+  font-style: italic;
+  font-weight: 700;
+  background: #f7f7f7;
+  position: sticky;
+  top: 0;
+}
+
+/* Hover bubble */
+.hover-bubble {
+  position: absolute;
+  z-index: 9999;
+  max-width: 360px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(0,0,0,.1);
+  font-size: 14px;
+  line-height: 1.25;
+  pointer-events: none;
+}
+
+/* Lemma header in grammar sidebar */
+.lemma-head {
+  margin: 6px 0 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.04);
+  font-size: 15px;
+}
+
+/* Verb forms container */
+.verb-forms-container {
+  display: none;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 10px;
+  border-left: 4px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.verb-forms-container.active {
+  display: block;
+}
+
+/* Conjugation table */
+.conj-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.conj-table th,
+.conj-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.conj-table .conj-tense-header {
+  background-color: #d9edf7;
+  font-size: 1.1em;
+  color: #31708f;
+}
+
+.conj-table .conj-person-header {
+  background-color: #f7f7f9;
+  font-weight: bold;
+}
+
+.conj-table .conj-infinitive {
+  background-color: #fcf8e3;
+}
+
+.conj-table .conj-tense-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+.conj-table .conj-person {
+  text-align: left;
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.conj-table .conj-singular-header,
+.conj-table .conj-plural-header {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.conj-table .conj-word {
+  color: #337ab7;
+  font-weight: bold;
+}
+
+/* Adjective/noun detail table */
+.table {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table .cell {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  text-align: center;
+}
+
+.table .header {
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.table .column-header .cell {
+  font-weight: bold;
+  background-color: #e9e9e9;
+}
+
+.table .word {
+  color: #337ab7;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .word-details {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .conj-table th,
+  .conj-table td {
+    padding: 6px 8px;
+  }
+}
