@@ -1,6 +1,6 @@
 \section{Composants Svelte}
 
-Cette section décrit chacun des 13 composants de l'application, regroupés par domaine fonctionnel. Pour chaque composant, on indique ses \emph{props} (données reçues du parent), les \emph{stores} utilisés, et le rendu produit.
+Cette section décrit chacun des 15 composants de l'application, regroupés par domaine fonctionnel. Pour chaque composant, on indique ses \emph{props} (données reçues du parent), les \emph{stores} utilisés, et le rendu produit.
 
 % ----------------------------------------------------------------
 \subsection{Navigation et contrôles globaux}
@@ -9,11 +9,34 @@ Cette section décrit chacun des 13 composants de l'application, regroupés par 
 \subsubsection{WordList.svelte}
 
 \begin{description}
-  \item[Rôle] Sidebar gauche : liste tous les mots du dictionnaire, regroupés par catégorie grammaticale.
+  \item[Rôle] Sidebar gauche : liste tous les mots du dictionnaire, regroupés par catégorie grammaticale puis par première lettre ukrainienne.
   \item[Props] Aucune.
   \item[Stores] \texttt{wordData} (lecture), \texttt{selectedWord} et \texttt{selectedCategory} (écriture au clic).
-  \item[Rendu] Pour chaque catégorie non vide, un titre \texttt{<h2>} suivi d'une liste de boutons. Chaque bouton contient un \texttt{HtmlContent} avec \texttt{disableHover=true} --- les mots de la sidebar ne déclenchent pas les info-bulles.
+  \item[Utilitaires] \texttt{groupByFirstLetter()} pour le regroupement alphabétique, \texttt{hasAnyExpanded()} pour l'état du bouton global.
+  \item[État local] \texttt{categoryOpen} et \texttt{letterOpen} --- objets réactifs contrôlant l'état plié/déplié de chaque catégorie et groupe de lettres.
+  \item[Rendu] Un bouton global «~Tout déplier / Tout replier~» (\texttt{.global-toggle}), suivi d'un composant \texttt{CategorySection} par catégorie non vide.
+  \item[Bouton global] Sticky en haut de la zone scrollable (\texttt{position: sticky; top: 0; z-index: 2}). Son label est piloté par la valeur dérivée \texttt{anyExpanded} (via \texttt{hasAnyExpanded()})~:
+  \begin{itemize}
+    \item Si au moins une catégorie ou un groupe de lettres est ouvert $\rightarrow$ «~\emph{Tout replier}~» (clic : replie tout).
+    \item Si tout est fermé $\rightarrow$ «~\emph{Tout déplier}~» (clic : déplie tout).
+  \end{itemize}
   \item[Interaction] Un clic sur un mot met à jour les stores \texttt{selectedWord} et \texttt{selectedCategory}, ce qui déclenche l'affichage des détails dans le panneau central.
+\end{description}
+
+\subsubsection{CategorySection.svelte}
+
+\begin{description}
+  \item[Rôle] Section pliable représentant une catégorie grammaticale dans la sidebar.
+  \item[Props] \texttt{catKey}, \texttt{catLabel}, \texttt{isOpen}, \texttt{letterGroups} (Map lettre $\rightarrow$ mots), \texttt{letterOpenState}, \texttt{wordData}, et 4 callbacks (\texttt{onToggleCategory}, \texttt{onToggleAllLetters}, \texttt{onToggleLetter}, \texttt{onWordClick}).
+  \item[Rendu] Un en-tête sticky (\texttt{position: sticky; top: var({-}{-}global-toggle-height)}; \texttt{z-index: 1}) contenant le chevron + titre \texttt{<h2>} + bouton «~$\pm$~» pour déplier/replier toutes les lettres de la catégorie. Quand la catégorie est ouverte, affiche un \texttt{LetterGroup} par lettre.
+\end{description}
+
+\subsubsection{LetterGroup.svelte}
+
+\begin{description}
+  \item[Rôle] Groupe pliable de mots partageant la même première lettre, au sein d'une catégorie.
+  \item[Props] \texttt{letter}, \texttt{words} (tableau de mots), \texttt{isOpen}, \texttt{wordData}, \texttt{onToggle}, \texttt{onWordClick}.
+  \item[Rendu] Un bouton en-tête affichant la lettre et le nombre de mots (ex.~«~А (5)~»), avec un chevron animé. Quand ouvert, affiche la liste de mots sous forme de boutons, chacun rendu via \texttt{HtmlContent} avec \texttt{disableHover=true}.
 \end{description}
 
 Les catégories sont affichées dans cet ordre fixe~:
