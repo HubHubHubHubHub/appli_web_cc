@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { filterPhrases } from "../scripts/phrases.js";
+import { filterPhrases } from "../../src/lib/utils/phrases.js";
 
 const mockPhrases = {
   "Він читає книгу.": {
@@ -35,7 +35,6 @@ describe("filterPhrases", () => {
 
   it("filters by ref key", () => {
     const result = filterPhrases(mockPhrases, "lecon");
-    // all entries have "lecon" key
     expect(Object.keys(result).length).toBe(3);
   });
 
