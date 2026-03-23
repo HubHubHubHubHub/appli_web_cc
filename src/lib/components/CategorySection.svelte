@@ -50,6 +50,10 @@
 		border-bottom: 2px solid #ccc;
 		margin-top: 12px;
 		padding-bottom: 4px;
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background-color: white;
 	}
 
 	.category-toggle {
