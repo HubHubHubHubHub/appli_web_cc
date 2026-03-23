@@ -43,12 +43,15 @@
 </div>
 
 <style>
+	.category-section {
+		padding-top: 12px;
+	}
+
 	.category-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		border-bottom: 2px solid #ccc;
-		margin-top: 12px;
 		padding-bottom: 4px;
 		position: sticky;
 		top: 0;
