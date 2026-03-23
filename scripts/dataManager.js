@@ -1,6 +1,6 @@
 // dataManager.js
 
-const dataManager = {
+export const dataManager = {
   wordData: {},
   phraseData: {},
 

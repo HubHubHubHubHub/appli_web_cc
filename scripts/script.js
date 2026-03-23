@@ -1,4 +1,8 @@
 // script.js
+import { dataManager } from "./dataManager.js";
+import { displayManager } from "./displayManager.js";
+import { accentManager } from "./accentManager.js";
+import { eventHandlers } from "./eventHandlers.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {

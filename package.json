@@ -1,0 +1,13 @@
+{
+  "name": "appli_web_cc",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3",
+    "vitest": "^1.6.1"
+  }
+}

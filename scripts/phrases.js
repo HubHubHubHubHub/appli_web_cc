@@ -1,3 +1,7 @@
+import { dataManager } from "./dataManager.js";
+import { Utils } from "./utils.js";
+import { accentManager } from "./accentManager.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   // Charger les données des phrases
   dataManager
@@ -68,7 +72,7 @@ function displayPhrases(phrasesData) {
 }
 
 // Fonction pour filtrer les phrases en fonction de la requête de recherche
-function filterPhrases(phrasesData, searchQuery) {
+export function filterPhrases(phrasesData, searchQuery) {
   if (!searchQuery) {
     // Si la requête est vide, retourner toutes les phrases
     return phrasesData;
