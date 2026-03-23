@@ -1,0 +1,192 @@
+\section{Fonctions utilitaires}
+
+Les utilitaires sont des fonctions pures, sans effet de bord, testées unitairement avec Vitest. Ils sont situés dans \texttt{src/lib/utils/}.
+
+% ================================================================
+\subsection{accent.js --- Gestion des accents toniques}
+
+\subsubsection{\texttt{addAccent(word, accentPosition)}}
+
+Insère un accent aigu combinant (U+0301) après le caractère à la position indiquée (indexation 1-based).
+
+\begin{ukrbox}
+\texttt{addAccent("один", 3)} $\rightarrow$ \ukr{оди́н}
+
+\texttt{addAccent("будинок", 3)} $\rightarrow$ \ukr{буди́нок}
+\end{ukrbox}
+
+Conventions de position~:
+\begin{itemize}
+  \item Position > 0 : position normale de l'accent.
+  \item Position $-1$ : mot monosyllabique (pas d'accent affiché).
+  \item Position $-2$ : accent inconnu.
+\end{itemize}
+
+\textbf{Utilisé par :} \texttt{HtmlContent}, \texttt{NounDetails}, \texttt{AdjectiveDetails}, \texttt{VerbDetails}, \texttt{BaseDetails}, \texttt{GrammarTable}, \texttt{dataAccess.js}.
+
+\subsubsection{\texttt{highlightLetter(word, position, classe)}}
+
+Entoure la lettre accentuée dans un \texttt{<span>} avec la classe CSS donnée, en ajoutant l'accent combinant. Position 0-based.
+
+\begin{ukrbox}
+\texttt{highlightLetter("один", 2, "accent")}
+
+$\rightarrow$ \texttt{од<span class="accent">и́</span>н}
+\end{ukrbox}
+
+La classe \texttt{accent} est stylée en rouge crimson dans \texttt{app.css}.
+
+\textbf{Utilisé par :} \texttt{HtmlContent.applyAccents()}.
+
+% ================================================================
+\subsection{parsing.js --- Parsing et transformation de données}
+
+\subsubsection{\texttt{parseInfo(info)}}
+
+Découpe une chaîne \texttt{data-info} par point-virgule.
+
+\begin{ukrbox}
+\texttt{parseInfo("будинок;nom;cas;nomi;s")}
+
+$\rightarrow$ \texttt{["будинок", "nom", "cas", "nomi", "s"]}
+\end{ukrbox}
+
+\subsubsection{\texttt{toPairs(entry)}}
+
+Normalise les différents formats d'entrée JSON en un tableau de paires \texttt{[[texte, position], ...]}.
+
+Formats reconnus~:
+\begin{enumerate}
+  \item Paire simple : \texttt{["слово", 3]} $\rightarrow$ \texttt{[["слово", 3]]}
+  \item Tableau de paires : \texttt{[["слово", 3], ["варіант", 2]]} $\rightarrow$ inchangé
+  \item Ancien format aplati : \texttt{["mot1", 3, "mot2", 3]} $\rightarrow$ \texttt{[["mot1", 3], ["mot2", 3]]}
+  \item Ancien format verbe : \texttt{["читаєм", "читаємо", 4]} $\rightarrow$ \texttt{[["читаєм", 4], ["читаємо", 4]]}
+\end{enumerate}
+
+\subsubsection{\texttt{firstPair(entry, variantIndex = 0)}}
+
+Retourne la première paire \texttt{[texte, position]} de l'entrée, ou la paire à l'index de variante spécifié. Retourne \texttt{null} si vide.
+
+\subsubsection{\texttt{firstText(entry, variantIndex = 0)}}
+
+Raccourci : extrait le texte de la première paire.
+
+\subsubsection{\texttt{firstAccent(entry, variantIndex = 0)}}
+
+Raccourci : extrait la position d'accent de la première paire.
+
+\subsubsection{\texttt{getVariantIndex(dataInfoTokens)}}
+
+Cherche un token \texttt{var=N} dans les tokens du \texttt{data-info} pour sélectionner une variante spécifique.
+
+\begin{ukrbox}
+\texttt{getVariantIndex(["слово", "nom", "cas", "nomi", "s", "var=1"])} $\rightarrow$ \texttt{1}
+\end{ukrbox}
+
+\textbf{Utilisé par :} \texttt{HtmlContent}, \texttt{GrammarTable}, \texttt{gramFunc.js}.
+
+% ================================================================
+\subsection{dataAccess.js --- Accès aux données du dictionnaire}
+
+\subsubsection{\texttt{getDataFromJson(wordData, category, infos)}}
+
+Navigue dans la structure JSON du dictionnaire pour retrouver l'entrée correspondant à un \texttt{data-info}. La navigation dépend de la catégorie~:
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Catégorie} & \textbf{Chemin d'accès} \\
+  \midrule
+  \texttt{nom} & \texttt{wordData.nom[mot][fonction][cas][nombre]} \\
+  \texttt{adj/card/proposs/pron} & \texttt{wordData[cat][mot][fonction][cas][genre]} \\
+  \texttt{proper} & \texttt{wordData.proper[mot][fonction][cas]} \\
+  \texttt{verb} (conjugué) & \texttt{wordData.verb[mot].conj[temps][personne][nombre]} \\
+  \texttt{verb} (infinitif) & \texttt{wordData.verb[mot].inf} \\
+  \texttt{adv/conj/part} & \texttt{wordData[cat][mot].base} \\
+  \texttt{prep} & \texttt{wordData.prep[mot].base} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Utilisé par :} \texttt{HtmlContent.applyAccents()}.
+
+\subsubsection{\texttt{getPrincipalForm(wordData, word, category)}}
+
+Retourne la forme canonique accentuée d'un mot (lemme). Utilisée dans l'en-tête de la sidebar de grammaire.
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Catégorie} & \textbf{Forme canonique} \\
+  \midrule
+  \texttt{nom} & Nominatif singulier \\
+  \texttt{adj/card/proposs/pron} & Nominatif masculin \\
+  \texttt{proper} & Nominatif \\
+  \texttt{verb} & Infinitif \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Utilisé par :} \texttt{GrammarSidebar}.
+
+% ================================================================
+\subsection{gramFunc.js --- Génération de formes verbales}
+
+\subsubsection{\texttt{generateVerbForms(wordData, verb, tense, fragment1, fragment2)}}
+
+Génère du HTML listant toutes les formes conjuguées d'un verbe pour un temps donné, insérées dans un contexte phrastique (\texttt{fragment1} ... pronom ... forme ... \texttt{fragment2}).
+
+Pour le passé (\texttt{pass}), itère par genre (m, f, n) avec les pronoms \ukr{він}/\ukr{вона}/\ukr{воно}. Pour les autres temps, itère par personne (1p, 2p, 3p) avec les pronoms \ukr{я}/\ukr{ти}/\ukr{він}$\cdots$
+
+Chaque forme est un span \texttt{.ukr} cliquable avec son \texttt{data-info}, ce qui permet les interactions de hover/pin.
+
+\textbf{Utilisé par :} \texttt{ExamplePhrases}.
+
+% ================================================================
+\subsection{colors.js --- Couleurs par cas grammatical}
+
+Exporte un objet \texttt{classesToColors} associant chaque cas à une couleur RGB~:
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Cas} & \textbf{Clé} & \textbf{Couleur} \\
+  \midrule
+  Nominatif & \texttt{nomi} & inherit (noir) \\
+  Génitif & \texttt{gen} & \textcolor[rgb]{0.07,0.52,0.18}{vert} \\
+  Accusatif & \texttt{acc} & \textcolor[rgb]{0.22,0.02,0.97}{bleu} \\
+  Locatif & \texttt{loc} & \textcolor[rgb]{0.52,0.36,0.07}{brun} \\
+  Instrumental/Datif & \texttt{ins}/\texttt{dat} & \textcolor[rgb]{0.91,0.16,0.61}{rose} \\
+  Vocatif & \texttt{voc} & \textcolor[rgb]{0.52,0.07,0.07}{rouge foncé} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Utilisé par :} \texttt{HtmlContent.applyHoverHandlers()}.
+
+% ================================================================
+\subsection{i18n.js --- Labels multilingues}
+
+Fournit des traductions courtes pour les catégories grammaticales, temps et nombres~:
+
+\begin{lstlisting}[language=javascript]
+labelCategory("verb")  // -> "verbe"
+labelCategory("nom")   // -> "nom"
+labelTense("pres")     // -> "pres."
+labelNumber("s")       // -> "sg"
+\end{lstlisting}
+
+\textbf{Utilisé par :} \texttt{HtmlContent.buildBubbleHTML()}, \texttt{GrammarSidebar}, \texttt{GrammarTable}.
+
+% ================================================================
+\subsection{phrases.js --- Filtrage de phrases}
+
+\subsubsection{\texttt{filterPhrases(phrasesData, searchQuery)}}
+
+Filtre les phrases par une recherche multi-termes (logique AND). Chaque terme doit apparaître dans les métadonnées \texttt{ref} de la phrase (clés et valeurs concaténées, insensible à la casse).
+
+\begin{ukrbox}
+\texttt{filterPhrases(data, "L1 Cours5")} $\rightarrow$ uniquement les phrases dont \texttt{ref} contient à la fois «~L1~» et «~Cours5~».
+\end{ukrbox}
+
+\textbf{Utilisé par :} \texttt{PhraseList}.

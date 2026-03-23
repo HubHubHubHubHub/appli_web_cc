@@ -1,0 +1,66 @@
+\section{Présentation générale}
+
+\subsection{Objectif}
+
+Cette application web permet l'apprentissage du vocabulaire ukrainien à travers une interface interactive. Elle présente des mots classés par catégorie grammaticale (noms, verbes, adjectifs, etc.) avec leurs déclinaisons ou conjugaisons complètes, des accents toniques visuels, et des phrases d'exemple.
+
+L'application est construite avec \textbf{SvelteKit} (framework web basé sur Svelte~5) et déployée en site statique via \texttt{adapter-static}.
+
+\subsection{Fonctionnalités principales}
+
+\begin{enumerate}
+  \item \textbf{Navigation par catégorie} --- La sidebar gauche liste tous les mots, regroupés par catégorie grammaticale (\ukr{nom}, \ukr{adj.}, \ukr{verbe}, etc.).
+
+  \item \textbf{Fiches détaillées} --- Un clic sur un mot affiche ses formes fléchies dans le panneau central : tableau de déclinaison (noms, adjectifs) ou de conjugaison (verbes).
+
+  \item \textbf{Accents toniques} --- Une case à cocher (en bas à droite) active ou désactive l'affichage des accents. Par exemple, \ukr{оди́н} avec accent vs \ukr{один} sans accent.
+
+  \item \textbf{Info-bulle au survol} --- Le survol d'un mot ukrainien (span \texttt{.ukr}) affiche une bulle avec le lemme accentué et les métadonnées grammaticales (catégorie, cas, nombre, genre).
+
+  \item \textbf{Tableau de grammaire épinglable} --- Un clic sur un mot ukrainien «~épingle~» la sidebar droite, qui affiche le tableau complet de déclinaison/conjugaison. La forme survolée est mise en gras.
+
+  \item \textbf{Couleur par cas grammatical} --- Au survol, la couleur du mot reflète son cas : nominatif (hérité), génitif (vert), accusatif (bleu), locatif (brun), instrumental/datif (rose), vocatif (rouge foncé).
+
+  \item \textbf{Phrases d'exemple} --- Chaque mot peut avoir des phrases associées, affichées sous la fiche détaillée avec traduction française.
+
+  \item \textbf{Recherche de phrases} --- Une page dédiée (\texttt{/phrases}) permet de filtrer les phrases par métadonnées (auteur, cours, source).
+
+  \item \textbf{Génération de conjugaisons} --- Dans les phrases d'exemple, une case à cocher déploie toutes les formes conjuguées d'un verbe pour un temps donné.
+
+  \item \textbf{Responsive} --- L'interface s'adapte aux écrans étroits (empilement des colonnes sous 768px).
+\end{enumerate}
+
+\subsection{Captures d'écran}
+
+% ============ PLACEHOLDER ============
+% Capture : page principale complète avec la sidebar gauche (liste des mots)
+% et le panneau central (détails d'un nom, par exemple "будинок")
+% Taille recommandée : pleine largeur du navigateur, ~1200x800px
+\begin{figure}[ht]
+  \centering
+  \fbox{\parbox{0.8\textwidth}{\centering\vspace{3cm}\textit{[screenshot-main.png]\\Page principale : sidebar + détails}\vspace{3cm}}}
+  % \includegraphics[width=0.9\textwidth]{screenshot-main.png}
+  \caption{Page principale --- liste des mots (gauche) et fiche détaillée (centre).}
+  \label{fig:main}
+\end{figure}
+
+% ============ PLACEHOLDER ============
+% Capture : page /phrases avec la barre de recherche en haut à droite
+% et quelques phrases affichées avec leur traduction
+\begin{figure}[ht]
+  \centering
+  \fbox{\parbox{0.8\textwidth}{\centering\vspace{3cm}\textit{[screenshot-phrases.png]\\Page de recherche de phrases}\vspace{3cm}}}
+  % \includegraphics[width=0.9\textwidth]{screenshot-phrases.png}
+  \caption{Page de recherche de phrases avec filtre par métadonnées.}
+  \label{fig:phrases}
+\end{figure}
+
+\subsection{Installation et lancement}
+
+\begin{lstlisting}[language=bash, title=Commandes de base]
+npm install          # Installer les dependances
+npm run dev          # Serveur de developpement (hot reload)
+npm run build        # Generer le site statique dans build/
+npm run preview      # Previsualiser le site genere
+npm run test         # Lancer les tests unitaires (Vitest)
+\end{lstlisting}
