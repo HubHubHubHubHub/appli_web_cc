@@ -63,31 +63,7 @@ body {
   color: brown;
 }
 
-/* Grammar sidebar */
-.grammar-sidebar {
-  position: fixed;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2000;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: auto;
-  max-width: 380px;
-  max-height: 85vh;
-  overflow-y: auto;
-  font-size: 0.95rem;
-  line-height: 1.2;
-  padding: 8px 10px;
-  box-shadow: 0 6px 22px rgba(0,0,0,.15);
-}
-
-.grammar-sidebar.pinned {
-  border-color: #6aa0ff;
-  box-shadow: 0 6px 22px rgba(28,94,255,.18);
-}
-
+/* Grammar sidebar — table descendant selectors for @html content */
 .grammar-sidebar table {
   width: auto;
   border-collapse: separate;
@@ -109,7 +85,7 @@ body {
   top: 0;
 }
 
-/* Hover bubble */
+/* Hover bubble — kept for HtmlContent.svelte (createElement) */
 .hover-bubble {
   position: absolute;
   z-index: 9999;
@@ -122,15 +98,6 @@ body {
   font-size: 14px;
   line-height: 1.25;
   pointer-events: none;
-}
-
-/* Lemma header in grammar sidebar */
-.lemma-head {
-  margin: 6px 0 8px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: rgba(0,0,0,.04);
-  font-size: 15px;
 }
 
 /* Verb forms container */
