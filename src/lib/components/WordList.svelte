@@ -2,6 +2,7 @@
 	import { wordData } from '$lib/stores/dataStore.js';
 	import { selectedWord, selectedCategory } from '$lib/stores/uiStore.js';
 	import { groupByFirstLetter } from '$lib/utils/ukrainianSort.js';
+	import { hasAnyExpanded } from '$lib/utils/foldState.js';
 	import CategorySection from './CategorySection.svelte';
 
 	const categories = {
@@ -30,16 +31,8 @@
 		)
 	);
 
-	// Derive allExpanded from actual state instead of a manual flag
-	let allExpanded = $derived(
-		Object.keys(groupedData).length > 0 &&
-			Object.keys(groupedData).every((catKey) => {
-				if (!categoryOpen[catKey]) return false;
-				return [...groupedData[catKey].keys()].every(
-					(l) => letterOpen[`${catKey}:${l}`]
-				);
-			})
-	);
+	// True when at least one category or letter group is open (drives the toggle label)
+	let anyExpanded = $derived(hasAnyExpanded(groupedData, categoryOpen, letterOpen));
 
 	// Initialize fold state when data loads (once)
 	$effect(() => {
@@ -84,7 +77,7 @@
 	}
 
 	function toggleAll() {
-		const expand = !allExpanded;
+		const expand = !anyExpanded;
 		const newCatOpen = {};
 		const newLetterOpen = {};
 		for (const catKey of Object.keys(groupedData)) {
@@ -105,7 +98,7 @@
 
 <div id="wordList">
 	<button type="button" class="global-toggle" onclick={toggleAll}>
-		{allExpanded ? '▼ Tout replier' : '▶ Tout déplier'}
+		{anyExpanded ? '▼ Tout replier' : '▶ Tout déplier'}
 	</button>
 
 	{#each Object.entries(categories) as [catKey, catLabel]}
@@ -128,6 +121,7 @@
 
 <style>
 	#wordList {
+		--global-toggle-height: 38px;
 		flex-grow: 1;
 		overflow-y: auto;
 		scrollbar-width: thin;
@@ -139,16 +133,19 @@
 	.global-toggle {
 		display: block;
 		width: 100%;
-		background: none;
+		background-color: #f0f0f0;
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		padding: 6px 10px;
-		margin-bottom: 8px;
+		margin-bottom: 0;
 		font: inherit;
 		font-size: 0.85em;
 		cursor: pointer;
 		color: #555;
 		text-align: left;
+		position: sticky;
+		top: 0;
+		z-index: 2;
 	}
 
 	.global-toggle:hover {
