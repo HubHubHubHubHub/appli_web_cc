@@ -154,7 +154,7 @@
 </span>
 
 {#if showBubble}
-	<div class="hover-bubble" style={bubbleStyle}>
+	<div class="absolute z-hover-bubble max-w-[360px] px-2 py-1.5 rounded-md shadow-bubble bg-white/[.98] border border-black/10 text-sm leading-[1.25] pointer-events-none" style={bubbleStyle}>
 		{@html bubbleHTML}
 	</div>
 {/if}

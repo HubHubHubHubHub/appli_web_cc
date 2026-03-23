@@ -24,8 +24,8 @@
 </script>
 
 {#if visible}
-	<div class="grammar-sidebar" class:pinned={$pinnedElement !== null}>
-		<div class="lemma-head">
+	<div class="grammar-sidebar fixed right-2.5 top-1/2 -translate-y-1/2 z-grammar-sidebar bg-white border border-border rounded-[10px] w-auto max-w-[380px] max-h-[85vh] overflow-y-auto text-[0.95rem] leading-[1.2] px-2.5 py-2 shadow-grammar {$pinnedElement !== null ? 'border-pinned-border shadow-grammar-pinned' : ''}">
+		<div class="my-1.5 mb-2 px-2 py-1.5 rounded-md bg-black/[.04] text-[15px]">
 			{@html headerHTML}
 		</div>
 		<GrammarTable data={$grammarTableData} />
