@@ -19,7 +19,7 @@
 
 	let categoryOpen = $state({});
 	let letterOpen = $state({});
-	let allExpanded = $state(false);
+	let initialized = false;
 
 	// Compute grouped data per category
 	let groupedData = $derived(
@@ -30,17 +30,30 @@
 		)
 	);
 
-	// Initialize fold state when data loads
+	// Derive allExpanded from actual state instead of a manual flag
+	let allExpanded = $derived(
+		Object.keys(groupedData).length > 0 &&
+			Object.keys(groupedData).every((catKey) => {
+				if (!categoryOpen[catKey]) return false;
+				return [...groupedData[catKey].keys()].every(
+					(l) => letterOpen[`${catKey}:${l}`]
+				);
+			})
+	);
+
+	// Initialize fold state when data loads (once)
 	$effect(() => {
 		const data = $wordData;
 		if (!data || Object.keys(data).length === 0) return;
+		if (initialized) return;
+		initialized = true;
 
 		const newCatOpen = {};
 		const newLetterOpen = {};
 		for (const catKey of Object.keys(categories)) {
-			if (data[catKey] && Object.keys(data[catKey]).length > 0) {
+			const groups = groupedData[catKey];
+			if (groups) {
 				newCatOpen[catKey] = true;
-				const groups = groupByFirstLetter(Object.keys(data[catKey]));
 				for (const letter of groups.keys()) {
 					newLetterOpen[`${catKey}:${letter}`] = false;
 				}
@@ -82,7 +95,6 @@
 		}
 		categoryOpen = newCatOpen;
 		letterOpen = newLetterOpen;
-		allExpanded = expand;
 	}
 
 	function handleWordClick(word, catKey) {
