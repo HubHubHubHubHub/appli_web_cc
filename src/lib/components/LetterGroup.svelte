@@ -4,17 +4,17 @@
 	let { letter, words, isOpen, wordData, onToggle, onWordClick } = $props();
 </script>
 
-<div class="letter-group">
-	<button type="button" class="letter-header" onclick={onToggle}>
-		<span class="chevron" class:open={isOpen}>▶</span>
-		<span class="letter">{letter}</span>
-		<span class="count">({words.length})</span>
+<div>
+	<button type="button" class="flex items-center gap-1.5 bg-transparent border-none py-1 pl-3 pr-0 m-0 font-[inherit] cursor-pointer w-full text-left text-text-muted hover:text-text-dark" onclick={onToggle}>
+		<span class="inline-block text-[0.65em] transition-transform duration-150 ease-in-out" class:rotate-90={isOpen}>▶</span>
+		<span class="font-semibold text-[0.95em]">{letter}</span>
+		<span class="text-[0.8em] text-text-muted-lighter">({words.length})</span>
 	</button>
 	{#if isOpen}
-		<ul class="word-list">
+		<ul class="list-none p-0 m-0">
 			{#each words as word}
-				<li class="word-item">
-					<button type="button" class="word-btn" onclick={() => onWordClick(word)}>
+				<li class="py-2 px-2 pl-6 cursor-pointer border-b border-border-light hover:bg-hover-bg">
+					<button type="button" class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full" onclick={() => onWordClick(word)}>
 						<HtmlContent html={wordData[word].base_html} disableHover={true} />
 					</button>
 				</li>
@@ -22,72 +22,3 @@
 		</ul>
 	{/if}
 </div>
-
-<style>
-	.letter-header {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-		background: none;
-		border: none;
-		padding: 4px 0 4px 12px;
-		margin: 0;
-		font: inherit;
-		cursor: pointer;
-		width: 100%;
-		text-align: left;
-		color: #555;
-	}
-
-	.letter-header:hover {
-		color: #222;
-	}
-
-	.chevron {
-		display: inline-block;
-		font-size: 0.65em;
-		transition: transform 0.15s ease;
-	}
-
-	.chevron.open {
-		transform: rotate(90deg);
-	}
-
-	.letter {
-		font-weight: 600;
-		font-size: 0.95em;
-	}
-
-	.count {
-		font-size: 0.8em;
-		color: #999;
-	}
-
-	.word-list {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.word-item {
-		padding: 8px 8px 8px 24px;
-		cursor: pointer;
-		border-bottom: 1px solid #eee;
-	}
-
-	.word-item:hover {
-		background-color: #e0e0e0;
-	}
-
-	.word-btn {
-		background: none;
-		border: none;
-		padding: 0;
-		margin: 0;
-		font: inherit;
-		color: inherit;
-		cursor: pointer;
-		text-align: left;
-		width: 100%;
-	}
-</style>

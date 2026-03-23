@@ -15,14 +15,14 @@
 	} = $props();
 </script>
 
-<div class="category-section">
-	<div class="category-header">
-		<button type="button" class="category-toggle" onclick={onToggleCategory}>
-			<span class="chevron" class:open={isOpen}>▶</span>
-			<h2>{catLabel}</h2>
+<div class="pt-3">
+	<div class="flex items-center justify-between border-b-2 border-border pb-1 sticky top-[var(--global-toggle-height,0px)] z-[1] bg-sidebar-bg">
+		<button type="button" class="flex items-center gap-1.5 bg-transparent border-none p-0 m-0 font-[inherit] cursor-pointer text-left text-inherit" onclick={onToggleCategory}>
+			<span class="inline-block text-[0.7em] transition-transform duration-150 ease-in-out" class:rotate-90={isOpen}>▶</span>
+			<h2 class="m-0 text-[1.1em]">{catLabel}</h2>
 		</button>
 		{#if isOpen}
-			<button type="button" class="expand-all-btn" onclick={onToggleAllLetters}
+			<button type="button" class="bg-transparent border border-border rounded-sm px-1.5 py-px text-[0.85em] cursor-pointer text-text-muted-light leading-none hover:bg-hover-bg hover:text-text-heading" onclick={onToggleAllLetters}
 				title="Tout déplier / replier">
 				±
 			</button>
@@ -42,65 +42,3 @@
 	{/if}
 </div>
 
-<style>
-	.category-section {
-		padding-top: 12px;
-	}
-
-	.category-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border-bottom: 2px solid #ccc;
-		padding-bottom: 4px;
-		position: sticky;
-		top: var(--global-toggle-height, 0px);
-		z-index: 1;
-		background-color: #f0f0f0;
-	}
-
-	.category-toggle {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-		background: none;
-		border: none;
-		padding: 0;
-		margin: 0;
-		font: inherit;
-		cursor: pointer;
-		text-align: left;
-		color: inherit;
-	}
-
-	.category-toggle h2 {
-		margin: 0;
-		font-size: 1.1em;
-	}
-
-	.chevron {
-		display: inline-block;
-		font-size: 0.7em;
-		transition: transform 0.15s ease;
-	}
-
-	.chevron.open {
-		transform: rotate(90deg);
-	}
-
-	.expand-all-btn {
-		background: none;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		padding: 1px 6px;
-		font-size: 0.85em;
-		cursor: pointer;
-		color: #777;
-		line-height: 1;
-	}
-
-	.expand-all-btn:hover {
-		background-color: #e0e0e0;
-		color: #333;
-	}
-</style>
