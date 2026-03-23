@@ -1,4 +1,9 @@
-let displayManager = {
+import { Utils } from "./utils.js";
+import { dataManager } from "./dataManager.js";
+import { eventHandlers } from "./eventHandlers.js";
+import { accentManager } from "./accentManager.js";
+
+export let displayManager = {
   // Fonction pour afficher les éléments de wordList
   displayWordList: function () {
     const wordList = document.getElementById("wordList");
