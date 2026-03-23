@@ -96,8 +96,8 @@
 	}
 </script>
 
-<div id="wordList">
-	<button type="button" class="global-toggle" onclick={toggleAll}>
+<div id="wordList" class="grow overflow-y-auto pr-1.5" style="--global-toggle-height: 38px; scrollbar-width: thin; scrollbar-color: #b0b0b0 #e0e0e0; scrollbar-gutter: stable;">
+	<button type="button" class="block w-full bg-sidebar-bg border border-border rounded px-2.5 py-1.5 mb-0 font-[inherit] text-[0.85em] cursor-pointer text-text-muted text-left sticky top-0 z-[2] hover:bg-hover-bg hover:text-text-dark" onclick={toggleAll}>
 		{anyExpanded ? '▼ Tout replier' : '▶ Tout déplier'}
 	</button>
 
@@ -119,37 +119,3 @@
 	{/each}
 </div>
 
-<style>
-	#wordList {
-		--global-toggle-height: 38px;
-		flex-grow: 1;
-		overflow-y: auto;
-		scrollbar-width: thin;
-		scrollbar-color: #b0b0b0 #e0e0e0;
-		scrollbar-gutter: stable;
-		padding-right: 6px;
-	}
-
-	.global-toggle {
-		display: block;
-		width: 100%;
-		background-color: #f0f0f0;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		padding: 6px 10px;
-		margin-bottom: 0;
-		font: inherit;
-		font-size: 0.85em;
-		cursor: pointer;
-		color: #555;
-		text-align: left;
-		position: sticky;
-		top: 0;
-		z-index: 2;
-	}
-
-	.global-toggle:hover {
-		background-color: #e0e0e0;
-		color: #222;
-	}
-</style>
