@@ -44,9 +44,9 @@
 	});
 </script>
 
-<div class="word-details">
+<div class="mx-[10%] p-5">
 	{#if details}
-		<h2>{displayWord} <span class="word-meta">: {displayMeta}</span></h2>
+		<h2>{displayWord} <span class="text-[0.65em] font-normal text-text-meta align-middle">: {displayMeta}</span></h2>
 
 		{#if $selectedCategory === 'nom'}
 			<NounDetails {details} />
@@ -68,17 +68,3 @@
 	{/if}
 </div>
 
-<style>
-	.word-details {
-		margin-left: 10%;
-		margin-right: 10%;
-		padding: 20px;
-	}
-
-	.word-meta {
-		font-size: 0.65em;
-		font-weight: normal;
-		color: #666;
-		vertical-align: middle;
-	}
-</style>
