@@ -6,22 +6,7 @@
 	<title>Recherche de Phrases</title>
 </svelte:head>
 
-<div class="phrases-page">
+<div class="ml-6 mr-[450px] mb-11 font-body max-md:mr-6">
 	<h1>Recherche de Phrases</h1>
 	<PhraseList />
 </div>
-
-<style>
-	.phrases-page {
-		margin-left: 25px;
-		margin-right: 450px;
-		margin-bottom: 45px;
-		font-family: Arial, sans-serif;
-	}
-
-	@media (max-width: 768px) {
-		.phrases-page {
-			margin-right: 25px;
-		}
-	}
-</style>
