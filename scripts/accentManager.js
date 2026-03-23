@@ -1,4 +1,6 @@
-let accentManager = {
+import { Utils } from "./utils.js";
+
+export let accentManager = {
   isAccentChecked: false, // Variable pour suivre l'état de la checkbox
   // Fonction pour configurer la mise en surbrillance des accents
   setupAccentHighlighting: function () {

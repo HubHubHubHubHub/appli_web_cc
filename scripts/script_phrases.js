@@ -1,4 +1,7 @@
 // script_phrases.js
+import { dataManager } from "./dataManager.js";
+import { accentManager } from "./accentManager.js";
+import { eventHandlers } from "./eventHandlers.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {

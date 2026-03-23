@@ -1,4 +1,8 @@
-let eventHandlers = {
+import { displayManager } from "./displayManager.js";
+import { gramFunc } from "./gramFunc.js";
+import { accentManager } from "./accentManager.js";
+
+export let eventHandlers = {
   // Fonction pour attacher les événements de clic
   setupWordListClickEvents: function () {
     const wordList = document.getElementById("wordList");

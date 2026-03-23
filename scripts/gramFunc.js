@@ -1,4 +1,7 @@
-let gramFunc = {
+import { Utils } from "./utils.js";
+import { dataManager } from "./dataManager.js";
+
+export let gramFunc = {
   // Fonction pour générer les formes verbales en HTML sans gérer les accents
   generateVerbForms: function (verb, tense, fragment1, fragment2) {
     let htmlContent = "";
