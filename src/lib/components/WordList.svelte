@@ -71,10 +71,10 @@
 		const groups = groupedData[catKey];
 		if (!groups) return;
 		const letters = [...groups.keys()];
-		const allOpen = letters.every((l) => letterOpen[`${catKey}:${l}`]);
+		const anyOpen = letters.some((l) => letterOpen[`${catKey}:${l}`]);
 		const updated = { ...letterOpen };
 		for (const l of letters) {
-			updated[`${catKey}:${l}`] = !allOpen;
+			updated[`${catKey}:${l}`] = !anyOpen;
 		}
 		letterOpen = updated;
 	}
