@@ -2,6 +2,18 @@ Alphabet Ukrainien sur une ligne :
 А Б В Г Ґ Д Е Є Ж З И І Ї Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ь Ю Я
 
 
+######## Sidebar : double dépliage (catégorie + lettre) ########
+
+La sidebar WordList utilise un système de double dépliage hiérarchique :
+- Niveau 1 : catégories grammaticales (Noms, Adjectifs, Verbes…)
+- Niveau 2 : première lettre ukrainienne à l'intérieur de chaque catégorie
+
+Les mots sont triés selon l'alphabet ukrainien (voir ukrainianSort.js).
+État initial : catégories dépliées, groupes de lettres repliés.
+Contrôles : chevron par catégorie/lettre, bouton ± par catégorie,
+bouton global « Tout déplier / replier » en haut de la sidebar.
+
+
 
 Accents
 
@@ -119,3 +131,17 @@ le format html dans data-info par var=n :
 
 
   à la demande : ⇧⌥F (maj + option + F)
+
+
+
+  ########## NOOJ #################
+
+  besoin de générer les comparatifs et les superlatifs
+  -> absents dans gorox 
+• nécessité aussi de mettre les accents. 
+
+ex: "І цей вибір не випадковий: Rafale — один із найефективніших та найгнучкіших бойових літаків сучасності."
+
+On a accès seulement à 
+ефективний
+гнучкий
