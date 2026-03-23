@@ -62,7 +62,7 @@
 						</tr>
 						{#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
 							<tr class="conj-row conj-form-row">
-								<td class="conj-cell conj-person">{labelPerson(pKey)}</td>
+								<td class="conj-cell conj-person">{@html labelPerson(pKey)}</td>
 								<td class="conj-cell conj-singular">{@html renderCell(forms.s)}</td>
 								<td class="conj-cell conj-plural">{@html renderCell(forms.pl)}</td>
 							</tr>

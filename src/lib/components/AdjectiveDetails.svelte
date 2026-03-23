@@ -18,7 +18,7 @@
 	<table class="table">
 		<tbody>
 			<tr class="row column-header">
-				<td class="cell">cas</td>
+				<td class="cell"></td>
 				{#each genders as g}
 					<td class="cell">{labelGender(g)}</td>
 				{/each}
