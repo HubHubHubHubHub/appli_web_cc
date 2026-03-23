@@ -1,7 +1,8 @@
 <script>
 	import { wordData } from '$lib/stores/dataStore.js';
 	import { selectedWord, selectedCategory } from '$lib/stores/uiStore.js';
-	import HtmlContent from './HtmlContent.svelte';
+	import { groupByFirstLetter } from '$lib/utils/ukrainianSort.js';
+	import CategorySection from './CategorySection.svelte';
 
 	const categories = {
 		nom: 'Noms',
@@ -16,35 +17,104 @@
 		prep: 'Prépositions',
 	};
 
-	function handleWordClick(word, category) {
+	let categoryOpen = $state({});
+	let letterOpen = $state({});
+	let allExpanded = $state(false);
+
+	// Compute grouped data per category
+	let groupedData = $derived(
+		Object.fromEntries(
+			Object.keys(categories)
+				.filter((catKey) => $wordData[catKey] && Object.keys($wordData[catKey]).length > 0)
+				.map((catKey) => [catKey, groupByFirstLetter(Object.keys($wordData[catKey]))])
+		)
+	);
+
+	// Initialize fold state when data loads
+	$effect(() => {
+		const data = $wordData;
+		if (!data || Object.keys(data).length === 0) return;
+
+		const newCatOpen = {};
+		const newLetterOpen = {};
+		for (const catKey of Object.keys(categories)) {
+			if (data[catKey] && Object.keys(data[catKey]).length > 0) {
+				newCatOpen[catKey] = true;
+				const groups = groupByFirstLetter(Object.keys(data[catKey]));
+				for (const letter of groups.keys()) {
+					newLetterOpen[`${catKey}:${letter}`] = false;
+				}
+			}
+		}
+		categoryOpen = newCatOpen;
+		letterOpen = newLetterOpen;
+	});
+
+	function toggleCategory(catKey) {
+		categoryOpen = { ...categoryOpen, [catKey]: !categoryOpen[catKey] };
+	}
+
+	function toggleAllLetters(catKey) {
+		const groups = groupedData[catKey];
+		if (!groups) return;
+		const letters = [...groups.keys()];
+		const allOpen = letters.every((l) => letterOpen[`${catKey}:${l}`]);
+		const updated = { ...letterOpen };
+		for (const l of letters) {
+			updated[`${catKey}:${l}`] = !allOpen;
+		}
+		letterOpen = updated;
+	}
+
+	function toggleLetter(catKey, letter) {
+		letterOpen = { ...letterOpen, [`${catKey}:${letter}`]: !letterOpen[`${catKey}:${letter}`] };
+	}
+
+	function toggleAll() {
+		const expand = !allExpanded;
+		const newCatOpen = {};
+		const newLetterOpen = {};
+		for (const catKey of Object.keys(groupedData)) {
+			newCatOpen[catKey] = expand;
+			for (const letter of groupedData[catKey].keys()) {
+				newLetterOpen[`${catKey}:${letter}`] = expand;
+			}
+		}
+		categoryOpen = newCatOpen;
+		letterOpen = newLetterOpen;
+		allExpanded = expand;
+	}
+
+	function handleWordClick(word, catKey) {
 		selectedWord.set(word);
-		selectedCategory.set(category);
+		selectedCategory.set(catKey);
 	}
 </script>
 
-<ul id="wordList">
+<div id="wordList">
+	<button type="button" class="global-toggle" onclick={toggleAll}>
+		{allExpanded ? '▼ Tout replier' : '▶ Tout déplier'}
+	</button>
+
 	{#each Object.entries(categories) as [catKey, catLabel]}
-		{#if $wordData[catKey] && Object.keys($wordData[catKey]).length > 0}
-			<h2>{catLabel}</h2>
-			<ul class="word-list">
-				{#each Object.entries($wordData[catKey]) as [word, wordInfo]}
-					<li class="word-item">
-						<button type="button" class="word-btn" onclick={() => handleWordClick(word, catKey)}>
-							<HtmlContent html={wordInfo.base_html} disableHover={true} />
-						</button>
-					</li>
-				{/each}
-			</ul>
+		{#if groupedData[catKey]}
+			<CategorySection
+				{catKey}
+				{catLabel}
+				isOpen={categoryOpen[catKey] ?? true}
+				letterGroups={groupedData[catKey]}
+				letterOpenState={letterOpen}
+				wordData={$wordData[catKey]}
+				onToggleCategory={() => toggleCategory(catKey)}
+				onToggleAllLetters={() => toggleAllLetters(catKey)}
+				onToggleLetter={(letter) => toggleLetter(catKey, letter)}
+				onWordClick={handleWordClick}
+			/>
 		{/if}
 	{/each}
-</ul>
+</div>
 
 <style>
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
-
 	#wordList {
 		flex-grow: 1;
 		overflow-y: auto;
@@ -52,25 +122,23 @@
 		scrollbar-color: #b0b0b0 #e0e0e0;
 	}
 
-	.word-item {
-		padding: 10px;
-		cursor: pointer;
-		border-bottom: 1px solid #ddd;
-	}
-
-	.word-item:hover {
-		background-color: #e0e0e0;
-	}
-
-	.word-btn {
-		background: none;
-		border: none;
-		padding: 0;
-		margin: 0;
-		font: inherit;
-		color: inherit;
-		cursor: pointer;
-		text-align: left;
+	.global-toggle {
+		display: block;
 		width: 100%;
+		background: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		padding: 6px 10px;
+		margin-bottom: 8px;
+		font: inherit;
+		font-size: 0.85em;
+		cursor: pointer;
+		color: #555;
+		text-align: left;
+	}
+
+	.global-toggle:hover {
+		background-color: #e0e0e0;
+		color: #222;
 	}
 </style>
