@@ -115,67 +115,10 @@ body {
   display: block;
 }
 
-/* Conjugation table */
-.conj-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.conj-table th,
-.conj-table td {
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  text-align: center;
-}
-
-.conj-table .conj-tense-header {
-  background-color: #d9edf7;
-  font-size: 1.1em;
-  color: #31708f;
-}
-
-.conj-table .conj-person-header {
-  background-color: #f7f7f9;
-  font-weight: bold;
-}
-
-.conj-table .conj-infinitive {
-  background-color: #fcf8e3;
-}
-
-.conj-table .conj-tense-name {
-  font-weight: bold;
-  text-align: center;
-}
-
-.conj-table .conj-person {
-  text-align: left;
-  font-weight: bold;
-  background-color: #f5f5f5;
-}
-
-.conj-table .conj-singular-header,
-.conj-table .conj-plural-header {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.conj-table .conj-word {
-  color: #337ab7;
-  font-weight: bold;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
     height: auto;
-  }
-
-  .conj-table th,
-  .conj-table td {
-    padding: 6px 8px;
   }
 }
