@@ -9,7 +9,7 @@
 	function renderCell(entry) {
 		const pairs = toPairs(entry);
 		if (!pairs.length) return '';
-		return pairs.filter(([t]) => t).map(([t, p]) => `<span class="conj-word">${addAccent(t, p)}</span>`).join(', ');
+		return pairs.filter(([t]) => t).map(([t, p]) => `<span class="text-ukr-word font-bold">${addAccent(t, p)}</span>`).join(', ');
 	}
 
 	const infPair = $derived(firstPair(details.inf));
@@ -25,46 +25,48 @@
 		const couplInf = $wordData?.verb?.[coupl]?.inf;
 		return couplInf ? renderCell(couplInf) : coupl;
 	});
+
+	const cellBase = 'border border-border px-3 py-2 text-center max-md:px-2 max-md:py-1.5';
 </script>
 
 {#if details.conj}
-	<table class="conj-table">
+	<table class="w-full border-collapse mt-5 font-body">
 		<tbody>
 			<!-- Infinitif -->
-			<tr class="conj-row conj-infinitive">
-				<td class="conj-cell conj-inf-label">Infinitif</td>
-				<td colspan="2" class="conj-cell conj-inf-word">
-					<span class="conj-word">{infDisplay}</span>
+			<tr class="bg-conj-inf-bg">
+				<td class="{cellBase}">Infinitif</td>
+				<td colspan="2" class="{cellBase}">
+					<span class="text-ukr-word font-bold">{infDisplay}</span>
 				</td>
 			</tr>
 
 			{#each tenses as tenseKey}
 				{#if details.conj[tenseKey]}
-					<tr class="conj-row conj-tense-header">
-						<td colspan="3" class="conj-cell conj-tense-name">{labelTenseLabel(tenseKey)}</td>
+					<tr class="bg-conj-tense-bg text-conj-tense-text text-[1.1em]">
+						<td colspan="3" class="{cellBase} font-bold">{labelTenseLabel(tenseKey)}</td>
 					</tr>
 
 					{#if tenseKey === 'pass'}
 						{#each Object.entries(details.conj.pass) as [gKey, forms]}
-							<tr class="conj-row conj-form-row">
-								<td class="conj-cell conj-person">{labelPerson(gKey)}</td>
-								<td class="conj-cell conj-singular">{@html renderCell(forms.s)}</td>
+							<tr>
+								<td class="{cellBase} text-left font-bold bg-row-bg">{labelPerson(gKey)}</td>
+								<td class="{cellBase}">{@html renderCell(forms.s)}</td>
 								{#if gKey === 'm'}
-									<td rowspan="3" class="conj-cell conj-plural">{@html renderCell(forms.pl)}</td>
+									<td rowspan="3" class="{cellBase}">{@html renderCell(forms.pl)}</td>
 								{/if}
 							</tr>
 						{/each}
 					{:else}
-						<tr class="conj-row conj-person-header">
-							<td class="conj-cell conj-person-label">&nbsp;</td>
-							<td class="conj-cell conj-singular-header">sg.</td>
-							<td class="conj-cell conj-plural-header">pl.</td>
+						<tr class="bg-conj-person-bg font-bold">
+							<td class="{cellBase}">&nbsp;</td>
+							<td class="{cellBase} bg-conj-number-bg">sg.</td>
+							<td class="{cellBase} bg-conj-number-bg">pl.</td>
 						</tr>
 						{#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
-							<tr class="conj-row conj-form-row">
-								<td class="conj-cell conj-person">{@html labelPerson(pKey)}</td>
-								<td class="conj-cell conj-singular">{@html renderCell(forms.s)}</td>
-								<td class="conj-cell conj-plural">{@html renderCell(forms.pl)}</td>
+							<tr>
+								<td class="{cellBase} text-left font-bold bg-row-bg">{@html labelPerson(pKey)}</td>
+								<td class="{cellBase}">{@html renderCell(forms.s)}</td>
+								<td class="{cellBase}">{@html renderCell(forms.pl)}</td>
 							</tr>
 						{/each}
 					{/if}
@@ -73,18 +75,18 @@
 
 			<!-- Forme impersonnelle -->
 			{#if impersData}
-				<tr class="conj-row conj-tense-header">
-					<td colspan="3" class="conj-cell conj-tense-name">Forme impersonnelle</td>
+				<tr class="bg-conj-tense-bg text-conj-tense-text text-[1.1em]">
+					<td colspan="3" class="{cellBase} font-bold">Forme impersonnelle</td>
 				</tr>
-				<tr class="conj-row conj-impersonal">
-					<td colspan="3" class="conj-cell conj-impersonal-form">{@html renderCell(impersData)}</td>
+				<tr>
+					<td colspan="3" class="{cellBase}">{@html renderCell(impersData)}</td>
 				</tr>
 			{/if}
 
 			<!-- Couple aspectuel -->
 			{#if coupl}
-				<tr class="conj-row">
-					<td colspan="3" class="conj-cell" style="text-align:right; font-style:italic;">
+				<tr>
+					<td colspan="3" class="{cellBase} text-right italic">
 						Couple aspectuel : {@html couplDisplay}
 					</td>
 				</tr>
