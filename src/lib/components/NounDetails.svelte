@@ -16,7 +16,7 @@
 	<table class="table">
 		<tbody>
 			<tr class="row column-header">
-				<td class="cell">cas</td>
+				<td class="cell"></td>
 				<td class="cell">sg.</td>
 				<td class="cell">pl.</td>
 			</tr>

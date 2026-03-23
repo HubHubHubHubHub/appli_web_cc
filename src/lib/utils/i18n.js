@@ -28,13 +28,13 @@ export const i18n = {
     pl: "pl"
   },
   case: {
-    nomi: "nominatif",
-    gen: "génitif",
-    dat: "datif",
-    acc: "accusatif",
-    ins: "instrumental",
-    loc: "locatif",
-    voc: "vocatif",
+    nomi: "nom.",
+    gen: "gén.",
+    dat: "dat.",
+    acc: "acc.",
+    ins: "ins.",
+    loc: "loc.",
+    voc: "voc.",
   },
   gender: {
     m: "masc.",
@@ -43,9 +43,9 @@ export const i18n = {
     pl: "plur.",
   },
   person: {
-    "1p": "1re pers.",
-    "2p": "2e pers.",
-    "3p": "3e pers.",
+    "1p": "1<sup>re</sup> p.",
+    "2p": "2<sup>e</sup> p.",
+    "3p": "3<sup>e</sup> p.",
     m: "masc.",
     f: "fém.",
     n: "neutre",
