@@ -13,18 +13,18 @@
 </script>
 
 {#if details.cas}
-	<table class="table">
+	<table class="w-full border-collapse mt-2.5 font-body">
 		<tbody>
-			<tr class="row column-header">
-				<td class="cell"></td>
-				<td class="cell">sg.</td>
-				<td class="cell">pl.</td>
+			<tr>
+				<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg"></td>
+				<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg">sg.</td>
+				<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg">pl.</td>
 			</tr>
 			{#each Object.entries(details.cas) as [caseKey, forms]}
-				<tr class="row">
-					<td class="cell header">{labelCase(caseKey)}</td>
-					<td class="cell"><span class="word">{renderCell(forms.s)}</span></td>
-					<td class="cell"><span class="word">{renderCell(forms.pl)}</span></td>
+				<tr>
+					<td class="border border-border px-3 py-2 font-bold text-left bg-row-bg">{labelCase(caseKey)}</td>
+					<td class="border border-border px-3 py-2 text-center"><span class="text-ukr-word font-bold">{renderCell(forms.s)}</span></td>
+					<td class="border border-border px-3 py-2 text-center"><span class="text-ukr-word font-bold">{renderCell(forms.pl)}</span></td>
 				</tr>
 			{/each}
 		</tbody>

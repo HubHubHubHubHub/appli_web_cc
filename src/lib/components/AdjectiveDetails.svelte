@@ -15,20 +15,20 @@
 </script>
 
 {#if details.cas}
-	<table class="table">
+	<table class="w-full border-collapse mt-2.5 font-body">
 		<tbody>
-			<tr class="row column-header">
-				<td class="cell"></td>
+			<tr>
+				<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg"></td>
 				{#each genders as g}
-					<td class="cell">{labelGender(g)}</td>
+					<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg">{labelGender(g)}</td>
 				{/each}
 			</tr>
 			{#each Object.entries(details.cas) as [caseKey, forms]}
-				<tr class="row">
-					<td class="cell header">{labelCase(caseKey)}</td>
+				<tr>
+					<td class="border border-border px-3 py-2 font-bold text-left bg-row-bg">{labelCase(caseKey)}</td>
 					{#each genders as gender}
-						<td class="cell">
-							<span class="word">{renderCell(forms[gender])}</span>
+						<td class="border border-border px-3 py-2 text-center">
+							<span class="text-ukr-word font-bold">{renderCell(forms[gender])}</span>
 						</td>
 					{/each}
 				</tr>
