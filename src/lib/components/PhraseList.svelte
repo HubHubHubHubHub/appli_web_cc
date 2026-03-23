@@ -10,51 +10,20 @@
 	);
 </script>
 
-<div class="search-box">
+<div class="fixed top-5 right-5 bg-white/90 p-2.5 rounded-md shadow-floating z-floating">
 	<input type="text" bind:value={searchQuery} placeholder="Rechercher..." />
 </div>
 
-<ul class="phrase-list">
+<ul class="list-none p-0">
 	{#each Object.entries(filteredPhrases) as [phraseKey, phraseInfo]}
-		<li>
-			<div class="phrase-html">
+		<li class="mb-4">
+			<div class="font-bold">
 				<HtmlContent html={phraseInfo.phrase_html} />
 			</div>
-			<div class="traduction">{phraseInfo.traduction}</div>
+			<div class="italic text-text-muted">{phraseInfo.traduction}</div>
 			{#if phraseInfo.ref}
 				<div class="references">Références : {JSON.stringify(phraseInfo.ref)}</div>
 			{/if}
 		</li>
 	{/each}
 </ul>
-
-<style>
-	.search-box {
-		position: fixed;
-		top: 20px;
-		right: 20px;
-		background-color: rgba(255, 255, 255, 0.9);
-		padding: 10px;
-		border-radius: 5px;
-		z-index: 1000;
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-	}
-
-	.phrase-list {
-		list-style-type: none;
-		padding: 0;
-	}
-
-	.phrase-list li {
-		margin-bottom: 15px;
-	}
-
-	.phrase-html {
-		font-weight: bold;
-	}
-
-	.traduction {
-		font-style: italic;
-		color: #555;
-	}
-</style>
