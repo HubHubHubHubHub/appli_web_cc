@@ -1,18 +1,9 @@
 <script>
 	import { addAccent } from '$lib/utils/accent.js';
 	import { firstPair } from '$lib/utils/parsing.js';
+	import { labelCase, labelGender } from '$lib/utils/i18n.js';
 
 	let { details } = $props();
-
-	const caseNames = {
-		nomi: 'називний',
-		gen: 'родовий',
-		dat: 'давальний',
-		acc: 'знахідний',
-		ins: 'орудний',
-		loc: 'місцевий',
-		voc: 'кличний',
-	};
 
 	const genders = ['m', 'f', 'n', 'pl'];
 
@@ -27,15 +18,14 @@
 	<table class="table">
 		<tbody>
 			<tr class="row column-header">
-				<td class="cell">відмінок</td>
-				<td class="cell" title="чоловічий рід">чол. р.</td>
-				<td class="cell" title="жіночий рід">жін. р.</td>
-				<td class="cell" title="середній рід">сер. р.</td>
-				<td class="cell">множина</td>
+				<td class="cell"></td>
+				{#each genders as g}
+					<td class="cell">{labelGender(g)}</td>
+				{/each}
 			</tr>
 			{#each Object.entries(details.cas) as [caseKey, forms]}
 				<tr class="row">
-					<td class="cell header">{caseNames[caseKey] || caseKey}</td>
+					<td class="cell header">{labelCase(caseKey)}</td>
 					{#each genders as gender}
 						<td class="cell">
 							<span class="word">{renderCell(forms[gender])}</span>
