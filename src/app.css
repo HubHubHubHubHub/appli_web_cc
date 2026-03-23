@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-table: "Inter", system-ui, sans-serif;
+  --font-body: "Times New Roman", serif;
+  --font-table: "Times New Roman", serif;
 
   --color-ukr-blue: #2a7ae2;
   --color-ukr-word: #337ab7;
@@ -41,7 +41,7 @@
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Times New Roman", serif;
   margin: 0;
   padding: 0;
   height: 100vh;
