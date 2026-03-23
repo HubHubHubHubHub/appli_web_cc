@@ -1,4 +1,6 @@
-let Utils = {
+import { dataManager } from "./dataManager.js";
+
+export let Utils = {
   // --- i18n / labels ---------------------------------------------------------
   i18n: {
     category: {
