@@ -12,9 +12,10 @@
 	let { html, disableHover = false } = $props();
 	let container = $state(null);
 
-	// Re-apply accent highlighting when accentEnabled changes or html changes
+	// Re-apply accent highlighting and hover handlers when accentEnabled or html changes
 	$effect(() => {
 		const _ = $accentEnabled; // track reactivity
+		const __ = html; // track html prop changes
 		if (container) {
 			applyAccents(container);
 			if (!disableHover) applyHoverHandlers(container);
