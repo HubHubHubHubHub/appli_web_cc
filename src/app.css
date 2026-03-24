@@ -95,6 +95,19 @@ body {
    Provides horizontal rules instead of zebra stripes. */
 .gram-table {
   border-collapse: collapse;
+  line-height: 1.35;
+}
+
+/* Compact cell padding — overrides daisyUI table defaults */
+.gram-table th,
+.gram-table td {
+  padding: 0.375rem 0.5rem;
+}
+
+/* First column — shrink to content (labels, case names, person) */
+.gram-table th:first-child,
+.gram-table td:first-child {
+  width: 1%;
 }
 
 .gram-table tbody tr {
@@ -158,10 +171,22 @@ body {
   color: var(--color-neutral);
 }
 
-/* Mobile overflow wrapper */
+/* Mobile overflow wrapper + subtle card frame */
 .gram-table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  background: oklch(99.5% 0 0);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 0.25rem 0.375rem;
+}
+
+@media (max-width: 767px) {
+  .gram-table th,
+  .gram-table td {
+    padding: 0.3rem 0.375rem;
+  }
 }
 
 /* Grammar sidebar header — replaces inline styles */
