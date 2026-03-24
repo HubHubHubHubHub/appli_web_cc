@@ -9,4 +9,4 @@
 </script>
 
 <h3>Forme de base</h3>
-<p><span class="text-ukr-word font-bold">{cell}</span></p>
+<p><span class="text-secondary font-bold">{cell}</span></p>

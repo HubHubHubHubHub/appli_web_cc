@@ -8,20 +8,22 @@
 </script>
 
 {#if details.cas}
-	<table class="w-full border-collapse mt-2.5 font-body">
-		<tbody>
+	<table class="table table-zebra mt-2.5 font-body text-[inherit]">
+		<thead>
 			<tr>
-				<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg"></td>
+				<th></th>
 				{#each genders as g}
-					<td class="border border-border px-3 py-2 text-center font-bold bg-header-bg">{labelGender(g)}</td>
+					<th class="text-center">{labelGender(g)}</th>
 				{/each}
 			</tr>
+		</thead>
+		<tbody>
 			{#each Object.entries(details.cas) as [caseKey, forms]}
 				<tr>
-					<td class="border border-border px-3 py-2 font-bold text-left bg-row-bg">{labelCase(caseKey)}</td>
+					<th>{labelCase(caseKey)}</th>
 					{#each genders as gender}
-						<td class="border border-border px-3 py-2 text-center">
-							<span class="text-ukr-word font-bold">{renderCell(forms[gender])}</span>
+						<td class="text-center">
+							<span class="text-secondary font-bold">{renderCell(forms[gender])}</span>
 						</td>
 					{/each}
 				</tr>

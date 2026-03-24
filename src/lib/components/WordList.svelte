@@ -97,7 +97,7 @@
 </script>
 
 <div id="wordList" class="grow overflow-y-auto pr-1.5" style="--global-toggle-height: 38px; scrollbar-width: thin; scrollbar-color: #b0b0b0 #e0e0e0; scrollbar-gutter: stable;">
-	<button type="button" class="block w-full bg-sidebar-bg border border-border rounded px-2.5 py-1.5 mb-0 font-[inherit] text-[0.85em] cursor-pointer text-text-muted text-left sticky top-0 z-[2] hover:bg-hover-bg hover:text-text-dark" onclick={toggleAll}>
+	<button type="button" class="block w-full bg-base-200 border border-base-300 rounded px-2.5 py-1.5 mb-0 font-[inherit] text-[0.85em] cursor-pointer text-neutral text-left sticky top-0 z-[2] hover:bg-base-300 hover:text-base-content" onclick={toggleAll}>
 		{anyExpanded ? '▼ Tout replier' : '▶ Tout déplier'}
 	</button>
 
