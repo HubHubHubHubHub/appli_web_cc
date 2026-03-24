@@ -6,7 +6,7 @@
 	}
 </script>
 
-<div class="fixed bottom-5 right-5 bg-white/90 p-2.5 rounded-md shadow-floating z-floating">
-	<input type="checkbox" id="accent-check" checked={$accentEnabled} onchange={toggle} />
-	<label for="accent-check" class="ml-1.5 font-bold">Accents</label>
+<div class="fixed bottom-5 right-5 bg-base-100/90 p-2.5 rounded-md shadow-floating z-floating flex items-center gap-2">
+	<input type="checkbox" id="accent-check" class="toggle toggle-sm toggle-primary" checked={$accentEnabled} onchange={toggle} />
+	<label for="accent-check" class="font-bold cursor-pointer">Accents</label>
 </div>
