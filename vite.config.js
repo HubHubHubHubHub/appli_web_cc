@@ -14,5 +14,8 @@ export default defineConfig({
 		alias: {
 			$lib: path.resolve(__dirname, './src/lib')
 		}
+	},
+	resolve: {
+		conditions: process.env.VITEST ? ['browser'] : []
 	}
 });
