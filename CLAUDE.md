@@ -73,6 +73,7 @@ Vitest with jsdom. Tests live in `tests/utils/` and import directly from `src/li
 Tailwind CSS v4 via `@tailwindcss/vite` plugin. Design tokens defined in `@theme` block in `src/app.css` (colors, shadows, z-index, fonts). Components use Tailwind utility classes. Font: Times New Roman (required — Inter breaks combining acute rendering on Cyrillic).
 
 Global CSS rules that must stay in `app.css` (not migratable to Tailwind):
+
 - `.ukr`, `.accent`, `.remarque` — referenced from `@html` content, `querySelectorAll`, and JS utilities
 - `.grammar-sidebar table/th/td` — descendant selectors for `@html`-generated tables
 - `.hover-bubble` — created via `document.createElement` in `bubble.js` (shared singleton used by both `UkrSpan` and `HtmlContent`)

@@ -22,12 +22,12 @@ npm install
 
 ## Commandes
 
-| Commande | Description |
-|---|---|
-| `npm run dev` | Serveur de développement avec HMR |
-| `npm run build` | Build statique dans `build/` |
-| `npm run preview` | Prévisualisation du build |
-| `npm run test` | Lancer tous les tests |
+| Commande          | Description                       |
+| ----------------- | --------------------------------- |
+| `npm run dev`     | Serveur de développement avec HMR |
+| `npm run build`   | Build statique dans `build/`      |
+| `npm run preview` | Prévisualisation du build         |
+| `npm run test`    | Lancer tous les tests             |
 
 ## Structure du projet
 
