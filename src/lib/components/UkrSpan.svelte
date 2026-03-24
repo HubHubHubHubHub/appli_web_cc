@@ -104,6 +104,13 @@
 		}
 	}
 
+	function handleKeydown(ev) {
+		if (ev.key === 'Enter' || ev.key === ' ') {
+			ev.preventDefault();
+			handleClick(ev);
+		}
+	}
+
 	function handleClick(ev) {
 		ev.preventDefault();
 		const currentPinned = $pinnedElement;
@@ -130,11 +137,13 @@
 <span
 	bind:this={spanEl}
 	class="ukr"
+	role="button"
+	tabindex="0"
 	data-info={dataInfo}
 	onmouseenter={handleMouseEnter}
 	onmouseleave={handleMouseLeave}
 	onclick={handleClick}
-	style:color={hoverColor !== 'inherit' ? undefined : undefined}
+	onkeydown={handleKeydown}
 >
 	{@html displayHTML}
 </span>
