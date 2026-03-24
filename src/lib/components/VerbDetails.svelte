@@ -86,7 +86,4 @@
 		</table>
 	</div>
 
-	{#if coupl}
-		<p class="gram-note">Couple aspectuel : {@html couplDisplay}</p>
-	{/if}
 {/if}
