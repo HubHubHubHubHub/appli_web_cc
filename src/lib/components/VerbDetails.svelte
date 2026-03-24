@@ -26,71 +26,68 @@
 		return couplInf ? renderCell(couplInf) : coupl;
 	});
 
-	const cellBase = 'px-3 py-2 text-center max-md:px-2 max-md:py-1.5';
+	const cp = 'px-3 py-2 max-md:px-2 max-md:py-1.5';
 </script>
 
 {#if details.conj}
-	<table class="table mt-5 font-body">
-		<tbody>
-			<!-- Infinitif -->
-			<tr class="bg-warning">
-				<td class="{cellBase}">Infinitif</td>
-				<td colspan="2" class="{cellBase}">
-					<span class="text-secondary font-bold">{infDisplay}</span>
-				</td>
-			</tr>
-
-			{#each tenses as tenseKey}
-				{#if details.conj[tenseKey]}
-					<tr class="bg-info text-info-content text-lg">
-						<td colspan="3" class="{cellBase} font-bold">{labelTenseLabel(tenseKey)}</td>
-					</tr>
-
-					{#if tenseKey === 'pass'}
-						{#each Object.entries(details.conj.pass) as [gKey, forms]}
-							<tr>
-								<td class="{cellBase} text-left font-bold bg-base-200">{labelPerson(gKey)}</td>
-								<td class="{cellBase}">{@html renderCell(forms.s)}</td>
-								{#if gKey === 'm'}
-									<td rowspan="3" class="{cellBase}">{@html renderCell(forms.pl)}</td>
-								{/if}
-							</tr>
-						{/each}
-					{:else}
-						<tr class="bg-base-200 font-bold">
-							<td class="{cellBase}">&nbsp;</td>
-							<td class="{cellBase} bg-base-300">sg.</td>
-							<td class="{cellBase} bg-base-300">pl.</td>
-						</tr>
-						{#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
-							<tr>
-								<td class="{cellBase} text-left font-bold bg-base-200">{@html labelPerson(pKey)}</td>
-								<td class="{cellBase}">{@html renderCell(forms.s)}</td>
-								<td class="{cellBase}">{@html renderCell(forms.pl)}</td>
-							</tr>
-						{/each}
-					{/if}
-				{/if}
-			{/each}
-
-			<!-- Forme impersonnelle -->
-			{#if impersData}
-				<tr class="bg-info text-info-content text-lg">
-					<td colspan="3" class="{cellBase} font-bold">Forme impersonnelle</td>
-				</tr>
-				<tr>
-					<td colspan="3" class="{cellBase}">{@html renderCell(impersData)}</td>
-				</tr>
-			{/if}
-
-			<!-- Couple aspectuel -->
-			{#if coupl}
-				<tr>
-					<td colspan="3" class="{cellBase} text-right italic">
-						Couple aspectuel : {@html couplDisplay}
+	<div class="gram-table-wrap mt-5">
+		<table class="table gram-table font-body">
+			<tbody>
+				<!-- Infinitif -->
+				<tr class="gram-section">
+					<td class="{cp} gram-label">Infinitif</td>
+					<td colspan="2" class="{cp} text-center">
+						<span class="text-secondary font-bold">{infDisplay}</span>
 					</td>
 				</tr>
-			{/if}
-		</tbody>
-	</table>
+
+				{#each tenses as tenseKey}
+					{#if details.conj[tenseKey]}
+						<tr class="gram-section">
+							<td colspan="3" class="{cp} text-center text-lg">{labelTenseLabel(tenseKey)}</td>
+						</tr>
+
+						{#if tenseKey === 'pass'}
+							{#each Object.entries(details.conj.pass) as [gKey, forms]}
+								<tr>
+									<td class="{cp} gram-label">{labelPerson(gKey)}</td>
+									<td class="{cp} text-center">{@html renderCell(forms.s)}</td>
+									{#if gKey === 'm'}
+										<td rowspan="3" class="{cp} text-center">{@html renderCell(forms.pl)}</td>
+									{/if}
+								</tr>
+							{/each}
+						{:else}
+							<tr>
+								<td class="{cp}">&nbsp;</td>
+								<td class="{cp} gram-label text-center">sg.</td>
+								<td class="{cp} gram-label text-center">pl.</td>
+							</tr>
+							{#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
+								<tr>
+									<td class="{cp} gram-label">{@html labelPerson(pKey)}</td>
+									<td class="{cp} text-center">{@html renderCell(forms.s)}</td>
+									<td class="{cp} text-center">{@html renderCell(forms.pl)}</td>
+								</tr>
+							{/each}
+						{/if}
+					{/if}
+				{/each}
+
+				<!-- Forme impersonnelle -->
+				{#if impersData}
+					<tr class="gram-section">
+						<td colspan="3" class="{cp} text-center text-lg">Forme impersonnelle</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="{cp} text-center">{@html renderCell(impersData)}</td>
+					</tr>
+				{/if}
+			</tbody>
+		</table>
+	</div>
+
+	{#if coupl}
+		<p class="gram-note">Couple aspectuel : {@html couplDisplay}</p>
+	{/if}
 {/if}
