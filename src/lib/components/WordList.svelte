@@ -8,7 +8,7 @@
 	const categories = {
 		nom: 'Noms',
 		adj: 'Adjectifs',
-		pron: 'Pronoms (déterminants)',
+		pron: 'Pronoms déterminants',
 		verb: 'Verbes',
 		conj: 'Conjonctions',
 		part: 'Particules',

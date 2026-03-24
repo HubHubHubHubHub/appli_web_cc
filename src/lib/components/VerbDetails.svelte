@@ -26,7 +26,6 @@
 		return couplInf ? renderCell(couplInf) : coupl;
 	});
 
-	const cp = 'px-3 py-2 max-md:px-2 max-md:py-1.5';
 </script>
 
 {#if details.conj}
@@ -35,8 +34,8 @@
 			<tbody>
 				<!-- Infinitif -->
 				<tr class="gram-section">
-					<td class="{cp} gram-label">Infinitif</td>
-					<td colspan="2" class="{cp} text-center">
+					<td class="gram-label">Infinitif</td>
+					<td colspan="2" class="text-center">
 						<span class="text-secondary font-bold">{infDisplay}</span>
 					</td>
 				</tr>
@@ -44,30 +43,30 @@
 				{#each tenses as tenseKey}
 					{#if details.conj[tenseKey]}
 						<tr class="gram-section">
-							<td colspan="3" class="{cp} text-center text-lg">{labelTenseLabel(tenseKey)}</td>
+							<td colspan="3" class="text-center text-xl">{labelTenseLabel(tenseKey)}</td>
 						</tr>
 
 						{#if tenseKey === 'pass'}
 							{#each Object.entries(details.conj.pass) as [gKey, forms]}
 								<tr>
-									<td class="{cp} gram-label">{labelPerson(gKey)}</td>
-									<td class="{cp} text-center">{@html renderCell(forms.s)}</td>
+									<td class="gram-label">{labelPerson(gKey)}</td>
+									<td class="text-center">{@html renderCell(forms.s)}</td>
 									{#if gKey === 'm'}
-										<td rowspan="3" class="{cp} text-center">{@html renderCell(forms.pl)}</td>
+										<td rowspan="3" class="text-center">{@html renderCell(forms.pl)}</td>
 									{/if}
 								</tr>
 							{/each}
 						{:else}
 							<tr>
-								<td class="{cp}">&nbsp;</td>
-								<td class="{cp} gram-label text-center">sg.</td>
-								<td class="{cp} gram-label text-center">pl.</td>
+								<td>&nbsp;</td>
+								<td class="gram-label text-center">sg.</td>
+								<td class="gram-label text-center">pl.</td>
 							</tr>
 							{#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
 								<tr>
-									<td class="{cp} gram-label">{@html labelPerson(pKey)}</td>
-									<td class="{cp} text-center">{@html renderCell(forms.s)}</td>
-									<td class="{cp} text-center">{@html renderCell(forms.pl)}</td>
+									<td class="gram-label">{@html labelPerson(pKey)}</td>
+									<td class="text-center">{@html renderCell(forms.s)}</td>
+									<td class="text-center">{@html renderCell(forms.pl)}</td>
 								</tr>
 							{/each}
 						{/if}
@@ -77,10 +76,10 @@
 				<!-- Forme impersonnelle -->
 				{#if impersData}
 					<tr class="gram-section">
-						<td colspan="3" class="{cp} text-center text-lg">Forme impersonnelle</td>
+						<td colspan="3" class="text-center text-xl">Forme impersonnelle</td>
 					</tr>
 					<tr>
-						<td colspan="3" class="{cp} text-center">{@html renderCell(impersData)}</td>
+						<td colspan="3" class="text-center">{@html renderCell(impersData)}</td>
 					</tr>
 				{/if}
 			</tbody>

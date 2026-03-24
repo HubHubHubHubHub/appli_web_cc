@@ -23,7 +23,7 @@
 </script>
 
 <h3>Phrases d'exemple:</h3>
-<ul class="text-sm">
+<ul class="text-base">
 	{#each Object.entries(phrases) as [phraseKey, _phrase]}
 		{@const pd = $phraseData[phraseKey]}
 		{#if pd}

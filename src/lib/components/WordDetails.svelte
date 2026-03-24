@@ -44,9 +44,9 @@
 	});
 </script>
 
-<div class="max-w-3xl mx-auto p-6">
+<div class="max-w-3xl mx-auto p-6 text-[1.2rem]">
 	{#if details}
-		<h2>{displayWord} <span class="badge badge-ghost text-2xs font-normal align-middle ml-2">{displayMeta}</span></h2>
+		<h2 class="text-xl font-semibold">{displayWord} <span class="badge badge-ghost text-xs font-normal align-middle ml-2">{displayMeta}</span></h2>
 
 		{#if $selectedCategory === 'nom'}
 			<NounDetails {details} />

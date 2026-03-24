@@ -13,7 +13,7 @@
 	{#if isOpen}
 		<ul class="list-none p-0 m-0">
 			{#each words as word}
-				<li class="py-2 px-2 pl-6 cursor-pointer border-b border-base-200 hover:bg-base-200">
+				<li class="py-1.5 px-2 pl-5 cursor-pointer border-b border-base-200 hover:bg-base-200">
 					<button type="button" class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full" onclick={() => onWordClick(word)}>
 						<HtmlContent html={wordData[word].base_html} disableHover={true} />
 					</button>

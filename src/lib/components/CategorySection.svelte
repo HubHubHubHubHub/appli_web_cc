@@ -15,7 +15,7 @@
 	} = $props();
 </script>
 
-<div class="pt-3">
+<div class="pt-2.5">
 	<div class="flex items-center justify-between border-b-2 border-base-300 pb-1 sticky top-[var(--global-toggle-height,0px)] z-[1] bg-base-200">
 		<button type="button" class="flex items-center gap-1.5 bg-transparent border-none p-0 m-0 font-[inherit] cursor-pointer text-left text-inherit" onclick={onToggleCategory}>
 			<span class="inline-block text-2xs transition-transform duration-150 ease-in-out" class:rotate-90={isOpen}>▶</span>
