@@ -136,7 +136,7 @@
 		if (coupl) {
 			const couplInf = wd?.verb?.[coupl]?.inf;
 			const couplDisplay = couplInf ? renderCell(couplInf) : coupl;
-			html += `<div style="text-align:right; font-style:italic; margin-top:6px;">Couple aspectuel : ${couplDisplay}</div>`;
+			html += `<div class="gram-note">Couple aspectuel : ${couplDisplay}</div>`;
 		}
 
 		return html;
