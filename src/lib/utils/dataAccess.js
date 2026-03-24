@@ -60,41 +60,34 @@ export function getDataFromJson(wordData, category, infos) {
 }
 
 /**
+ * Retourne l'entrée lemme (forme de citation) pour un mot donné.
+ * @param {object} wordData - L'objet wordData complet
+ * @param {string} category - La catégorie grammaticale
+ * @param {string} word - Le mot (clé dans wordData)
+ */
+export function getLemmaEntry(wordData, category, word) {
+  switch (category) {
+    case 'nom': return wordData?.nom?.[word]?.cas?.nomi?.s;
+    case 'proposs': case 'card': case 'adj': case 'pron':
+      return wordData?.[category]?.[word]?.cas?.nomi?.m;
+    case 'proper': return wordData?.proper?.[word]?.cas?.nomi;
+    case 'verb': return wordData?.verb?.[word]?.inf;
+    case 'adv': return wordData?.adv?.[word]?.base;
+    case 'conj': return wordData?.conj?.[word]?.base;
+    case 'part': return wordData?.part?.[word]?.base;
+    case 'prep': return wordData?.prep?.[word]?.base;
+    default: return null;
+  }
+}
+
+/**
  * Rend la "forme principale" (avec accent) selon la catégorie.
  */
 export function getPrincipalForm(wordData, word, category) {
   try {
-    switch (category) {
-      case "nom": {
-        const entry = wordData?.nom?.[word];
-        const p = firstPair(entry?.cas?.nomi?.s);
-        if (p) return addAccent(p[0], p[1]);
-        break;
-      }
-      case "adj":
-      case "card":
-      case "proposs":
-      case "pron": {
-        const entry = wordData?.[category]?.[word];
-        const p = firstPair(entry?.cas?.nomi?.m);
-        if (p) return addAccent(p[0], p[1]);
-        break;
-      }
-      case "proper": {
-        const entry = wordData?.proper?.[word];
-        const p = firstPair(entry?.cas?.nomi);
-        if (p) return addAccent(p[0], p[1]);
-        break;
-      }
-      case "verb": {
-        const entry = wordData?.verb?.[word];
-        const p = firstPair(entry?.inf);
-        if (p) return addAccent(p[0], p[1]);
-        break;
-      }
-      default:
-        break;
-    }
+    const entry = getLemmaEntry(wordData, category, word);
+    const p = firstPair(entry);
+    if (p) return addAccent(p[0], p[1]);
   } catch (_) {}
   return word || "";
 }

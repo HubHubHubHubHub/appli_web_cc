@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseInfo, toPairs, firstPair, firstText, firstAccent, getVariantIndex } from "../../src/lib/utils/parsing.js";
+import { parseInfo, toPairs, firstPair, firstText, firstAccent, getVariantIndex, renderCellSimple } from "../../src/lib/utils/parsing.js";
 
 // ─── parseInfo ───────────────────────────────────────────────────────────────
 describe("parseInfo", () => {
@@ -92,5 +92,30 @@ describe("getVariantIndex", () => {
 
   it("returns 0 when no var= token present", () => {
     expect(getVariantIndex(["a", "b"])).toBe(0);
+  });
+});
+
+// ─── renderCellSimple ────────────────────────────────────────────────────────
+describe("renderCellSimple", () => {
+  const accent = "\u0301";
+
+  it("returns empty string for null", () => {
+    expect(renderCellSimple(null)).toBe("");
+  });
+
+  it("returns empty string for empty array", () => {
+    expect(renderCellSimple([])).toBe("");
+  });
+
+  it("returns accented form for a simple pair", () => {
+    expect(renderCellSimple(["слово", 3])).toBe("сло" + accent + "во");
+  });
+
+  it("returns unaccented form when position is -1", () => {
+    expect(renderCellSimple(["я", -1])).toBe("я");
+  });
+
+  it("returns empty string for undefined", () => {
+    expect(renderCellSimple(undefined)).toBe("");
   });
 });
