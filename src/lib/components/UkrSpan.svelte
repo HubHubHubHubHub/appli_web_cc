@@ -2,7 +2,7 @@
 	import { accentEnabled, pinnedElement, grammarTableData } from '$lib/stores/uiStore.js';
 	import { wordData } from '$lib/stores/dataStore.js';
 	import { parseInfo, firstPair, getVariantIndex } from '$lib/utils/parsing.js';
-	import { getDataFromJson, getPrincipalForm } from '$lib/utils/dataAccess.js';
+	import { getDataFromJson, getPrincipalForm, getLemmaEntry } from '$lib/utils/dataAccess.js';
 	import { addAccent, highlightLetter } from '$lib/utils/accent.js';
 	import { labelCategory, labelTense, labelNumber } from '$lib/utils/i18n.js';
 	import { classesToColors } from '$lib/utils/colors.js';
@@ -69,7 +69,7 @@
 		}
 
 		const variantIndex = getVariantIndex(tokens);
-		let lemmaEntry = getLemmaEntry(wd);
+		const lemmaEntry = getLemmaEntry(wd, category, word);
 		const pair = firstPair(lemmaEntry, variantIndex);
 
 		if (pair) {
@@ -78,20 +78,6 @@
 			return `<strong>${accented}</strong>${filtered.length ? ' &nbsp;<em>' + filtered.join(', ') + '</em>' : ''}`;
 		}
 		return filtered.length ? `<em>${filtered.join(', ')}</em>` : '';
-	}
-
-	function getLemmaEntry(wd) {
-		switch (category) {
-			case 'nom': return wd?.nom?.[word]?.cas?.nomi?.s;
-			case 'proposs': case 'card': case 'adj': case 'pron':
-				return wd?.[category]?.[word]?.cas?.nomi?.m;
-			case 'proper': return wd?.proper?.[word]?.cas?.nomi;
-			case 'verb': return wd?.verb?.[word]?.inf;
-			case 'adv': return wd?.adv?.[word]?.base;
-			case 'conj': return wd?.conj?.[word]?.base;
-			case 'part': return wd?.part?.[word]?.base;
-			default: return null;
-		}
 	}
 
 	function buildGrammarData() {

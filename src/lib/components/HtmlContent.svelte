@@ -3,7 +3,7 @@
 	import { wordData } from '$lib/stores/dataStore.js';
 	import { accentEnabled, pinnedElement, grammarTableData } from '$lib/stores/uiStore.js';
 	import { parseInfo, firstPair, getVariantIndex } from '$lib/utils/parsing.js';
-	import { getDataFromJson, getPrincipalForm } from '$lib/utils/dataAccess.js';
+	import { getDataFromJson, getPrincipalForm, getLemmaEntry } from '$lib/utils/dataAccess.js';
 	import { addAccent, highlightLetter } from '$lib/utils/accent.js';
 	import { labelCategory, labelTense, labelNumber } from '$lib/utils/i18n.js';
 	import { classesToColors } from '$lib/utils/colors.js';
@@ -133,17 +133,7 @@
 		}
 
 		const variantIndex = getVariantIndex(dataInfo);
-		let lemmaEntry = null;
-		switch (category) {
-			case 'nom': lemmaEntry = wd?.nom?.[w]?.cas?.nomi?.s; break;
-			case 'proposs': case 'card': case 'adj': case 'pron':
-				lemmaEntry = wd?.[category]?.[w]?.cas?.nomi?.m; break;
-			case 'proper': lemmaEntry = wd?.proper?.[w]?.cas?.nomi; break;
-			case 'verb': lemmaEntry = wd?.verb?.[w]?.inf; break;
-			case 'adv': lemmaEntry = wd?.adv?.[w]?.base; break;
-			case 'conj': lemmaEntry = wd?.conj?.[w]?.base; break;
-			case 'part': lemmaEntry = wd?.part?.[w]?.base; break;
-		}
+		const lemmaEntry = getLemmaEntry(wd, category, w);
 
 		const pair = firstPair(lemmaEntry, variantIndex);
 		if (pair) {
