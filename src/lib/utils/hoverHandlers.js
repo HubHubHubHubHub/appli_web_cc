@@ -1,5 +1,6 @@
 import { parseInfo } from './parsing.js';
 import { buildBubbleHTML, getHoverColor, getOrCreateBubble, positionBubble, hideBubble } from './bubble.js';
+import { nextPinId } from '$lib/stores/uiStore.svelte.js';
 
 /**
  * Attache les gestionnaires hover/click/keyboard sur les éléments `.ukr` d'un conteneur.
@@ -7,8 +8,8 @@ import { buildBubbleHTML, getHoverColor, getOrCreateBubble, positionBubble, hide
  * @param {HTMLElement} el - Conteneur DOM
  * @param {object} deps - Dépendances réactives
  * @param {() => object} deps.getWordData - Getter pour wordData
- * @param {() => HTMLElement|null} deps.getPinnedElement - Getter pour l'élément pinné
- * @param {(val: HTMLElement|null) => void} deps.setPinnedElement - Setter pour l'élément pinné
+ * @param {() => string|null} deps.getPinnedElement - Getter pour l'ID de l'élément pinné
+ * @param {(val: string|null) => void} deps.setPinnedElement - Setter pour l'ID de l'élément pinné
  * @param {(val: object|null) => void} deps.setGrammarTableData - Setter pour les données de la table
  * @returns {Array<() => void>} Fonctions de nettoyage pour retirer les listeners
  */
@@ -23,6 +24,7 @@ export function applyHoverHandlers(el, deps) {
 		word.setAttribute('role', 'button');
 		word.setAttribute('tabindex', '0');
 
+		const pinId = nextPinId();
 		const dataInfo = parseInfo(raw);
 		const [w, category, ...infos] = dataInfo;
 		const hoverColor = getHoverColor(dataInfo);
@@ -53,13 +55,13 @@ export function applyHoverHandlers(el, deps) {
 
 		function onClick(ev) {
 			ev.preventDefault();
-			if (deps.getPinnedElement() === word) {
+			if (deps.getPinnedElement() === pinId) {
 				deps.setPinnedElement(null);
 				deps.setGrammarTableData(null);
 				return;
 			}
 			deps.setGrammarTableData({ word: w, category, infos });
-			deps.setPinnedElement(word);
+			deps.setPinnedElement(pinId);
 		}
 
 		function onKeydown(ev) {

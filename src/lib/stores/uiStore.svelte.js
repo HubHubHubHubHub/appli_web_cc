@@ -1,3 +1,7 @@
+let pinIdCounter = 0;
+/** Génère un identifiant unique pour le pin d'un élément .ukr */
+export function nextPinId() { return `pin-${++pinIdCounter}`; }
+
 export const uiStore = createUIStore();
 
 function createUIStore() {
