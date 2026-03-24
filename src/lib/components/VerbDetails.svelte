@@ -1,7 +1,7 @@
 <script>
 	import { addAccent } from '$lib/utils/accent.js';
 	import { toPairs, firstPair } from '$lib/utils/parsing.js';
-	import { wordData } from '$lib/stores/dataStore.js';
+	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import { labelTenseLabel, labelPerson } from '$lib/utils/i18n.js';
 
 	let { details } = $props();
@@ -22,7 +22,7 @@
 	const coupl = $derived((details.coupl || '').trim());
 	const couplDisplay = $derived.by(() => {
 		if (!coupl) return '';
-		const couplInf = $wordData?.verb?.[coupl]?.inf;
+		const couplInf = dataStore.wordData?.verb?.[coupl]?.inf;
 		return couplInf ? renderCell(couplInf) : coupl;
 	});
 

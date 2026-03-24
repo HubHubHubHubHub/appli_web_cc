@@ -1,39 +1,25 @@
 <script>
-	import { accentEnabled, pinnedElement, grammarTableData } from '$lib/stores/uiStore.js';
-	import { wordData } from '$lib/stores/dataStore.js';
+	import { uiStore } from '$lib/stores/uiStore.svelte.js';
+	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import { parseInfo, firstPair, getVariantIndex } from '$lib/utils/parsing.js';
-	import { getDataFromJson, getPrincipalForm, getLemmaEntry } from '$lib/utils/dataAccess.js';
-	import { addAccent, highlightLetter } from '$lib/utils/accent.js';
-	import { labelCategory, labelTense, labelNumber } from '$lib/utils/i18n.js';
-	import { classesToColors } from '$lib/utils/colors.js';
-	import { get } from 'svelte/store';
+	import { getDataFromJson } from '$lib/utils/dataAccess.js';
+	import { highlightLetter } from '$lib/utils/accent.js';
+	import { buildBubbleHTML, getHoverColor, getOrCreateBubble, positionBubble, hideBubble } from '$lib/utils/bubble.js';
 
 	let { dataInfo, text } = $props();
 
 	let spanEl = $state(null);
-	let showBubble = $state(false);
-	let bubbleHTML = $state('');
-	let bubbleStyle = $state('');
-	let hoverColor = $state('inherit');
 
 	const tokens = $derived(parseInfo(dataInfo));
 	const word = $derived(tokens[0]);
 	const category = $derived(tokens[1]);
-
-	// Compute hover color
-	$effect(() => {
-		let color = 'inherit';
-		for (const [className, c] of Object.entries(classesToColors)) {
-			if (tokens.includes(className)) { color = c; break; }
-		}
-		hoverColor = color;
-	});
+	const hoverColor = $derived(getHoverColor(tokens));
 
 	// Compute displayed text (with or without accent)
 	const displayHTML = $derived.by(() => {
-		if (!$accentEnabled) return text;
+		if (!uiStore.accentEnabled) return text;
 
-		const wd = $wordData;
+		const wd = dataStore.wordData;
 		const infos = [word, ...tokens.slice(2)];
 		const variantIndex = getVariantIndex(tokens);
 		const entry = getDataFromJson(wd, category, infos);
@@ -48,59 +34,28 @@
 		return text;
 	});
 
-	function buildBubbleHTML() {
-		const wd = $wordData;
-		const infos = tokens.slice(1);
-		const filtered = infos.filter(t => t !== 'cas' && t !== 'base');
-
-		// Insert gender for nouns
-		if (category === 'nom') {
-			const g = wd?.nom?.[word]?.genre;
-			if (g) filtered.splice(1, 0, g);
-		}
-
-		// i18n mapping
-		if (filtered.length) {
-			filtered[0] = labelCategory(filtered[0]);
-			for (let i = 1; i < filtered.length; i++) {
-				filtered[i] = labelTense(filtered[i]);
-				filtered[i] = labelNumber(filtered[i]);
-			}
-		}
-
-		const variantIndex = getVariantIndex(tokens);
-		const lemmaEntry = getLemmaEntry(wd, category, word);
-		const pair = firstPair(lemmaEntry, variantIndex);
-
-		if (pair) {
-			const [mot, pos] = pair;
-			const accented = addAccent(mot, pos);
-			return `<strong>${accented}</strong>${filtered.length ? ' &nbsp;<em>' + filtered.join(', ') + '</em>' : ''}`;
-		}
-		return filtered.length ? `<em>${filtered.join(', ')}</em>` : '';
-	}
-
 	function buildGrammarData() {
-		const wd = $wordData;
 		const infos = tokens.slice(2);
-		return { word, category, infos, wordData: wd };
+		return { word, category, infos };
 	}
 
 	function handleMouseEnter() {
-		if ($pinnedElement) return;
-		const html = buildBubbleHTML();
+		if (uiStore.pinnedElement) return;
+		const wd = dataStore.wordData;
+		const html = buildBubbleHTML(wd, word, category, tokens);
 		if (html && html.trim()) {
-			showBubble = true;
-			bubbleHTML = html;
-			positionBubble();
+			const bubble = getOrCreateBubble();
+			bubble.innerHTML = html;
+			bubble.style.display = 'block';
+			positionBubble(bubble, spanEl);
 		}
-		grammarTableData.set(buildGrammarData());
+		uiStore.grammarTableData = buildGrammarData();
 	}
 
 	function handleMouseLeave() {
-		showBubble = false;
-		if (!$pinnedElement) {
-			grammarTableData.set(null);
+		hideBubble();
+		if (!uiStore.pinnedElement) {
+			uiStore.grammarTableData = null;
 		}
 	}
 
@@ -113,24 +68,14 @@
 
 	function handleClick(ev) {
 		ev.preventDefault();
-		const currentPinned = $pinnedElement;
-
-		if (currentPinned === spanEl) {
-			pinnedElement.set(null);
-			grammarTableData.set(null);
+		if (uiStore.pinnedElement === spanEl) {
+			uiStore.pinnedElement = null;
+			uiStore.grammarTableData = null;
 			return;
 		}
 
-		grammarTableData.set(buildGrammarData());
-		pinnedElement.set(spanEl);
-	}
-
-	function positionBubble() {
-		if (!spanEl) return;
-		const rect = spanEl.getBoundingClientRect();
-		const top = window.scrollY + rect.top - 40;
-		const left = window.scrollX + rect.left + rect.width / 2;
-		bubbleStyle = `top: ${Math.max(window.scrollY + 4, top)}px; left: ${Math.max(4, left)}px; transform: translateX(-50%);`;
+		uiStore.grammarTableData = buildGrammarData();
+		uiStore.pinnedElement = spanEl;
 	}
 </script>
 
@@ -147,9 +92,3 @@
 >
 	{@html displayHTML}
 </span>
-
-{#if showBubble}
-	<div class="absolute z-hover-bubble max-w-[360px] px-2 py-1.5 rounded-md shadow-bubble bg-white/[.98] border border-black/10 text-sm leading-[1.25] pointer-events-none" style={bubbleStyle}>
-		{@html bubbleHTML}
-	</div>
-{/if}

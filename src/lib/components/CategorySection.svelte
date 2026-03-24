@@ -7,11 +7,9 @@
 		isOpen,
 		letterGroups,
 		letterOpenState,
-		wordData,
 		onToggleCategory,
 		onToggleAllLetters,
 		onToggleLetter,
-		onWordClick,
 	} = $props();
 </script>
 
@@ -34,9 +32,8 @@
 				{letter}
 				{words}
 				isOpen={letterOpenState[`${catKey}:${letter}`] ?? false}
-				{wordData}
+				{catKey}
 				onToggle={() => onToggleLetter(letter)}
-				onWordClick={(word) => onWordClick(word, catKey)}
 			/>
 		{/each}
 	{/if}

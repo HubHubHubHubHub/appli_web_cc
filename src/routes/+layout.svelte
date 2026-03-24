@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import { wordData, phraseData } from '$lib/stores/dataStore.js';
+	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import GrammarSidebar from '$lib/components/GrammarSidebar.svelte';
 	import AccentCheckbox from '$lib/components/AccentCheckbox.svelte';
 
@@ -8,8 +8,8 @@
 
 	// Initialiser les stores avec les données du serveur (réactif)
 	$effect(() => {
-		wordData.set(data.wordData);
-		phraseData.set(data.phraseData);
+		dataStore.wordData = data.wordData;
+		dataStore.phraseData = data.phraseData;
 	});
 </script>
 

@@ -22,7 +22,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 
 ### Data Loading
 
-`+layout.server.js` reads both JSON files at build time (prerender). `+layout.svelte` initializes two global Svelte stores (`wordData`, `phraseData` in `src/lib/stores/dataStore.js`). All components read from these stores reactively.
+`+layout.server.js` reads both JSON files at build time (prerender). `+layout.svelte` initializes two rune-based stores (`dataStore.wordData`, `dataStore.phraseData` in `src/lib/stores/dataStore.svelte.js`). All components read from these stores reactively via property access (no `$store` syntax or `get()`).
 
 ### Routes
 
@@ -37,9 +37,12 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 
 Components use runes (`$state`, `$derived`, `$effect`, `$props`). In `$effect` blocks, all reactive values must be read inside the effect body to be tracked — assigning to a local variable is the pattern used (see `HtmlContent.svelte`: `const __ = html;` to track prop changes).
 
-### UI Stores (`src/lib/stores/uiStore.js`)
+### Stores (Svelte 5 runes)
 
-`selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement` — drive all UI state.
+- `src/lib/stores/uiStore.svelte.js` — `uiStore` object with reactive properties: `selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement`
+- `src/lib/stores/dataStore.svelte.js` — `dataStore` object with reactive properties: `wordData`, `phraseData`
+
+Access pattern: `uiStore.selectedWord` (read) / `uiStore.selectedWord = value` (write). No `writable()`, no `$store`, no `get()`.
 
 ### Data Format
 
@@ -59,6 +62,7 @@ Categories: `nom`, `verb`, `adj`, `proposs`, `pron`, `card`, `proper`, `adv`, `c
 - `i18n.js` — French labels for grammatical categories, cases, tenses
 - `colors.js` — grammatical case → RGB color mapping
 - `phrases.js` — phrase filtering logic
+- `bubble.js` — shared hover bubble logic (`buildBubbleHTML`, `positionBubble`, `getOrCreateBubble`, `hideBubble`, `getHoverColor`)
 
 ### Tests
 
@@ -71,6 +75,6 @@ Tailwind CSS v4 via `@tailwindcss/vite` plugin. Design tokens defined in `@theme
 Global CSS rules that must stay in `app.css` (not migratable to Tailwind):
 - `.ukr`, `.accent`, `.remarque` — referenced from `@html` content, `querySelectorAll`, and JS utilities
 - `.grammar-sidebar table/th/td` — descendant selectors for `@html`-generated tables
-- `.hover-bubble` — created via `document.createElement` in `HtmlContent.svelte`
+- `.hover-bubble` — created via `document.createElement` in `bubble.js` (shared singleton used by both `UkrSpan` and `HtmlContent`)
 
 Responsive breakpoint at 768px (`max-md:` prefix in Tailwind).
