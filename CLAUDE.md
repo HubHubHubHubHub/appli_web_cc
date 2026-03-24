@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5, deployed as a static site. UI language is French.
+Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes), deployed as a static site. UI language is French. Requires Node >= 20 (Tailwind v4 native binding).
 
 ## Commands
 
@@ -18,7 +18,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5, deploye
 
 ### Data Pipeline
 
-`outil_python/` scripts generate `static/data.json` and `static/phrases.json` from linguistic source data. These JSON files are the app's entire dataset — there is no backend or API.
+`outil_python/` scripts ADD entries to `static/data.json` and `static/phrases.json` — they don't regenerate these files. Both can be edited directly. These JSON files are the app's entire dataset — there is no backend or API.
 
 ### Data Loading
 
@@ -33,15 +33,21 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5, deploye
 
 `+layout.svelte` renders `GrammarSidebar` (fixed right panel showing pinned/hovered grammar) and `AccentCheckbox` (toggle accent marks). Page components compose detail components (`NounDetails`, `VerbDetails`, `AdjectiveDetails`, `BaseDetails`) based on word category. `UkrSpan` and `HtmlContent` handle interactive Ukrainian text (hover/click triggers grammar sidebar).
 
+### Svelte 5 Reactivity
+
+Components use runes (`$state`, `$derived`, `$effect`, `$props`). In `$effect` blocks, all reactive values must be read inside the effect body to be tracked — assigning to a local variable is the pattern used (see `HtmlContent.svelte`: `const __ = html;` to track prop changes).
+
 ### UI Stores (`src/lib/stores/uiStore.js`)
 
 `selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement` — drive all UI state.
 
 ### Data Format
 
-Words use `[text, accentPosition]` pairs where accent position is 1-based. Variants are arrays of pairs: `[[form1, pos1], [form2, pos2]]`. Accent rendering adds combining acute (U+0301) after the character at the given position.
+Words use `[text, accentPosition]` pairs where accent position is 1-based. Special values: `-1` (no accent/single syllable), `-2` (unknown accent). Variants are inline arrays of pairs: `["form1", pos1, "form2", pos2]`. Accent rendering adds combining acute (U+0301) after the character at the given position. Accent positions must always point to a Ukrainian vowel (`аеєиіїоуюя`).
 
 Categories: `nom`, `verb`, `adj`, `proposs`, `pron`, `card`, `proper`, `adv`, `conj`, `part`, `prep` — each with different declension/conjugation structures.
+
+`data-info` attributes use semicolon-separated tokens: `"lemma;category;type;case;number"` (e.g., `"балкон;nom;cas;nomi;s"`). Valid cases: `nomi`, `gen`, `dat`, `acc`, `ins`, `loc`, `voc`. Valid tenses: `pres`, `fut`, `imp`, `pass`.
 
 ### Utils (`src/lib/utils/`)
 
@@ -60,4 +66,11 @@ Vitest with jsdom. Tests live in `tests/utils/` and import directly from `src/li
 
 ### CSS
 
-Global styles in `src/app.css`. `.ukr` spans are interactive (blue, clickable). `.accent` letters are crimson. Grammar sidebar is fixed-right with z-index 2000. Responsive breakpoint at 768px.
+Tailwind CSS v4 via `@tailwindcss/vite` plugin. Design tokens defined in `@theme` block in `src/app.css` (colors, shadows, z-index, fonts). Components use Tailwind utility classes. Font: Times New Roman (required — Inter breaks combining acute rendering on Cyrillic).
+
+Global CSS rules that must stay in `app.css` (not migratable to Tailwind):
+- `.ukr`, `.accent`, `.remarque` — referenced from `@html` content, `querySelectorAll`, and JS utilities
+- `.grammar-sidebar table/th/td` — descendant selectors for `@html`-generated tables
+- `.hover-bubble` — created via `document.createElement` in `HtmlContent.svelte`
+
+Responsive breakpoint at 768px (`max-md:` prefix in Tailwind).
