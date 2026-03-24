@@ -15,7 +15,7 @@ export const i18n = {
     pres: "prés.",
     pass: "pass.",
     imp: "imp.",
-    inf: "inf."
+    inf: "inf.",
   },
   tenseLabel: {
     fut: "Futur",
@@ -25,7 +25,7 @@ export const i18n = {
   },
   number: {
     s: "sg",
-    pl: "pl"
+    pl: "pl",
   },
   case: {
     nomi: "nom.",
@@ -53,16 +53,30 @@ export const i18n = {
 };
 
 /** @param {string} cat - Clé catégorie @returns {string} Label français */
-export function labelCategory(cat) { return i18n.category[cat] || cat; }
+export function labelCategory(cat) {
+  return i18n.category[cat] || cat;
+}
 /** @param {string} t - Clé temps @returns {string} Abréviation française */
-export function labelTense(t) { return i18n.tense[t] || t; }
+export function labelTense(t) {
+  return i18n.tense[t] || t;
+}
 /** @param {string} t - Clé temps @returns {string} Label complet français */
-export function labelTenseLabel(t) { return i18n.tenseLabel[t] || t; }
+export function labelTenseLabel(t) {
+  return i18n.tenseLabel[t] || t;
+}
 /** @param {string} n - Clé nombre (s/pl) @returns {string} Abréviation française */
-export function labelNumber(n) { return i18n.number[n] || n; }
+export function labelNumber(n) {
+  return i18n.number[n] || n;
+}
 /** @param {string} c - Clé cas @returns {string} Abréviation française */
-export function labelCase(c) { return i18n.case[c] || c; }
+export function labelCase(c) {
+  return i18n.case[c] || c;
+}
 /** @param {string} g - Clé genre @returns {string} Label français */
-export function labelGender(g) { return i18n.gender[g] || g; }
+export function labelGender(g) {
+  return i18n.gender[g] || g;
+}
 /** @param {string} p - Clé personne @returns {string} Label français (HTML) */
-export function labelPerson(p) { return i18n.person[p] || p; }
+export function labelPerson(p) {
+  return i18n.person[p] || p;
+}

@@ -3,7 +3,7 @@ import { generateVerbForms } from "../../src/lib/utils/gramFunc.js";
 
 const mockWordData = {
   verb: {
-    "читати": {
+    читати: {
       inf: ["читати", 3],
       conj: {
         pres: {

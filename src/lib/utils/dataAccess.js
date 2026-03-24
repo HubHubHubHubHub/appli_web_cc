@@ -1,5 +1,5 @@
-import { addAccent } from './accent.js';
-import { firstPair } from './parsing.js';
+import { addAccent } from "./accent.js";
+import { firstPair } from "./parsing.js";
 
 /**
  * Récupère les données depuis le JSON pour un mot donné.
@@ -35,8 +35,7 @@ export function getDataFromJson(wordData, category, infos) {
       const [word, tag, tense, person, number] = infos;
       if (tag === "inf") return wordData?.verb?.[word]?.inf || null;
       if (tag === "imper") return wordData?.verb?.[word]?.imper?.[tense] || null;
-      if (tag === "conj")
-        return wordData?.verb?.[word]?.conj?.[tense]?.[person]?.[number] || null;
+      if (tag === "conj") return wordData?.verb?.[word]?.conj?.[tense]?.[person]?.[number] || null;
       return null;
     }
     case "adv": {
@@ -67,16 +66,27 @@ export function getDataFromJson(wordData, category, infos) {
  */
 export function getLemmaEntry(wordData, category, word) {
   switch (category) {
-    case 'nom': return wordData?.nom?.[word]?.cas?.nomi?.s;
-    case 'proposs': case 'card': case 'adj': case 'pron':
+    case "nom":
+      return wordData?.nom?.[word]?.cas?.nomi?.s;
+    case "proposs":
+    case "card":
+    case "adj":
+    case "pron":
       return wordData?.[category]?.[word]?.cas?.nomi?.m;
-    case 'proper': return wordData?.proper?.[word]?.cas?.nomi;
-    case 'verb': return wordData?.verb?.[word]?.inf;
-    case 'adv': return wordData?.adv?.[word]?.base;
-    case 'conj': return wordData?.conj?.[word]?.base;
-    case 'part': return wordData?.part?.[word]?.base;
-    case 'prep': return wordData?.prep?.[word]?.base;
-    default: return null;
+    case "proper":
+      return wordData?.proper?.[word]?.cas?.nomi;
+    case "verb":
+      return wordData?.verb?.[word]?.inf;
+    case "adv":
+      return wordData?.adv?.[word]?.base;
+    case "conj":
+      return wordData?.conj?.[word]?.base;
+    case "part":
+      return wordData?.part?.[word]?.base;
+    case "prep":
+      return wordData?.prep?.[word]?.base;
+    default:
+      return null;
   }
 }
 

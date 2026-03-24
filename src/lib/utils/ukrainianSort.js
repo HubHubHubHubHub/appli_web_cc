@@ -3,21 +3,50 @@
  */
 
 export const UK_ALPHABET = [
-	'А', 'Б', 'В', 'Г', 'Ґ', 'Д', 'Е', 'Є', 'Ж', 'З',
-	'И', 'І', 'Ї', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П',
-	'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ',
-	'Ь', 'Ю', 'Я',
+  "А",
+  "Б",
+  "В",
+  "Г",
+  "Ґ",
+  "Д",
+  "Е",
+  "Є",
+  "Ж",
+  "З",
+  "И",
+  "І",
+  "Ї",
+  "Й",
+  "К",
+  "Л",
+  "М",
+  "Н",
+  "О",
+  "П",
+  "Р",
+  "С",
+  "Т",
+  "У",
+  "Ф",
+  "Х",
+  "Ц",
+  "Ч",
+  "Ш",
+  "Щ",
+  "Ь",
+  "Ю",
+  "Я",
 ];
 
 const letterRank = new Map();
 for (let i = 0; i < UK_ALPHABET.length; i++) {
-	letterRank.set(UK_ALPHABET[i], i);
+  letterRank.set(UK_ALPHABET[i], i);
 }
 
 function charRank(ch) {
-	const upper = ch.toUpperCase();
-	const rank = letterRank.get(upper);
-	return rank !== undefined ? rank : 1000 + upper.codePointAt(0);
+  const upper = ch.toUpperCase();
+  const rank = letterRank.get(upper);
+  return rank !== undefined ? rank : 1000 + upper.codePointAt(0);
 }
 
 /**
@@ -25,13 +54,13 @@ function charRank(ch) {
  * Case-insensitive.
  */
 export function compareUkrainian(a, b) {
-	const len = Math.min(a.length, b.length);
-	for (let i = 0; i < len; i++) {
-		const ra = charRank(a[i]);
-		const rb = charRank(b[i]);
-		if (ra !== rb) return ra - rb;
-	}
-	return a.length - b.length;
+  const len = Math.min(a.length, b.length);
+  for (let i = 0; i < len; i++) {
+    const ra = charRank(a[i]);
+    const rb = charRank(b[i]);
+    if (ra !== rb) return ra - rb;
+  }
+  return a.length - b.length;
 }
 
 /**
@@ -41,34 +70,34 @@ export function compareUkrainian(a, b) {
  * Letters with no entries are omitted.
  */
 export function groupByFirstLetter(wordKeys) {
-	const groups = new Map();
+  const groups = new Map();
 
-	for (const word of wordKeys) {
-		const letter = word[0].toUpperCase();
-		if (!groups.has(letter)) {
-			groups.set(letter, []);
-		}
-		groups.get(letter).push(word);
-	}
+  for (const word of wordKeys) {
+    const letter = word[0].toUpperCase();
+    if (!groups.has(letter)) {
+      groups.set(letter, []);
+    }
+    groups.get(letter).push(word);
+  }
 
-	// Sort words within each group
-	for (const words of groups.values()) {
-		words.sort(compareUkrainian);
-	}
+  // Sort words within each group
+  for (const words of groups.values()) {
+    words.sort(compareUkrainian);
+  }
 
-	// Rebuild Map in Ukrainian alphabet order
-	const ordered = new Map();
-	for (const letter of UK_ALPHABET) {
-		if (groups.has(letter)) {
-			ordered.set(letter, groups.get(letter));
-		}
-	}
-	// Add any letters not in UK_ALPHABET at the end
-	for (const [letter, words] of groups) {
-		if (!ordered.has(letter)) {
-			ordered.set(letter, words);
-		}
-	}
+  // Rebuild Map in Ukrainian alphabet order
+  const ordered = new Map();
+  for (const letter of UK_ALPHABET) {
+    if (groups.has(letter)) {
+      ordered.set(letter, groups.get(letter));
+    }
+  }
+  // Add any letters not in UK_ALPHABET at the end
+  for (const [letter, words] of groups) {
+    if (!ordered.has(letter)) {
+      ordered.set(letter, words);
+    }
+  }
 
-	return ordered;
+  return ordered;
 }

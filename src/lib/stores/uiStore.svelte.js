@@ -1,30 +1,52 @@
 let pinIdCounter = 0;
 /** Génère un identifiant unique pour le pin d'un élément .ukr */
-export function nextPinId() { return `pin-${++pinIdCounter}`; }
+export function nextPinId() {
+  return `pin-${++pinIdCounter}`;
+}
 
 export const uiStore = createUIStore();
 
 function createUIStore() {
-	let pinnedElement = $state(null);
-	let accentEnabled = $state(true);
-	let selectedWord = $state(null);
-	let selectedCategory = $state(null);
-	let grammarTableData = $state(null);
+  let pinnedElement = $state(null);
+  let accentEnabled = $state(true);
+  let selectedWord = $state(null);
+  let selectedCategory = $state(null);
+  let grammarTableData = $state(null);
 
-	return {
-		get pinnedElement() { return pinnedElement; },
-		set pinnedElement(v) { pinnedElement = v; },
+  return {
+    get pinnedElement() {
+      return pinnedElement;
+    },
+    set pinnedElement(v) {
+      pinnedElement = v;
+    },
 
-		get accentEnabled() { return accentEnabled; },
-		set accentEnabled(v) { accentEnabled = v; },
+    get accentEnabled() {
+      return accentEnabled;
+    },
+    set accentEnabled(v) {
+      accentEnabled = v;
+    },
 
-		get selectedWord() { return selectedWord; },
-		set selectedWord(v) { selectedWord = v; },
+    get selectedWord() {
+      return selectedWord;
+    },
+    set selectedWord(v) {
+      selectedWord = v;
+    },
 
-		get selectedCategory() { return selectedCategory; },
-		set selectedCategory(v) { selectedCategory = v; },
+    get selectedCategory() {
+      return selectedCategory;
+    },
+    set selectedCategory(v) {
+      selectedCategory = v;
+    },
 
-		get grammarTableData() { return grammarTableData; },
-		set grammarTableData(v) { grammarTableData = v; },
-	};
+    get grammarTableData() {
+      return grammarTableData;
+    },
+    set grammarTableData(v) {
+      grammarTableData = v;
+    },
+  };
 }

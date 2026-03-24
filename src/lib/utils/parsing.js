@@ -1,4 +1,4 @@
-import { addAccent } from './accent.js';
+import { addAccent } from "./accent.js";
 
 /**
  * Découpe une chaîne data-info en tokens séparés par des points-virgules.
@@ -36,7 +36,8 @@ export function toPairs(entry) {
   ) {
     const out = [];
     for (let i = 0; i + 1 < entry.length; i += 2) {
-      const f = entry[i], p = entry[i + 1];
+      const f = entry[i],
+        p = entry[i + 1];
       if (typeof f === "string" && Number.isInteger(p)) out.push([f, p]);
     }
     if (out.length) return out;
@@ -44,10 +45,10 @@ export function toPairs(entry) {
 
   // ancien format verbe (ex: ["читаєм","читаємо",4]) → partager même accent
   if (Array.isArray(entry)) {
-    const lastNum = [...entry].reverse().find(v => Number.isInteger(v));
-    const forms = entry.filter(v => typeof v === "string");
+    const lastNum = [...entry].reverse().find((v) => Number.isInteger(v));
+    const forms = entry.filter((v) => typeof v === "string");
     if (Number.isInteger(lastNum) && forms.length) {
-      return forms.map(f => [f, lastNum]);
+      return forms.map((f) => [f, lastNum]);
     }
   }
 
@@ -99,7 +100,7 @@ export function firstAccent(entry, variantIndex = 0) {
  * @returns {number} Index de variante (0-based)
  */
 export function getVariantIndex(dataInfoTokens) {
-  const t = dataInfoTokens.find(s => /^var=\d+$/.test(s));
+  const t = dataInfoTokens.find((s) => /^var=\d+$/.test(s));
   return t ? parseInt(t.split("=")[1], 10) : 0;
 }
 
@@ -109,7 +110,7 @@ export function getVariantIndex(dataInfoTokens) {
  * @returns {string} Texte accentué ou chaîne vide
  */
 export function renderCellSimple(entry) {
-  if (!entry) return '';
+  if (!entry) return "";
   const pair = firstPair(entry);
-  return pair ? addAccent(pair[0], pair[1]) : '';
+  return pair ? addAccent(pair[0], pair[1]) : "";
 }

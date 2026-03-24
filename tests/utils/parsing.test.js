@@ -1,5 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { parseInfo, toPairs, firstPair, firstText, firstAccent, getVariantIndex, renderCellSimple } from "../../src/lib/utils/parsing.js";
+import {
+  parseInfo,
+  toPairs,
+  firstPair,
+  firstText,
+  firstAccent,
+  getVariantIndex,
+  renderCellSimple,
+} from "../../src/lib/utils/parsing.js";
 
 // ─── parseInfo ───────────────────────────────────────────────────────────────
 describe("parseInfo", () => {
@@ -27,17 +35,26 @@ describe("toPairs", () => {
   });
 
   it("passes through already-nested pairs", () => {
-    const input = [["a", 1], ["b", 2]];
+    const input = [
+      ["a", 1],
+      ["b", 2],
+    ];
     expect(toPairs(input)).toEqual(input);
   });
 
   it("converts flat format [f1,p1,f2,p2] into pairs", () => {
-    expect(toPairs(["a", 1, "b", 2])).toEqual([["a", 1], ["b", 2]]);
+    expect(toPairs(["a", 1, "b", 2])).toEqual([
+      ["a", 1],
+      ["b", 2],
+    ]);
   });
 
   it("handles old verb format [form1, form2, accentPos]", () => {
     const result = toPairs(["читаєм", "читаємо", 4]);
-    expect(result).toEqual([["читаєм", 4], ["читаємо", 4]]);
+    expect(result).toEqual([
+      ["читаєм", 4],
+      ["читаємо", 4],
+    ]);
   });
 });
 
@@ -52,12 +69,18 @@ describe("firstPair", () => {
   });
 
   it("respects variantIndex", () => {
-    const input = [["a", 1], ["b", 2]];
+    const input = [
+      ["a", 1],
+      ["b", 2],
+    ];
     expect(firstPair(input, 1)).toEqual(["b", 2]);
   });
 
   it("skips empty first variant to find non-empty one", () => {
-    const input = [[null, -1], ["b", 2]];
+    const input = [
+      [null, -1],
+      ["b", 2],
+    ];
     expect(firstPair(input, 0)).toEqual(["b", 2]);
   });
 });

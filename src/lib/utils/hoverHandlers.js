@@ -1,6 +1,12 @@
-import { parseInfo } from './parsing.js';
-import { buildBubbleHTML, getHoverColor, getOrCreateBubble, positionBubble, hideBubble } from './bubble.js';
-import { nextPinId } from '$lib/stores/uiStore.svelte.js';
+import { parseInfo } from "./parsing.js";
+import {
+  buildBubbleHTML,
+  getHoverColor,
+  getOrCreateBubble,
+  positionBubble,
+  hideBubble,
+} from "./bubble.js";
+import { nextPinId } from "$lib/stores/uiStore.svelte.js";
 
 /**
  * Attache les gestionnaires hover/click/keyboard sur les éléments `.ukr` d'un conteneur.
@@ -14,77 +20,77 @@ import { nextPinId } from '$lib/stores/uiStore.svelte.js';
  * @returns {Array<() => void>} Fonctions de nettoyage pour retirer les listeners
  */
 export function applyHoverHandlers(el, deps) {
-	const cleanups = [];
-	const words = el.querySelectorAll('.ukr');
+  const cleanups = [];
+  const words = el.querySelectorAll(".ukr");
 
-	words.forEach((word) => {
-		const raw = word.getAttribute('data-info');
-		if (!raw) return;
+  words.forEach((word) => {
+    const raw = word.getAttribute("data-info");
+    if (!raw) return;
 
-		word.setAttribute('role', 'button');
-		word.setAttribute('tabindex', '0');
+    word.setAttribute("role", "button");
+    word.setAttribute("tabindex", "0");
 
-		const pinId = nextPinId();
-		const dataInfo = parseInfo(raw);
-		const [w, category, ...infos] = dataInfo;
-		const hoverColor = getHoverColor(dataInfo);
+    const pinId = nextPinId();
+    const dataInfo = parseInfo(raw);
+    const [w, category, ...infos] = dataInfo;
+    const hoverColor = getHoverColor(dataInfo);
 
-		function onMouseEnter() {
-			if (deps.getPinnedElement()) return;
-			word.style.color = hoverColor;
+    function onMouseEnter() {
+      if (deps.getPinnedElement()) return;
+      word.style.color = hoverColor;
 
-			const wd = deps.getWordData();
-			deps.setGrammarTableData({ word: w, category, infos });
+      const wd = deps.getWordData();
+      deps.setGrammarTableData({ word: w, category, infos });
 
-			const bubble = getOrCreateBubble();
-			const bHTML = buildBubbleHTML(wd, w, category, dataInfo);
-			if (bHTML && bHTML.trim()) {
-				bubble.innerHTML = bHTML;
-				bubble.style.display = 'block';
-				positionBubble(bubble, word);
-			}
-		}
+      const bubble = getOrCreateBubble();
+      const bHTML = buildBubbleHTML(wd, w, category, dataInfo);
+      if (bHTML && bHTML.trim()) {
+        bubble.innerHTML = bHTML;
+        bubble.style.display = "block";
+        positionBubble(bubble, word);
+      }
+    }
 
-		function onMouseLeave() {
-			word.style.color = '';
-			hideBubble();
-			if (!deps.getPinnedElement()) {
-				deps.setGrammarTableData(null);
-			}
-		}
+    function onMouseLeave() {
+      word.style.color = "";
+      hideBubble();
+      if (!deps.getPinnedElement()) {
+        deps.setGrammarTableData(null);
+      }
+    }
 
-		function onClick(ev) {
-			ev.preventDefault();
-			if (deps.getPinnedElement() === pinId) {
-				deps.setPinnedElement(null);
-				deps.setGrammarTableData(null);
-				return;
-			}
-			deps.setGrammarTableData({ word: w, category, infos });
-			deps.setPinnedElement(pinId);
-		}
+    function onClick(ev) {
+      ev.preventDefault();
+      if (deps.getPinnedElement() === pinId) {
+        deps.setPinnedElement(null);
+        deps.setGrammarTableData(null);
+        return;
+      }
+      deps.setGrammarTableData({ word: w, category, infos });
+      deps.setPinnedElement(pinId);
+    }
 
-		function onKeydown(ev) {
-			if (ev.key === 'Enter' || ev.key === ' ') {
-				ev.preventDefault();
-				onClick(ev);
-			}
-		}
+    function onKeydown(ev) {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        onClick(ev);
+      }
+    }
 
-		word.addEventListener('mouseenter', onMouseEnter);
-		word.addEventListener('mouseleave', onMouseLeave);
-		word.addEventListener('click', onClick);
-		word.addEventListener('keydown', onKeydown);
+    word.addEventListener("mouseenter", onMouseEnter);
+    word.addEventListener("mouseleave", onMouseLeave);
+    word.addEventListener("click", onClick);
+    word.addEventListener("keydown", onKeydown);
 
-		cleanups.push(() => {
-			word.removeEventListener('mouseenter', onMouseEnter);
-			word.removeEventListener('mouseleave', onMouseLeave);
-			word.removeEventListener('click', onClick);
-			word.removeEventListener('keydown', onKeydown);
-			word.removeAttribute('role');
-			word.removeAttribute('tabindex');
-		});
-	});
+    cleanups.push(() => {
+      word.removeEventListener("mouseenter", onMouseEnter);
+      word.removeEventListener("mouseleave", onMouseLeave);
+      word.removeEventListener("click", onClick);
+      word.removeEventListener("keydown", onKeydown);
+      word.removeAttribute("role");
+      word.removeAttribute("tabindex");
+    });
+  });
 
-	return cleanups;
+  return cleanups;
 }

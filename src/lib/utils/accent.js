@@ -23,7 +23,9 @@ export function addAccent(word, accentPosition) {
   if (accentPosition > 0 && accentPosition <= chars.length) {
     const target = chars[accentPosition - 1];
     if (!isUkrainianVowel(target)) {
-      console.warn(`addAccent: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`);
+      console.warn(
+        `addAccent: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
+      );
     }
     chars[accentPosition - 1] += COMBINING_ACUTE;
   }
