@@ -1,6 +1,5 @@
 <script>
-	import { wordData } from '$lib/stores/dataStore.js';
-	import { selectedWord, selectedCategory } from '$lib/stores/uiStore.js';
+	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import { groupByFirstLetter } from '$lib/utils/ukrainianSort.js';
 	import { hasAnyExpanded } from '$lib/utils/foldState.js';
 	import CategorySection from './CategorySection.svelte';
@@ -26,8 +25,8 @@
 	let groupedData = $derived(
 		Object.fromEntries(
 			Object.keys(categories)
-				.filter((catKey) => $wordData[catKey] && Object.keys($wordData[catKey]).length > 0)
-				.map((catKey) => [catKey, groupByFirstLetter(Object.keys($wordData[catKey]))])
+				.filter((catKey) => dataStore.wordData[catKey] && Object.keys(dataStore.wordData[catKey]).length > 0)
+				.map((catKey) => [catKey, groupByFirstLetter(Object.keys(dataStore.wordData[catKey]))])
 		)
 	);
 
@@ -36,7 +35,7 @@
 
 	// Initialize fold state when data loads (once)
 	$effect(() => {
-		const data = $wordData;
+		const data = dataStore.wordData;
 		if (!data || Object.keys(data).length === 0) return;
 		if (initialized) return;
 		initialized = true;
@@ -90,10 +89,6 @@
 		letterOpen = newLetterOpen;
 	}
 
-	function handleWordClick(word, catKey) {
-		selectedWord.set(word);
-		selectedCategory.set(catKey);
-	}
 </script>
 
 <div id="wordList" class="grow overflow-y-auto pr-1.5" style="--global-toggle-height: 38px; scrollbar-width: thin; scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track); scrollbar-gutter: stable;">
@@ -109,11 +104,9 @@
 				isOpen={categoryOpen[catKey] ?? true}
 				letterGroups={groupedData[catKey]}
 				letterOpenState={letterOpen}
-				wordData={$wordData[catKey]}
 				onToggleCategory={() => toggleCategory(catKey)}
 				onToggleAllLetters={() => toggleAllLetters(catKey)}
 				onToggleLetter={(letter) => toggleLetter(catKey, letter)}
-				onWordClick={handleWordClick}
 			/>
 		{/if}
 	{/each}

@@ -1,5 +1,5 @@
 <script>
-	import { phraseData, wordData } from '$lib/stores/dataStore.js';
+	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import { generateVerbForms } from '$lib/utils/gramFunc.js';
 	import HtmlContent from './HtmlContent.svelte';
 
@@ -13,7 +13,7 @@
 
 	function getVerbFormsHTML(genereVerbe) {
 		return generateVerbForms(
-			$wordData,
+			dataStore.wordData,
 			genereVerbe.verbe,
 			genereVerbe.temps,
 			genereVerbe.frag1,
@@ -24,7 +24,7 @@
 
 <ul class="mt-6 text-base">
 	{#each Object.entries(phrases) as [phraseKey, _phrase]}
-		{@const pd = $phraseData[phraseKey]}
+		{@const pd = dataStore.phraseData[phraseKey]}
 		{#if pd}
 			<li>
 				<HtmlContent html={pd.phrase_html} />

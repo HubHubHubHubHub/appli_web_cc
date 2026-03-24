@@ -1,12 +1,12 @@
 <script>
-	import { phraseData } from '$lib/stores/dataStore.js';
+	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import { filterPhrases } from '$lib/utils/phrases.js';
 	import HtmlContent from './HtmlContent.svelte';
 
 	let searchQuery = $state('');
 
 	const filteredPhrases = $derived(
-		filterPhrases($phraseData, searchQuery.trim())
+		filterPhrases(dataStore.phraseData, searchQuery.trim())
 	);
 </script>
 
