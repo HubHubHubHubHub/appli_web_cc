@@ -8,10 +8,10 @@
 </svelte:head>
 
 <div class="flex w-full h-full max-md:flex-col">
-	<div class="w-1/4 bg-base-200 p-5 shadow-sidebar h-screen flex flex-col max-md:w-full max-md:h-auto">
+	<div class="w-72 shrink-0 bg-base-200 p-4 shadow-sidebar h-screen flex flex-col max-md:w-full max-md:h-auto">
 		<WordList />
 	</div>
-	<div class="w-3/4 p-5 max-md:w-full bg-base-100">
+	<div class="grow min-w-0 p-6 max-md:w-full bg-base-100">
 		<WordDetails />
 	</div>
 </div>

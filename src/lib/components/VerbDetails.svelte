@@ -30,7 +30,7 @@
 </script>
 
 {#if details.conj}
-	<table class="table mt-5 font-body text-[inherit]">
+	<table class="table mt-5 font-body">
 		<tbody>
 			<!-- Infinitif -->
 			<tr class="bg-warning">
@@ -42,7 +42,7 @@
 
 			{#each tenses as tenseKey}
 				{#if details.conj[tenseKey]}
-					<tr class="bg-info text-info-content text-[1.1em]">
+					<tr class="bg-info text-info-content text-lg">
 						<td colspan="3" class="{cellBase} font-bold">{labelTenseLabel(tenseKey)}</td>
 					</tr>
 
@@ -75,7 +75,7 @@
 
 			<!-- Forme impersonnelle -->
 			{#if impersData}
-				<tr class="bg-info text-info-content text-[1.1em]">
+				<tr class="bg-info text-info-content text-lg">
 					<td colspan="3" class="{cellBase} font-bold">Forme impersonnelle</td>
 				</tr>
 				<tr>

@@ -6,7 +6,7 @@
 </script>
 
 {#if details.cas}
-	<table class="table table-zebra mt-2.5 font-body text-[inherit]">
+	<table class="table table-zebra mt-2.5 font-body">
 		<thead>
 			<tr>
 				<th></th>
