@@ -79,6 +79,8 @@
 		{/if}
 	{:else if $selectedWord}
 		<p>Aucun détail disponible pour ce mot.</p>
+	{:else}
+		<p class="text-neutral italic">Sélectionnez un mot dans la liste.</p>
 	{/if}
 </div>
 
