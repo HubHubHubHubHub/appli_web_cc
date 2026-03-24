@@ -8,10 +8,10 @@
 </svelte:head>
 
 <div class="flex w-full h-full max-md:flex-col">
-	<div class="w-64 shrink-0 bg-base-200 p-3 shadow-sidebar h-screen flex flex-col max-md:w-full max-md:h-auto">
+	<nav class="w-64 shrink-0 bg-base-200 p-3 shadow-sidebar h-screen flex flex-col max-md:w-full max-md:h-auto" aria-label="Liste de mots">
 		<WordList />
-	</div>
-	<div class="grow min-w-0 p-6 max-md:w-full bg-base-100">
+	</nav>
+	<main class="grow min-w-0 p-6 max-md:w-full bg-base-100">
 		<WordDetails />
-	</div>
+	</main>
 </div>
