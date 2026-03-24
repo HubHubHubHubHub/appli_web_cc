@@ -108,6 +108,7 @@ body {
 .gram-table th:first-child,
 .gram-table td:first-child {
   width: 1%;
+  white-space: nowrap;
 }
 
 .gram-table tbody tr {
