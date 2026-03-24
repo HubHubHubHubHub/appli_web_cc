@@ -1,9 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { getDataFromJson, getPrincipalForm, getLemmaEntry } from "../../src/lib/utils/dataAccess.js";
+import {
+  getDataFromJson,
+  getPrincipalForm,
+  getLemmaEntry,
+} from "../../src/lib/utils/dataAccess.js";
 
 const mockWordData = {
   nom: {
-    "слово": {
+    слово: {
       genre: "n",
       cas: {
         nomi: { s: ["слово", 3], pl: ["слова", 3] },
@@ -12,7 +16,7 @@ const mockWordData = {
     },
   },
   adj: {
-    "великий": {
+    великий: {
       cas: {
         nomi: {
           m: ["великий", 4],
@@ -30,7 +34,7 @@ const mockWordData = {
     },
   },
   proper: {
-    "я": {
+    я: {
       cas: {
         nomi: ["я", -1],
         gen: ["мене", 4],
@@ -38,7 +42,7 @@ const mockWordData = {
     },
   },
   verb: {
-    "читати": {
+    читати: {
       asp: "imperfectif",
       inf: ["читати", 4],
       conj: {
@@ -56,14 +60,14 @@ const mockWordData = {
       coupl: "",
     },
   },
-  adv: { "багато": { base: ["багато", 4] } },
-  conj: { "але": { base: ["але", -1] } },
-  part: { "не": { base: ["не", -1] } },
-  prep: { "в": { base: ["в", -1] } },
-  card: { "один": { cas: { nomi: { m: ["один", 3], f: ["одна", 4] } } } },
-  proposs: { "мій": { cas: { nomi: { m: ["мій", 2], f: ["моя", 3] } } } },
+  adv: { багато: { base: ["багато", 4] } },
+  conj: { але: { base: ["але", -1] } },
+  part: { не: { base: ["не", -1] } },
+  prep: { в: { base: ["в", -1] } },
+  card: { один: { cas: { nomi: { m: ["один", 3], f: ["одна", 4] } } } },
+  proposs: { мій: { cas: { nomi: { m: ["мій", 2], f: ["моя", 3] } } } },
   pron: {
-    "цей": {
+    цей: {
       cas: {
         nomi: { m: ["цей", 2] },
         gen: { m: ["цього", 3] },
@@ -75,11 +79,17 @@ const mockWordData = {
 // ─── getDataFromJson ─────────────────────────────────────────────────────────
 describe("getDataFromJson", () => {
   it("retrieves noun case form", () => {
-    expect(getDataFromJson(mockWordData, "nom", ["слово", "cas", "gen", "s"])).toEqual(["слова", 3]);
+    expect(getDataFromJson(mockWordData, "nom", ["слово", "cas", "gen", "s"])).toEqual([
+      "слова",
+      3,
+    ]);
   });
 
   it("retrieves adjective case/gender form", () => {
-    expect(getDataFromJson(mockWordData, "adj", ["великий", "cas", "nomi", "m"])).toEqual(["великий", 4]);
+    expect(getDataFromJson(mockWordData, "adj", ["великий", "cas", "nomi", "m"])).toEqual([
+      "великий",
+      4,
+    ]);
   });
 
   it("retrieves proper pronoun case form", () => {
@@ -91,7 +101,10 @@ describe("getDataFromJson", () => {
   });
 
   it("retrieves verb conjugation", () => {
-    expect(getDataFromJson(mockWordData, "verb", ["читати", "conj", "pres", "1p", "s"])).toEqual(["читаю", 4]);
+    expect(getDataFromJson(mockWordData, "verb", ["читати", "conj", "pres", "1p", "s"])).toEqual([
+      "читаю",
+      4,
+    ]);
   });
 
   it("retrieves adverb base", () => {
@@ -115,11 +128,17 @@ describe("getDataFromJson", () => {
   });
 
   it("retrieves card case/gender", () => {
-    expect(getDataFromJson(mockWordData, "card", ["один", "cas", "nomi", "m"])).toEqual(["один", 3]);
+    expect(getDataFromJson(mockWordData, "card", ["один", "cas", "nomi", "m"])).toEqual([
+      "один",
+      3,
+    ]);
   });
 
   it("retrieves proposs case/gender", () => {
-    expect(getDataFromJson(mockWordData, "proposs", ["мій", "cas", "nomi", "f"])).toEqual(["моя", 3]);
+    expect(getDataFromJson(mockWordData, "proposs", ["мій", "cas", "nomi", "f"])).toEqual([
+      "моя",
+      3,
+    ]);
   });
 
   it("returns null for unknown category", () => {

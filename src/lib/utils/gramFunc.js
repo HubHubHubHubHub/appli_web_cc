@@ -1,32 +1,32 @@
-import { firstText } from './parsing.js';
+import { firstText } from "./parsing.js";
 
 const pronouns = {
   "1p": {
     s: '<span class="ukr" data-info="я;proper;cas;nomi">я</span>',
-    pl: '<span class="ukr" data-info="ми;proper;cas;nomi">ми</span>'
+    pl: '<span class="ukr" data-info="ми;proper;cas;nomi">ми</span>',
   },
   "2p": {
     s: '<span class="ukr" data-info="ти;proper;cas;nomi">ти</span>',
-    pl: '<span class="ukr" data-info="ви;proper;cas;nomi">ви</span>'
+    pl: '<span class="ukr" data-info="ви;proper;cas;nomi">ви</span>',
   },
   "3p": {
     s: '<span class="ukr" data-info="він;proper;cas;nomi">він</span>/<span class="ukr" data-info="вона;proper;cas;nomi">вона</span>/<span class="ukr" data-info="воно;proper;cas;nomi">воно</span>',
-    pl: '<span class="ukr" data-info="вони;proper;cas;nomi">вони</span>'
+    pl: '<span class="ukr" data-info="вони;proper;cas;nomi">вони</span>',
   },
 };
 
 const pronounsPassed = {
   m: {
     s: '<span class="ukr" data-info="він;proper;cas;nomi">він</span>',
-    pl: '<span class="ukr" data-info="ми;proper;cas;nomi">ми</span>'
+    pl: '<span class="ukr" data-info="ми;proper;cas;nomi">ми</span>',
   },
   f: {
     s: '<span class="ukr" data-info="вона;proper;cas;nomi">вона</span>',
-    pl: '<span class="ukr" data-info="ви;proper;cas;nomi">ви</span>'
+    pl: '<span class="ukr" data-info="ви;proper;cas;nomi">ви</span>',
   },
   n: {
     s: '<span class="ukr" data-info="воно;proper;cas;nomi">воно</span>',
-    pl: '<span class="ukr" data-info="вони;proper;cas;nomi">вони</span>'
+    pl: '<span class="ukr" data-info="вони;proper;cas;nomi">вони</span>',
   },
 };
 

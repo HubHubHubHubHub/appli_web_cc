@@ -17,9 +17,7 @@ export function filterPhrases(phrasesData, searchQuery) {
       refString += ` ${key} ${value}`;
     }
 
-    const isMatch = searchTerms.every((term) =>
-      refString.toLowerCase().includes(term)
-    );
+    const isMatch = searchTerms.every((term) => refString.toLowerCase().includes(term));
 
     if (isMatch) {
       filteredData[phraseKey] = phraseInfo;

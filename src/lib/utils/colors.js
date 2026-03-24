@@ -10,5 +10,5 @@ export const classesToColors = {
   inf: "inherit",
   adv: "inherit",
   pron: "inherit",
-  part: "inherit"
+  part: "inherit",
 };
