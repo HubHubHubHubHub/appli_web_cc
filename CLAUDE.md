@@ -13,6 +13,9 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run preview` — preview the static build
 - `npm run test` — run all Vitest tests
 - `npx vitest tests/utils/accent.test.js` — run a single test file
+- `npm run lint` — ESLint check
+- `npm run format` — Prettier auto-format
+- `npm run format:check` — Prettier check (used in CI)
 
 ## Architecture
 
@@ -70,7 +73,7 @@ Vitest with jsdom. Tests live in `tests/utils/` and import directly from `src/li
 
 ### CSS
 
-Tailwind CSS v4 via `@tailwindcss/vite` plugin. Design tokens defined in `@theme` block in `src/app.css` (colors, shadows, z-index, fonts). Components use Tailwind utility classes. Font: Times New Roman (required — Inter breaks combining acute rendering on Cyrillic).
+Tailwind CSS v4 via `@tailwindcss/vite` plugin + daisyUI (custom theme `ukrvocab` in `app.css`). daisyUI is structurally integrated — do NOT remove it (classes like `table` and theme variables like `--color-neutral`, `--color-base-300` are used throughout). Design tokens defined in `@theme` block in `src/app.css` (colors, shadows, z-index, fonts). Components use Tailwind utility classes. Font: Times New Roman (required — Inter breaks combining acute rendering on Cyrillic).
 
 Global CSS rules that must stay in `app.css` (not migratable to Tailwind):
 
@@ -79,3 +82,7 @@ Global CSS rules that must stay in `app.css` (not migratable to Tailwind):
 - `.hover-bubble` — created via `document.createElement` in `bubble.js` (shared singleton used by both `UkrSpan` and `HtmlContent`)
 
 Responsive breakpoint at 768px (`max-md:` prefix in Tailwind).
+
+### CI
+
+GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to main: lint → format:check → test → build. Node 22.
