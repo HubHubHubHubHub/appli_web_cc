@@ -16,10 +16,18 @@
 	$effect(() => {
 		const _ = $accentEnabled; // track reactivity
 		const __ = html; // track html prop changes
-		if (container) {
-			applyAccents(container);
-			if (!disableHover) applyHoverHandlers(container);
+		if (!container) return;
+
+		applyAccents(container);
+
+		const cleanups = [];
+		if (!disableHover) {
+			cleanups.push(...applyHoverHandlers(container));
 		}
+
+		return () => {
+			for (const cleanup of cleanups) cleanup();
+		};
 	});
 
 	function applyAccents(el) {
@@ -57,11 +65,10 @@
 	}
 
 	function applyHoverHandlers(el) {
+		const cleanups = [];
 		const words = el.querySelectorAll('.ukr');
-		words.forEach((word) => {
-			if (word.dataset.hoverBound === '1') return;
-			word.dataset.hoverBound = '1';
 
+		words.forEach((word) => {
 			const raw = word.getAttribute('data-info');
 			if (!raw) return;
 			const dataInfo = parseInfo(raw);
@@ -73,36 +80,35 @@
 				if (dataInfo.includes(className)) { hoverColor = color; break; }
 			}
 
-			word.addEventListener('mouseenter', function () {
+			function onMouseEnter() {
 				if (get(pinnedElement)) return;
-				this.style.color = hoverColor;
+				word.style.color = hoverColor;
 
 				const wd = get(wordData);
 				grammarTableData.set({ word: w, category, infos, wordData: wd });
 
-				// Show bubble
 				const bubble = getOrCreateBubble();
 				const bHTML = buildBubbleHTML(wd, w, category, dataInfo);
 				if (bHTML && bHTML.trim()) {
 					bubble.innerHTML = bHTML;
 					bubble.style.display = 'block';
-					positionBubble(bubble, this);
+					positionBubble(bubble, word);
 				}
-			});
+			}
 
-			word.addEventListener('mouseleave', function () {
-				this.style.color = '';
+			function onMouseLeave() {
+				word.style.color = '';
 				hideBubble();
 				if (!get(pinnedElement)) {
 					grammarTableData.set(null);
 				}
-			});
+			}
 
-			word.addEventListener('click', function (ev) {
+			function onClick(ev) {
 				ev.preventDefault();
 				const currentPinned = get(pinnedElement);
 
-				if (currentPinned === this) {
+				if (currentPinned === word) {
 					pinnedElement.set(null);
 					grammarTableData.set(null);
 					return;
@@ -110,9 +116,21 @@
 
 				const wd = get(wordData);
 				grammarTableData.set({ word: w, category, infos, wordData: wd });
-				pinnedElement.set(this);
+				pinnedElement.set(word);
+			}
+
+			word.addEventListener('mouseenter', onMouseEnter);
+			word.addEventListener('mouseleave', onMouseLeave);
+			word.addEventListener('click', onClick);
+
+			cleanups.push(() => {
+				word.removeEventListener('mouseenter', onMouseEnter);
+				word.removeEventListener('mouseleave', onMouseLeave);
+				word.removeEventListener('click', onClick);
 			});
 		});
+
+		return cleanups;
 	}
 
 	function buildBubbleHTML(wd, w, category, dataInfo) {

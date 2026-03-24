@@ -29,7 +29,9 @@
 				const v = wordData?.verb?.[word];
 				if (v) return generateTableVerb(v, wordData);
 			}
-		} catch (_) {}
+		} catch (err) {
+			console.warn(`GrammarTable: erreur pour "${word}" (${category}) :`, err);
+		}
 		return '';
 	});
 
