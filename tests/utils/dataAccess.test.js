@@ -7,7 +7,7 @@ const mockWordData = {
       genre: "n",
       cas: {
         nomi: { s: ["слово", 3], pl: ["слова", 3] },
-        gen: { s: ["слова", 3], pl: ["слів", 2] },
+        gen: { s: ["слова", 3], pl: ["слів", 3] },
       },
     },
   },
@@ -15,16 +15,16 @@ const mockWordData = {
     "великий": {
       cas: {
         nomi: {
-          m: ["великий", 5],
-          f: ["велика", 5],
-          n: ["велике", 5],
-          pl: ["великі", 5],
+          m: ["великий", 4],
+          f: ["велика", 4],
+          n: ["велике", 4],
+          pl: ["великі", 4],
         },
         gen: {
-          m: ["великого", 5],
-          f: ["великої", 5],
-          n: ["великого", 5],
-          pl: ["великих", 5],
+          m: ["великого", 4],
+          f: ["великої", 4],
+          n: ["великого", 4],
+          pl: ["великих", 4],
         },
       },
     },
@@ -33,14 +33,14 @@ const mockWordData = {
     "я": {
       cas: {
         nomi: ["я", -1],
-        gen: ["мене", 3],
+        gen: ["мене", 4],
       },
     },
   },
   verb: {
     "читати": {
       asp: "imperfectif",
-      inf: ["читати", 3],
+      inf: ["читати", 4],
       conj: {
         pres: {
           "1p": { s: ["читаю", 4], pl: ["читаємо", 4] },
@@ -48,15 +48,15 @@ const mockWordData = {
           "3p": { s: ["читає", 4], pl: ["читають", 4] },
         },
         pass: {
-          m: { s: ["читав", 3], pl: ["читали", 3] },
-          f: { s: ["читала", 3] },
-          n: { s: ["читало", 3] },
+          m: { s: ["читав", 4], pl: ["читали", 4] },
+          f: { s: ["читала", 4] },
+          n: { s: ["читало", 4] },
         },
       },
       coupl: "",
     },
   },
-  adv: { "багато": { base: ["багато", 3] } },
+  adv: { "багато": { base: ["багато", 4] } },
   conj: { "але": { base: ["але", -1] } },
   part: { "не": { base: ["не", -1] } },
   prep: { "в": { base: ["в", -1] } },
@@ -66,7 +66,7 @@ const mockWordData = {
     "цей": {
       cas: {
         nomi: { m: ["цей", 2] },
-        gen: { m: ["цього", 4] },
+        gen: { m: ["цього", 3] },
       },
     },
   },
@@ -79,15 +79,15 @@ describe("getDataFromJson", () => {
   });
 
   it("retrieves adjective case/gender form", () => {
-    expect(getDataFromJson(mockWordData, "adj", ["великий", "cas", "nomi", "m"])).toEqual(["великий", 5]);
+    expect(getDataFromJson(mockWordData, "adj", ["великий", "cas", "nomi", "m"])).toEqual(["великий", 4]);
   });
 
   it("retrieves proper pronoun case form", () => {
-    expect(getDataFromJson(mockWordData, "proper", ["я", "cas", "gen"])).toEqual(["мене", 3]);
+    expect(getDataFromJson(mockWordData, "proper", ["я", "cas", "gen"])).toEqual(["мене", 4]);
   });
 
   it("retrieves verb infinitive", () => {
-    expect(getDataFromJson(mockWordData, "verb", ["читати", "inf"])).toEqual(["читати", 3]);
+    expect(getDataFromJson(mockWordData, "verb", ["читати", "inf"])).toEqual(["читати", 4]);
   });
 
   it("retrieves verb conjugation", () => {
@@ -95,7 +95,7 @@ describe("getDataFromJson", () => {
   });
 
   it("retrieves adverb base", () => {
-    expect(getDataFromJson(mockWordData, "adv", ["багато", "base"])).toEqual(["багато", 3]);
+    expect(getDataFromJson(mockWordData, "adv", ["багато", "base"])).toEqual(["багато", 4]);
   });
 
   it("retrieves conjunction base", () => {
@@ -111,7 +111,7 @@ describe("getDataFromJson", () => {
   });
 
   it("retrieves pron case/gender", () => {
-    expect(getDataFromJson(mockWordData, "pron", ["цей", "cas", "gen", "m"])).toEqual(["цього", 4]);
+    expect(getDataFromJson(mockWordData, "pron", ["цей", "cas", "gen", "m"])).toEqual(["цього", 3]);
   });
 
   it("retrieves card case/gender", () => {
@@ -147,7 +147,7 @@ describe("getPrincipalForm", () => {
 
   it("returns accented infinitive for verbs", () => {
     const result = getPrincipalForm(mockWordData, "читати", "verb");
-    expect(result).toBe("чит" + accent + "ати");
+    expect(result).toBe("чита" + accent + "ти");
   });
 
   it("returns accented nominative for proper pronouns", () => {
@@ -167,7 +167,7 @@ describe("getLemmaEntry", () => {
   });
 
   it("returns nominative masculine for adjectives", () => {
-    expect(getLemmaEntry(mockWordData, "adj", "великий")).toEqual(["великий", 5]);
+    expect(getLemmaEntry(mockWordData, "adj", "великий")).toEqual(["великий", 4]);
   });
 
   it("returns nominative for proper pronouns", () => {
@@ -175,11 +175,11 @@ describe("getLemmaEntry", () => {
   });
 
   it("returns infinitive for verbs", () => {
-    expect(getLemmaEntry(mockWordData, "verb", "читати")).toEqual(["читати", 3]);
+    expect(getLemmaEntry(mockWordData, "verb", "читати")).toEqual(["читати", 4]);
   });
 
   it("returns base for adverbs", () => {
-    expect(getLemmaEntry(mockWordData, "adv", "багато")).toEqual(["багато", 3]);
+    expect(getLemmaEntry(mockWordData, "adv", "багато")).toEqual(["багато", 4]);
   });
 
   it("returns base for conjunctions", () => {
