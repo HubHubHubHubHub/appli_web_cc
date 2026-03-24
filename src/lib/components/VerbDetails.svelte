@@ -9,7 +9,7 @@
 	function renderCell(entry) {
 		const pairs = toPairs(entry);
 		if (!pairs.length) return '';
-		return pairs.filter(([t]) => t).map(([t, p]) => `<span class="text-ukr-word font-bold">${addAccent(t, p)}</span>`).join(', ');
+		return pairs.filter(([t]) => t).map(([t, p]) => `<span class="text-secondary font-bold">${addAccent(t, p)}</span>`).join(', ');
 	}
 
 	const infPair = $derived(firstPair(details.inf));
@@ -26,30 +26,30 @@
 		return couplInf ? renderCell(couplInf) : coupl;
 	});
 
-	const cellBase = 'border border-border px-3 py-2 text-center max-md:px-2 max-md:py-1.5';
+	const cellBase = 'px-3 py-2 text-center max-md:px-2 max-md:py-1.5';
 </script>
 
 {#if details.conj}
-	<table class="w-full border-collapse mt-5 font-body">
+	<table class="table mt-5 font-body text-[inherit]">
 		<tbody>
 			<!-- Infinitif -->
-			<tr class="bg-conj-inf-bg">
+			<tr class="bg-warning">
 				<td class="{cellBase}">Infinitif</td>
 				<td colspan="2" class="{cellBase}">
-					<span class="text-ukr-word font-bold">{infDisplay}</span>
+					<span class="text-secondary font-bold">{infDisplay}</span>
 				</td>
 			</tr>
 
 			{#each tenses as tenseKey}
 				{#if details.conj[tenseKey]}
-					<tr class="bg-conj-tense-bg text-conj-tense-text text-[1.1em]">
+					<tr class="bg-info text-info-content text-[1.1em]">
 						<td colspan="3" class="{cellBase} font-bold">{labelTenseLabel(tenseKey)}</td>
 					</tr>
 
 					{#if tenseKey === 'pass'}
 						{#each Object.entries(details.conj.pass) as [gKey, forms]}
 							<tr>
-								<td class="{cellBase} text-left font-bold bg-row-bg">{labelPerson(gKey)}</td>
+								<td class="{cellBase} text-left font-bold bg-base-200">{labelPerson(gKey)}</td>
 								<td class="{cellBase}">{@html renderCell(forms.s)}</td>
 								{#if gKey === 'm'}
 									<td rowspan="3" class="{cellBase}">{@html renderCell(forms.pl)}</td>
@@ -57,14 +57,14 @@
 							</tr>
 						{/each}
 					{:else}
-						<tr class="bg-conj-person-bg font-bold">
+						<tr class="bg-base-200 font-bold">
 							<td class="{cellBase}">&nbsp;</td>
-							<td class="{cellBase} bg-conj-number-bg">sg.</td>
-							<td class="{cellBase} bg-conj-number-bg">pl.</td>
+							<td class="{cellBase} bg-base-300">sg.</td>
+							<td class="{cellBase} bg-base-300">pl.</td>
 						</tr>
 						{#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
 							<tr>
-								<td class="{cellBase} text-left font-bold bg-row-bg">{@html labelPerson(pKey)}</td>
+								<td class="{cellBase} text-left font-bold bg-base-200">{@html labelPerson(pKey)}</td>
 								<td class="{cellBase}">{@html renderCell(forms.s)}</td>
 								<td class="{cellBase}">{@html renderCell(forms.pl)}</td>
 							</tr>
@@ -75,7 +75,7 @@
 
 			<!-- Forme impersonnelle -->
 			{#if impersData}
-				<tr class="bg-conj-tense-bg text-conj-tense-text text-[1.1em]">
+				<tr class="bg-info text-info-content text-[1.1em]">
 					<td colspan="3" class="{cellBase} font-bold">Forme impersonnelle</td>
 				</tr>
 				<tr>

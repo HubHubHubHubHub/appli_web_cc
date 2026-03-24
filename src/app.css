@@ -1,31 +1,47 @@
 @import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "ukrvocab";
+  default: true;
+  color-scheme: light;
+  --color-primary: oklch(52% 0.18 250);
+  --color-primary-content: oklch(98% 0.01 250);
+  --color-secondary: oklch(55% 0.12 250);
+  --color-secondary-content: oklch(98% 0.01 250);
+  --color-accent: oklch(55% 0.25 25);
+  --color-accent-content: oklch(98% 0.01 25);
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(96.5% 0.005 250);
+  --color-base-300: oklch(93% 0.005 250);
+  --color-base-content: oklch(25% 0.02 250);
+  --color-neutral: oklch(40% 0.02 250);
+  --color-neutral-content: oklch(95% 0.01 250);
+  --color-info: oklch(90% 0.04 230);
+  --color-info-content: oklch(40% 0.08 230);
+  --color-warning: oklch(95% 0.04 85);
+  --color-warning-content: oklch(35% 0.05 85);
+  --color-success: oklch(65% 0.2 145);
+  --color-success-content: oklch(98% 0.01 145);
+  --color-error: oklch(60% 0.25 25);
+  --color-error-content: oklch(98% 0.01 25);
+  --radius-box: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-selector: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
 
 @theme {
   --font-body: "Times New Roman", serif;
   --font-table: "Times New Roman", serif;
 
+  /* Couleurs spécifiques au domaine (utilisées dans les classes CSS globales) */
   --color-ukr-blue: #2a7ae2;
-  --color-ukr-word: #337ab7;
   --color-accent-red: crimson;
   --color-remarque: brown;
-  --color-sidebar-bg: #f0f0f0;
-  --color-border: #ccc;
-  --color-border-light: #eee;
-  --color-header-bg: #e9e9e9;
-  --color-row-bg: #f5f5f5;
-  --color-hover-bg: #e0e0e0;
-  --color-conj-tense-bg: #d9edf7;
-  --color-conj-tense-text: #31708f;
-  --color-conj-inf-bg: #fcf8e3;
-  --color-conj-number-bg: #f2f2f2;
-  --color-conj-person-bg: #f7f7f9;
-  --color-pinned-border: #6aa0ff;
-  --color-text-muted: #555;
-  --color-text-muted-light: #777;
-  --color-text-muted-lighter: #999;
-  --color-text-dark: #222;
-  --color-text-heading: #333;
-  --color-text-meta: #666;
 
   --z-sticky-letter: 1;
   --z-sticky-toggle: 2;
