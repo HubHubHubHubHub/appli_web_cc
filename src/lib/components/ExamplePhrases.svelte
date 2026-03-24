@@ -22,14 +22,13 @@
 	}
 </script>
 
-<h3>Phrases d'exemple:</h3>
-<ul class="text-base">
+<ul class="mt-6 text-base">
 	{#each Object.entries(phrases) as [phraseKey, _phrase]}
 		{@const pd = $phraseData[phraseKey]}
 		{#if pd}
 			<li>
 				<HtmlContent html={pd.phrase_html} />
-				<em>{pd.traduction}</em>
+				<br /><em>{pd.traduction}</em>
 				{#if pd.remarque}
 					<p class="remarque">{pd.remarque}</p>
 				{/if}
