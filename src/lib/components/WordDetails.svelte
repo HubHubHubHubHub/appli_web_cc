@@ -46,7 +46,7 @@
 
 <div class="mx-[10%] p-5">
 	{#if details}
-		<h2>{displayWord} <span class="text-[0.65em] font-normal text-text-meta align-middle">: {displayMeta}</span></h2>
+		<h2>{displayWord} <span class="badge badge-ghost text-[0.65em] font-normal align-middle ml-2">{displayMeta}</span></h2>
 
 		{#if $selectedCategory === 'nom'}
 			<NounDetails {details} />
