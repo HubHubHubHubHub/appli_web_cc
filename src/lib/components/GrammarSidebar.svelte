@@ -26,7 +26,7 @@
 </script>
 
 {#if visible}
-	<aside class="grammar-sidebar card card-sm fixed right-2.5 top-1/2 -translate-y-1/2 z-grammar-sidebar bg-base-100 w-auto max-w-sm max-h-[85vh] overflow-y-auto text-sm leading-snug {uiStore.pinnedElement !== null ? 'border-primary shadow-grammar-pinned' : 'shadow-grammar'}" aria-label="Grammaire">
+	<aside class="grammar-sidebar card card-sm fixed right-2.5 top-1/2 -translate-y-1/2 z-grammar-sidebar bg-base-100 w-auto max-w-sm max-h-[85vh] overflow-y-auto text-sm leading-snug max-md:hidden {uiStore.pinnedElement !== null ? 'border-primary shadow-grammar-pinned' : 'shadow-grammar'}" aria-label="Grammaire">
 		<div class="card-body p-3">
 			<div class="px-2 py-1.5 mb-1 border-b border-base-300 text-sm">
 				{@html headerHTML}

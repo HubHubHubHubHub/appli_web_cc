@@ -84,6 +84,14 @@ body {
   font-weight: bold;
   color: var(--color-ukr-blue);
   cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s;
+}
+
+.ukr:hover {
+  text-decoration-color: var(--color-ukr-blue);
 }
 
 .accent {

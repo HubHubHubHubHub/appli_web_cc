@@ -1,5 +1,5 @@
 <script>
-	import { uiStore } from '$lib/stores/uiStore.svelte.js';
+	import { uiStore, nextPinId } from '$lib/stores/uiStore.svelte.js';
 	import { dataStore } from '$lib/stores/dataStore.svelte.js';
 	import { parseInfo, firstPair, getVariantIndex } from '$lib/utils/parsing.js';
 	import { getDataFromJson } from '$lib/utils/dataAccess.js';
@@ -9,6 +9,7 @@
 	let { dataInfo, text } = $props();
 
 	let spanEl = $state(null);
+	const pinId = nextPinId();
 
 	const tokens = $derived(parseInfo(dataInfo));
 	const word = $derived(tokens[0]);
@@ -68,14 +69,14 @@
 
 	function handleClick(ev) {
 		ev.preventDefault();
-		if (uiStore.pinnedElement === spanEl) {
+		if (uiStore.pinnedElement === pinId) {
 			uiStore.pinnedElement = null;
 			uiStore.grammarTableData = null;
 			return;
 		}
 
 		uiStore.grammarTableData = buildGrammarData();
-		uiStore.pinnedElement = spanEl;
+		uiStore.pinnedElement = pinId;
 	}
 </script>
 
