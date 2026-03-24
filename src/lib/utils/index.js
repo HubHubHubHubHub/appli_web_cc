@@ -5,3 +5,4 @@ export { getDataFromJson, getPrincipalForm } from './dataAccess.js';
 export { classesToColors } from './colors.js';
 export { generateVerbForms } from './gramFunc.js';
 export { filterPhrases } from './phrases.js';
+export { renderCell, generateTableNoun, generateTableProper, generateTableAdj, generateTableVerb } from './tableGeneration.js';

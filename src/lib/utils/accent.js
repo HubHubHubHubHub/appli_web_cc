@@ -1,10 +1,22 @@
 const COMBINING_ACUTE = "\u0301";
 const UKRAINIAN_VOWELS = new Set("аеєиіїоуюя");
 
+/**
+ * Vérifie si un caractère est une voyelle ukrainienne (аеєиіїоуюя).
+ * @param {string} char - Caractère à tester
+ * @returns {boolean}
+ */
 export function isUkrainianVowel(char) {
   return UKRAINIAN_VOWELS.has(char?.toLowerCase());
 }
 
+/**
+ * Insère un accent aigu combinant (U+0301) après la voyelle à la position donnée.
+ * La position est 1-based. Les valeurs ≤ 0 ou hors limites sont ignorées.
+ * @param {string} word - Mot ukrainien
+ * @param {number} accentPosition - Position 1-based de la voyelle accentuée
+ * @returns {string} Mot avec accent combinant inséré
+ */
 export function addAccent(word, accentPosition) {
   if (!word) return "";
   const chars = Array.from(word);
@@ -18,6 +30,14 @@ export function addAccent(word, accentPosition) {
   return chars.join("");
 }
 
+/**
+ * Entoure la lettre à la position donnée d'un <span> avec accent combinant.
+ * Utilisé pour le rendu HTML des accents dans le DOM (via innerHTML).
+ * @param {string} word - Mot ukrainien (texte brut)
+ * @param {number} position - Position 0-based de la lettre à mettre en valeur
+ * @param {string} classe - Classe CSS du span (ex: 'accent')
+ * @returns {string} HTML avec la lettre enveloppée
+ */
 export function highlightLetter(word, position, classe) {
   if (position < 0 || position >= word.length) return word;
   return (
