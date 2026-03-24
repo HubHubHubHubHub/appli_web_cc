@@ -38,10 +38,20 @@
   --font-body: "Times New Roman", serif;
   --font-table: "Times New Roman", serif;
 
+  /* Échelle typographique (ratio 1.2) */
+  --text-2xs: 0.694rem;
+  --text-2xs--line-height: 1;
+
   /* Couleurs spécifiques au domaine (utilisées dans les classes CSS globales) */
   --color-ukr-blue: #2a7ae2;
   --color-accent-red: crimson;
   --color-remarque: brown;
+
+  /* Surfaces et bordures neutres */
+  --color-surface-raised: oklch(97.5% 0 0);
+  --color-border-subtle: oklch(88% 0 0);
+  --color-scrollbar-thumb: oklch(75% 0 0);
+  --color-scrollbar-track: oklch(90% 0 0);
 
   --z-sticky-letter: 1;
   --z-sticky-toggle: 2;
@@ -62,21 +72,21 @@ body {
   padding: 0;
   height: 100vh;
   box-sizing: border-box;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .ukr {
   font-weight: bold;
-  color: #2a7ae2;
+  color: var(--color-ukr-blue);
   cursor: pointer;
 }
 
 .accent {
-  color: crimson;
+  color: var(--color-accent-red);
 }
 
 .remarque {
-  color: brown;
+  color: var(--color-remarque);
 }
 
 /* Grammar sidebar — table descendant selectors for @html content */
@@ -96,7 +106,7 @@ body {
   text-align: left;
   font-style: italic;
   font-weight: 700;
-  background: #f7f7f7;
+  background: var(--color-surface-raised);
   position: sticky;
   top: 0;
 }
@@ -111,7 +121,7 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,.15);
   background: rgba(255,255,255,.98);
   border: 1px solid rgba(0,0,0,.1);
-  font-size: 14px;
+  font-size: var(--text-sm);
   line-height: 1.25;
   pointer-events: none;
 }
@@ -119,11 +129,11 @@ body {
 /* Verb forms container */
 .verb-forms-container {
   display: none;
-  margin-left: 20px;
-  margin-top: 10px;
-  padding: 10px;
-  border-left: 4px solid #ddd;
-  background-color: #f9f9f9;
+  margin-left: 1.25rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-left: 4px solid var(--color-border-subtle);
+  background-color: var(--color-surface-raised);
   border-radius: 5px;
 }
 
