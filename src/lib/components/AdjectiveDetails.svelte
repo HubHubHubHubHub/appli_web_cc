@@ -8,26 +8,28 @@
 </script>
 
 {#if details.cas}
-	<table class="table table-zebra mt-2.5 font-body">
-		<thead>
-			<tr>
-				<th></th>
-				{#each genders as g}
-					<th class="text-center">{labelGender(g)}</th>
-				{/each}
-			</tr>
-		</thead>
-		<tbody>
-			{#each Object.entries(details.cas) as [caseKey, forms]}
+	<div class="gram-table-wrap mt-2.5">
+		<table class="table gram-table font-body">
+			<thead>
 				<tr>
-					<th>{labelCase(caseKey)}</th>
-					{#each genders as gender}
-						<td class="text-center">
-							<span class="text-secondary font-bold">{renderCell(forms[gender])}</span>
-						</td>
+					<th></th>
+					{#each genders as g}
+						<th class="text-center">{labelGender(g)}</th>
 					{/each}
 				</tr>
-			{/each}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{#each Object.entries(details.cas) as [caseKey, forms]}
+					<tr>
+						<th>{labelCase(caseKey)}</th>
+						{#each genders as gender}
+							<td class="text-center">
+								<span class="text-secondary font-bold">{renderCell(forms[gender])}</span>
+							</td>
+						{/each}
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
 {/if}
