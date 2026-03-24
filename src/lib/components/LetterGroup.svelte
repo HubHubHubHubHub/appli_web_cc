@@ -6,9 +6,9 @@
 
 <div>
 	<button type="button" class="flex items-center gap-1.5 bg-transparent border-none py-1 pl-3 pr-0 m-0 font-[inherit] cursor-pointer w-full text-left text-neutral hover:text-base-content" onclick={onToggle}>
-		<span class="inline-block text-[0.65em] transition-transform duration-150 ease-in-out" class:rotate-90={isOpen}>▶</span>
-		<span class="font-semibold text-[0.95em]">{letter}</span>
-		<span class="text-[0.8em] opacity-50">({words.length})</span>
+		<span class="inline-block text-2xs transition-transform duration-150 ease-in-out" class:rotate-90={isOpen}>▶</span>
+		<span class="font-semibold text-base">{letter}</span>
+		<span class="text-xs opacity-50">({words.length})</span>
 	</button>
 	{#if isOpen}
 		<ul class="list-none p-0 m-0">
