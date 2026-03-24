@@ -2,12 +2,25 @@ node_modules/
 build/
 .svelte-kit/
 .DS_Store
+
+# Claude Code (config locale)
+.claude/
+
+# Doc LaTeX (fichiers générés)
 doc/*.pdf
 doc/*.aux
 doc/*.log
 doc/*.out
 doc/*.toc
 doc/*.synctex.gz
-memo_vscode_json_mac.txt
+
+# Dossiers perso
+perso/
 Nooj/
 Olena_L1/
+
+# Python
+__pycache__/
+outil_python/essai.json
+outil_python/out.json
+outil_python/entries_report.html
