@@ -274,9 +274,9 @@ body {
   max-width: 360px;
   padding: 6px 8px;
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.15);
-  background: rgba(255,255,255,.98);
-  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   font-size: var(--text-sm);
   line-height: 1.25;
   pointer-events: none;
@@ -296,4 +296,3 @@ body {
 .verb-forms-container.active {
   display: block;
 }
-
