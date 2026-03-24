@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getDataFromJson, getPrincipalForm } from "../../src/lib/utils/dataAccess.js";
+import { getDataFromJson, getPrincipalForm, getLemmaEntry } from "../../src/lib/utils/dataAccess.js";
 
 const mockWordData = {
   nom: {
@@ -157,5 +157,64 @@ describe("getPrincipalForm", () => {
 
   it("falls back to raw word for unknown category", () => {
     expect(getPrincipalForm(mockWordData, "xyz", "unknown")).toBe("xyz");
+  });
+});
+
+// ─── getLemmaEntry ──────────────────────────────────────────────────────────
+describe("getLemmaEntry", () => {
+  it("returns nominative singular for nouns", () => {
+    expect(getLemmaEntry(mockWordData, "nom", "слово")).toEqual(["слово", 3]);
+  });
+
+  it("returns nominative masculine for adjectives", () => {
+    expect(getLemmaEntry(mockWordData, "adj", "великий")).toEqual(["великий", 5]);
+  });
+
+  it("returns nominative for proper pronouns", () => {
+    expect(getLemmaEntry(mockWordData, "proper", "я")).toEqual(["я", -1]);
+  });
+
+  it("returns infinitive for verbs", () => {
+    expect(getLemmaEntry(mockWordData, "verb", "читати")).toEqual(["читати", 3]);
+  });
+
+  it("returns base for adverbs", () => {
+    expect(getLemmaEntry(mockWordData, "adv", "багато")).toEqual(["багато", 3]);
+  });
+
+  it("returns base for conjunctions", () => {
+    expect(getLemmaEntry(mockWordData, "conj", "але")).toEqual(["але", -1]);
+  });
+
+  it("returns base for particles", () => {
+    expect(getLemmaEntry(mockWordData, "part", "не")).toEqual(["не", -1]);
+  });
+
+  it("returns base for prepositions", () => {
+    expect(getLemmaEntry(mockWordData, "prep", "в")).toEqual(["в", -1]);
+  });
+
+  it("returns nominative masculine for card", () => {
+    expect(getLemmaEntry(mockWordData, "card", "один")).toEqual(["один", 3]);
+  });
+
+  it("returns nominative masculine for proposs", () => {
+    expect(getLemmaEntry(mockWordData, "proposs", "мій")).toEqual(["мій", 2]);
+  });
+
+  it("returns nominative masculine for pron", () => {
+    expect(getLemmaEntry(mockWordData, "pron", "цей")).toEqual(["цей", 2]);
+  });
+
+  it("returns null for unknown category", () => {
+    expect(getLemmaEntry(mockWordData, "unknown", "x")).toBeNull();
+  });
+
+  it("returns undefined/null for non-existent word without crashing", () => {
+    expect(getLemmaEntry(mockWordData, "nom", "inexistant")).toBeUndefined();
+  });
+
+  it("does not crash for null wordData", () => {
+    expect(getLemmaEntry(null, "nom", "x")).toBeUndefined();
   });
 });

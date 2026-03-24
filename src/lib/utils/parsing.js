@@ -1,3 +1,5 @@
+import { addAccent } from './accent.js';
+
 export function parseInfo(info) {
   return info.split(";");
 }
@@ -64,4 +66,10 @@ export function firstAccent(entry, variantIndex = 0) {
 export function getVariantIndex(dataInfoTokens) {
   const t = dataInfoTokens.find(s => /^var=\d+$/.test(s));
   return t ? parseInt(t.split("=")[1], 10) : 0;
+}
+
+export function renderCellSimple(entry) {
+  if (!entry) return '';
+  const pair = firstPair(entry);
+  return pair ? addAccent(pair[0], pair[1]) : '';
 }
