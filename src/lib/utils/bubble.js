@@ -1,6 +1,6 @@
 import { firstPair, getVariantIndex } from "./parsing.js";
 import { getLemmaEntry } from "./dataAccess.js";
-import { addAccent } from "./accent.js";
+import { addAccentHTML } from "./accent.js";
 import { labelCategory, labelTense, labelNumber } from "./i18n.js";
 import { classesToColors } from "./colors.js";
 
@@ -35,7 +35,7 @@ export function buildBubbleHTML(wd, word, category, dataInfo) {
 
   if (pair) {
     const [mot, pos] = pair;
-    const accented = addAccent(mot, pos);
+    const accented = addAccentHTML(mot, pos);
     return `<strong>${accented}</strong>${filtered.length ? " &nbsp;<em>" + filtered.join(", ") + "</em>" : ""}`;
   }
   return filtered.length ? `<em>${filtered.join(", ")}</em>` : "";

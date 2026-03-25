@@ -131,7 +131,7 @@ describe("renderCellSimple", () => {
   });
 
   it("returns accented form for a simple pair", () => {
-    expect(renderCellSimple(["слово", 3])).toBe("сло" + accent + "во");
+    expect(renderCellSimple(["слово", 3])).toContain('<span class="with-accent">о</span>');
   });
 
   it("returns unaccented form when position is -1", () => {

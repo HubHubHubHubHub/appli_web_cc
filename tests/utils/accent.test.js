@@ -81,10 +81,9 @@ describe("addAccent vowel validation", () => {
 describe("highlightLetter", () => {
   const accent = "\u0301";
 
-  it("wraps the letter at position in a <span> with accent", () => {
+  it("wraps the letter at position in a <span> without combining accent (rendered via CSS)", () => {
     const result = highlightLetter("слово", 2, "accent");
-    expect(result).toContain('<span class="accent">');
-    expect(result).toContain(accent);
+    expect(result).toBe('сл<span class="accent">о</span>во');
   });
 
   it("returns original word when position is out of bounds", () => {
@@ -94,6 +93,6 @@ describe("highlightLetter", () => {
 
   it("correctly handles position 0 (first character)", () => {
     const result = highlightLetter("abc", 0, "hl");
-    expect(result).toBe('<span class="hl">a' + accent + "</span>bc");
+    expect(result).toBe('<span class="hl">a</span>bc');
   });
 });
