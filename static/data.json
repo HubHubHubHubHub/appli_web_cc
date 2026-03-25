@@ -9173,7 +9173,7 @@
           }
         }
       },
-      "asp": "imperfectif",
+      "asp": "biaspectuel",
       "nooj": "",
       "base_html": "<span class=\"ukr\" data-info=\"атакувати;verb;inf\">атакувати</span>",
       "phrases": {
@@ -11248,7 +11248,7 @@
           }
         }
       },
-      "asp": "imperfectif",
+      "asp": "biaspectuel",
       "nooj": "",
       "base_html": "<span class=\"ukr\" data-info=\"ігнорувати;verb;inf\">ігнорувати</span>",
       "phrases": {
