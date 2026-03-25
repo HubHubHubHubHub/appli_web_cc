@@ -80,7 +80,7 @@
     }
   },
   "Він запитає мене про це завтра.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;conj;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep;base\">про</span> <span class=\"ukr\" data-info=\"це;pron;cas;acc;n\">це</span> <span class=\"ukr\" data-info=\"завтра;nom;cas;acc;s\">завтра</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"він;proper;cas;nomi\">Він</span> <span class=\"ukr\" data-info=\"запитати;verb;conj;fut;3p;s\">запитає</span> <span class=\"ukr\" data-info=\"я;proper;cas;acc\">мене</span> <span class=\"ukr\" data-info=\"про;prep;base\">про</span> <span class=\"ukr\" data-info=\"це;pron;cas;acc;n\">це</span> <span class=\"ukr\" data-info=\"завтра;adv;base\">завтра</span>.",
     "traduction": "Il me demandera cela demain."
   },
   "Я читаю мінімум одну книжку на місяць.": {
@@ -901,7 +901,7 @@
     }
   },
   "Цей будинок низький, тоді як той — високий.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;m\">Цей</span> <span class=\"ukr\" data-info=\"будинок;nom;cas;nomi;s\">будинок</span> <span class=\"ukr\" data-info=\"низький;adj;cas;nomi;m\">низький</span>, <span class=\"ukr\" data-info=\"тоді;conj;base\">тоді</span> <span class=\"ukr\" data-info=\"як;conj;base\">як</span> <span class=\"ukr\" data-info=\"той;adj;cas;nomi;m\">той</span> — <span class=\"ukr\" data-info=\"високий;adj;cas;nomi;m\">високий</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;m\">Цей</span> <span class=\"ukr\" data-info=\"будинок;nom;cas;nomi;s\">будинок</span> <span class=\"ukr\" data-info=\"низький;adj;cas;nomi;m\">низький</span>, <span class=\"ukr\" data-info=\"тоді;adv;base\">тоді</span> <span class=\"ukr\" data-info=\"як;conj;base\">як</span> <span class=\"ukr\" data-info=\"той;adj;cas;nomi;m\">той</span> — <span class=\"ukr\" data-info=\"високий;adj;cas;nomi;m\">високий</span>.",
     "traduction": "Cet immeuble est bas, tandis que celui-là-ci est haut.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème1.1"
@@ -957,7 +957,7 @@
     }
   },
   "Мені подобаються довгі сукні.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"мені;pron;cas;dat\">Мені</span> <span class=\"ukr\" data-info=\"подобатися;verb;conj;pres;3p;s\">подобаються</span> <span class=\"ukr\" data-info=\"довгий;adj;cas;nomi;m\">довгі</span> <span class=\"ukr\" data-info=\"сукня;nom;cas;nomi;pl\">сукні</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;pron;cas;dat\">Мені</span> <span class=\"ukr\" data-info=\"подобатися;verb;conj;pres;3p;s\">подобаються</span> <span class=\"ukr\" data-info=\"довгий;adj;cas;nomi;m\">довгі</span> <span class=\"ukr\" data-info=\"сукня;nom;cas;nomi;pl\">сукні</span>.",
     "traduction": "J'aime les longues robes.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème1.9"
@@ -1027,7 +1027,7 @@
     }
   },
   "Його здоров'я було слабким.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"його;proper;cas;nomi\">Його</span> <span class=\"ukr\" data-info=\"здоров'я;nom;cas;nomi;s\">здоров'я</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;n;s\">було</span> <span class=\"ukr\" data-info=\"слабкий;adj;cas;ins;m\">слабким</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"його;proposs;cas;nomi\">Його</span> <span class=\"ukr\" data-info=\"здоров'я;nom;cas;nomi;s\">здоров'я</span> <span class=\"ukr\" data-info=\"бути;verb;conj;pass;n;s\">було</span> <span class=\"ukr\" data-info=\"слабкий;adj;cas;ins;m\">слабким</span>.",
     "traduction": "Sa santé était faible.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème1.19"
@@ -1048,14 +1048,14 @@
     }
   },
   "Ця валіза занадто важка.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ця;adj;cas;nomi;f\">Ця</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;nomi;s\">валіза</span> <span class=\"ukr\" data-info=\"занадто;adv;base\">занадто</span> <span class=\"ukr\" data-info=\"важкий;adj;cas;nomi;m\">важка</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;f\">Ця</span> <span class=\"ukr\" data-info=\"валіза;nom;cas;nomi;s\">валіза</span> <span class=\"ukr\" data-info=\"занадто;adv;base\">занадто</span> <span class=\"ukr\" data-info=\"важкий;adj;cas;nomi;m\">важка</span>.",
     "traduction": "Cette valise est trop lourde.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème1.22"
     }
   },
   "Ця дівчина дуже повільна.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"ця;adj;cas;nomi;f\">Ця</span> <span class=\"ukr\" data-info=\"дівчина;nom;cas;nomi;s\">дівчина</span> <span class=\"ukr\" data-info=\"дуже;adv;base\">дуже</span> <span class=\"ukr\" data-info=\"повільний;adj;cas;nomi;m\">повільна</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;adj;cas;nomi;f\">Ця</span> <span class=\"ukr\" data-info=\"дівчина;nom;cas;nomi;s\">дівчина</span> <span class=\"ukr\" data-info=\"дуже;adv;base\">дуже</span> <span class=\"ukr\" data-info=\"повільний;adj;cas;nomi;m\">повільна</span>.",
     "traduction": "Cette fille est très lente.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème1.23"
@@ -1188,7 +1188,7 @@
     }
   },
   "Лікар дав мені медичну довідку.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"лікар;nom;cas;nomi;s\">Лікар</span> <span class=\"ukr\" data-info=\"дати;verb;conj;pass;m;s\">дав</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"медичний;adj;cas;acc;f\">медичну</span> <span class=\"ukr\" data-info=\"довідка;nom;cas;acc;s\">довідку</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"лікар;nom;cas;nomi;s\">Лікар</span> <span class=\"ukr\" data-info=\"дати;verb;conj;pass;m;s\">дав</span> <span class=\"ukr\" data-info=\"я;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"медичний;adj;cas;acc;f\">медичну</span> <span class=\"ukr\" data-info=\"довідка;nom;cas;acc;s\">довідку</span>.",
     "traduction": "Le médecin m'a donné un certificat médical.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème2.19"
@@ -1230,7 +1230,7 @@
     }
   },
   "Мамина любов та батькова любов допомогли мені у житті.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"мамин;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"та;conj;base\">та</span> <span class=\"ukr\" data-info=\"батьків;adj;cas;nomi;f\">батькова</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"допомогти;verb;conj;pass;m;pl\">допомогли</span> <span class=\"ukr\" data-info=\"мені;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"у;prep;base\">у</span> <span class=\"ukr\" data-info=\"життя;nom;cas;loc;s\">житті</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"мамин;adj;cas;nomi;f\">Мамина</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"та;conj;base\">та</span> <span class=\"ukr\" data-info=\"батьків;adj;cas;nomi;f\">батькова</span> <span class=\"ukr\" data-info=\"любов;nom;cas;nomi;s\">любов</span> <span class=\"ukr\" data-info=\"допомогти;verb;conj;pass;m;pl\">допомогли</span> <span class=\"ukr\" data-info=\"я;pron;cas;dat\">мені</span> <span class=\"ukr\" data-info=\"у;prep;base\">у</span> <span class=\"ukr\" data-info=\"життя;nom;cas;loc;s\">житті</span>.",
     "traduction": "L'amour de ma mère et de mon père m'a aidé dans la vie.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème3.5"
@@ -1356,7 +1356,7 @@
     }
   },
   "Чернівецька область – найменша область України.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"чернівецький;adj;cas;nomi;f\">Чернівецька</span> <span class=\"ukr\" data-info=\"область;nom;cas;nomi;s\">область</span> <span class=\"ukr\" data-info=\"–;part;base\">–</span> <span class=\"ukr\" data-info=\"найменший;adj;cas;nomi;f\">найменша</span> <span class=\"ukr\" data-info=\"область;nom;cas;nomi;s\">область</span> <span class=\"ukr\" data-info=\"Україна;nom;cas;gen;s\">України</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"чернівецький;adj;cas;nomi;f\">Чернівецька</span> <span class=\"ukr\" data-info=\"область;nom;cas;nomi;s\">область</span> – <span class=\"ukr\" data-info=\"найменший;adj;cas;nomi;f\">найменша</span> <span class=\"ukr\" data-info=\"область;nom;cas;nomi;s\">область</span> <span class=\"ukr\" data-info=\"Україна;nom;cas;gen;s\">України</span>.",
     "traduction": "L’oblast de Tchernivtsi est le plus petit oblast d’Ukraine.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème4.3"
