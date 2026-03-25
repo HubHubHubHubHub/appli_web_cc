@@ -1,4 +1,4 @@
-import { addAccent } from "./accent.js";
+import { addAccentHTML } from "./accent.js";
 import { firstPair } from "./parsing.js";
 
 /**
@@ -97,7 +97,7 @@ export function getPrincipalForm(wordData, word, category) {
   try {
     const entry = getLemmaEntry(wordData, category, word);
     const p = firstPair(entry);
-    if (p) return addAccent(p[0], p[1]);
+    if (p) return addAccentHTML(p[0], p[1]);
   } catch (err) {
     console.warn(`getPrincipalForm: erreur pour "${word}" (${category}) :`, err);
   }

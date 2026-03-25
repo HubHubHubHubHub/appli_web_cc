@@ -1,4 +1,4 @@
-import { addAccent } from "./accent.js";
+import { addAccentHTML } from "./accent.js";
 import { toPairs } from "./parsing.js";
 import { labelTense, labelNumber } from "./i18n.js";
 
@@ -13,7 +13,7 @@ export function renderCell(entry) {
   if (!pairs.length) return "";
   return pairs
     .filter(([t]) => t)
-    .map(([t, p]) => addAccent(t, p))
+    .map(([t, p]) => addAccentHTML(t, p))
     .join(" / ");
 }
 

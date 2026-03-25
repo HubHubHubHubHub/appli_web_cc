@@ -156,17 +156,17 @@ describe("getPrincipalForm", () => {
 
   it("returns accented nominative singular for nouns", () => {
     const result = getPrincipalForm(mockWordData, "слово", "nom");
-    expect(result).toBe("сло" + accent + "во");
+    expect(result).toContain('<span class="with-accent">о</span>');
   });
 
   it("returns accented nominative masculine for adjectives", () => {
     const result = getPrincipalForm(mockWordData, "великий", "adj");
-    expect(result).toContain(accent);
+    expect(result).toContain('<span class="with-accent">');
   });
 
   it("returns accented infinitive for verbs", () => {
     const result = getPrincipalForm(mockWordData, "читати", "verb");
-    expect(result).toBe("чита" + accent + "ти");
+    expect(result).toContain('<span class="with-accent">а</span>');
   });
 
   it("returns accented nominative for proper pronouns", () => {

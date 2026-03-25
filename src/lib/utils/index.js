@@ -1,5 +1,5 @@
 export { i18n, labelCategory, labelTense, labelNumber } from "./i18n.js";
-export { addAccent, highlightLetter } from "./accent.js";
+export { addAccent, addAccentHTML, highlightLetter } from "./accent.js";
 export {
   parseInfo,
   toPairs,

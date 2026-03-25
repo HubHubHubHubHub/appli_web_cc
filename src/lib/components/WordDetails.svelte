@@ -2,7 +2,7 @@
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import { uiStore } from "$lib/stores/uiStore.svelte.js";
   import { getPrincipalForm } from "$lib/utils/dataAccess.js";
-  import { addAccent } from "$lib/utils/accent.js";
+  import { addAccentHTML } from "$lib/utils/accent.js";
   import { firstPair } from "$lib/utils/parsing.js";
   import NounDetails from "./NounDetails.svelte";
   import AdjectiveDetails from "./AdjectiveDetails.svelte";
@@ -56,17 +56,17 @@
     const couplVerb = dataStore.wordData?.verb?.[details.coupl];
     if (!couplVerb?.inf) return details.coupl;
     const pair = firstPair(couplVerb.inf);
-    return pair ? addAccent(pair[0], pair[1]) : details.coupl;
+    return pair ? addAccentHTML(pair[0], pair[1]) : details.coupl;
   });
 </script>
 
 <div class="max-w-3xl mx-auto p-6 text-[1.2rem]">
   {#if details}
     <h2 class="text-xl font-semibold">
-      {displayWord}
+      {@html displayWord}
       <span class="badge badge-ghost text-xs font-normal align-middle ml-2">{displayMeta}</span
       >{#if couplDisplay}
-        <span class="text-sm font-normal ml-2">— couple asp. : {couplDisplay}</span>{/if}
+        <span class="text-sm font-normal ml-2">— couple asp. : {@html couplDisplay}</span>{/if}
     </h2>
 
     {#if uiStore.selectedCategory === "nom"}

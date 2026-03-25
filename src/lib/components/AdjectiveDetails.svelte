@@ -24,7 +24,7 @@
             <th>{labelCase(caseKey)}</th>
             {#each genders as gender}
               <td class="text-center">
-                <span class="text-secondary font-bold">{renderCell(forms[gender])}</span>
+                <span class="font-bold">{@html renderCell(forms[gender])}</span>
               </td>
             {/each}
           </tr>

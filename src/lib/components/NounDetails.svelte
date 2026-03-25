@@ -20,10 +20,10 @@
           <tr>
             <th>{labelCase(caseKey)}</th>
             <td class="text-center"
-              ><span class="text-secondary font-bold">{renderCell(forms.s)}</span></td
+              ><span class="font-bold">{@html renderCell(forms.s)}</span></td
             >
             <td class="text-center"
-              ><span class="text-secondary font-bold">{renderCell(forms.pl)}</span></td
+              ><span class="font-bold">{@html renderCell(forms.pl)}</span></td
             >
           </tr>
         {/each}
