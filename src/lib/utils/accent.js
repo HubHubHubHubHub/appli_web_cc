@@ -1,5 +1,6 @@
 const COMBINING_ACUTE = "\u0301";
 const UKRAINIAN_VOWELS = new Set("аеєиіїоуюя");
+const DOTTED_VOWELS = new Set("іїІЇ");
 
 /**
  * Vérifie si un caractère est une voyelle ukrainienne (аеєиіїоуюя).
@@ -33,6 +34,29 @@ export function addAccent(word, accentPosition) {
 }
 
 /**
+ * Retourne un fragment HTML où la voyelle accentuée est enveloppée dans
+ * <span class="with-accent">. L'accent est dessiné en CSS (::after).
+ * @param {string} word - Mot ukrainien
+ * @param {number} accentPosition - Position 1-based de la voyelle accentuée
+ * @returns {string} HTML avec la voyelle enveloppée
+ */
+export function addAccentHTML(word, accentPosition) {
+  if (!word) return "";
+  const chars = Array.from(word);
+  if (accentPosition > 0 && accentPosition <= chars.length) {
+    const target = chars[accentPosition - 1];
+    if (!isUkrainianVowel(target)) {
+      console.warn(
+        `addAccentHTML: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
+      );
+    }
+    const dot = DOTTED_VOWELS.has(target) ? ' data-dot' : '';
+    chars[accentPosition - 1] = `<span class="with-accent"${dot}>${target}</span>`;
+  }
+  return chars.join("");
+}
+
+/**
  * Entoure la lettre à la position donnée d'un <span> avec accent combinant.
  * Utilisé pour le rendu HTML des accents dans le DOM (via innerHTML).
  * @param {string} word - Mot ukrainien (texte brut)
@@ -42,11 +66,12 @@ export function addAccent(word, accentPosition) {
  */
 export function highlightLetter(word, position, classe) {
   if (position < 0 || position >= word.length) return word;
+  const ch = word[position];
+  const dot = DOTTED_VOWELS.has(ch) ? ' data-dot' : '';
   return (
     word.slice(0, position) +
-    `<span class="${classe}">` +
-    word[position] +
-    COMBINING_ACUTE +
+    `<span class="${classe}"${dot}>` +
+    ch +
     "</span>" +
     word.slice(position + 1)
   );

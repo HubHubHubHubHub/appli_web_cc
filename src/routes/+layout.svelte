@@ -13,7 +13,16 @@
   });
 </script>
 
+<header class="app-header">
+  <div class="app-header-brand">
+    <span class="app-header-title">Слов<span class="app-header-o">о</span>скарб</span>
+    <span class="app-header-subtitle">Trésor lexical ukrainien</span>
+  </div>
+  <div class="mr-[60px]">
+    <AccentCheckbox />
+  </div>
+</header>
+
 {@render children()}
 
 <GrammarSidebar />
-<AccentCheckbox />

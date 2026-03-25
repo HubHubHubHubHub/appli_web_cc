@@ -1,4 +1,4 @@
-import { addAccent } from "./accent.js";
+import { addAccentHTML } from "./accent.js";
 
 /**
  * Découpe une chaîne data-info en tokens séparés par des points-virgules.
@@ -112,5 +112,5 @@ export function getVariantIndex(dataInfoTokens) {
 export function renderCellSimple(entry) {
   if (!entry) return "";
   const pair = firstPair(entry);
-  return pair ? addAccent(pair[0], pair[1]) : "";
+  return pair ? addAccentHTML(pair[0], pair[1]) : "";
 }

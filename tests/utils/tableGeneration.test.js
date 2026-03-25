@@ -9,7 +9,7 @@ import {
 
 describe("renderCell", () => {
   it("rend une paire simple avec accent", () => {
-    expect(renderCell(["балкон", 5])).toContain("балко");
+    expect(renderCell(["балкон", 5])).toContain('<span class="with-accent">о</span>');
   });
 
   it("retourne vide pour null", () => {

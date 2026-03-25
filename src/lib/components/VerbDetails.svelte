@@ -1,5 +1,5 @@
 <script>
-  import { addAccent } from "$lib/utils/accent.js";
+  import { addAccentHTML } from "$lib/utils/accent.js";
   import { toPairs, firstPair } from "$lib/utils/parsing.js";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import { labelTenseLabel, labelPerson } from "$lib/utils/i18n.js";
@@ -11,12 +11,12 @@
     if (!pairs.length) return "";
     return pairs
       .filter(([t]) => t)
-      .map(([t, p]) => `<span class="text-secondary font-bold">${addAccent(t, p)}</span>`)
+      .map(([t, p]) => `<span class="font-bold">${addAccentHTML(t, p)}</span>`)
       .join(", ");
   }
 
   const infPair = $derived(firstPair(details.inf));
-  const infDisplay = $derived(infPair ? addAccent(infPair[0], infPair[1]) : "");
+  const infDisplay = $derived(infPair ? addAccentHTML(infPair[0], infPair[1]) : "");
 
   const tenses = ["imp", "fut", "pres", "pass"];
 
@@ -38,7 +38,7 @@
         <tr class="gram-section">
           <td class="gram-label">Infinitif</td>
           <td colspan="2" class="text-center">
-            <span class="text-secondary font-bold">{infDisplay}</span>
+            <span class="font-bold">{@html infDisplay}</span>
           </td>
         </tr>
 
