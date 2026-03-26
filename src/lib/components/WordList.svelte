@@ -108,7 +108,7 @@
     const newCatOpen = {};
     const newLetterOpen = {};
     for (const key of allSectionKeys) {
-      newCatOpen[key] = true;
+      newCatOpen[key] = false;
       const groups = allGroupedData[key];
       if (groups) {
         for (const letter of groups.keys()) {
