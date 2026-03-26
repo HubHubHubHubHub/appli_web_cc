@@ -183,10 +183,12 @@ V2 clé=valeur : `машина;pos=noun;case=acc;number=sg`
 
 ## Chiffres
 
-|                      | V1                | V2  |
-| -------------------- | ----------------- | --- |
-| Entrées              | 603               | 646 |
-| Catégories top-level | 13 (dont 2 vides) | 9   |
-| Tests JS             | 156               | 158 |
-| Tests Python         | 27                | 68  |
-| Pronoms (total)      | 17                | 59  |
+|                      | V1                | V2 (post-enrichissement) |
+| -------------------- | ----------------- | ------------------------ |
+| Entrées              | 603               | 742                      |
+| Catégories top-level | 13 (dont 2 vides) | 9 (toutes peuplées)      |
+| Tests JS             | 156               | 160                      |
+| Tests Python         | 27                | 99                       |
+| Pronoms (total)      | 17                | 59                       |
+| Invariables          | 31                | 137                      |
+| Champ `base_html`    | présent           | supprimé                 |

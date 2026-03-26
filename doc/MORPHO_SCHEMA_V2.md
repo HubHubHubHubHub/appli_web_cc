@@ -30,7 +30,7 @@ Chaque entrée de `data.json` porte un objet `meta` regroupant les traits morpho
 
 ## 1. Catégories (`pos`)
 
-13 catégories possibles, alignées avec les POS NooJ. 9 catégories actuellement peuplées dans `data.json` (646 entrées).
+13 catégories possibles, alignées avec les POS NooJ. 9 catégories actuellement peuplées dans `data.json` (742 entrées).
 
 | `pos`    | POS NooJ                | Paradigme                                  | Exemples                  |
 | -------- | ----------------------- | ------------------------------------------ | ------------------------- |
