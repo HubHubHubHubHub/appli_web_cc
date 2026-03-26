@@ -30,7 +30,7 @@ Chaque entrée de `data.json` porte un objet `meta` regroupant les traits morpho
 
 ## 1. Catégories (`pos`)
 
-13 catégories, alignées avec les POS NooJ.
+13 catégories possibles, alignées avec les POS NooJ. 9 catégories actuellement peuplées dans `data.json` (646 entrées).
 
 | `pos`    | POS NooJ                | Paradigme                                  | Exemples                  |
 | -------- | ----------------------- | ------------------------------------------ | ------------------------- |
@@ -353,6 +353,32 @@ V1: я;proper;cas;dat      ->  pos=pron, pronType=pers, syntax=pron_pers
 V1: його;proposs;cas;...  ->  pos=adj, adjType=poss, syntax=pron_poss
 V1: цей;pron;cas;...      ->  pos=adj, adjType=dem, syntax=pron_dem
 ```
+
+### Structure sidebar actuelle
+
+Le registre `src/lib/utils/morphoRegistry.js` definit les groupes. Les groupes avec `flat: true` affichent les mots directement sans regroupement alphabetique.
+
+```
+Noms (280)
+Adjectifs (148 — qualificatifs sans syntax)
+Pronoms
+  ├── Personnels (8, flat, ordre: я ти він вона воно ми ви вони)
+  ├── Possessifs (9, flat, ordre: мій твій його її наш ваш свій їхній їх)
+  ├── Démonstratifs (12, flat)
+  ├── Interrogatifs (6, flat, ordre: хто що який чий котрий скільки)
+  ├── Réfléchi (1, flat: себе)
+  ├── Négatifs (6, flat)
+  └── Indéfinis (~21, alphabétique)
+Verbes (98)
+Numéraux (9)
+Adverbes (24)
+Mots invariables
+  ├── Prépositions (11)
+  ├── Conjonctions (9)
+  └── Particules (6)
+```
+
+Les mots de la sidebar sont affiches via `getPrincipalForm()` (texte accentue statique), pas via `HtmlContent` + DOM. Le clic selectionne le mot et sette `uiStore.selectedCategory` avec le vrai `pos` (via `posLookup`), pas la cle du groupe sidebar.
 
 ---
 
@@ -709,6 +735,54 @@ interface MorphoTag {
 // Predicatif
 { lemma: "можна", pos: "pred" }
 ```
+
+---
+
+## Architecture runtime
+
+### Fonctions centrales (`src/lib/utils/dataAccess.js`)
+
+- **`parseDataInfo(raw)`** : parse un data-info V2 en objet `MorphoTag`. Utilise par tous les composants qui lisent les `data-info` du DOM.
+- **`resolveEntry(dataV2, tag)`** : navigue dans `data.json` selon le `MorphoTag` et retourne la forme flechie `[["forme", accent], ...]`. Connait la topologie de chaque `pos` (noun: cas>nombre, adj: cas>genre, pron: cas seul, verb: conj>tense>person/gender>number).
+- **`getLemmaEntry(wordData, pos, word)`** : retourne la forme de citation (nominatif sg pour les noms, infinitif pour les verbes, etc.).
+- **`getPrincipalForm(wordData, word, pos)`** : retourne le HTML accentue de la forme de citation. Utilise par la sidebar et les en-tetes.
+
+### Flux de donnees
+
+```
+data-info (attribut HTML)
+    |
+    v
+parseDataInfo(raw) → MorphoTag { lemma, pos, case, number, ... }
+    |
+    v
+resolveEntry(dataV2, tag) → [["forme", accent], ...]
+    |
+    v
+firstPair(entry) → ["forme", accent]
+    |
+    v
+addAccentHTML("forme", accent) → HTML avec <span class="with-accent">
+```
+
+### Registre sidebar (`src/lib/utils/morphoRegistry.js`)
+
+Definit les groupes de la sidebar via `sidebarGroups`. Chaque groupe a un `filter(meta)` qui determine quelles entrees de `data.json` lui appartiennent. Les groupes avec `subgroups` creent un niveau de pliage supplementaire. Les groupes avec `flat: true` + `order: [...]` affichent les mots directement dans l'ordre specifie.
+
+`collectWords(wordData, filter)` parcourt toutes les entrees et retourne les lemmes qui matchent le filtre.
+
+`getSidebarGroup(meta)` retourne la cle du groupe sidebar pour un meta donne.
+
+### Parseur Python (`outil_python/ukr_morph_parser.py`)
+
+4 parseurs pour les tables goroh.pp.ua :
+
+| Fonction                                                        | Format goroh                            | Usage                                                     |
+| --------------------------------------------------------------- | --------------------------------------- | --------------------------------------------------------- |
+| `parse_table_nom`                                               | відмінок × однина/множина               | Noms                                                      |
+| `parse_table_adj`                                               | відмінок × чол.р./жін.р./сер.р./множина | Adjectifs, demonstratifs, possessifs, negatifs, indefinis |
+| `parse_table_pron`                                              | відмінок × forme (1 colonne)            | Pronoms idiosyncratiques (хто, що, себе, хтось...)        |
+| `parse_verb_imperfective_table` / `parse_verb_perfective_table` | Temps × personne/genre × nombre         | Verbes                                                    |
 
 ---
 
