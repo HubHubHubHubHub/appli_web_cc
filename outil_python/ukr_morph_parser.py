@@ -58,7 +58,10 @@ from typing import Dict, List, Tuple, Optional
 import unicodedata
 import urllib.parse
 
-import requests
+try:
+    import requests
+except ImportError:
+    requests = None  # Optional — only needed for fetch_html()
 from bs4 import BeautifulSoup
 
 
