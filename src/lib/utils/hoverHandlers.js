@@ -1,4 +1,4 @@
-import { parseInfo } from "./parsing.js";
+import { parseDataInfo } from "./dataAccess.js";
 import {
   buildBubbleHTML,
   getHoverColor,
@@ -31,8 +31,12 @@ export function applyHoverHandlers(el, deps) {
     word.setAttribute("tabindex", "0");
 
     const pinId = nextPinId();
-    const dataInfo = parseInfo(raw);
-    const [w, category, ...infos] = dataInfo;
+    const tag = parseDataInfo(raw);
+    const w = tag.lemma;
+    const category = tag.pos || "";
+    // Rebuild tokens array for bubble/table (lemma + clé=valeur)
+    const dataInfo = raw.split(";");
+    const infos = dataInfo.slice(1);
     const hoverColor = getHoverColor(dataInfo);
 
     function onMouseEnter() {

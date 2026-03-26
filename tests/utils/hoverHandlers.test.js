@@ -2,11 +2,12 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { applyHoverHandlers } from "$lib/utils/hoverHandlers.js";
 
 const mockWordData = {
-  nom: {
+  noun: {
     дім: {
+      meta: { pos: "noun", gender: "m" },
       cas: {
-        nomi: { s: ["дім", 1] },
-        gen: { s: ["дому", 2] },
+        nom: { sg: [["дім", 1]], pl: [] },
+        gen: { sg: [["дому", 2]], pl: [] },
       },
     },
   },
@@ -35,7 +36,9 @@ describe("applyHoverHandlers", () => {
   });
 
   it("attache role et tabindex sur les éléments .ukr avec data-info", () => {
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     applyHoverHandlers(el, makeDeps());
     const span = el.querySelector(".ukr");
     expect(span.getAttribute("role")).toBe("button");
@@ -50,14 +53,18 @@ describe("applyHoverHandlers", () => {
   });
 
   it("retourne des fonctions de cleanup", () => {
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     const cleanups = applyHoverHandlers(el, makeDeps());
     expect(cleanups.length).toBe(1);
     expect(typeof cleanups[0]).toBe("function");
   });
 
   it("le cleanup retire role et tabindex", () => {
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     const cleanups = applyHoverHandlers(el, makeDeps());
     cleanups[0]();
     const span = el.querySelector(".ukr");
@@ -67,7 +74,9 @@ describe("applyHoverHandlers", () => {
 
   it("click toggle le pin", () => {
     const deps = makeDeps();
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     applyHoverHandlers(el, deps);
     const span = el.querySelector(".ukr");
 
@@ -75,8 +84,8 @@ describe("applyHoverHandlers", () => {
     expect(deps.setPinnedElement).toHaveBeenCalledOnce();
     expect(deps.setGrammarTableData).toHaveBeenCalledWith({
       word: "дім",
-      category: "nom",
-      infos: ["cas", "nomi", "s"],
+      category: "noun",
+      infos: ["pos=noun", "case=nom", "number=sg"],
     });
   });
 
@@ -88,7 +97,9 @@ describe("applyHoverHandlers", () => {
         currentPinId = val;
       }),
     });
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     applyHoverHandlers(el, deps);
     const span = el.querySelector(".ukr");
 
@@ -106,7 +117,9 @@ describe("applyHoverHandlers", () => {
 
   it("hover ne déclenche pas si un élément est pinné", () => {
     const deps = makeDeps({ getPinnedElement: () => "pin-99" });
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     applyHoverHandlers(el, deps);
     const span = el.querySelector(".ukr");
 
@@ -116,7 +129,9 @@ describe("applyHoverHandlers", () => {
 
   it("keydown Enter déclenche le click", () => {
     const deps = makeDeps();
-    const el = makeContainer('<span class="ukr" data-info="дім;nom;cas;nomi;s">дім</span>');
+    const el = makeContainer(
+      '<span class="ukr" data-info="дім;pos=noun;case=nom;number=sg">дім</span>',
+    );
     applyHoverHandlers(el, deps);
     const span = el.querySelector(".ukr");
 
