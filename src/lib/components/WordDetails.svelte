@@ -72,7 +72,7 @@
   });
 </script>
 
-<div class="max-w-3xl mx-auto p-6 text-[1.2rem]">
+<div class="max-w-3xl mx-auto p-6 text-[1.2rem]" style:zoom={uiStore.contentScale === 1 ? null : uiStore.contentScale}>
   {#if details}
     <h2 class="text-xl font-semibold">
       {@html displayWord}

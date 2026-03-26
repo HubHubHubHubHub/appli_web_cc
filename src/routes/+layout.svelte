@@ -2,6 +2,7 @@
   import "../app.css";
   import { page } from "$app/stores";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
+  import { uiStore } from "$lib/stores/uiStore.svelte.js";
   import GrammarSidebar from "$lib/components/GrammarSidebar.svelte";
   import AccentCheckbox from "$lib/components/AccentCheckbox.svelte";
 
@@ -18,6 +19,11 @@
   $effect(() => {
     document.documentElement.setAttribute("data-theme", darkMode ? "ukrvocab-dark" : "ukrvocab");
   });
+
+  // Taille de police : variable CSS sur :root (lue par les hover-bubbles)
+  $effect(() => {
+    document.documentElement.style.setProperty("--content-scale", String(uiStore.contentScale));
+  });
 </script>
 
 <header class="app-header">
@@ -32,6 +38,20 @@
     >
   </nav>
   <div class="flex items-center gap-3 mr-[60px]">
+    <div class="font-size-controls">
+      <button
+        class="font-size-btn"
+        onclick={() => uiStore.decrease()}
+        disabled={!uiStore.canDecrease}
+        title="Réduire la taille de police"
+      >A−</button>
+      <button
+        class="font-size-btn"
+        onclick={() => uiStore.increase()}
+        disabled={!uiStore.canIncrease}
+        title="Augmenter la taille de police"
+      >A+</button>
+    </div>
     <AccentCheckbox />
     <label class="flex items-center gap-1.5 cursor-pointer text-sm">
       <input type="checkbox" class="toggle toggle-sm" bind:checked={darkMode} />

@@ -59,7 +59,7 @@
                 </tr>
               {/each}
             {:else}
-              <tr>
+              <tr class="gram-label-row">
                 <td>&nbsp;</td>
                 <td class="gram-label text-center">sg.</td>
                 <td class="gram-label text-center">pl.</td>

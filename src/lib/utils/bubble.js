@@ -2,7 +2,7 @@ import { firstPair } from "./parsing.js";
 import { getLemmaEntry } from "./dataAccess.js";
 import { addAccentHTML } from "./accent.js";
 import { labelCategory, labelTense, labelNumber } from "./i18n.js";
-import { classesToColors } from "./colors.js";
+import { classesToColors, classesToColorsDark } from "./colors.js";
 
 /**
  * Build the HTML content for a hover bubble tooltip.
@@ -61,10 +61,10 @@ export function buildBubbleHTML(wd, word, pos, dataInfo) {
 export function positionBubble(bubble, anchor) {
   const rect = anchor.getBoundingClientRect();
   const bubbleRect = bubble.getBoundingClientRect();
-  const top = window.scrollY + rect.top - bubbleRect.height - 8;
-  const left = window.scrollX + rect.left + (rect.width - bubbleRect.width) / 2;
-  bubble.style.top = `${Math.max(window.scrollY + 4, top)}px`;
-  bubble.style.left = `${Math.max(window.scrollX + 4, left)}px`;
+  const top = rect.top - bubbleRect.height - 8;
+  const left = rect.left + (rect.width - bubbleRect.width) / 2;
+  bubble.style.top = `${Math.max(4, top)}px`;
+  bubble.style.left = `${Math.max(4, left)}px`;
 }
 
 /**
@@ -98,11 +98,13 @@ export function hideBubble() {
  * @returns {string} CSS color value
  */
 export function getHoverColor(tokens) {
+  const isDark = document.documentElement.getAttribute("data-theme") === "ukrvocab-dark";
+  const palette = isDark ? classesToColorsDark : classesToColors;
   for (const t of tokens) {
     // V2 format: case=gen, case=acc, etc.
     const eq = t.indexOf("=");
     const val = eq > 0 ? t.slice(eq + 1) : t;
-    if (val in classesToColors) return classesToColors[val];
+    if (val in palette) return palette[val];
   }
   return "inherit";
 }

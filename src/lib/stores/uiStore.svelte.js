@@ -4,6 +4,9 @@ export function nextPinId() {
   return `pin-${++pinIdCounter}`;
 }
 
+const SCALE_STEPS = [0.85, 1, 1.15, 1.3];
+const DEFAULT_SCALE_INDEX = 1; // scale = 1 (no change)
+
 export const uiStore = createUIStore();
 
 function createUIStore() {
@@ -12,6 +15,7 @@ function createUIStore() {
   let selectedWord = $state(null);
   let selectedCategory = $state(null);
   let grammarTableData = $state(null);
+  let fontSizeIndex = $state(DEFAULT_SCALE_INDEX);
 
   return {
     get pinnedElement() {
@@ -47,6 +51,25 @@ function createUIStore() {
     },
     set grammarTableData(v) {
       grammarTableData = v;
+    },
+
+    get fontSizeIndex() {
+      return fontSizeIndex;
+    },
+    get contentScale() {
+      return SCALE_STEPS[fontSizeIndex];
+    },
+    get canIncrease() {
+      return fontSizeIndex < SCALE_STEPS.length - 1;
+    },
+    get canDecrease() {
+      return fontSizeIndex > 0;
+    },
+    increase() {
+      if (this.canIncrease) fontSizeIndex++;
+    },
+    decrease() {
+      if (this.canDecrease) fontSizeIndex--;
     },
   };
 }

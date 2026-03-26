@@ -212,8 +212,8 @@
 <div
   id="wordList"
   bind:this={wordListEl}
-  class="grow overflow-y-auto pr-1.5"
-  style="--global-toggle-height: 38px; scrollbar-width: thin; scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track); scrollbar-gutter: stable;"
+  class="grow overflow-y-auto pr-1.5 scrollbar-thin"
+  style="--global-toggle-height: 38px; scrollbar-gutter: stable;"
   onkeydown={handleKeydown}
   role="listbox"
 >
