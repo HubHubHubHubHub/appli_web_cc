@@ -661,11 +661,15 @@ def should_skip_goroh(lemma: str, pos: str, data_v2: dict) -> Optional[str]:
     return None
 
 
-def validate_accent(word: str, accent_pos: int) -> Optional[str]:
+def validate_accent(word, accent_pos) -> Optional[str]:
     """
     Vérifie qu'un accent pointe sur une voyelle ukrainienne.
     Retourne un message d'erreur ou None si OK.
     """
+    if not isinstance(accent_pos, int):
+        return None  # skip non-int (malformed data)
+    if not isinstance(word, str) or not word:
+        return None
     if accent_pos in (-1, -2):
         return None
     if accent_pos < 1 or accent_pos > len(word):
