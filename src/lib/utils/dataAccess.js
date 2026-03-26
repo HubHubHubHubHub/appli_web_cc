@@ -64,8 +64,9 @@ export function resolveEntry(dataV2, tag) {
     return entry?.cas?.[tag.case]?.[tag.number] || null;
   }
 
-  // Adj, num (cas > case > gender)
-  return entry?.cas?.[tag.case]?.[tag.gender] || null;
+  // Adj, num (cas > case > gender, avec "pl" comme clé genre pour le pluriel)
+  const genderKey = tag.gender || (tag.number === "pl" ? "pl" : null);
+  return entry?.cas?.[tag.case]?.[genderKey] || null;
 }
 
 /**
