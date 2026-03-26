@@ -162,6 +162,35 @@
     letterOpen = { ...letterOpen, [`${catKey}:${letter}`]: !letterOpen[`${catKey}:${letter}`] };
   }
 
+  let wordListEl = $state(null);
+
+  function handleKeydown(ev) {
+    if (!wordListEl) return;
+    if (ev.key !== "ArrowDown" && ev.key !== "ArrowUp" && ev.key !== "Enter") return;
+
+    // Collect all visible word buttons (not category/letter toggles)
+    const buttons = [...wordListEl.querySelectorAll("li button")];
+    if (!buttons.length) return;
+
+    const current = document.activeElement;
+    const idx = buttons.indexOf(current);
+
+    if (ev.key === "ArrowDown") {
+      ev.preventDefault();
+      const next = idx < buttons.length - 1 ? idx + 1 : 0;
+      buttons[next].focus();
+      buttons[next].scrollIntoView({ block: "nearest" });
+    } else if (ev.key === "ArrowUp") {
+      ev.preventDefault();
+      const prev = idx > 0 ? idx - 1 : buttons.length - 1;
+      buttons[prev].focus();
+      buttons[prev].scrollIntoView({ block: "nearest" });
+    } else if (ev.key === "Enter" && idx >= 0) {
+      ev.preventDefault();
+      buttons[idx].click();
+    }
+  }
+
   function toggleAll() {
     const expand = !anyExpanded;
     const newCatOpen = {};
@@ -182,8 +211,11 @@
 
 <div
   id="wordList"
+  bind:this={wordListEl}
   class="grow overflow-y-auto pr-1.5"
   style="--global-toggle-height: 38px; scrollbar-width: thin; scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track); scrollbar-gutter: stable;"
+  onkeydown={handleKeydown}
+  role="listbox"
 >
   <div class="sticky top-0 z-[2] bg-base-200 pb-1">
     <input
@@ -214,7 +246,7 @@
         >
           <button
             type="button"
-            class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full"
+            class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full focus:bg-primary/10 focus:outline-none rounded-sm"
             onclick={() => {
               uiStore.selectedWord = lemma;
               uiStore.selectedCategory = pos;

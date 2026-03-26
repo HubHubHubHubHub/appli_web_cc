@@ -43,7 +43,7 @@
         >
           <button
             type="button"
-            class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full"
+            class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full focus:bg-primary/10 focus:outline-none rounded-sm"
             onclick={() => handleWordClick(word)}
           >
             {@html getDisplay(word)}
