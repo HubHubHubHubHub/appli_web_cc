@@ -444,13 +444,14 @@ def migrate_data_info_tag(tag):
 
 
 def migrate_data_info_in_html(html):
-    """Remplace tous les data-info V1 dans une chaîne HTML."""
+    """Remplace tous les data-info V1 dans une chaîne HTML (guillemets doubles et simples)."""
     def replacer(match):
-        old_tag = match.group(1)
+        old_tag = match.group(1) or match.group(2)
         new_tag = migrate_data_info_tag(old_tag)
         return f'data-info="{new_tag}"'
 
-    return re.sub(r'data-info="([^"]+)"', replacer, html)
+    # Match both data-info="..." and data-info='...'
+    return re.sub(r"""data-info=(?:"([^"]+)"|'([^']+)')""", replacer, html)
 
 
 # ---------------------------------------------------------------------------
