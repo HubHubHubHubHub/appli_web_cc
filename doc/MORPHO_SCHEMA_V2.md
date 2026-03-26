@@ -161,26 +161,26 @@ V1: більший;adj;cas;nomi;m     ->  більший;pos=adj;adjDegree=comp;
 
 ## 3. Traits verbaux
 
-| Champ        | Valeurs                           | Notes                                               |
-| ------------ | --------------------------------- | --------------------------------------------------- |
-| `verbForm`   | `fin` \| `inf` \| `imp` \| `conv` | V1 `conj` -> `fin`, V1 `inf` -> `inf`               |
-| `tense`      | `pres` \| `past` \| `fut`         | V1 `pass` -> `past`                                 |
-| `person`     | `1` \| `2` \| `3`                 | V1 `1p` -> `1`, `2p` -> `2`, `3p` -> `3`            |
-| `gender`     | `m` \| `f` \| `n`                 | passe uniquement (accord en genre, pas en personne) |
-| `number`     | `sg` \| `pl`                      | V1 `s` -> `sg`                                      |
-| `aspect`     | `impf` \| `perf` \| `biaspect`    | voir ci-dessous                                     |
-| `motionType` | `det` \| `indet`                  | NooJ `+Motion+Determinate/Indeterminate`            |
+| Champ        | Valeurs                           | Notes                                                                                |
+| ------------ | --------------------------------- | ------------------------------------------------------------------------------------ |
+| `verbForm`   | `fin` \| `inf` \| `imp` \| `conv` | V1 `conj` -> `fin`, V1 `inf` -> `inf`                                                |
+| `tense`      | `pres` \| `past` \| `fut`         | V1 `pass` -> `past`                                                                  |
+| `person`     | `1` \| `2` \| `3`                 | V1 `1p` -> `1`, `2p` -> `2`, `3p` -> `3`                                             |
+| `gender`     | `m` \| `f` \| `n`                 | passe uniquement (accord en genre, pas en personne)                                  |
+| `number`     | `sg` \| `pl`                      | V1 `s` -> `sg`                                                                       |
+| `aspect`     | `impf` \| `perf` \| `biaspect`    | V1 `"imperfectif"` -> `impf`, `"perfectif"` -> `perf`, `"biaspectuel"` -> `biaspect` |
+| `motionType` | `det` \| `indet`                  | NooJ `+Motion+Determinate/Indeterminate`                                             |
 
 ### Aspect
 
 L'aspect est renseigne dans `meta.aspect` sur l'entree du verbe dans `data.json`.
 
-| Valeur     | Signification                        | Exemple                        |
-| ---------- | ------------------------------------ | ------------------------------ |
-| `impf`     | Imperfectif                          | читати, бачити, ставити        |
-| `perf`     | Perfectif                            | прочитати, побачити, поставити |
-| `biaspect` | Biaspectuel                          | атакувати, ігнорувати          |
-| _(absent)_ | Non tranche -- verification en cours |                                |
+| V2         | V1                 | Signification                        | Exemple                        |
+| ---------- | ------------------ | ------------------------------------ | ------------------------------ |
+| `impf`     | `"imperfectif"`    | Imperfectif                          | читати, бачити, ставити        |
+| `perf`     | `"perfectif"`      | Perfectif                            | прочитати, побачити, поставити |
+| `biaspect` | `"biaspectuel"`    | Biaspectuel                          | атакувати, ігнорувати          |
+| _(absent)_ | _(absent ou faux)_ | Non tranche -- verification en cours |                                |
 
 Le champ `meta.couple` indique le couple aspectuel : pour un verbe imperfectif, le perfectif correspondant, et vice versa. Pour un biaspectuel, `couple` est absent.
 
