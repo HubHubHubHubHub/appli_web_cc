@@ -11,11 +11,12 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run dev` — dev server with HMR
 - `npm run build` — static build to `build/`
 - `npm run preview` — preview the static build
-- `npm run test` — run all Vitest tests
+- `npm run test` — run all Vitest tests (160 tests)
 - `npx vitest tests/utils/accent.test.js` — run a single test file
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format
 - `npm run format:check` — Prettier check (used in CI)
+- `cd outil_python && python3 -m unittest discover` — run all Python tests (87 tests)
 
 ## Architecture
 
@@ -23,66 +24,99 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 
 `outil_python/` scripts ADD entries to `static/data.json` and `static/phrases.json` — they don't regenerate these files. Both can be edited directly. These JSON files are the app's entire dataset — there is no backend or API.
 
+### Data Format (V2)
+
+Data uses the V2 format (key=value). See `doc/MORPHO_SCHEMA_V2.md` for the full specification. Migration log in `doc/MIGRATION_V1_V2.md`.
+
+**data.json** — 9 top-level categories (742 entries): `noun` (280), `verb` (98), `adj` (188), `pron` (21), `num` (18), `adv` (44), `prep` (28), `conj` (21), `part` (16), `pred` (10), `insert` (10), `intj` (8).
+
+Each entry has a `meta` block with morphological traits:
+
+```json
+"машина": {
+  "meta": { "pos": "noun", "gender": "f" },
+  "cas": { "nom": { "sg": [["машина", 4]], "pl": [...] }, ... },
+  "nooj": { "line": "...", "status": "pending", "flx": "..." }
+}
+```
+
+Forms are always `[["text", accentPosition], ...]` (list of pairs). Accent position is 1-based on the letter. Special values: `-1` (monosyllable), `-2` (unknown).
+
+**data-info** attributes use key=value format: `"lemma;pos=noun;case=acc;number=sg"`. Valid cases: `nom`, `gen`, `dat`, `acc`, `ins`, `loc`, `voc`. Valid tenses: `pres`, `fut`, `imp`, `past`.
+
 ### Data Loading
 
-`+layout.server.js` reads both JSON files at build time (prerender). `+layout.svelte` initializes two rune-based stores (`dataStore.wordData`, `dataStore.phraseData` in `src/lib/stores/dataStore.svelte.js`). All components read from these stores reactively via property access (no `$store` syntax or `get()`).
+`+layout.server.js` reads both JSON files at build time (prerender). `+layout.svelte` initializes two rune-based stores (`dataStore.wordData`, `dataStore.phraseData`). All components read from these stores reactively.
 
 ### Routes
 
-- `/` — main vocabulary interface: `WordList` sidebar (categories → letters → words, double-fold expandable) + `WordDetails` panel
+- `/` — main vocabulary interface: `WordList` sidebar (categories → letters → words, with subgroups for pronouns/invariables) + `WordDetails` panel
 - `/phrases` — phrase search with multi-term AND filtering
 
 ### Component Hierarchy
 
-`+layout.svelte` renders `GrammarSidebar` (fixed right panel showing pinned/hovered grammar) and `AccentCheckbox` (toggle accent marks). Page components compose detail components (`NounDetails`, `VerbDetails`, `AdjectiveDetails`, `BaseDetails`) based on word category. `UkrSpan` and `HtmlContent` handle interactive Ukrainian text (hover/click triggers grammar sidebar).
+`+layout.svelte` renders header (tabs Lexique/Phrases, accent toggle, dark mode toggle), `GrammarSidebar` (fixed right panel), and page content. Page components compose detail components based on `meta.pos`:
 
-### Svelte 5 Reactivity
+- `noun` → `NounDetails` (cas × sg/pl)
+- `adj` → `AdjectiveDetails` (cas × m/f/n/pl)
+- `pron` → `PronDetails` (cas → forme directe)
+- `verb` → `VerbDetails` (conjugation tables)
+- `num` → dynamic (PronDetails, NounDetails, or AdjectiveDetails depending on paradigm format)
+- `prep` → `PrepDetails` (governs display)
+- `pred` → `PredDetails` (construction display)
+- `conj`, `part`, `adv`, `intj`, `insert` → `BaseDetails`
 
-Components use runes (`$state`, `$derived`, `$effect`, `$props`). In `$effect` blocks, all reactive values must be read inside the effect body to be tracked — assigning to a local variable is the pattern used (see `HtmlContent.svelte`: `const __ = html;` to track prop changes).
+`UkrSpan` and `HtmlContent` handle interactive Ukrainian text (hover/click triggers grammar sidebar).
 
-### Stores (Svelte 5 runes)
+### Sidebar grouping
 
-- `src/lib/stores/uiStore.svelte.js` — `uiStore` object with reactive properties: `selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement`
-- `src/lib/stores/dataStore.svelte.js` — `dataStore` object with reactive properties: `wordData`, `phraseData`
-
-Access pattern: `uiStore.selectedWord` (read) / `uiStore.selectedWord = value` (write). No `writable()`, no `$store`, no `get()`.
-
-### Data Format
-
-Words use `[text, accentPosition]` pairs where accent position is 1-based. Special values: `-1` (no accent/single syllable), `-2` (unknown accent). Variants are inline arrays of pairs: `["form1", pos1, "form2", pos2]`. Accent rendering adds combining acute (U+0301) after the character at the given position. Accent positions must always point to a Ukrainian vowel (`аеєиіїоуюя`).
-
-Categories: `nom`, `verb`, `adj`, `proposs`, `pron`, `card`, `proper`, `adv`, `conj`, `part`, `prep` — each with different declension/conjugation structures.
-
-`data-info` attributes use semicolon-separated tokens: `"lemma;category;type;case;number"` (e.g., `"балкон;nom;cas;nomi;s"`). Valid cases: `nomi`, `gen`, `dat`, `acc`, `ins`, `loc`, `voc`. Valid tenses: `pres`, `fut`, `imp`, `pass`.
+The sidebar uses `morphoRegistry.js` for syntactic grouping (not morphological). Example: possessives are `pos=adj` but appear under Pronouns. Groups with `flat: true` show words directly without letter grouping.
 
 ### Utils (`src/lib/utils/`)
 
-- `dataAccess.js` — navigate the nested JSON structure (`getDataFromJson`, `getPrincipalForm`)
-- `parsing.js` — parse semicolon-separated info strings, extract text/accent from pairs
-- `accent.js` — apply combining acute accent to Ukrainian strings
-- `gramFunc.js` — generate verb conjugation HTML
+- `dataAccess.js` — `parseDataInfo(raw)` → MorphoTag, `resolveEntry(dataV2, tag)` → form, `getLemmaEntry`, `getPrincipalForm`
+- `parsing.js` — `toPairs(entry)`, `firstPair`, `firstText`, `firstAccent`, `renderCellSimple`
+- `morphoRegistry.js` — `sidebarGroups`, `collectWords(wordData, filter)`, `getSidebarGroup(meta)`
+- `accent.js` — `addAccent`, `addAccentHTML`, `highlightLetter`
+- `accentDom.js` — `applyAccents(el, wordData, enabled)` — DOM accent toggle
+- `hoverHandlers.js` — `applyHoverHandlers(el, deps)` — hover/click/pin on `.ukr` elements
+- `bubble.js` — `buildBubbleHTML`, `positionBubble`, `getHoverColor`
+- `gramFunc.js` — `generateVerbForms` — verb conjugation HTML with pronouns
+- `tableGeneration.js` — `generateTableNoun`, `generateTablePron`, `generateTableAdj`, `generateTableVerb`
+- `i18n.js` — French labels (V2 keys: noun, past, sg, 1/2/3)
+- `colors.js` — grammatical case → RGB color mapping (V2 key: `nom`)
 - `ukrainianSort.js` — Ukrainian alphabet ordering and letter grouping
-- `i18n.js` — French labels for grammatical categories, cases, tenses
-- `colors.js` — grammatical case → RGB color mapping
 - `phrases.js` — phrase filtering logic
-- `bubble.js` — shared hover bubble logic (`buildBubbleHTML`, `positionBubble`, `getOrCreateBubble`, `hideBubble`, `getHoverColor`)
 
-### Tests
+### Stores (Svelte 5 runes)
 
-Vitest with jsdom. Tests live in `tests/utils/` and import directly from `src/lib/utils/`. Pattern: `describe`/`it` blocks with `expect` assertions.
+- `uiStore.svelte.js` — `selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement`
+- `dataStore.svelte.js` — `wordData`, `phraseData`
+
+Access pattern: `uiStore.selectedWord` (read) / `uiStore.selectedWord = value` (write).
+
+### Svelte 5 Reactivity
+
+Components use runes (`$state`, `$derived`, `$effect`, `$props`). In `$effect` blocks, all reactive values must be read inside the effect body to be tracked.
 
 ### CSS
 
-Tailwind CSS v4 via `@tailwindcss/vite` plugin + daisyUI (custom theme `ukrvocab` in `app.css`). daisyUI is structurally integrated — do NOT remove it (classes like `table` and theme variables like `--color-neutral`, `--color-base-300` are used throughout). Design tokens defined in `@theme` block in `src/app.css` (colors, shadows, z-index, fonts). Components use Tailwind utility classes. Font: Times New Roman (required — Inter breaks combining acute rendering on Cyrillic).
+Tailwind CSS v4 + daisyUI (themes `ukrvocab` light + `ukrvocab-dark` dark in `app.css`). Dark mode toggled via `data-theme` attribute on `<html>`. Font: Playfair Display for Ukrainian text, Source Sans 3 for labels.
 
-Global CSS rules that must stay in `app.css` (not migratable to Tailwind):
+Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`, `.grammar-sidebar table`, `.hover-bubble`, `.gram-table`.
 
-- `.ukr`, `.accent`, `.remarque` — referenced from `@html` content, `querySelectorAll`, and JS utilities
-- `.grammar-sidebar table/th/td` — descendant selectors for `@html`-generated tables
-- `.hover-bubble` — created via `document.createElement` in `bubble.js` (shared singleton used by both `UkrSpan` and `HtmlContent`)
+### Tests
 
-Responsive breakpoint at 768px (`max-md:` prefix in Tailwind).
+- **JS**: Vitest with jsdom. 160 tests in `tests/utils/` and `tests/components/`.
+- **Python**: unittest. 87 tests in `outil_python/test_*.py`.
 
 ### CI
 
 GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to main: lint → format:check → test → build. Node 22.
+
+### Documentation
+
+- `doc/MORPHO_SCHEMA_V2.md` — full V2 schema specification (13 sections)
+- `doc/MORPHO_SCHEMA.md` — V1 schema (legacy reference)
+- `doc/MIGRATION_V1_V2.md` — migration journal (bugs, decisions, file changes)
+- `doc/RACCOURCIS_CLAVIER.md` — keyboard shortcuts
