@@ -8,6 +8,10 @@ from ukr_morph_parser import (
     parse_table_pron,
     parse_verb_imperfective_table,
     parse_verb_perfective_table,
+    should_skip_goroh,
+    validate_accent,
+    validate_entry_accents,
+    count_vowels,
 )
 
 HTML_ADJ = """
@@ -177,6 +181,74 @@ class TestUkrMorphParser(unittest.TestCase):
         self.assertTrue(len(fut["3"]["pl"]) >= 1)
         self.assertNotIn("5p", fut)
         self.assertNotIn("3p", fut)
+
+
+class TestShouldSkipGoroh(unittest.TestCase):
+    def test_monosyllabe(self):
+        self.assertEqual(should_skip_goroh("в", "prep", {}), "monosyllabe")
+        self.assertEqual(should_skip_goroh("з", "prep", {}), "monosyllabe")
+
+    def test_invariable(self):
+        self.assertEqual(should_skip_goroh("завтра", "adv", {}), "invariable")
+        self.assertEqual(should_skip_goroh("можна", "pred", {}), "invariable")
+
+    def test_complete_noun(self):
+        data = {"noun": {"машина": {"cas": {
+            "nom": {"sg": [["машина", 4]]},
+            "gen": {"sg": [["машини", 4]]},
+            "dat": {"sg": [["машині", 4]]},
+            "acc": {"sg": [["машину", 4]]},
+            "ins": {"sg": [["машиною", 4]]},
+            "loc": {"sg": [["машині", 4]]},
+        }}}}
+        self.assertEqual(should_skip_goroh("машина", "noun", data), "paradigme complet")
+
+    def test_incomplete_noun(self):
+        data = {"noun": {"машина": {"cas": {"nom": {"sg": [["машина", 4]]}}}}}
+        self.assertIsNone(should_skip_goroh("машина", "noun", data))
+
+    def test_unknown_word(self):
+        self.assertIsNone(should_skip_goroh("новий", "adj", {}))
+
+
+class TestValidateAccent(unittest.TestCase):
+    def test_valid(self):
+        self.assertIsNone(validate_accent("стіл", 3))  # і is 3rd
+        self.assertIsNone(validate_accent("столу", 3))  # о is 3rd
+
+    def test_monosyllabe(self):
+        self.assertIsNone(validate_accent("в", -1))
+
+    def test_unknown(self):
+        self.assertIsNone(validate_accent("слово", -2))
+
+    def test_out_of_bounds(self):
+        self.assertIsNotNone(validate_accent("дім", 5))
+
+    def test_not_vowel(self):
+        self.assertIsNotNone(validate_accent("стіл", 2))  # т
+
+
+class TestValidateEntryAccents(unittest.TestCase):
+    def test_clean_entry(self):
+        entry = {"base": [["можна", 2]], "cas": {}}
+        self.assertEqual(validate_entry_accents(entry, "можна"), [])
+
+    def test_bad_accent(self):
+        entry = {"base": [["значить", 2]]}  # н is not a vowel
+        errors = validate_entry_accents(entry, "значить")
+        self.assertTrue(len(errors) > 0)
+
+
+class TestCountVowels(unittest.TestCase):
+    def test_monosyllabe(self):
+        self.assertEqual(count_vowels("в"), 0)
+        self.assertEqual(count_vowels("з"), 0)
+
+    def test_polysyllabe(self):
+        self.assertEqual(count_vowels("завтра"), 2)
+        self.assertEqual(count_vowels("можна"), 2)
+        self.assertEqual(count_vowels("університет"), 5)
 
 
 if __name__ == "__main__":

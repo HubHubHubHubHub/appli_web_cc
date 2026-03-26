@@ -613,13 +613,108 @@ def fetch_html(mot: str) -> str:
     return resp.text
 
 
+UKR_VOWELS = set("аеєиіїоуюяАЕЄИІЇОУЮЯ")
+INVARIABLE_POS = {"adv", "prep", "conj", "part", "intj", "pred", "insert"}
+
+
+def count_vowels(word: str) -> int:
+    """Compte le nombre de voyelles ukrainiennes dans un mot."""
+    return sum(1 for c in word if c in UKR_VOWELS)
+
+
+def should_skip_goroh(lemma: str, pos: str, data_v2: dict) -> Optional[str]:
+    """
+    Retourne une raison de skip si on n'a pas besoin de scraper goroh, None sinon.
+
+    Parameters
+    ----------
+    lemma : str
+    pos : str (V2)
+    data_v2 : dict (data.json chargé)
+    """
+    # Monosyllabe → accent toujours -1, pas besoin de paradigme
+    if count_vowels(lemma) <= 1:
+        return "monosyllabe"
+
+    # Invariable → pas de paradigme goroh (juste base)
+    if pos in INVARIABLE_POS:
+        return "invariable"
+
+    # Déjà complet dans data_v2 (a un paradigme rempli)
+    entry = data_v2.get(pos, {}).get(lemma)
+    if entry:
+        cas = entry.get("cas", {})
+        conj = entry.get("conj", {})
+        # Pour les noms/adj : vérifier qu'au moins 5 cas ont des formes
+        if cas:
+            filled = sum(1 for v in cas.values()
+                        if isinstance(v, dict) and any(vv for vv in v.values())
+                        or isinstance(v, list) and len(v) > 0 and v[0] and v[0][0] is not None)
+            if filled >= 5:
+                return "paradigme complet"
+        # Pour les verbes : vérifier qu'il y a au moins un temps conjugué
+        if conj:
+            filled = sum(1 for v in conj.values() if isinstance(v, dict) and v)
+            if filled >= 2:
+                return "conjugaison complète"
+
+    return None
+
+
+def validate_accent(word: str, accent_pos: int) -> Optional[str]:
+    """
+    Vérifie qu'un accent pointe sur une voyelle ukrainienne.
+    Retourne un message d'erreur ou None si OK.
+    """
+    if accent_pos in (-1, -2):
+        return None
+    if accent_pos < 1 or accent_pos > len(word):
+        return f"accent {accent_pos} hors bornes (len={len(word)})"
+    if word[accent_pos - 1].lower() not in UKR_VOWELS:
+        return f"accent {accent_pos} pointe sur '{word[accent_pos - 1]}' (pas voyelle)"
+    return None
+
+
+def validate_entry_accents(entry: dict, lemma: str = "") -> List[str]:
+    """Valide tous les accents d'une entrée (base, cas, conj, inf)."""
+    errors = []
+    prefix = lemma or "?"
+
+    def check_pairs(pairs, path):
+        if not isinstance(pairs, list):
+            return
+        for pair in pairs:
+            if isinstance(pair, list) and len(pair) >= 2 and pair[0]:
+                err = validate_accent(pair[0], pair[1])
+                if err:
+                    errors.append(f"{prefix}.{path}: {err} dans '{pair[0]}'")
+
+    def walk(obj, path=""):
+        if isinstance(obj, list):
+            check_pairs(obj, path)
+        elif isinstance(obj, dict):
+            for k, v in obj.items():
+                walk(v, f"{path}.{k}" if path else k)
+
+    for field in ("base", "inf", "cas", "conj"):
+        if field in entry:
+            walk(entry[field], field)
+
+    return errors
+
+
 __all__ = [
     "remove_all_accents",
     "parse_ukrainian_word_accent_policy",
     "extract_article_blocks",
     "parse_table_adj",
     "parse_table_nom",
+    "parse_table_pron",
     "parse_verb_imperfective_table",
     "parse_verb_perfective_table",
     "fetch_html",
+    "should_skip_goroh",
+    "validate_accent",
+    "validate_entry_accents",
+    "count_vowels",
 ]
