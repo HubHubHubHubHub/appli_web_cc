@@ -6,11 +6,17 @@
   import AccentCheckbox from "$lib/components/AccentCheckbox.svelte";
 
   let { data, children } = $props();
+  let darkMode = $state(false);
 
   // Initialiser les stores avec les données du serveur (réactif)
   $effect(() => {
     dataStore.wordData = data.wordData;
     dataStore.phraseData = data.phraseData;
+  });
+
+  // Dark mode : appliquer le data-theme sur <html>
+  $effect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "ukrvocab-dark" : "ukrvocab");
   });
 </script>
 
@@ -25,8 +31,12 @@
       >Phrases</a
     >
   </nav>
-  <div class="mr-[60px]">
+  <div class="flex items-center gap-3 mr-[60px]">
     <AccentCheckbox />
+    <label class="flex items-center gap-1.5 cursor-pointer text-sm">
+      <input type="checkbox" class="toggle toggle-sm" bind:checked={darkMode} />
+      <span class="select-none">{darkMode ? "☾" : "☀"}</span>
+    </label>
   </div>
 </header>
 

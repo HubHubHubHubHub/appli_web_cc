@@ -33,6 +33,39 @@
   --depth: 1;
   --noise: 0;
 }
+@plugin "daisyui/theme" {
+  name: "ukrvocab-dark";
+  default: false;
+  color-scheme: dark;
+  --color-primary: oklch(65% 0.18 250);
+  --color-primary-content: oklch(15% 0.01 250);
+  --color-secondary: oklch(60% 0.12 250);
+  --color-secondary-content: oklch(15% 0.01 250);
+  --color-accent: oklch(65% 0.2 25);
+  --color-accent-content: oklch(15% 0.01 25);
+  --color-base-100: oklch(22% 0.01 250);
+  --color-base-200: oklch(18% 0.01 250);
+  --color-base-300: oklch(25% 0.01 250);
+  --color-base-content: oklch(90% 0.01 250);
+  --color-neutral: oklch(65% 0.02 250);
+  --color-neutral-content: oklch(15% 0.01 250);
+  --color-info: oklch(40% 0.04 230);
+  --color-info-content: oklch(90% 0.04 230);
+  --color-warning: oklch(40% 0.04 85);
+  --color-warning-content: oklch(90% 0.04 85);
+  --color-success: oklch(65% 0.2 145);
+  --color-success-content: oklch(15% 0.01 145);
+  --color-error: oklch(60% 0.25 25);
+  --color-error-content: oklch(15% 0.01 25);
+  --radius-box: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-selector: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
 
 @theme {
   --font-body: "Source Sans 3", sans-serif;
@@ -223,7 +256,7 @@ body {
 .gram-table td {
   font-family: "Playfair Display", serif;
   font-size: 15px;
-  color: #1a1a1a;
+  color: var(--color-base-content);
 }
 
 /* First column — shrink to content (labels, case names, person) */
@@ -234,7 +267,7 @@ body {
 }
 
 .gram-table tbody tr {
-  border-bottom: 0.5px solid #e5e5e5;
+  border-bottom: 0.5px solid var(--color-base-300);
   transition: background-color 0.15s;
 }
 
@@ -252,8 +285,8 @@ body {
   font-size: 12px;
   font-weight: 600;
   font-style: italic;
-  color: #6b7280;
-  border-bottom: 0.5px solid #e5e5e5;
+  color: var(--color-neutral);
+  border-bottom: 0.5px solid var(--color-base-300);
 }
 
 /* Row labels (case names in tbody th) */
@@ -262,7 +295,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   font-style: italic;
-  color: #6b7280;
+  color: var(--color-neutral);
   text-align: left;
   white-space: nowrap;
 }
@@ -272,11 +305,11 @@ body {
 .gram-section th,
 .gram-table .gram-section td {
   background: var(--color-surface-raised);
-  border-top: 0.5px solid #e5e5e5;
+  border-top: 0.5px solid var(--color-base-300);
   font-family: "Source Sans 3", sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: #6b7280;
+  color: var(--color-neutral);
 }
 
 /* No top border on the very first section (top of table) */
@@ -297,7 +330,7 @@ body {
   font-size: 12px;
   font-style: italic;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--color-neutral);
   white-space: nowrap;
 }
 
@@ -314,7 +347,7 @@ body {
 .gram-table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  background: oklch(99.5% 0 0);
+  background: var(--color-base-100);
   border: 1px solid var(--color-border-subtle);
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -363,7 +396,7 @@ body {
   text-align: left;
   font-style: italic;
   font-weight: 700;
-  color: #6b7280;
+  color: var(--color-neutral);
   background: var(--color-surface-raised);
   border-top: 1.5px solid var(--color-base-300);
   position: sticky;
@@ -384,7 +417,7 @@ body {
 .grammar-sidebar td:first-child {
   font-family: "Source Sans 3", sans-serif;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--color-neutral);
   white-space: nowrap;
 }
 
