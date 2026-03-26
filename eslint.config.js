@@ -22,6 +22,7 @@ export default [
     rules: {
       "svelte/no-at-html-tags": "off",
       "svelte/require-each-key": "off",
+      "svelte/no-navigation-without-resolve": "off",
     },
   },
   prettier,

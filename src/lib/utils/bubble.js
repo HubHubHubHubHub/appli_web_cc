@@ -1,5 +1,5 @@
 import { firstPair } from "./parsing.js";
-import { parseDataInfo, getLemmaEntry } from "./dataAccess.js";
+import { getLemmaEntry } from "./dataAccess.js";
 import { addAccentHTML } from "./accent.js";
 import { labelCategory, labelTense, labelNumber } from "./i18n.js";
 import { classesToColors } from "./colors.js";
