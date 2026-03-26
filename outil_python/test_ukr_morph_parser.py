@@ -95,6 +95,11 @@ HTML_V_PERF = """
       <td class="cell"><span class="word ">відбу́дься</span></td>
       <td class="cell"><span class="word ">відбу́дьтесь</span></td>
     </tr>
+    <tr class="row">
+      <td class="cell header">3 особа</td>
+      <td class="cell"><span class="word ">відбу́деться</span></td>
+      <td class="cell"><span class="word ">відбу́дуться</span></td>
+    </tr>
     <tr class="row subgroup-header">
       <td colspan="3" class="cell ta-center">Минулий час</td>
     </tr>
@@ -140,8 +145,8 @@ class TestUkrMorphParser(unittest.TestCase):
     def test_parse_verb_imperfective(self):
         data = parse_verb_imperfective_table(HTML_V_IMP, "висіти")
         self.assertEqual(data["asp"], "imperfectif")
-        # infinitif : on choisit la première position (ici 2)
-        self.assertEqual(data["inf"], [["висіти", 2]])
+        # infinitif : première forme = "висіти" accent 2 (double accent -> variantes)
+        self.assertEqual(data["inf"][0], ["висіти", 2])
         # présent 3p sing/plur
         self.assertIn("pres", data["conj"])
         self.assertIn("3p", data["conj"]["pres"])
@@ -151,8 +156,8 @@ class TestUkrMorphParser(unittest.TestCase):
     def test_parse_verb_perfective(self):
         data = parse_verb_perfective_table(HTML_V_PERF, "відбутися")
         self.assertEqual(data["asp"], "perfectif")
-        # infin « відбу́тися » → accent sur « у », position 5
-        self.assertEqual(data["inf"], [["відбутися", 5]])
+        # infin « відбу́тися » → accent sur « у », position 5 (+ variante відбутись)
+        self.assertEqual(data["inf"][0], ["відбутися", 5])
         # futur 2p sing doit être renseigné
         self.assertIn("fut", data["conj"])
         self.assertIn("2p", data["conj"]["fut"])
@@ -162,6 +167,17 @@ class TestUkrMorphParser(unittest.TestCase):
         self.assertIn("m", data["conj"]["pass"])
         self.assertTrue(len(data["conj"]["pass"]["m"]["s"]) >= 1)
         self.assertTrue(len(data["conj"]["pass"]["m"]["pl"]) >= 1)
+
+    def test_parse_verb_perfective_3p_not_5p(self):
+        """Regression test for #43: 3 особа must map to '3p', not '5p'."""
+        data = parse_verb_perfective_table(HTML_V_PERF, "відбутися")
+        fut = data["conj"]["fut"]
+        # "3p" must exist
+        self.assertIn("3p", fut)
+        self.assertTrue(len(fut["3p"]["s"]) >= 1)
+        self.assertTrue(len(fut["3p"]["pl"]) >= 1)
+        # "5p" must NOT exist
+        self.assertNotIn("5p", fut)
 
 
 if __name__ == "__main__":

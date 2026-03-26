@@ -487,7 +487,7 @@ def parse_verb_perfective_table(html_content: str, main_infinitive: str):
     person_map = {
         "1 особа": "1p",
         "2 особа": "2p",
-        "3 особа": "5p",   # mapping souhaité pour perfectif
+        "3 особа": "3p",
         "чол. р.": "m",
         "жін. р.": "f",
         "сер. р.": "n",
