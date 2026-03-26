@@ -207,7 +207,7 @@
     <ul class="list-none p-0 m-0">
       {#each searchResults as { lemma, pos }}
         <li
-          class="py-1.5 px-2 pl-3 cursor-pointer border-b border-base-200 hover:bg-base-200 {uiStore.selectedWord ===
+          class="py-1.5 px-2 pl-3 cursor-pointer border-b border-base-200 hover:bg-primary/10 {uiStore.selectedWord ===
             lemma && uiStore.selectedCategory === pos
             ? 'bg-primary/15 rounded'
             : ''}"

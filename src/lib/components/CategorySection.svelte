@@ -64,7 +64,7 @@
       <ul class="list-none p-0 m-0">
         {#each words as word}
           <li
-            class="py-1.5 px-2 pl-5 cursor-pointer border-b border-base-200 hover:bg-base-200 {uiStore.selectedWord ===
+            class="py-1.5 px-2 pl-5 cursor-pointer border-b border-base-200 hover:bg-primary/10 {uiStore.selectedWord ===
               word && (posLookup[word] || catKey) === uiStore.selectedCategory
               ? 'bg-primary/15 rounded'
               : ''}"
