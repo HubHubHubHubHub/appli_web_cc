@@ -25,12 +25,13 @@ Chaque mot annoté est encapsulé dans un `<span>` avec deux attributs :
 LEMME;nom;cas;CAS;NOMBRE
 ```
 
-| Champ    | Valeurs possibles                                         |
-|----------|-----------------------------------------------------------|
-| `CAS`    | `nomi` `gen` `dat` `acc` `ins` `loc` `voc`               |
-| `NOMBRE` | `s` (singulier) · `pl` (pluriel)                         |
+| Champ    | Valeurs possibles                          |
+| -------- | ------------------------------------------ |
+| `CAS`    | `nomi` `gen` `dat` `acc` `ins` `loc` `voc` |
+| `NOMBRE` | `s` (singulier) · `pl` (pluriel)           |
 
 **Exemples :**
+
 ```
 машина;nom;cas;acc;s       → машину
 гроші;nom;cas;nomi;pl      → гроші
@@ -45,28 +46,32 @@ LEMME;nom;cas;CAS;NOMBRE
 Deux sous-structures selon la forme :
 
 #### Infinitif
+
 ```
 LEMME;verb;inf
 ```
+
 ```
 запитати;verb;inf
 ```
 
 #### Forme conjuguée
+
 ```
 LEMME;verb;conj;TEMPS;PERSONNE;NOMBRE
 ```
 
-| Champ      | Valeurs possibles                                 |
-|------------|---------------------------------------------------|
-| `TEMPS`    | `pres` `fut` `pass` `imp` (impératif)             |
+| Champ      | Valeurs possibles                                   |
+| ---------- | --------------------------------------------------- |
+| `TEMPS`    | `pres` `fut` `pass` `imp` (impératif)               |
 | `PERSONNE` | `1p` `2p` `3p` — **OU pour le passé :** `m` `f` `n` |
-| `NOMBRE`   | `s` · `pl`                                        |
+| `NOMBRE`   | `s` · `pl`                                          |
 
 > **Note passé :** le passé ukrainien s'accorde en genre et nombre, pas en personne.  
 > Format passé : `LEMME;verb;conj;pass;GENRE;NOMBRE`
 
 **Exemples :**
+
 ```
 ставити;verb;conj;pres;1p;s    → ставлю
 читати;verb;conj;pres;3p;pl    → читають
@@ -84,12 +89,13 @@ LEMME;verb;conj;TEMPS;PERSONNE;NOMBRE
 LEMME;adj;cas;CAS;GENRE_NOMBRE
 ```
 
-| Champ          | Valeurs possibles                    |
-|----------------|--------------------------------------|
+| Champ          | Valeurs possibles                          |
+| -------------- | ------------------------------------------ |
 | `CAS`          | `nomi` `gen` `dat` `acc` `ins` `loc` `voc` |
-| `GENRE_NOMBRE` | `m` `f` `n` `pl`                    |
+| `GENRE_NOMBRE` | `m` `f` `n` `pl`                           |
 
 **Exemples :**
+
 ```
 новий;adj;cas;nomi;m         → новий
 більший;adj;cas;nomi;f       → більша
@@ -108,6 +114,7 @@ LEMME;proper;cas;CAS
 > Pas de champ genre/nombre (le pronom porte lui-même cette info).
 
 **Exemples :**
+
 ```
 я;proper;cas;nomi
 я;proper;cas;acc      → мене
@@ -124,12 +131,13 @@ LEMME;proper;cas;CAS
 LEMME;proposs;cas;CAS;GENRE_NOMBRE
 ```
 
-| Champ          | Valeurs possibles           |
-|----------------|-----------------------------|
-| `CAS`          | même que `adj`              |
-| `GENRE_NOMBRE` | `m` `f` `n` `pl`            |
+| Champ          | Valeurs possibles |
+| -------------- | ----------------- |
+| `CAS`          | même que `adj`    |
+| `GENRE_NOMBRE` | `m` `f` `n` `pl`  |
 
 **Exemples :**
+
 ```
 мій;proposs;cas;nomi;m      → мій
 свій;proposs;cas;acc;f      → свою
@@ -146,6 +154,7 @@ LEMME;pron;cas;CAS[;GENRE_NOMBRE]
 ```
 
 **Exemples :**
+
 ```
 цей;pron;cas;nomi;f         → ця
 це;pron;cas;acc;n           → це
@@ -163,6 +172,7 @@ LEMME;prep;base
 Toutes les prépositions utilisent simplement `base` (pas de flexion).
 
 **Exemples :**
+
 ```
 в;prep;base
 у;prep;base
@@ -181,6 +191,7 @@ LEMME;card;cas;CAS[;GENRE]
 ```
 
 **Exemples :**
+
 ```
 один;card;cas;nomi;m
 один;card;cas;nomi;f       → одна
@@ -197,6 +208,7 @@ LEMME;adv;base
 ```
 
 **Exemples :**
+
 ```
 дуже;adv;base
 зараз;adv;base
@@ -213,6 +225,7 @@ LEMME;conj;base
 ```
 
 **Exemples :**
+
 ```
 і;conj;base
 але;conj;base
@@ -230,6 +243,7 @@ LEMME;part;base
 ```
 
 **Exemples :**
+
 ```
 не;part;base
 це;part;base
@@ -240,15 +254,15 @@ LEMME;part;base
 
 ## Récapitulatif des cas ukrainiens
 
-| Code   | Nom ukrainien  | Rôle principal                              |
-|--------|----------------|---------------------------------------------|
-| `nomi` | Називний       | Sujet                                       |
-| `gen`  | Родовий        | Possession, négation, quantité              |
-| `dat`  | Давальний      | Complément d'attribution                    |
-| `acc`  | Знахідний      | Objet direct, direction                     |
-| `ins`  | Орудний        | Moyen, instrument, complément de manière    |
-| `loc`  | Місцевий       | Lieu statique (toujours avec préposition)   |
-| `voc`  | Кличний        | Apostrophe                                  |
+| Code   | Nom ukrainien | Rôle principal                            |
+| ------ | ------------- | ----------------------------------------- |
+| `nomi` | Називний      | Sujet                                     |
+| `gen`  | Родовий       | Possession, négation, quantité            |
+| `dat`  | Давальний     | Complément d'attribution                  |
+| `acc`  | Знахідний     | Objet direct, direction                   |
+| `ins`  | Орудний       | Moyen, instrument, complément de manière  |
+| `loc`  | Місцевий      | Lieu statique (toujours avec préposition) |
+| `voc`  | Кличний       | Apostrophe                                |
 
 ---
 
@@ -274,7 +288,7 @@ LEMME;part;base
 ## Règles importantes
 
 1. **Le lemme est toujours à l'infinitif** pour les verbes, au **nominatif singulier** pour les noms/adj.
-2. **Les mots non annotés** dans une phrase (déterminants non flexionnels, ponctuation, mots étrangers comme *Rafale*, *combat proven*) restent hors balise.
+2. **Les mots non annotés** dans une phrase (déterminants non flexionnels, ponctuation, mots étrangers comme _Rafale_, _combat proven_) restent hors balise.
 3. **`class="ukr"`** est constant — ne jamais le modifier.
 4. **Aucune valeur hors schéma** ne doit apparaître dans `data-info`.
-5. Pour les **noms propres indéclinables** (ex. *Верді*, *Rafale*), utiliser `nom;cas;nomi;s` si non fléchi en contexte.
+5. Pour les **noms propres indéclinables** (ex. _Верді_, _Rafale_), utiliser `nom;cas;nomi;s` si non fléchi en contexte.

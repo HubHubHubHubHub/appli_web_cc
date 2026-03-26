@@ -50,7 +50,7 @@ export function addAccentHTML(word, accentPosition) {
         `addAccentHTML: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
       );
     }
-    const dot = DOTTED_VOWELS.has(target) ? ' data-dot' : '';
+    const dot = DOTTED_VOWELS.has(target) ? " data-dot" : "";
     chars[accentPosition - 1] = `<span class="with-accent"${dot}>${target}</span>`;
   }
   return chars.join("");
@@ -67,7 +67,7 @@ export function addAccentHTML(word, accentPosition) {
 export function highlightLetter(word, position, classe) {
   if (position < 0 || position >= word.length) return word;
   const ch = word[position];
-  const dot = DOTTED_VOWELS.has(ch) ? ' data-dot' : '';
+  const dot = DOTTED_VOWELS.has(ch) ? " data-dot" : "";
   return (
     word.slice(0, position) +
     `<span class="${classe}"${dot}>` +
