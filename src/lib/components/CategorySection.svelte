@@ -7,6 +7,7 @@
     isOpen,
     letterGroups,
     letterOpenState,
+    posLookup = {},
     onToggleCategory,
     onToggleAllLetters,
     onToggleLetter,
@@ -46,6 +47,7 @@
         {words}
         isOpen={letterOpenState[`${catKey}:${letter}`] ?? false}
         {catKey}
+        {posLookup}
         onToggle={() => onToggleLetter(letter)}
       />
     {/each}

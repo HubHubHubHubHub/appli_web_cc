@@ -3,11 +3,12 @@
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import { uiStore } from "$lib/stores/uiStore.svelte.js";
 
-  let { letter, words, isOpen, catKey, onToggle } = $props();
+  let { letter, words, isOpen, catKey, posLookup = {}, onToggle } = $props();
 
   function handleWordClick(word) {
     uiStore.selectedWord = word;
-    uiStore.selectedCategory = catKey;
+    // Use posLookup to get the real pos (for transversal groups like poss→adj)
+    uiStore.selectedCategory = posLookup[word] || catKey;
   }
 </script>
 
@@ -33,7 +34,10 @@
             class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full"
             onclick={() => handleWordClick(word)}
           >
-            <HtmlContent html={dataStore.wordData[catKey]?.[word]?.base_html} disableHover={true} />
+            <HtmlContent
+              html={dataStore.wordData[posLookup[word] || catKey]?.[word]?.base_html}
+              disableHover={true}
+            />
           </button>
         </li>
       {/each}
