@@ -1,7 +1,7 @@
 <script>
   import {
     generateTableNoun,
-    generateTableProper,
+    generateTablePron,
     generateTableAdj,
     generateTableVerb,
   } from "$lib/utils/tableGeneration.js";
@@ -15,13 +15,13 @@
     const wd = dataStore.wordData;
 
     try {
-      if (category === "nom") {
-        const d = wd?.nom?.[word]?.cas;
+      if (category === "noun") {
+        const d = wd?.noun?.[word]?.cas;
         if (d) return generateTableNoun(d, infos[1], infos[2]);
-      } else if (category === "proper") {
-        const d = wd?.proper?.[word]?.cas;
-        if (d) return generateTableProper(d, infos[1]);
-      } else if (["adj", "card", "proposs", "pron"].includes(category)) {
+      } else if (category === "pron") {
+        const d = wd?.pron?.[word]?.cas;
+        if (d) return generateTablePron(d, infos[1]);
+      } else if (["adj", "num"].includes(category)) {
         const d = wd?.[category]?.[word]?.cas;
         if (d) return generateTableAdj(d, infos[1], infos[2]);
       } else if (category === "verb") {

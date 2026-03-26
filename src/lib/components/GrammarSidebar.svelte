@@ -12,13 +12,13 @@
     const { word, category } = uiStore.grammarTableData;
     const wd = dataStore.wordData;
     let meta = labelCategory(category);
-    if (category === "verb") {
-      const asp = wd?.verb?.[word]?.asp;
-      if (asp === "imperfectif") meta += ", imperf.";
-      else if (asp === "perfectif") meta += ", perf.";
-    } else if (category === "nom") {
-      const g = wd?.nom?.[word]?.genre;
-      if (g) meta += `, ${g}`;
+    const entryMeta = wd?.[category]?.[word]?.meta;
+    if (category === "verb" && entryMeta?.aspect) {
+      if (entryMeta.aspect === "impf") meta += ", imperf.";
+      else if (entryMeta.aspect === "perf") meta += ", perf.";
+      else if (entryMeta.aspect === "biaspect") meta += ", bi.";
+    } else if (category === "noun" && entryMeta?.gender) {
+      meta += `, ${entryMeta.gender}`;
     }
     const head = getPrincipalForm(wd, word, category);
     return `<span class="gram-header-word">${head}</span> <span class="gram-header-meta"> — ${meta}</span>`;

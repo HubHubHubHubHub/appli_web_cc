@@ -5,15 +5,14 @@
   import CategorySection from "./CategorySection.svelte";
 
   const categories = {
-    nom: "Noms",
+    noun: "Noms",
     adj: "Adjectifs",
-    pron: "Pronoms déterminants",
+    pron: "Pronoms personnels",
     verb: "Verbes",
+    num: "Numéraux",
+    adv: "Adverbes",
     conj: "Conjonctions",
     part: "Particules",
-    card: "Cardinaux",
-    proposs: "Pronoms possessifs",
-    proper: "Pronoms personnels",
     prep: "Prépositions",
   };
 

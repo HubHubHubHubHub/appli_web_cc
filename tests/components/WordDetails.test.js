@@ -5,30 +5,36 @@ import { dataStore } from "$lib/stores/dataStore.svelte.js";
 import { uiStore } from "$lib/stores/uiStore.svelte.js";
 
 const mockWordData = {
-  nom: {
+  noun: {
     дім: {
-      genre: "m",
+      meta: { pos: "noun", gender: "m" },
       cas: {
-        nomi: { s: ["дім", 1], pl: ["доми", 2] },
-        gen: { s: ["дому", 2], pl: ["домів", 3] },
+        nom: { sg: [["дім", 1]], pl: [["доми", 2]] },
+        gen: { sg: [["дому", 2]], pl: [["домів", 3]] },
       },
     },
   },
   verb: {
     читати: {
-      asp: "imperfectif",
-      inf: ["читати", 3],
+      meta: { pos: "verb", aspect: "impf" },
+      inf: [["читати", 3]],
       conj: {
         pres: {
-          "1p": { s: ["читаю", 3], pl: ["читаємо", 4] },
+          1: { sg: [["читаю", 3]], pl: [["читаємо", 4]] },
         },
       },
     },
   },
   adj: {
     великий: {
+      meta: { pos: "adj" },
       cas: {
-        nomi: { m: ["великий", 4], f: ["велика", 4], n: ["велике", 4], pl: ["великі", 4] },
+        nom: {
+          m: [["великий", 4]],
+          f: [["велика", 4]],
+          n: [["велике", 4]],
+          pl: [["великі", 4]],
+        },
       },
     },
   },
@@ -50,7 +56,7 @@ describe("WordDetails", () => {
 
   it("affiche un nom avec son genre", () => {
     uiStore.selectedWord = "дім";
-    uiStore.selectedCategory = "nom";
+    uiStore.selectedCategory = "noun";
     const { container } = render(WordDetails);
     expect(container.textContent).toContain("дім");
     expect(container.textContent).toContain("n.m.");
@@ -74,7 +80,7 @@ describe("WordDetails", () => {
 
   it("affiche un message si le mot n'existe pas dans les données", () => {
     uiStore.selectedWord = "inconnu";
-    uiStore.selectedCategory = "nom";
+    uiStore.selectedCategory = "noun";
     const { container } = render(WordDetails);
     expect(container.textContent).toContain("Aucun détail disponible");
   });

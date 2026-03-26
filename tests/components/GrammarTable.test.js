@@ -4,38 +4,47 @@ import GrammarTable from "$lib/components/GrammarTable.svelte";
 import { dataStore } from "$lib/stores/dataStore.svelte.js";
 
 const mockWordData = {
-  nom: {
+  noun: {
     дім: {
+      meta: { pos: "noun", gender: "m" },
       cas: {
-        nomi: { s: ["дім", 1], pl: ["доми", 2] },
-        gen: { s: ["дому", 2], pl: ["домів", 3] },
+        nom: { sg: [["дім", 1]], pl: [["доми", 2]] },
+        gen: { sg: [["дому", 2]], pl: [["домів", 3]] },
       },
     },
   },
   verb: {
     читати: {
-      inf: ["читати", 3],
+      meta: { pos: "verb", aspect: "impf" },
+      inf: [["читати", 3]],
       conj: {
         pres: {
-          "1p": { s: ["читаю", 3], pl: ["читаємо", 4] },
-          "2p": { s: ["читаєш", 3], pl: ["читаєте", 4] },
-          "3p": { s: ["читає", 3], pl: ["читають", 3] },
+          1: { sg: [["читаю", 3]], pl: [["читаємо", 4]] },
+          2: { sg: [["читаєш", 3]], pl: [["читаєте", 4]] },
+          3: { sg: [["читає", 3]], pl: [["читають", 3]] },
         },
       },
     },
   },
   adj: {
     великий: {
+      meta: { pos: "adj" },
       cas: {
-        nomi: { m: ["великий", 4], f: ["велика", 4], n: ["велике", 4], pl: ["великі", 4] },
+        nom: {
+          m: [["великий", 4]],
+          f: [["велика", 4]],
+          n: [["велике", 4]],
+          pl: [["великі", 4]],
+        },
       },
     },
   },
-  proper: {
+  pron: {
     Київ: {
+      meta: { pos: "pron" },
       cas: {
-        nomi: ["Київ", 2],
-        gen: ["Києва", 3],
+        nom: [["Київ", 2]],
+        gen: [["Києва", 3]],
       },
     },
   },
@@ -48,7 +57,7 @@ beforeEach(() => {
 describe("GrammarTable", () => {
   it("rend un tableau de nom", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "дім", category: "nom", infos: ["cas", "nomi", "s"] } },
+      props: { data: { word: "дім", category: "noun", infos: ["case=nom", "number=sg"] } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
@@ -65,15 +74,15 @@ describe("GrammarTable", () => {
 
   it("rend un tableau d'adjectif", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "великий", category: "adj", infos: ["cas", "nomi", "m"] } },
+      props: { data: { word: "великий", category: "adj", infos: ["case=nom", "gender=m"] } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
   });
 
-  it("rend un tableau de nom propre", () => {
+  it("rend un tableau de pronom", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "Київ", category: "proper", infos: ["cas", "gen"] } },
+      props: { data: { word: "Київ", category: "pron", infos: ["case=gen"] } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
@@ -88,7 +97,7 @@ describe("GrammarTable", () => {
 
   it("ne rend rien pour un mot inconnu", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "inconnu", category: "nom", infos: ["cas", "nomi", "s"] } },
+      props: { data: { word: "inconnu", category: "noun", infos: ["case=nom", "number=sg"] } },
     });
     expect(container.querySelector("table")).toBeNull();
   });
