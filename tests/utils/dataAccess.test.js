@@ -247,6 +247,18 @@ describe("resolveEntry", () => {
   it("returns null for unknown pos", () => {
     expect(resolveEntry(mockWordData, { pos: "unknown", lemma: "x" })).toBeNull();
   });
+
+  it("adj pluriel: number=pl sans gender → fallback pl", () => {
+    expect(
+      resolveEntry(mockWordData, { pos: "adj", lemma: "великий", case: "nom", number: "pl" }),
+    ).toEqual([["великі", 4]]);
+  });
+
+  it("adj sans gender ni number → fallback m", () => {
+    expect(resolveEntry(mockWordData, { pos: "adj", lemma: "великий", case: "nom" })).toEqual([
+      ["великий", 4],
+    ]);
+  });
 });
 
 // ─── Integration: data-info → MorphoTag → resolveEntry → accent ────────────

@@ -65,7 +65,9 @@ export function resolveEntry(dataV2, tag) {
   }
 
   // Adj, num (cas > case > gender, avec "pl" comme clé genre pour le pluriel)
-  const genderKey = tag.gender || (tag.number === "pl" ? "pl" : null);
+  // Si gender absent et number=pl → chercher sous "pl"
+  // Si gender absent et pas de number → essayer "m" (forme de citation)
+  const genderKey = tag.gender || (tag.number === "pl" ? "pl" : "m");
   return entry?.cas?.[tag.case]?.[genderKey] || null;
 }
 
