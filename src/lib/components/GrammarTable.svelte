@@ -1,7 +1,7 @@
 <script>
   import {
     generateTableNoun,
-    generateTableProper,
+    generateTablePron,
     generateTableAdj,
     generateTableVerb,
   } from "$lib/utils/tableGeneration.js";
@@ -9,21 +9,32 @@
 
   let { data } = $props();
 
+  // Parse V2 infos (clé=valeur tokens) into a tag object
+  function parseInfos(infos) {
+    const t = {};
+    for (const s of infos || []) {
+      const eq = s.indexOf("=");
+      if (eq > 0) t[s.slice(0, eq)] = s.slice(eq + 1);
+    }
+    return t;
+  }
+
   const tableHTML = $derived.by(() => {
     if (!data) return "";
     const { word, category, infos } = data;
     const wd = dataStore.wordData;
+    const tag = parseInfos(infos);
 
     try {
-      if (category === "nom") {
-        const d = wd?.nom?.[word]?.cas;
-        if (d) return generateTableNoun(d, infos[1], infos[2]);
-      } else if (category === "proper") {
-        const d = wd?.proper?.[word]?.cas;
-        if (d) return generateTableProper(d, infos[1]);
-      } else if (["adj", "card", "proposs", "pron"].includes(category)) {
+      if (category === "noun") {
+        const d = wd?.noun?.[word]?.cas;
+        if (d) return generateTableNoun(d, tag.case, tag.number);
+      } else if (category === "pron") {
+        const d = wd?.pron?.[word]?.cas;
+        if (d) return generateTablePron(d, tag.case);
+      } else if (["adj", "num"].includes(category)) {
         const d = wd?.[category]?.[word]?.cas;
-        if (d) return generateTableAdj(d, infos[1], infos[2]);
+        if (d) return generateTableAdj(d, tag.case, tag.gender);
       } else if (category === "verb") {
         const v = wd?.verb?.[word];
         if (v) return generateTableVerb(v, wd);

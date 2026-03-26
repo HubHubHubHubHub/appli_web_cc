@@ -1,8 +1,8 @@
 <script>
   import { uiStore, nextPinId } from "$lib/stores/uiStore.svelte.js";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
-  import { parseInfo, firstPair, getVariantIndex } from "$lib/utils/parsing.js";
-  import { getDataFromJson } from "$lib/utils/dataAccess.js";
+  import { firstPair } from "$lib/utils/parsing.js";
+  import { parseDataInfo, getDataFromJson } from "$lib/utils/dataAccess.js";
   import { highlightLetter } from "$lib/utils/accent.js";
   import {
     buildBubbleHTML,
@@ -17,9 +17,10 @@
   let spanEl = $state(null);
   const pinId = nextPinId();
 
-  const tokens = $derived(parseInfo(dataInfo));
-  const word = $derived(tokens[0]);
-  const category = $derived(tokens[1]);
+  const tag = $derived(parseDataInfo(dataInfo));
+  const tokens = $derived(dataInfo.split(";"));
+  const word = $derived(tag.lemma);
+  const category = $derived(tag.pos || "");
   const hoverColor = $derived(getHoverColor(tokens));
 
   // Compute displayed text (with or without accent)
@@ -27,8 +28,8 @@
     if (!uiStore.accentEnabled) return text;
 
     const wd = dataStore.wordData;
-    const infos = [word, ...tokens.slice(2)];
-    const variantIndex = getVariantIndex(tokens);
+    const infos = [word, ...tokens.slice(1)];
+    const variantIndex = tag.var ? parseInt(tag.var, 10) : 0;
     const entry = getDataFromJson(wd, category, infos);
 
     if (entry) {
@@ -42,7 +43,7 @@
   });
 
   function buildGrammarData() {
-    const infos = tokens.slice(2);
+    const infos = tokens.slice(1);
     return { word, category, infos };
   }
 

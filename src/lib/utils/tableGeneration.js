@@ -40,12 +40,12 @@ export function generateTableNoun(casData, cas, gender) {
 }
 
 /**
- * Génère un tableau HTML de déclinaison pour un nom propre (sans dimension nombre).
+ * Génère un tableau HTML de déclinaison pour un pronom (sans dimension genre dans le paradigme).
  * @param {object} casData - Données de déclinaison { cas: entry }
  * @param {string} currentCase - Cas grammatical actif (pour mise en gras)
  * @returns {string} HTML du tableau
  */
-export function generateTableProper(casData, currentCase) {
+export function generateTablePron(casData, currentCase) {
   if (!casData) return "<table></table>";
   let html = "<table>";
   for (const [caseName, entry] of Object.entries(casData)) {
@@ -98,7 +98,7 @@ export function generateTableVerb(verbDetails, wd) {
   html += `<tr><th colspan="3"><em>${labelTense("inf")}</em></th></tr>`;
   html += `<tr><td colspan="3">${renderCell(verbDetails.inf)}</td></tr>`;
 
-  const persons = ["1p", "2p", "3p"];
+  const persons = ["1", "2", "3"];
   const hasPres = !!verbDetails.conj?.pres;
 
   if (hasPres) {
@@ -106,7 +106,7 @@ export function generateTableVerb(verbDetails, wd) {
     for (const p of persons) {
       const pd = verbDetails.conj.pres?.[p];
       if (!pd) continue;
-      html += `<tr><td><em>${p}.</em></td><td>${renderCell(pd.s)}</td><td>${renderCell(pd.pl)}</td></tr>`;
+      html += `<tr><td><em>${p}p.</em></td><td>${renderCell(pd.sg)}</td><td>${renderCell(pd.pl)}</td></tr>`;
     }
   }
 
@@ -115,25 +115,25 @@ export function generateTableVerb(verbDetails, wd) {
     for (const p of persons) {
       const pd = verbDetails.conj.fut?.[p];
       if (!pd) continue;
-      html += `<tr><td><em>${p}.</em></td><td>${renderCell(pd.s)}</td><td>${renderCell(pd.pl)}</td></tr>`;
+      html += `<tr><td><em>${p}p.</em></td><td>${renderCell(pd.sg)}</td><td>${renderCell(pd.pl)}</td></tr>`;
     }
   }
 
-  if (verbDetails.conj?.pass) {
-    html += `<tr><th colspan="3"><em>${labelTense("pass")}</em></th></tr>`;
+  if (verbDetails.conj?.past) {
+    html += `<tr><th colspan="3"><em>${labelTense("past")}</em></th></tr>`;
     for (const g of ["m", "f", "n"]) {
-      const gd = verbDetails.conj.pass?.[g];
+      const gd = verbDetails.conj.past?.[g];
       if (!gd) continue;
-      html += `<tr><td><em>${g}.</em></td><td>${renderCell(gd.s)}</td><td>${renderCell(gd.pl)}</td></tr>`;
+      html += `<tr><td><em>${g}.</em></td><td>${renderCell(gd.sg)}</td><td>${renderCell(gd.pl)}</td></tr>`;
     }
   }
 
   if (verbDetails.conj?.imp) {
     html += `<tr><th colspan="3"><em>${labelTense("imp")}</em></th></tr>`;
-    for (const p of ["1p", "2p"]) {
+    for (const p of ["1", "2"]) {
       const pd = verbDetails.conj.imp?.[p];
       if (!pd) continue;
-      html += `<tr><td><em>${p}.</em></td><td>${renderCell(pd.s)}</td><td>${renderCell(pd.pl)}</td></tr>`;
+      html += `<tr><td><em>${p}p.</em></td><td>${renderCell(pd.sg)}</td><td>${renderCell(pd.pl)}</td></tr>`;
     }
   }
 
@@ -144,11 +144,11 @@ export function generateTableVerb(verbDetails, wd) {
 
   html += "</table>";
 
-  const coupl = (verbDetails.coupl || "").trim();
-  if (coupl) {
-    const couplInf = wd?.verb?.[coupl]?.inf;
-    const couplDisplay = couplInf ? renderCell(couplInf) : coupl;
-    html += `<div class="gram-note">Couple aspectuel : ${couplDisplay}</div>`;
+  const couple = (verbDetails.meta?.couple || "").trim();
+  if (couple) {
+    const coupleInf = wd?.verb?.[couple]?.inf;
+    const coupleDisplay = coupleInf ? renderCell(coupleInf) : couple;
+    html += `<div class="gram-note">Couple aspectuel : ${coupleDisplay}</div>`;
   }
 
   return html;

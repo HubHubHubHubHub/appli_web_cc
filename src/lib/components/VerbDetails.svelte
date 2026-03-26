@@ -18,15 +18,15 @@
   const infPair = $derived(firstPair(details.inf));
   const infDisplay = $derived(infPair ? addAccentHTML(infPair[0], infPair[1]) : "");
 
-  const tenses = ["imp", "fut", "pres", "pass"];
+  const tenses = ["imp", "fut", "pres", "past"];
 
   const impersData = $derived(details.conj?.impers ?? details.conj?.imper);
 
-  const coupl = $derived((details.coupl || "").trim());
-  const couplDisplay = $derived.by(() => {
-    if (!coupl) return "";
-    const couplInf = dataStore.wordData?.verb?.[coupl]?.inf;
-    return couplInf ? renderCell(couplInf) : coupl;
+  const couple = $derived((details.meta?.couple || "").trim());
+  const coupleDisplay = $derived.by(() => {
+    if (!couple) return "";
+    const coupleInf = dataStore.wordData?.verb?.[couple]?.inf;
+    return coupleInf ? renderCell(coupleInf) : couple;
   });
 </script>
 
@@ -48,11 +48,11 @@
               <td colspan="3" class="text-center text-xl">{labelTenseLabel(tenseKey)}</td>
             </tr>
 
-            {#if tenseKey === "pass"}
-              {#each Object.entries(details.conj.pass) as [gKey, forms]}
+            {#if tenseKey === "past"}
+              {#each Object.entries(details.conj.past) as [gKey, forms]}
                 <tr>
                   <td class="gram-label">{labelPerson(gKey)}</td>
-                  <td class="text-center">{@html renderCell(forms.s)}</td>
+                  <td class="text-center">{@html renderCell(forms.sg)}</td>
                   {#if gKey === "m"}
                     <td rowspan="3" class="text-center">{@html renderCell(forms.pl)}</td>
                   {/if}
@@ -67,7 +67,7 @@
               {#each Object.entries(details.conj[tenseKey]) as [pKey, forms]}
                 <tr>
                   <td class="gram-label">{@html labelPerson(pKey)}</td>
-                  <td class="text-center">{@html renderCell(forms.s)}</td>
+                  <td class="text-center">{@html renderCell(forms.sg)}</td>
                   <td class="text-center">{@html renderCell(forms.pl)}</td>
                 </tr>
               {/each}

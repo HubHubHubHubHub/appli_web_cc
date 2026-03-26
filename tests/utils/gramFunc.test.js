@@ -4,17 +4,18 @@ import { generateVerbForms } from "../../src/lib/utils/gramFunc.js";
 const mockWordData = {
   verb: {
     читати: {
-      inf: ["читати", 3],
+      meta: { pos: "verb", aspect: "impf" },
+      inf: [["читати", 3]],
       conj: {
         pres: {
-          "1p": { s: ["читаю", 4], pl: ["читаємо", 4] },
-          "2p": { s: ["читаєш", 4], pl: ["читаєте", 4] },
-          "3p": { s: ["читає", 4], pl: ["читають", 4] },
+          1: { sg: [["читаю", 4]], pl: [["читаємо", 4]] },
+          2: { sg: [["читаєш", 4]], pl: [["читаєте", 4]] },
+          3: { sg: [["читає", 4]], pl: [["читають", 4]] },
         },
-        pass: {
-          m: { s: ["читав", 3], pl: ["читали", 3] },
-          f: { s: ["читала", 3] },
-          n: { s: ["читало", 3] },
+        past: {
+          m: { sg: [["читав", 3]], pl: [["читали", 3]] },
+          f: { sg: [["читала", 3]] },
+          n: { sg: [["читало", 3]] },
         },
       },
     },
@@ -32,7 +33,7 @@ describe("generateVerbForms", () => {
   });
 
   it("generates past tense forms with gendered pronouns", () => {
-    const html = generateVerbForms(mockWordData, "читати", "pass", "", "");
+    const html = generateVerbForms(mockWordData, "читати", "past", "", "");
     expect(html).toContain("він");
     expect(html).toContain("вона");
     expect(html).toContain("воно");
@@ -46,8 +47,8 @@ describe("generateVerbForms", () => {
     expect(generateVerbForms(mockWordData, "читати", "fut", "", "")).toBe("");
   });
 
-  it("includes data-info attributes for hover functionality", () => {
+  it("includes V2 data-info attributes for hover functionality", () => {
     const html = generateVerbForms(mockWordData, "читати", "pres", "", "");
-    expect(html).toContain('data-info="читати;verb;conj;pres;');
+    expect(html).toContain('data-info="читати;pos=verb;verbForm=fin;tense=pres;');
   });
 });

@@ -11,17 +11,18 @@
   import ExamplePhrases from "./ExamplePhrases.svelte";
 
   const shortCategory = {
-    nom: "n.",
+    noun: "n.",
     verb: "v.",
     adj: "adj.",
-    proposs: "pron.pos.",
-    proper: "pron.per.",
-    card: "card.",
     pron: "pron.",
+    num: "num.",
     adv: "adv.",
     conj: "conj.",
     part: "part.",
     prep: "prép.",
+    intj: "intj.",
+    pred: "préd.",
+    insert: "par.",
   };
 
   const details = $derived(
@@ -38,25 +39,33 @@
   });
 
   const displayMeta = $derived.by(() => {
-    if (!uiStore.selectedCategory) return "";
+    if (!uiStore.selectedCategory || !details) return "";
     const cat = shortCategory[uiStore.selectedCategory] ?? uiStore.selectedCategory;
-    if (uiStore.selectedCategory === "nom" && details?.genre) {
-      return `${cat}${details.genre}.`;
+    const meta = details.meta || {};
+    if (meta.pos === "noun" && meta.gender) {
+      return `${cat}${meta.gender}.`;
     }
-    if (uiStore.selectedCategory === "verb" && details?.asp) {
+    if (meta.pos === "verb" && meta.aspect) {
       const aspLabel =
-        details.asp === "imperfectif" ? "imp." : details.asp === "perfectif" ? "p." : "";
+        meta.aspect === "impf"
+          ? "imp."
+          : meta.aspect === "perf"
+            ? "p."
+            : meta.aspect === "biaspect"
+              ? "bi."
+              : "";
       return aspLabel ? `v. ${aspLabel}` : cat;
     }
     return cat;
   });
 
   const couplDisplay = $derived.by(() => {
-    if (uiStore.selectedCategory !== "verb" || !details?.coupl) return "";
-    const couplVerb = dataStore.wordData?.verb?.[details.coupl];
-    if (!couplVerb?.inf) return details.coupl;
+    if (uiStore.selectedCategory !== "verb" || !details?.meta?.couple) return "";
+    const couple = details.meta.couple;
+    const couplVerb = dataStore.wordData?.verb?.[couple];
+    if (!couplVerb?.inf) return couple;
     const pair = firstPair(couplVerb.inf);
-    return pair ? addAccentHTML(pair[0], pair[1]) : details.coupl;
+    return pair ? addAccentHTML(pair[0], pair[1]) : couple;
   });
 </script>
 
@@ -69,13 +78,15 @@
         <span class="text-sm font-normal ml-2">— couple asp. : {@html couplDisplay}</span>{/if}
     </h2>
 
-    {#if uiStore.selectedCategory === "nom"}
+    {#if uiStore.selectedCategory === "noun"}
       <NounDetails {details} />
-    {:else if ["adj", "proposs", "card", "pron"].includes(uiStore.selectedCategory)}
+    {:else if ["adj", "num"].includes(uiStore.selectedCategory)}
       <AdjectiveDetails {details} />
+    {:else if uiStore.selectedCategory === "pron"}
+      <NounDetails {details} />
     {:else if uiStore.selectedCategory === "verb"}
       <VerbDetails {details} />
-    {:else if ["conj", "part"].includes(uiStore.selectedCategory)}
+    {:else if ["conj", "part", "prep", "adv", "intj", "pred", "insert"].includes(uiStore.selectedCategory)}
       <BaseDetails {details} />
     {:else}
       <p>Catégorie non prise en charge.</p>

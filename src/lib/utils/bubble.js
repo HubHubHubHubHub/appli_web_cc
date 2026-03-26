@@ -1,44 +1,56 @@
-import { firstPair, getVariantIndex } from "./parsing.js";
-import { getLemmaEntry } from "./dataAccess.js";
+import { firstPair } from "./parsing.js";
+import { parseDataInfo, getLemmaEntry } from "./dataAccess.js";
 import { addAccentHTML } from "./accent.js";
 import { labelCategory, labelTense, labelNumber } from "./i18n.js";
 import { classesToColors } from "./colors.js";
 
 /**
  * Build the HTML content for a hover bubble tooltip.
- * @param {object} wd - wordData store value
+ * @param {object} wd - wordData store value (V2)
  * @param {string} word - lemma
- * @param {string} category - grammatical category
- * @param {string[]} dataInfo - full parsed data-info tokens
+ * @param {string} pos - grammatical pos (V2)
+ * @param {string[]} dataInfo - full parsed data-info tokens (V2 clé=valeur)
  * @returns {string} HTML string
  */
-export function buildBubbleHTML(wd, word, category, dataInfo) {
-  const tokens = dataInfo.slice(1);
-  const filtered = tokens.filter((t) => t !== "cas" && t !== "base");
+export function buildBubbleHTML(wd, word, pos, dataInfo) {
+  // Parse V2 tokens into readable labels
+  const labels = [];
+  labels.push(labelCategory(pos));
 
-  if (category === "nom") {
-    const g = wd?.nom?.[word]?.genre;
-    if (g) filtered.splice(1, 0, g);
-  }
-
-  if (filtered.length) {
-    filtered[0] = labelCategory(filtered[0]);
-    for (let i = 1; i < filtered.length; i++) {
-      filtered[i] = labelTense(filtered[i]);
-      filtered[i] = labelNumber(filtered[i]);
+  // Extract meaningful values from clé=valeur tokens
+  for (let i = 1; i < dataInfo.length; i++) {
+    const t = dataInfo[i];
+    const eq = t.indexOf("=");
+    if (eq > 0) {
+      const val = t.slice(eq + 1);
+      // Skip pos (already added), skip verbForm/adjType/pronType/numType for brevity
+      const key = t.slice(0, eq);
+      if (["case", "gender", "number", "person", "tense"].includes(key)) {
+        let label = labelTense(val);
+        label = labelNumber(label);
+        labels.push(label);
+      }
     }
   }
 
-  const variantIndex = getVariantIndex(dataInfo);
-  const lemmaEntry = getLemmaEntry(wd, category, word);
+  // Add gender for nouns from meta
+  if (pos === "noun") {
+    const g = wd?.noun?.[word]?.meta?.gender;
+    if (g && !labels.includes(g)) labels.splice(1, 0, g);
+  }
+
+  const variantIndex = dataInfo.find((t) => t.startsWith("var="))
+    ? parseInt(dataInfo.find((t) => t.startsWith("var=")).split("=")[1], 10)
+    : 0;
+  const lemmaEntry = getLemmaEntry(wd, pos, word);
   const pair = firstPair(lemmaEntry, variantIndex);
 
   if (pair) {
-    const [mot, pos] = pair;
-    const accented = addAccentHTML(mot, pos);
-    return `<strong>${accented}</strong>${filtered.length ? " &nbsp;<em>" + filtered.join(", ") + "</em>" : ""}`;
+    const [mot, p] = pair;
+    const accented = addAccentHTML(mot, p);
+    return `<strong>${accented}</strong>${labels.length ? " &nbsp;<em>" + labels.join(", ") + "</em>" : ""}`;
   }
-  return filtered.length ? `<em>${filtered.join(", ")}</em>` : "";
+  return labels.length ? `<em>${labels.join(", ")}</em>` : "";
 }
 
 /**
@@ -80,13 +92,17 @@ export function hideBubble() {
 }
 
 /**
- * Determine the hover color for a word based on its data-info tokens.
- * @param {string[]} tokens - parsed data-info tokens
+ * Determine the hover color for a word based on its data-info tokens (V2).
+ * Looks for case values in clé=valeur format.
+ * @param {string[]} tokens - parsed data-info tokens (V2)
  * @returns {string} CSS color value
  */
 export function getHoverColor(tokens) {
-  for (const [className, color] of Object.entries(classesToColors)) {
-    if (tokens.includes(className)) return color;
+  for (const t of tokens) {
+    // V2 format: case=gen, case=acc, etc.
+    const eq = t.indexOf("=");
+    const val = eq > 0 ? t.slice(eq + 1) : t;
+    if (val in classesToColors) return classesToColors[val];
   }
   return "inherit";
 }

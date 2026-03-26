@@ -1,13 +1,13 @@
-import { parseInfo, firstPair, getVariantIndex } from "./parsing.js";
-import { getDataFromJson } from "./dataAccess.js";
+import { firstPair } from "./parsing.js";
+import { parseDataInfo, getDataFromJson } from "./dataAccess.js";
 import { highlightLetter } from "./accent.js";
 
 /**
  * Applique ou retire le marquage d'accent sur les éléments `.ukr` d'un conteneur.
- * Chaque élément `.ukr` doit porter un attribut `data-info` au format semicolon-separated.
+ * Chaque élément `.ukr` doit porter un attribut `data-info` au format V2 clé=valeur.
  * Le texte original est sauvegardé dans `dataset.original` au premier passage.
  * @param {HTMLElement} el - Conteneur DOM
- * @param {object} wordData - Objet wordData complet
+ * @param {object} wordData - Objet wordData complet (V2)
  * @param {boolean} enabled - Si true, affiche les accents ; sinon restaure le texte original
  */
 export function applyAccents(el, wordData, enabled) {
@@ -21,11 +21,18 @@ export function applyAccents(el, wordData, enabled) {
     if (enabled) {
       const raw = word.getAttribute("data-info");
       if (!raw) return;
-      const dataInfo = parseInfo(raw);
-      const [lemma, categorie, ...rest] = dataInfo;
-      const infos = [lemma, ...rest];
-      const variantIndex = getVariantIndex(dataInfo);
-      const entry = getDataFromJson(wordData, categorie, infos);
+      const tag = parseDataInfo(raw);
+      if (!tag.pos) {
+        word.innerHTML = word.dataset.original;
+        return;
+      }
+      // Rebuild infos array for getDataFromJson
+      const infos = [tag.lemma];
+      for (const [k, v] of Object.entries(tag)) {
+        if (k !== "lemma") infos.push(`${k}=${v}`);
+      }
+      const variantIndex = tag.var ? parseInt(tag.var, 10) : 0;
+      const entry = getDataFromJson(wordData, tag.pos, infos);
 
       if (entry) {
         const pair = firstPair(entry, variantIndex);

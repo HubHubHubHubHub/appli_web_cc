@@ -30,11 +30,11 @@ describe("toPairs", () => {
     expect(toPairs(undefined)).toEqual([]);
   });
 
-  it("wraps a simple [form, pos] into [[form, pos]]", () => {
-    expect(toPairs(["mot", 3])).toEqual([["mot", 3]]);
+  it("returns [] for empty array", () => {
+    expect(toPairs([])).toEqual([]);
   });
 
-  it("passes through already-nested pairs", () => {
+  it("passes through V2 list of pairs", () => {
     const input = [
       ["a", 1],
       ["b", 2],
@@ -42,26 +42,19 @@ describe("toPairs", () => {
     expect(toPairs(input)).toEqual(input);
   });
 
-  it("converts flat format [f1,p1,f2,p2] into pairs", () => {
-    expect(toPairs(["a", 1, "b", 2])).toEqual([
-      ["a", 1],
-      ["b", 2],
-    ]);
+  it("passes through single V2 pair", () => {
+    expect(toPairs([["mot", 3]])).toEqual([["mot", 3]]);
   });
 
-  it("handles old verb format [form1, form2, accentPos]", () => {
-    const result = toPairs(["читаєм", "читаємо", 4]);
-    expect(result).toEqual([
-      ["читаєм", 4],
-      ["читаємо", 4],
-    ]);
+  it("handles V1 flat pair fallback", () => {
+    expect(toPairs(["mot", 3])).toEqual([["mot", 3]]);
   });
 });
 
 // ─── firstPair ───────────────────────────────────────────────────────────────
 describe("firstPair", () => {
-  it("returns first pair from a simple entry", () => {
-    expect(firstPair(["mot", 3])).toEqual(["mot", 3]);
+  it("returns first pair from a V2 entry", () => {
+    expect(firstPair([["mot", 3]])).toEqual(["mot", 3]);
   });
 
   it("returns null for null input", () => {
@@ -88,7 +81,7 @@ describe("firstPair", () => {
 // ─── firstText ───────────────────────────────────────────────────────────────
 describe("firstText", () => {
   it("returns the text of the first pair", () => {
-    expect(firstText(["mot", 3])).toBe("mot");
+    expect(firstText([["mot", 3]])).toBe("mot");
   });
 
   it("returns empty string for null", () => {
@@ -99,7 +92,7 @@ describe("firstText", () => {
 // ─── firstAccent ─────────────────────────────────────────────────────────────
 describe("firstAccent", () => {
   it("returns the accent position of the first pair", () => {
-    expect(firstAccent(["mot", 3])).toBe(3);
+    expect(firstAccent([["mot", 3]])).toBe(3);
   });
 
   it("returns -1 for null", () => {
@@ -130,12 +123,12 @@ describe("renderCellSimple", () => {
     expect(renderCellSimple([])).toBe("");
   });
 
-  it("returns accented form for a simple pair", () => {
-    expect(renderCellSimple(["слово", 3])).toContain('<span class="with-accent">о</span>');
+  it("returns accented form for a V2 entry", () => {
+    expect(renderCellSimple([["слово", 3]])).toContain('<span class="with-accent">о</span>');
   });
 
   it("returns unaccented form when position is -1", () => {
-    expect(renderCellSimple(["я", -1])).toBe("я");
+    expect(renderCellSimple([["я", -1]])).toBe("я");
   });
 
   it("returns empty string for undefined", () => {

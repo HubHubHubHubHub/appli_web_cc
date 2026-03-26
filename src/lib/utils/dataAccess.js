@@ -2,89 +2,102 @@ import { addAccentHTML } from "./accent.js";
 import { firstPair } from "./parsing.js";
 
 /**
- * Récupère les données depuis le JSON pour un mot donné.
- * @param {object} wordData - L'objet wordData complet
- * @param {string} category - La catégorie grammaticale
- * @param {string[]} infos - Les tokens restants du data-info
+ * Parse un data-info V2 en objet clé=valeur.
+ * @param {string} raw - Chaîne data-info (ex: "машина;pos=noun;case=acc;number=sg")
+ * @returns {{ lemma: string, pos?: string, [key: string]: string }}
  */
-export function getDataFromJson(wordData, category, infos) {
-  switch (category) {
-    case "prep": {
-      const [word, base] = infos;
-      return wordData?.prep?.[word]?.[base] || null;
+export function parseDataInfo(raw) {
+  const [lemma, ...parts] = raw.split(";");
+  const tag = { lemma };
+  for (const p of parts) {
+    const eq = p.indexOf("=");
+    if (eq > 0) {
+      tag[p.slice(0, eq)] = p.slice(eq + 1);
     }
-    case "nom": {
-      const [word, functionName, caseType, number] = infos;
-      return wordData?.nom?.[word]?.[functionName]?.[caseType]?.[number] || null;
-    }
-    case "card":
-    case "adj":
-    case "proposs": {
-      const [word, functionName, caseType, gender] = infos;
-      return wordData?.[category]?.[word]?.[functionName]?.[caseType]?.[gender] || null;
-    }
-    case "pron": {
-      const [word, functionName, caseType, gender] = infos;
-      return wordData?.pron?.[word]?.[functionName]?.[caseType]?.[gender] || null;
-    }
-    case "proper": {
-      const [word, functionName, caseType] = infos;
-      return wordData?.proper?.[word]?.[functionName]?.[caseType] || null;
-    }
-    case "verb": {
-      const [word, tag, tense, person, number] = infos;
-      if (tag === "inf") return wordData?.verb?.[word]?.inf || null;
-      if (tag === "imper") return wordData?.verb?.[word]?.imper?.[tense] || null;
-      if (tag === "conj") return wordData?.verb?.[word]?.conj?.[tense]?.[person]?.[number] || null;
-      return null;
-    }
-    case "adv": {
-      const [word, degree] = infos;
-      const key = degree || "base";
-      return wordData?.adv?.[word]?.[key] || wordData?.adv?.[word]?.base || null;
-    }
-    case "conj": {
-      const [word, degree] = infos;
-      const key = degree || "base";
-      return wordData?.conj?.[word]?.[key] || wordData?.conj?.[word]?.base || null;
-    }
-    case "part": {
-      const [word, degree] = infos;
-      const key = degree || "base";
-      return wordData?.part?.[word]?.[key] || wordData?.part?.[word]?.base || null;
-    }
-    default:
-      return null;
   }
+  return tag;
+}
+
+/**
+ * Récupère les données depuis le JSON V2 pour un mot donné.
+ * Résout le chemin dans data.json selon le pos et les traits du tag.
+ * @param {object} wordData - L'objet wordData complet (V2)
+ * @param {string} pos - La catégorie pos (noun, verb, adj, pron, num, adv, prep, conj, part)
+ * @param {string[]} infos - Les tokens restants du data-info V2 (clé=valeur parsés ou bruts)
+ */
+export function getDataFromJson(wordData, pos, infos) {
+  // Accepter à la fois l'ancien format (tableau de tokens positionnels)
+  // et le nouveau format (objet tag V2 via parseDataInfo)
+  const tag = {};
+  const word = infos[0];
+
+  // Parser les tokens clé=valeur
+  for (let i = 1; i < infos.length; i++) {
+    const t = infos[i];
+    const eq = t.indexOf("=");
+    if (eq > 0) {
+      tag[t.slice(0, eq)] = t.slice(eq + 1);
+    }
+  }
+
+  const entry = wordData?.[pos]?.[word];
+  if (!entry) return null;
+
+  // Invariables
+  if (["adv", "prep", "conj", "part", "intj", "pred", "insert"].includes(pos)) {
+    return entry?.base || null;
+  }
+
+  // Verbe
+  if (pos === "verb") {
+    if (tag.verbForm === "inf") return entry?.inf || null;
+    if (tag.tense === "past") return entry?.conj?.past?.[tag.gender]?.[tag.number] || null;
+    if (tag.tense) return entry?.conj?.[tag.tense]?.[tag.person]?.[tag.number] || null;
+    return null;
+  }
+
+  // Pronom (paradigme idiosyncratique — pas de sous-niveau genre)
+  if (pos === "pron") {
+    return entry?.cas?.[tag.case] || null;
+  }
+
+  // Nom (cas > case > number)
+  if (pos === "noun") {
+    return entry?.cas?.[tag.case]?.[tag.number] || null;
+  }
+
+  // Adj, num (cas > case > gender)
+  return entry?.cas?.[tag.case]?.[tag.gender] || null;
 }
 
 /**
  * Retourne l'entrée lemme (forme de citation) pour un mot donné.
- * @param {object} wordData - L'objet wordData complet
- * @param {string} category - La catégorie grammaticale
+ * @param {object} wordData - L'objet wordData complet (V2)
+ * @param {string} pos - La catégorie pos V2
  * @param {string} word - Le mot (clé dans wordData)
  */
-export function getLemmaEntry(wordData, category, word) {
-  switch (category) {
-    case "nom":
-      return wordData?.nom?.[word]?.cas?.nomi?.s;
-    case "proposs":
-    case "card":
+export function getLemmaEntry(wordData, pos, word) {
+  const entry = wordData?.[pos]?.[word];
+  if (!entry) return null;
+
+  switch (pos) {
+    case "noun":
+      return entry?.cas?.nom?.sg;
     case "adj":
+    case "num":
+      return entry?.cas?.nom?.m;
     case "pron":
-      return wordData?.[category]?.[word]?.cas?.nomi?.m;
-    case "proper":
-      return wordData?.proper?.[word]?.cas?.nomi;
+      return entry?.cas?.nom;
     case "verb":
-      return wordData?.verb?.[word]?.inf;
+      return entry?.inf;
     case "adv":
-      return wordData?.adv?.[word]?.base;
-    case "conj":
-      return wordData?.conj?.[word]?.base;
-    case "part":
-      return wordData?.part?.[word]?.base;
     case "prep":
-      return wordData?.prep?.[word]?.base;
+    case "conj":
+    case "part":
+    case "intj":
+    case "pred":
+    case "insert":
+      return entry?.base;
     default:
       return null;
   }

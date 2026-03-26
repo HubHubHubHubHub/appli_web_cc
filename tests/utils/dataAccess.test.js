@@ -3,159 +3,192 @@ import {
   getDataFromJson,
   getPrincipalForm,
   getLemmaEntry,
+  parseDataInfo,
 } from "../../src/lib/utils/dataAccess.js";
 
+// Mock V2 data
 const mockWordData = {
-  nom: {
+  noun: {
     слово: {
-      genre: "n",
+      meta: { pos: "noun", gender: "n" },
       cas: {
-        nomi: { s: ["слово", 3], pl: ["слова", 3] },
-        gen: { s: ["слова", 3], pl: ["слів", 3] },
+        nom: { sg: [["слово", 3]], pl: [["слова", 3]] },
+        gen: { sg: [["слова", 3]], pl: [["слів", 3]] },
       },
     },
   },
   adj: {
     великий: {
+      meta: { pos: "adj" },
       cas: {
-        nomi: {
-          m: ["великий", 4],
-          f: ["велика", 4],
-          n: ["велике", 4],
-          pl: ["великі", 4],
+        nom: {
+          m: [["великий", 4]],
+          f: [["велика", 4]],
+          n: [["велике", 4]],
+          pl: [["великі", 4]],
         },
         gen: {
-          m: ["великого", 4],
-          f: ["великої", 4],
-          n: ["великого", 4],
-          pl: ["великих", 4],
+          m: [["великого", 4]],
+          f: [["великої", 4]],
+          n: [["великого", 4]],
+          pl: [["великих", 4]],
         },
       },
     },
-  },
-  proper: {
-    я: {
+    мій: {
+      meta: { pos: "adj", adjType: "poss", syntax: "pron_poss" },
+      cas: { nom: { m: [["мій", 2]], f: [["моя", 3]] } },
+    },
+    цей: {
+      meta: { pos: "adj", adjType: "dem", syntax: "pron_dem" },
       cas: {
-        nomi: ["я", -1],
-        gen: ["мене", 4],
+        nom: { m: [["цей", 2]] },
+        gen: { m: [["цього", 3]] },
+      },
+    },
+  },
+  pron: {
+    я: {
+      meta: { pos: "pron", pronType: "pers", syntax: "pron_pers" },
+      cas: {
+        nom: [["я", -1]],
+        gen: [["мене", 4]],
       },
     },
   },
   verb: {
     читати: {
-      asp: "imperfectif",
-      inf: ["читати", 4],
+      meta: { pos: "verb", aspect: "impf" },
+      inf: [["читати", 4]],
       conj: {
         pres: {
-          "1p": { s: ["читаю", 4], pl: ["читаємо", 4] },
-          "2p": { s: ["читаєш", 4], pl: ["читаєте", 4] },
-          "3p": { s: ["читає", 4], pl: ["читають", 4] },
+          1: { sg: [["читаю", 4]], pl: [["читаємо", 4]] },
+          2: { sg: [["читаєш", 4]], pl: [["читаєте", 4]] },
+          3: { sg: [["читає", 4]], pl: [["читають", 4]] },
         },
-        pass: {
-          m: { s: ["читав", 4], pl: ["читали", 4] },
-          f: { s: ["читала", 4] },
-          n: { s: ["читало", 4] },
+        past: {
+          m: { sg: [["читав", 4]], pl: [["читали", 4]] },
+          f: { sg: [["читала", 4]] },
+          n: { sg: [["читало", 4]] },
         },
       },
-      coupl: "",
     },
   },
-  adv: { багато: { base: ["багато", 4] } },
-  conj: { але: { base: ["але", -1] } },
-  part: { не: { base: ["не", -1] } },
-  prep: { в: { base: ["в", -1] } },
-  card: { один: { cas: { nomi: { m: ["один", 3], f: ["одна", 4] } } } },
-  proposs: { мій: { cas: { nomi: { m: ["мій", 2], f: ["моя", 3] } } } },
-  pron: {
-    цей: {
-      cas: {
-        nomi: { m: ["цей", 2] },
-        gen: { m: ["цього", 3] },
-      },
+  adv: { багато: { meta: { pos: "adv" }, base: [["багато", 4]] } },
+  conj: { але: { meta: { pos: "conj" }, base: [["але", -1]] } },
+  part: { не: { meta: { pos: "part" }, base: [["не", -1]] } },
+  prep: { в: { meta: { pos: "prep" }, base: [["в", -1]] } },
+  num: {
+    один: {
+      meta: { pos: "num", numType: "card" },
+      cas: { nom: { m: [["один", 3]], f: [["одна", 4]] } },
     },
   },
 };
 
+// ─── parseDataInfo ──────────────────────────────────────────────────────────
+describe("parseDataInfo", () => {
+  it("parses a noun data-info", () => {
+    expect(parseDataInfo("машина;pos=noun;case=acc;number=sg")).toEqual({
+      lemma: "машина",
+      pos: "noun",
+      case: "acc",
+      number: "sg",
+    });
+  });
+
+  it("parses a verb infinitive", () => {
+    expect(parseDataInfo("читати;pos=verb;verbForm=inf")).toEqual({
+      lemma: "читати",
+      pos: "verb",
+      verbForm: "inf",
+    });
+  });
+
+  it("parses a single-token string", () => {
+    expect(parseDataInfo("mot")).toEqual({ lemma: "mot" });
+  });
+});
+
 // ─── getDataFromJson ─────────────────────────────────────────────────────────
 describe("getDataFromJson", () => {
   it("retrieves noun case form", () => {
-    expect(getDataFromJson(mockWordData, "nom", ["слово", "cas", "gen", "s"])).toEqual([
-      "слова",
-      3,
+    expect(getDataFromJson(mockWordData, "noun", ["слово", "case=gen", "number=sg"])).toEqual([
+      ["слова", 3],
     ]);
   });
 
   it("retrieves adjective case/gender form", () => {
-    expect(getDataFromJson(mockWordData, "adj", ["великий", "cas", "nomi", "m"])).toEqual([
-      "великий",
-      4,
+    expect(getDataFromJson(mockWordData, "adj", ["великий", "case=nom", "gender=m"])).toEqual([
+      ["великий", 4],
     ]);
   });
 
-  it("retrieves proper pronoun case form", () => {
-    expect(getDataFromJson(mockWordData, "proper", ["я", "cas", "gen"])).toEqual(["мене", 4]);
+  it("retrieves pron case form (no gender sublevel)", () => {
+    expect(getDataFromJson(mockWordData, "pron", ["я", "case=gen"])).toEqual([["мене", 4]]);
   });
 
   it("retrieves verb infinitive", () => {
-    expect(getDataFromJson(mockWordData, "verb", ["читати", "inf"])).toEqual(["читати", 4]);
+    expect(getDataFromJson(mockWordData, "verb", ["читати", "verbForm=inf"])).toEqual([
+      ["читати", 4],
+    ]);
   });
 
-  it("retrieves verb conjugation", () => {
-    expect(getDataFromJson(mockWordData, "verb", ["читати", "conj", "pres", "1p", "s"])).toEqual([
-      "читаю",
-      4,
-    ]);
+  it("retrieves verb conjugation present", () => {
+    expect(
+      getDataFromJson(mockWordData, "verb", ["читати", "tense=pres", "person=1", "number=sg"]),
+    ).toEqual([["читаю", 4]]);
+  });
+
+  it("retrieves verb conjugation past", () => {
+    expect(
+      getDataFromJson(mockWordData, "verb", ["читати", "tense=past", "gender=m", "number=sg"]),
+    ).toEqual([["читав", 4]]);
   });
 
   it("retrieves adverb base", () => {
-    expect(getDataFromJson(mockWordData, "adv", ["багато", "base"])).toEqual(["багато", 4]);
+    expect(getDataFromJson(mockWordData, "adv", ["багато"])).toEqual([["багато", 4]]);
   });
 
   it("retrieves conjunction base", () => {
-    expect(getDataFromJson(mockWordData, "conj", ["але", "base"])).toEqual(["але", -1]);
+    expect(getDataFromJson(mockWordData, "conj", ["але"])).toEqual([["але", -1]]);
   });
 
   it("retrieves particle base", () => {
-    expect(getDataFromJson(mockWordData, "part", ["не", "base"])).toEqual(["не", -1]);
+    expect(getDataFromJson(mockWordData, "part", ["не"])).toEqual([["не", -1]]);
   });
 
   it("retrieves prep base", () => {
-    expect(getDataFromJson(mockWordData, "prep", ["в", "base"])).toEqual(["в", -1]);
+    expect(getDataFromJson(mockWordData, "prep", ["в"])).toEqual([["в", -1]]);
   });
 
-  it("retrieves pron case/gender", () => {
-    expect(getDataFromJson(mockWordData, "pron", ["цей", "cas", "gen", "m"])).toEqual(["цього", 3]);
-  });
-
-  it("retrieves card case/gender", () => {
-    expect(getDataFromJson(mockWordData, "card", ["один", "cas", "nomi", "m"])).toEqual([
-      "один",
-      3,
+  it("retrieves adj (dem) case/gender", () => {
+    expect(getDataFromJson(mockWordData, "adj", ["цей", "case=gen", "gender=m"])).toEqual([
+      ["цього", 3],
     ]);
   });
 
-  it("retrieves proposs case/gender", () => {
-    expect(getDataFromJson(mockWordData, "proposs", ["мій", "cas", "nomi", "f"])).toEqual([
-      "моя",
-      3,
+  it("retrieves num case/gender", () => {
+    expect(getDataFromJson(mockWordData, "num", ["один", "case=nom", "gender=m"])).toEqual([
+      ["один", 3],
     ]);
   });
 
-  it("returns null for unknown category", () => {
+  it("returns null for unknown pos", () => {
     expect(getDataFromJson(mockWordData, "unknown", ["x"])).toBeNull();
   });
 
   it("returns null for non-existent word", () => {
-    expect(getDataFromJson(mockWordData, "nom", ["inexistant", "cas", "nomi", "s"])).toBeNull();
+    expect(
+      getDataFromJson(mockWordData, "noun", ["inexistant", "case=nom", "number=sg"]),
+    ).toBeNull();
   });
 });
 
 // ─── getPrincipalForm ────────────────────────────────────────────────────────
 describe("getPrincipalForm", () => {
-  const accent = "\u0301";
-
   it("returns accented nominative singular for nouns", () => {
-    const result = getPrincipalForm(mockWordData, "слово", "nom");
+    const result = getPrincipalForm(mockWordData, "слово", "noun");
     expect(result).toContain('<span class="with-accent">о</span>');
   });
 
@@ -169,12 +202,12 @@ describe("getPrincipalForm", () => {
     expect(result).toContain('<span class="with-accent">а</span>');
   });
 
-  it("returns accented nominative for proper pronouns", () => {
-    const result = getPrincipalForm(mockWordData, "я", "proper");
+  it("returns accented nominative for personal pronouns", () => {
+    const result = getPrincipalForm(mockWordData, "я", "pron");
     expect(result).toBe("я");
   });
 
-  it("falls back to raw word for unknown category", () => {
+  it("falls back to raw word for unknown pos", () => {
     expect(getPrincipalForm(mockWordData, "xyz", "unknown")).toBe("xyz");
   });
 });
@@ -182,58 +215,58 @@ describe("getPrincipalForm", () => {
 // ─── getLemmaEntry ──────────────────────────────────────────────────────────
 describe("getLemmaEntry", () => {
   it("returns nominative singular for nouns", () => {
-    expect(getLemmaEntry(mockWordData, "nom", "слово")).toEqual(["слово", 3]);
+    expect(getLemmaEntry(mockWordData, "noun", "слово")).toEqual([["слово", 3]]);
   });
 
   it("returns nominative masculine for adjectives", () => {
-    expect(getLemmaEntry(mockWordData, "adj", "великий")).toEqual(["великий", 4]);
+    expect(getLemmaEntry(mockWordData, "adj", "великий")).toEqual([["великий", 4]]);
   });
 
-  it("returns nominative for proper pronouns", () => {
-    expect(getLemmaEntry(mockWordData, "proper", "я")).toEqual(["я", -1]);
+  it("returns nominative for personal pronouns", () => {
+    expect(getLemmaEntry(mockWordData, "pron", "я")).toEqual([["я", -1]]);
   });
 
   it("returns infinitive for verbs", () => {
-    expect(getLemmaEntry(mockWordData, "verb", "читати")).toEqual(["читати", 4]);
+    expect(getLemmaEntry(mockWordData, "verb", "читати")).toEqual([["читати", 4]]);
   });
 
   it("returns base for adverbs", () => {
-    expect(getLemmaEntry(mockWordData, "adv", "багато")).toEqual(["багато", 4]);
+    expect(getLemmaEntry(mockWordData, "adv", "багато")).toEqual([["багато", 4]]);
   });
 
   it("returns base for conjunctions", () => {
-    expect(getLemmaEntry(mockWordData, "conj", "але")).toEqual(["але", -1]);
+    expect(getLemmaEntry(mockWordData, "conj", "але")).toEqual([["але", -1]]);
   });
 
   it("returns base for particles", () => {
-    expect(getLemmaEntry(mockWordData, "part", "не")).toEqual(["не", -1]);
+    expect(getLemmaEntry(mockWordData, "part", "не")).toEqual([["не", -1]]);
   });
 
   it("returns base for prepositions", () => {
-    expect(getLemmaEntry(mockWordData, "prep", "в")).toEqual(["в", -1]);
+    expect(getLemmaEntry(mockWordData, "prep", "в")).toEqual([["в", -1]]);
   });
 
-  it("returns nominative masculine for card", () => {
-    expect(getLemmaEntry(mockWordData, "card", "один")).toEqual(["один", 3]);
+  it("returns nominative masculine for num", () => {
+    expect(getLemmaEntry(mockWordData, "num", "один")).toEqual([["один", 3]]);
   });
 
-  it("returns nominative masculine for proposs", () => {
-    expect(getLemmaEntry(mockWordData, "proposs", "мій")).toEqual(["мій", 2]);
+  it("returns nominative masculine for adj (poss)", () => {
+    expect(getLemmaEntry(mockWordData, "adj", "мій")).toEqual([["мій", 2]]);
   });
 
-  it("returns nominative masculine for pron", () => {
-    expect(getLemmaEntry(mockWordData, "pron", "цей")).toEqual(["цей", 2]);
+  it("returns nominative masculine for adj (dem)", () => {
+    expect(getLemmaEntry(mockWordData, "adj", "цей")).toEqual([["цей", 2]]);
   });
 
-  it("returns null for unknown category", () => {
+  it("returns null for unknown pos", () => {
     expect(getLemmaEntry(mockWordData, "unknown", "x")).toBeNull();
   });
 
-  it("returns undefined/null for non-existent word without crashing", () => {
-    expect(getLemmaEntry(mockWordData, "nom", "inexistant")).toBeUndefined();
+  it("returns null for non-existent word", () => {
+    expect(getLemmaEntry(mockWordData, "noun", "inexistant")).toBeNull();
   });
 
   it("does not crash for null wordData", () => {
-    expect(getLemmaEntry(null, "nom", "x")).toBeUndefined();
+    expect(getLemmaEntry(null, "noun", "x")).toBeNull();
   });
 });
