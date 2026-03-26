@@ -64,9 +64,20 @@ export function resolveEntry(dataV2, tag) {
     return entry?.cas?.[tag.case]?.[tag.number] || null;
   }
 
-  // Adj, num (cas > case > gender, avec "pl" comme clé genre pour le pluriel)
-  // Si gender absent et number=pl → chercher sous "pl"
-  // Si gender absent et pas de number → essayer "m" (forme de citation)
+  // Num : format variable (adj-like avec genre pour один/два, pronom-like sans genre pour три/скільки)
+  if (tag.pos === "num") {
+    const caseVal = entry?.cas?.[tag.case];
+    if (!caseVal) return null;
+    // Si la valeur est directement une liste de paires (format pronom) → retourner
+    if (Array.isArray(caseVal) && (caseVal.length === 0 || Array.isArray(caseVal[0]))) {
+      return caseVal;
+    }
+    // Sinon format adj-like (avec m/f/n/pl)
+    const gk = tag.gender || (tag.number === "pl" ? "pl" : "m");
+    return caseVal?.[gk] || null;
+  }
+
+  // Adj (cas > case > gender, avec "pl" comme clé genre pour le pluriel)
   const genderKey = tag.gender || (tag.number === "pl" ? "pl" : "m");
   return entry?.cas?.[tag.case]?.[genderKey] || null;
 }
