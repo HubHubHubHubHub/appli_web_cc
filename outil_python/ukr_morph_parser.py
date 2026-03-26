@@ -259,8 +259,41 @@ def parse_table_adj(html_table: str) -> Dict[str, Dict[str, Dict[str, List[objec
         out["cas"].setdefault(case_key, {"m": [], "f": [], "n": [], "pl": []})
         # colonnes 1..4 : m, f, n, pl
         for idx, gk in enumerate(("m", "f", "n", "pl"), start=1):
-            out["cas"][case_key][gk] = _collect_span_pairs(tds[idx])
+            if idx < len(tds):
+                out["cas"][case_key][gk] = _collect_span_pairs(tds[idx])
     return out
+
+
+def parse_table_pron(html_table: str) -> Dict[str, Dict[str, List[object]]]:
+    """
+    Parse un tableau de pronom idiosyncratique (хто, що, себе).
+    Format : відмінок | forme(s) (une seule colonne de valeurs).
+
+    Retour
+    ------
+    dict :
+        {"cas": {CASE: [[form, accent], ...], ...}}
+    """
+    soup = BeautifulSoup(html_table, "html.parser")
+    table = soup.find("table", class_="table")
+    if table is None:
+        return {"cas": {}}
+
+    out: Dict[str, List[object]] = {}
+    for row in table.find("tbody").find_all("tr", class_="row"):
+        tds = row.find_all("td", class_="cell")
+        if not tds:
+            continue
+        case_uk = tds[0].get_text(strip=True).lower()
+        case_key = CASE_MAP.get(case_uk)
+        if not case_key:
+            continue
+        # Collect forms from all columns after the first (case label)
+        forms: List[List[object]] = []
+        for td in tds[1:]:
+            forms.extend(_collect_span_pairs(td))
+        out[case_key] = forms if forms else [[None, -2]]
+    return {"cas": out}
 
 
 def parse_table_nom(html_table: str, lemma: Optional[str] = None) -> Dict[str, object]:
