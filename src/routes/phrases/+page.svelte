@@ -6,7 +6,7 @@
   <title>Recherche de Phrases</title>
 </svelte:head>
 
-<main class="ml-6 mr-[450px] mb-11 font-body max-md:mr-6">
-  <h1>Recherche de Phrases</h1>
+<main class="max-w-4xl mx-auto px-6 pb-11 font-body">
+  <h1 class="text-2xl font-semibold mt-4 mb-2">Recherche de phrases</h1>
   <PhraseList />
 </main>

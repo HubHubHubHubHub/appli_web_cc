@@ -6,37 +6,49 @@
   let searchQuery = $state("");
 
   const filteredPhrases = $derived(filterPhrases(dataStore.phraseData, searchQuery.trim()));
+  const resultCount = $derived(Object.keys(filteredPhrases).length);
 </script>
 
-<div class="fixed top-5 right-5 bg-base-100/90 p-2.5 rounded-md shadow-floating z-floating">
-  <label for="phrase-search" class="sr-only">Rechercher une phrase</label>
+<div
+  class="sticky top-[var(--header-height)] bg-base-100/95 backdrop-blur-sm py-3 z-30 border-b border-base-300 mb-4"
+>
   <input
     id="phrase-search"
     type="text"
-    class="input input-bordered input-sm"
+    class="input input-bordered w-full"
     bind:value={searchQuery}
-    placeholder="Rechercher..."
+    placeholder="Rechercher une phrase (mots séparés par des espaces)..."
   />
+  {#if searchQuery.trim()}
+    <p class="text-sm text-neutral mt-1.5 mb-0">
+      {resultCount}
+      {resultCount === 1 ? "phrase trouvée" : "phrases trouvées"}
+    </p>
+  {/if}
 </div>
 
-{#if Object.keys(filteredPhrases).length === 0}
-  <p class="text-neutral italic p-6">
+{#if resultCount === 0}
+  <p class="text-neutral italic py-8 text-center">
     {searchQuery.trim() ? "Aucune phrase trouvée." : "Aucune phrase disponible."}
   </p>
 {:else}
-  <ul class="list-none p-0">
+  <div class="flex flex-col gap-3">
     {#each Object.entries(filteredPhrases) as [phraseKey, phraseInfo]}
-      <li class="mb-4 p-3 rounded-lg hover:bg-base-200 transition-colors">
-        <div class="font-bold">
+      <div
+        class="p-4 rounded-lg border border-base-300 hover:border-base-content/20 transition-colors"
+      >
+        <div class="text-[1.1rem] leading-relaxed">
           <HtmlContent html={phraseInfo.phrase_html} />
         </div>
-        <div class="italic text-neutral mt-1">{phraseInfo.traduction}</div>
-        {#if phraseInfo.ref}
-          <div class="references text-sm opacity-60 mt-1">
-            Références : {JSON.stringify(phraseInfo.ref)}
+        {#if phraseInfo.traduction}
+          <div class="italic text-neutral mt-2 text-[0.95rem]">{phraseInfo.traduction}</div>
+        {/if}
+        {#if phraseInfo.remarque}
+          <div class="text-sm text-neutral/70 mt-1.5 border-l-2 border-base-300 pl-2">
+            {phraseInfo.remarque}
           </div>
         {/if}
-      </li>
+      </div>
     {/each}
-  </ul>
+  </div>
 {/if}

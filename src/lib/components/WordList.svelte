@@ -96,7 +96,7 @@
     return out;
   });
 
-  let anyExpanded = $derived(hasAnyExpanded(allGroupedData, categoryOpen, letterOpen));
+  let anyExpanded = $derived(allSectionKeys.some((k) => categoryOpen[k]));
 
   // Initialize fold state when data loads (once)
   $effect(() => {
@@ -108,9 +108,9 @@
     const newCatOpen = {};
     const newLetterOpen = {};
     for (const key of allSectionKeys) {
+      newCatOpen[key] = true;
       const groups = allGroupedData[key];
       if (groups) {
-        newCatOpen[key] = true;
         for (const letter of groups.keys()) {
           newLetterOpen[`${key}:${letter}`] = false;
         }
@@ -192,19 +192,21 @@
         </div>
         {#if categoryOpen[section.key]}
           {#each section.subgroups as sub}
-            <CategorySection
-              catKey={sub.key}
-              catLabel={sub.label}
-              isOpen={categoryOpen[sub.key] ?? true}
-              letterGroups={sub.letterGroups}
-              letterOpenState={letterOpen}
-              posLookup={sub.posLookup}
-              flat={sub.flat}
-              words={sub.words}
-              onToggleCategory={() => toggleCategory(sub.key)}
-              onToggleAllLetters={() => toggleAllLetters(sub.key)}
-              onToggleLetter={(letter) => toggleLetter(sub.key, letter)}
-            />
+            <div class="pl-4">
+              <CategorySection
+                catKey={sub.key}
+                catLabel={sub.label}
+                isOpen={categoryOpen[sub.key] ?? true}
+                letterGroups={sub.letterGroups}
+                letterOpenState={letterOpen}
+                posLookup={sub.posLookup}
+                flat={sub.flat}
+                words={sub.words}
+                onToggleCategory={() => toggleCategory(sub.key)}
+                onToggleAllLetters={() => toggleAllLetters(sub.key)}
+                onToggleLetter={(letter) => toggleLetter(sub.key, letter)}
+              />
+            </div>
           {/each}
         {/if}
       </div>
