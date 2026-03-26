@@ -6734,7 +6734,7 @@
     "гроші": {
       "meta": {
         "pos": "noun",
-        "gender": "m"
+        "gender": "f"
       },
       "cas": {
         "nom": {
@@ -6969,7 +6969,7 @@
     "двері": {
       "meta": {
         "pos": "noun",
-        "gender": "pl"
+        "gender": "f"
       },
       "cas": {
         "nom": {
@@ -34959,7 +34959,7 @@
     "бігти": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf",
+        "aspect": "impf",
         "motionType": "det",
         "motionPair": "бігати"
       },

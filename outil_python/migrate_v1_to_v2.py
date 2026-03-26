@@ -170,23 +170,30 @@ def build_meta_noun(entry, v1_cat="nom"):
     meta = {"pos": "noun"}
     if entry.get("genre"):
         meta["gender"] = entry["genre"]
+    elif entry.get("meta", {}).get("gender"):
+        meta["gender"] = entry["meta"]["gender"]
     return meta
 
 
 def build_meta_verb(entry):
     """Construit meta pour un verbe."""
+    existing_meta = entry.get("meta", {})
     meta = {"pos": "verb"}
 
-    # Aspect
+    # Aspect — V1 ou déjà migré
     asp = entry.get("asp")
     if asp and asp in ASPECT_RENAME:
         meta["aspect"] = ASPECT_RENAME[asp]
     elif asp:
-        meta["aspect"] = asp  # valeur inconnue, garder telle quelle
+        meta["aspect"] = asp
+    elif existing_meta.get("aspect"):
+        meta["aspect"] = existing_meta["aspect"]
 
     # Couple aspectuel
     if entry.get("coupl"):
         meta["couple"] = entry["coupl"]
+    elif existing_meta.get("couple"):
+        meta["couple"] = existing_meta["couple"]
 
     # Verbe de mouvement
     gramm = entry.get("gramm", "")
@@ -194,23 +201,32 @@ def build_meta_verb(entry):
         meta["motionType"] = "indet"
     elif "déplacement déterminé" in gramm:
         meta["motionType"] = "det"
+    elif existing_meta.get("motionType"):
+        meta["motionType"] = existing_meta["motionType"]
 
     # Couple de mouvement
     if entry.get("couple déterminé"):
         meta["motionPair"] = entry["couple déterminé"]
     elif entry.get("couple indéterminé"):
         meta["motionPair"] = entry["couple indéterminé"]
+    elif existing_meta.get("motionPair"):
+        meta["motionPair"] = existing_meta["motionPair"]
 
     return meta
 
 
-def build_meta_adj(entry, adjType=None, syntax=None):
+def build_meta_adj(entry, adjType=None, syntax=None, existing_meta=None):
     """Construit meta pour un adjectif."""
+    existing_meta = existing_meta or entry.get("meta", {})
     meta = {"pos": "adj"}
     if adjType:
         meta["adjType"] = adjType
+    elif existing_meta.get("adjType"):
+        meta["adjType"] = existing_meta["adjType"]
     if syntax:
         meta["syntax"] = syntax
+    elif existing_meta.get("syntax"):
+        meta["syntax"] = existing_meta["syntax"]
     return meta
 
 
@@ -240,17 +256,27 @@ def migrate_entry(entry, v1_cat, lemma):
     entry = deepcopy(entry)
 
     # 1. Déterminer le pos V2 et construire meta
-    if v1_cat == "nom":
+    if v1_cat in ("nom", "noun"):
         meta = build_meta_noun(entry)
         v2_pos = "noun"
     elif v1_cat == "verb":
         meta = build_meta_verb(entry)
         v2_pos = "verb"
     elif v1_cat == "adj":
-        meta = build_meta_adj(entry)
+        meta = build_meta_adj(entry, existing_meta=entry.get("meta", {}))
         v2_pos = "adj"
     elif v1_cat == "proper":
         meta = build_meta_pron(entry, "pers")
+        v2_pos = "pron"
+    elif v1_cat == "pron" and all(
+        not isinstance(v, dict) or "m" not in v
+        for v in entry.get("cas", {}).values()
+    ):
+        # V2 "pron" = pronoms personnels (paradigme idiosyncratique)
+        existing_meta = entry.get("meta", {})
+        meta = build_meta_pron(entry, existing_meta.get("pronType", "pers"))
+        if existing_meta.get("syntax"):
+            meta["syntax"] = existing_meta["syntax"]
         v2_pos = "pron"
     elif v1_cat == "proposs":
         meta = build_meta_adj(entry, adjType="poss", syntax="pron_poss")
@@ -262,7 +288,10 @@ def migrate_entry(entry, v1_cat, lemma):
     elif v1_cat == "card":
         meta = build_meta_num(entry, "card")
         v2_pos = "num"
-    elif v1_cat in ("adv", "prep", "conj", "part"):
+    elif v1_cat == "num":
+        meta = build_meta_num(entry, entry.get("meta", {}).get("numType", "card"))
+        v2_pos = "num"
+    elif v1_cat in ("adv", "prep", "conj", "part", "intj", "pred", "insert", "x"):
         meta = build_meta_invariable(v1_cat)
         v2_pos = v1_cat
     else:
