@@ -365,17 +365,17 @@ Le champ `meta.governs` liste les cas regis par une preposition. Il est affiche 
 ```json
 "до": {
   "meta": { "pos": "prep", "governs": ["gen"] },
-  "base": ["до", -1]
+  "base": [["до", -1]]
 }
 
 "за": {
   "meta": { "pos": "prep", "governs": ["acc", "ins"] },
-  "base": ["за", -1]
+  "base": [["за", -1]]
 }
 
 "з": {
   "meta": { "pos": "prep", "governs": ["gen", "ins"] },
-  "base": ["з", -1]
+  "base": [["з", -1]]
 }
 ```
 
@@ -513,6 +513,35 @@ Le champ `nooj.biaspect: true` indique que NooJ a `Pair="X/X"` pour ce verbe. Ce
 | `noun`       | `cas > {case} > {number}` (sg/pl)                   |
 | `adj`, `num` | `cas > {case} > {gender}` (m/f/n/pl)                |
 | `pron`       | `cas > {case}` (valeur directe, pas de sous-niveau) |
+
+### Format des formes flechies
+
+Toutes les formes flechies dans `data.json` V2 sont au format **liste de paires** :
+
+```
+[["forme_sans_accent", position_accent], ...]
+```
+
+Chaque paire contient la forme sans diacritique U+0301 et la position de l'accent (1-based en lettres). Conventions d'accent :
+
+- `-1` : mot monosyllabique (accent trivial)
+- `-2` : accent inconnu
+
+Exemples :
+
+- Forme simple : `[["столу", 5]]`
+- Variantes d'accent : `[["мене", 4], ["мене", 2]]`
+- Monosyllabe : `[["він", -1]]`
+- Accent inconnu : `[["слово", -2]]`
+- Forme absente (case vide) : `[]`
+
+Le format plat V1 (`["mot", accent]` sans double crochet) n'est plus accepte en V2. Le script `migrate_v1_to_v2.py` convertit automatiquement :
+
+```
+V1: ["мій", -1]                       ->  V2: [["мій", -1]]
+V1: [["мене", 4], ["мене", 2]]        ->  V2: inchange (deja correct)
+V1: ["він", -1]                       ->  V2: [["він", -1]]
+```
 
 ---
 
