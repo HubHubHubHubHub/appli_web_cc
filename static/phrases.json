@@ -7,35 +7,35 @@
     }
   },
   "Я бачив один раз у житті.": {
-    "phrase_html": "Я бачив <span class=\"ukr\" data-info=\"один;pos=num;case=nom;gender=m\">один</span> раз у житті.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;pos=pron;case=nom\">Я</span> <span class=\"ukr\" data-info=\"бачити;pos=verb;verbForm=fin;tense=past;gender=m;number=sg\">бачив</span> <span class=\"ukr\" data-info=\"один;pos=num;case=nom;gender=m\">один</span> <span class=\"ukr\" data-info=\"раз;pos=noun;case=nom;number=sg\">раз</span> <span class=\"ukr\" data-info=\"у;pos=prep\">у</span> <span class=\"ukr\" data-info=\"життя;pos=noun;case=loc;number=sg\">житті</span>.",
     "traduction": "J'ai vu une fois dans ma vie"
   },
   "Одна з багатьох історій, які він розповів.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"один;pos=num;case=nom;gender=f\">Одна</span> з багатьох історій, які він розповів.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"один;pos=num;case=nom;gender=f\">Одна</span> <span class=\"ukr\" data-info=\"з;pos=prep\">з</span> <span class=\"ukr\" data-info=\"багато;pos=num;case=gen\">багатьох</span> <span class=\"ukr\" data-info=\"історія;pos=noun;case=gen;number=pl\">історій</span>, <span class=\"ukr\" data-info=\"який;pos=adj;case=nom;number=pl\">які</span> <span class=\"ukr\" data-info=\"він;pos=pron;case=nom\">він</span> <span class=\"ukr\" data-info=\"розповісти;pos=verb;verbForm=fin;tense=past;gender=m;number=sg\">розповів</span>.",
     "traduction": "Une des nombreuses histoires qu'il a racontées."
   },
   "Одне з найкращих місць у місті.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"один;pos=num;case=nom;gender=n\">Одне</span> з найкращих місць у місті.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"один;pos=num;case=nom;gender=n\">Одне</span> <span class=\"ukr\" data-info=\"з;pos=prep\">з</span> <span class=\"ukr\" data-info=\"кращий;pos=adj;adjDegree=super;case=gen;number=pl\">найкращих</span> <span class=\"ukr\" data-info=\"місце;pos=noun;case=gen;number=pl\">місць</span> <span class=\"ukr\" data-info=\"у;pos=prep\">у</span> <span class=\"ukr\" data-info=\"місто;pos=noun;case=loc;number=sg\">місті</span>.",
     "traduction": "Un des meilleurs endroits de la ville."
   },
   "Що ти знаєш про війну": {
-    "phrase_html": "Що ти знаєш про <span class=\"ukr\" data-info=\"війна;pos=noun;case=acc;number=sg\">війну</span>?",
+    "phrase_html": "<span class=\"ukr\" data-info=\"що;pos=pron;case=nom\">Що</span> <span class=\"ukr\" data-info=\"ти;pos=pron;case=nom\">ти</span> <span class=\"ukr\" data-info=\"знати;pos=verb;verbForm=fin;tense=pres;person=2;number=sg\">знаєш</span> <span class=\"ukr\" data-info=\"про;pos=prep\">про</span> <span class=\"ukr\" data-info=\"війна;pos=noun;case=acc;number=sg\">війну</span>?",
     "traduction": "Que sais-tu de la guerre?"
   },
   "Я не люблю війни": {
-    "phrase_html": "Я не люблю <span class=\"ukr\" data-info=\"війна;pos=noun;case=gen;number=sg\">війни</span>",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;pos=pron;case=nom\">Я</span> <span class=\"ukr\" data-info=\"не;pos=part\">не</span> <span class=\"ukr\" data-info=\"любити;pos=verb;verbForm=fin;tense=pres;person=1;number=sg\">люблю</span> <span class=\"ukr\" data-info=\"війна;pos=noun;case=gen;number=sg\">війни</span>",
     "traduction": "Je n'aime pas la guerre"
   },
   "Війна між Україною та Росією триває вже багато років.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"війна;pos=noun;case=nom;number=sg\">Війна</span> між Україною та Росією триває вже багато років.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"війна;pos=noun;case=nom;number=sg\">Війна</span> <span class=\"ukr\" data-info=\"між;pos=prep\">між</span> <span class=\"ukr\" data-info=\"Україна;pos=noun;case=ins;number=sg\">Україною</span> <span class=\"ukr\" data-info=\"той;pos=adj;case=nom;gender=f\">та</span> <span class=\"ukr\" data-info=\"Росія;pos=noun;case=ins;number=sg\">Росією</span> <span class=\"ukr\" data-info=\"тривати;pos=verb;verbForm=fin;tense=pres;person=3;number=sg\">триває</span> <span class=\"ukr\" data-info=\"вже;pos=adv\">вже</span> <span class=\"ukr\" data-info=\"багато;pos=adv\">багато</span> <span class=\"ukr\" data-info=\"рік;pos=noun;case=gen;number=pl\">років</span>.",
     "traduction": "La guerre entre l'Ukraine et la Russie dure depuis de nombreuses années."
   },
   "Ця війна принесла багато страждань.": {
-    "phrase_html": "Ця <span class=\"ukr\" data-info=\"війна;pos=noun;case=nom;number=sg\">війна</span> принесла багато страждань.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"цей;pos=adj;case=nom;gender=f\">Ця</span> <span class=\"ukr\" data-info=\"війна;pos=noun;case=nom;number=sg\">війна</span> <span class=\"ukr\" data-info=\"принести;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">принесла</span> <span class=\"ukr\" data-info=\"багато;pos=adv\">багато</span> <span class=\"ukr\" data-info=\"страждання;pos=noun;case=gen;number=pl\">страждань</span>.",
     "traduction": "Cette guerre a causé beaucoup de souffrances."
   },
   "Після війни настали важкі часи": {
-    "phrase_html": "Після <span class=\"ukr\" data-info=\"війна;pos=noun;case=gen;number=sg\">війни</span> настали важкі часи",
+    "phrase_html": "<span class=\"ukr\" data-info=\"після;pos=prep\">Після</span> <span class=\"ukr\" data-info=\"війна;pos=noun;case=gen;number=sg\">війни</span> <span class=\"ukr\" data-info=\"настати;pos=verb;verbForm=fin;tense=past;gender=m;number=pl\">настали</span> <span class=\"ukr\" data-info=\"важкий;pos=adj;case=nom;number=pl\">важкі</span> <span class=\"ukr\" data-info=\"час;pos=noun;case=nom;number=pl\">часи</span>",
     "traduction": "Après la guerre, des temps difficiles sont venus"
   },
   "Я кладу гроші в свою кишеню.": {
@@ -49,24 +49,24 @@
     }
   },
   "На ранок Оксані Терентіївні погіршало: підвищилася температура, посилився кашель.": {
-    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;pos=noun;case=acc;number=sg\">ранок</span> Оксані Тере́нтіївні <span class=\"ukr\" data-info=\"погіршати;pos=verb;verbForm=fin;tense=past;gender=n;number=sg\">погіршало</span>: підвищилася <span class=\"ukr\" data-info=\"температура;pos=noun;case=nom;number=sg\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;pos=noun;case=nom;number=sg\">кашель</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"на;pos=prep\">На</span> <span class=\"ukr\" data-info=\"ранок;pos=noun;case=acc;number=sg\">ранок</span> <span class=\"ukr\" data-info=\"Оксана;pos=noun;case=dat;number=sg\">Оксані</span> Тере́нтіївні <span class=\"ukr\" data-info=\"погіршати;pos=verb;verbForm=fin;tense=past;gender=n;number=sg\">погіршало</span>: <span class=\"ukr\" data-info=\"підвищитися;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">підвищилася</span> <span class=\"ukr\" data-info=\"температура;pos=noun;case=nom;number=sg\">температура</span>, <span class=\"ukr\" data-info=\"посилитися;pos=verb;verbForm=fin;tense=past;gender=m;number=sg\">посилився</span> <span class=\"ukr\" data-info=\"кашель;pos=noun;case=nom;number=sg\">кашель</span>.",
     "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
   },
   "За порадою аптекаря Сашко узяв також якихось цілющих вітамінів, сподіваючись, що бабуся видужає досить швидко.": {
-    "phrase_html": "За <span class=\"ukr\" data-info=\"порада;pos=noun;case=ins;number=sg\">порадою</span> аптекаря Сашко узяв також якихось цілющих вітамінів, сподіваючись, що бабуся видужає досить швидко.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"за;pos=prep\">За</span> <span class=\"ukr\" data-info=\"порада;pos=noun;case=ins;number=sg\">порадою</span> <span class=\"ukr\" data-info=\"аптекар;pos=noun;case=gen;number=sg\">аптекаря</span> <span class=\"ukr\" data-info=\"Сашко;pos=noun;case=nom;number=sg\">Сашко</span> <span class=\"ukr\" data-info=\"узяти;pos=verb;verbForm=fin;tense=past;gender=m;number=sg\">узяв</span> <span class=\"ukr\" data-info=\"також;pos=adv\">також</span> <span class=\"ukr\" data-info=\"якийсь;pos=adj;case=gen;number=pl\">якихось</span> <span class=\"ukr\" data-info=\"цілющий;pos=adj;case=gen;number=pl\">цілющих</span> <span class=\"ukr\" data-info=\"вітамін;pos=noun;case=gen;number=pl\">вітамінів</span>, <span class=\"ukr\" data-info=\"сподіватися;pos=verb;verbForm=conv\">сподіваючись</span>, <span class=\"ukr\" data-info=\"що;pos=pron;case=nom\">що</span> <span class=\"ukr\" data-info=\"бабуся;pos=noun;case=nom;number=sg\">бабуся</span> <span class=\"ukr\" data-info=\"видужати;pos=verb;verbForm=fin;tense=fut;person=3;number=sg\">видужає</span> <span class=\"ukr\" data-info=\"досить;pos=adv\">досить</span> <span class=\"ukr\" data-info=\"швидко;pos=adv\">швидко</span>.",
     "traduction": "Sur les conseils du pharmacien, Sasha a également pris des vitamines curatives, espérant que la grand-mère se rétablira assez rapidement."
   },
   "Доброго ранку, ми з України.": {
-    "phrase_html": "Доброго <span class=\"ukr\" data-info=\"ранок;pos=noun;case=gen;number=sg\">ранку</span>, ми з України.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"добрий;pos=adj;case=gen;gender=m\">Доброго</span> <span class=\"ukr\" data-info=\"ранок;pos=noun;case=gen;number=sg\">ранку</span>, <span class=\"ukr\" data-info=\"ми;pos=pron;case=nom\">ми</span> <span class=\"ukr\" data-info=\"з;pos=prep\">з</span> <span class=\"ukr\" data-info=\"Україна;pos=noun;case=nom;number=pl\">України</span>.",
     "traduction": "Bonjour, nous sommes d'Ukraine.",
     "remarque": "En ukrainien, après l'adjectif \"доброго\" (qui est au génitif masculin singulier), le nom \"ранок\" (qui signifie \"matin\") est également mis au génitif pour correspondre à la construction de la salutation. C'est une forme courante dans les salutations comme \"доброго ранку\" (bon matin) ou \"доброго дня\" (bonne journée), où le génitif est utilisé pour exprimer un souhait."
   },
   "На ранок Оксані Тере́нтіївні погіршало: підвищилася температура, посилився кашель.": {
-    "phrase_html": "На <span class=\"ukr\" data-info=\"ранок;pos=noun;case=acc;number=sg\">ранок</span> Оксані Тере́нтіївні погіршало: підвищилася <span class=\"ukr\" data-info=\"температура;pos=noun;case=nom;number=sg\">температура</span>, посилився <span class=\"ukr\" data-info=\"кашель;pos=noun;case=nom;number=sg\">кашель</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"на;pos=prep\">На</span> <span class=\"ukr\" data-info=\"ранок;pos=noun;case=acc;number=sg\">ранок</span> <span class=\"ukr\" data-info=\"Оксана;pos=noun;case=dat;number=sg\">Оксані</span> Тере́нтіївні <span class=\"ukr\" data-info=\"погіршати;pos=verb;verbForm=fin;tense=past;gender=n;number=sg\">погіршало</span>: <span class=\"ukr\" data-info=\"підвищитися;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">підвищилася</span> <span class=\"ukr\" data-info=\"температура;pos=noun;case=nom;number=sg\">температура</span>, <span class=\"ukr\" data-info=\"посилитися;pos=verb;verbForm=fin;tense=past;gender=m;number=sg\">посилився</span> <span class=\"ukr\" data-info=\"кашель;pos=noun;case=nom;number=sg\">кашель</span>.",
     "traduction": "Le matin, Oksana Terentiyivna s'est aggravée : la température a augmenté, la toux s'est intensifiée."
   },
   "Сашкові довелося перед школою сходити до аптеки.": {
-    "phrase_html": "Сашкові довелося перед <span class=\"ukr\" data-info=\"школа;pos=noun;case=ins;number=sg\">школою</span> сходити до аптеки.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"Сашко;pos=noun;case=dat;number=sg\">Сашкові</span> <span class=\"ukr\" data-info=\"довестися;pos=verb;verbForm=fin;tense=past;gender=n;number=sg\">довелося</span> <span class=\"ukr\" data-info=\"перед;pos=prep\">перед</span> <span class=\"ukr\" data-info=\"школа;pos=noun;case=ins;number=sg\">школою</span> <span class=\"ukr\" data-info=\"сходити;pos=verb;verbForm=inf\">сходити</span> <span class=\"ukr\" data-info=\"до;pos=prep\">до</span> <span class=\"ukr\" data-info=\"аптека;pos=noun;case=nom;number=pl\">аптеки</span>.",
     "traduction": "Sasha a dû aller avant l'école à la pharmacie."
   },
   "Я можу запитати свого батька.": {
@@ -84,7 +84,7 @@
     "traduction": "Il me demandera cela demain."
   },
   "Я читаю мінімум одну книжку на місяць.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"я;pos=pron;case=nom\">Я</span> <span class=\"ukr\" data-info=\"читати;pos=verb;verbForm=fin;tense=pres;person=1;number=sg\">читаю</span> мінімум одну книжку на місяць.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"я;pos=pron;case=nom\">Я</span> <span class=\"ukr\" data-info=\"читати;pos=verb;verbForm=fin;tense=pres;person=1;number=sg\">читаю</span> <span class=\"ukr\" data-info=\"мінімум;pos=noun;case=nom;number=sg\">мінімум</span> <span class=\"ukr\" data-info=\"один;pos=num;case=acc;gender=f\">одну</span> <span class=\"ukr\" data-info=\"книжка;pos=noun;case=acc;number=sg\">книжку</span> <span class=\"ukr\" data-info=\"на;pos=prep\">на</span> <span class=\"ukr\" data-info=\"місяць;pos=noun;case=nom;number=sg\">місяць</span>.",
     "traduction": "Je lis au moins un livre tous les mois."
   },
   "Я вішатиму картини на стіну.": {
@@ -1398,7 +1398,7 @@
     }
   },
   "Чорнобильська катастрофа була / відбулася / сталася двадцять шостого квітня тисяча дев’ятсот вісімдесят шостого року.": {
-    "phrase_html": "<span class=\"ukr\" data-info=\"чорнобильський;pos=adj;case=nom;gender=f\">Чорнобильська</span> <span class=\"ukr\" data-info=\"катастрофа;pos=noun;case=nom;number=sg\">катастрофа</span> <span class=\"ukr\" data-info=\"бути;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">була</span> / <span class=\"ukr\" data-info=\"відбутися;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">відбулася</span> / <span class=\"ukr\" data-info=\"статися;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">сталася</span> двадцять шостого <span class=\"ukr\" data-info=\"квітень;pos=noun;case=gen;number=sg\">квітня</span> тисяча дев’ятсот вісімдесят шостого <span class=\"ukr\" data-info=\"рік;pos=noun;case=gen;number=sg\">року</span>.",
+    "phrase_html": "<span class=\"ukr\" data-info=\"чорнобильський;pos=adj;case=nom;gender=f\">Чорнобильська</span> <span class=\"ukr\" data-info=\"катастрофа;pos=noun;case=nom;number=sg\">катастрофа</span> <span class=\"ukr\" data-info=\"бути;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">була</span> / <span class=\"ukr\" data-info=\"відбутися;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">відбулася</span> / <span class=\"ukr\" data-info=\"статися;pos=verb;verbForm=fin;tense=past;gender=f;number=sg\">сталася</span> <span class=\"ukr\" data-info=\"двадцять;pos=num;case=nom;number=sg\">двадцять</span> <span class=\"ukr\" data-info=\"шостий;pos=adj;case=gen;gender=m\">шостого</span> <span class=\"ukr\" data-info=\"квітень;pos=noun;case=gen;number=sg\">квітня</span> <span class=\"ukr\" data-info=\"тисяча;pos=num;case=nom;number=sg\">тисяча</span> дев’ятсот <span class=\"ukr\" data-info=\"вісімдесят;pos=num;case=nom;number=sg\">вісімдесят</span> <span class=\"ukr\" data-info=\"шостий;pos=adj;case=gen;gender=m\">шостого</span> <span class=\"ukr\" data-info=\"рік;pos=noun;case=gen;number=sg\">року</span>.",
     "traduction": "L’accident de Tchernobyl s’est produit le 26 avril 1986.",
     "ref": {
       "Olena Saint-Joanis": "L2,Cours2,Thème4.9"
