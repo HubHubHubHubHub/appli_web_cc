@@ -81,7 +81,15 @@
 
     {#if uiStore.selectedCategory === "noun"}
       <NounDetails {details} />
-    {:else if ["adj", "num"].includes(uiStore.selectedCategory)}
+    {:else if uiStore.selectedCategory === "num"}
+      {#if details.cas && Array.isArray(details.cas.nom)}
+        <PronDetails {details} />
+      {:else if details.cas?.nom?.sg !== undefined}
+        <NounDetails {details} />
+      {:else}
+        <AdjectiveDetails {details} />
+      {/if}
+    {:else if uiStore.selectedCategory === "adj"}
       <AdjectiveDetails {details} />
     {:else if uiStore.selectedCategory === "pron"}
       <PronDetails {details} />

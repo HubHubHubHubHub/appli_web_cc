@@ -32,8 +32,17 @@
       } else if (category === "pron") {
         const d = wd?.pron?.[word]?.cas;
         if (d) return generateTablePron(d, tag.case);
-      } else if (["adj", "num"].includes(category)) {
-        const d = wd?.[category]?.[word]?.cas;
+      } else if (category === "num") {
+        const d = wd?.num?.[word]?.cas;
+        if (d) {
+          // Detect format: pron-like (direct list), noun-like (sg/pl), adj-like (m/f/n/pl)
+          const sample = d.nom || d.gen || Object.values(d)[0];
+          if (Array.isArray(sample)) return generateTablePron(d, tag.case);
+          if (sample?.sg !== undefined) return generateTableNoun(d, tag.case, tag.number);
+          return generateTableAdj(d, tag.case, tag.gender);
+        }
+      } else if (category === "adj") {
+        const d = wd?.adj?.[word]?.cas;
         if (d) return generateTableAdj(d, tag.case, tag.gender);
       } else if (category === "verb") {
         const v = wd?.verb?.[word];
