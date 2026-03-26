@@ -11,6 +11,13 @@ const mockWordData = {
       },
     },
   },
+  verb: {
+    читати: {
+      meta: { pos: "verb", aspect: "impf" },
+      inf: [["читати", 4]],
+      conj: {},
+    },
+  },
 };
 
 function makeContainer(html) {
@@ -64,6 +71,16 @@ describe("applyAccents", () => {
     applyAccents(el, mockWordData, true);
     const span = el.querySelector(".ukr");
     expect(span.dataset.original).toBe("дім");
+  });
+
+  it("applique l'accent sur un verbe infinitif", () => {
+    const el = makeContainer(
+      '<span class="ukr" data-info="читати;pos=verb;verbForm=inf">читати</span>',
+    );
+    applyAccents(el, mockWordData, true);
+    const span = el.querySelector(".ukr");
+    expect(span.innerHTML).toContain("accent");
+    expect(span.dataset.original).toBe("читати");
   });
 
   it("gère plusieurs éléments .ukr", () => {

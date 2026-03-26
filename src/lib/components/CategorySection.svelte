@@ -1,8 +1,8 @@
 <script>
-  import HtmlContent from "./HtmlContent.svelte";
   import LetterGroup from "./LetterGroup.svelte";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import { uiStore } from "$lib/stores/uiStore.svelte.js";
+  import { getPrincipalForm } from "$lib/utils/dataAccess.js";
 
   let {
     catKey,
@@ -21,6 +21,14 @@
   function handleWordClick(word) {
     uiStore.selectedWord = word;
     uiStore.selectedCategory = posLookup[word] || catKey;
+  }
+
+  function getDisplay(word) {
+    const pos = posLookup[word] || catKey;
+    if (uiStore.accentEnabled) {
+      return getPrincipalForm(dataStore.wordData, word, pos);
+    }
+    return word;
   }
 </script>
 
@@ -61,10 +69,7 @@
               class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full"
               onclick={() => handleWordClick(word)}
             >
-              <HtmlContent
-                html={dataStore.wordData[posLookup[word] || catKey]?.[word]?.base_html}
-                disableHover={true}
-              />
+              {@html getDisplay(word)}
             </button>
           </li>
         {/each}
