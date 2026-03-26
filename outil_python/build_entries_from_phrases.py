@@ -47,13 +47,13 @@ from ukr_morph_parser import (
 
 UKR_POS_TAG = {
     "adj": "прикметник",
-    "nom": "іменник",
+    "noun": "іменник",
     "verb": "дієслово",
 }
 
 ASPECT_UKR = {
-    "perfectif": "доконаний вид",
-    "imperfectif": "недоконаний вид",
+    "perf": "доконаний вид",
+    "impf": "недоконаний вид",
 }
 
 # Tags → genre court
@@ -84,13 +84,20 @@ def save_json(path: str, obj: Any) -> None:
 # --------------------------
 
 def parse_data_info(data_info: str) -> Tuple[str, str]:
+    """Parse un data-info V2 et retourne (lemma, pos)."""
     parts = (data_info or "").split(";")
     if len(parts) < 2:
         return "", ""
-    return parts[0].strip(), parts[1].strip()
+    lemma = parts[0].strip()
+    # V2 format: pos=noun
+    for p in parts[1:]:
+        if p.startswith("pos="):
+            return lemma, p[4:]
+    # V1 fallback
+    return lemma, parts[1].strip()
 
 def is_target_pos(pos: str) -> bool:
-    return pos in {"adj", "nom", "verb"}
+    return pos in {"adj", "noun", "verb", "num", "pron", "adv", "prep", "conj", "part", "intj", "pred", "insert"}
 
 def pick_article_block_for_pos(articles: Iterable[Dict[str, Any]], pos: str) -> Optional[Dict[str, Any]]:
     want_tag = UKR_POS_TAG.get(pos)
@@ -111,10 +118,12 @@ def pick_article_block_for_pos(articles: Iterable[Dict[str, Any]], pos: str) -> 
 
 def detect_aspect_from_tags(tags: Iterable[str]) -> Optional[str]:
     s = set(tags or [])
-    if ASPECT_UKR["perfectif"] in s:
-        return "perfectif"
-    if ASPECT_UKR["imperfectif"] in s:
-        return "imperfectif"
+    if ASPECT_UKR["perf"] in s:
+        return "perf"
+    if ASPECT_UKR["impf"] in s:
+        return "impf"
+    if "двовидове" in s or "двовидовий" in s:
+        return "biaspect"
     return None
 
 def detect_gender_from_tags(tags: Iterable[str]) -> Optional[str]:
@@ -125,15 +134,15 @@ def detect_gender_from_tags(tags: Iterable[str]) -> Optional[str]:
     return None
 
 def make_base_html(pos: str, lemma: str) -> str:
-    """Construit le span `base_html` canonique selon le POS."""
+    """Construit le span `base_html` canonique selon le POS (format V2)."""
     if pos == "verb":
-        return f'<span class="ukr" data-info="{lemma};verb;inf">{lemma}</span>'
-    if pos == "nom":
-        return f'<span class="ukr" data-info="{lemma};nom;cas;nomi;s">{lemma}</span>'
+        return f'<span class="ukr" data-info="{lemma};pos=verb;verbForm=inf">{lemma}</span>'
+    if pos == "noun":
+        return f'<span class="ukr" data-info="{lemma};pos=noun;case=nom;number=sg">{lemma}</span>'
     if pos == "adj":
-        return f'<span class="ukr" data-info="{lemma};adj;cas;nomi;m">{lemma}</span>'
-    # fallback neutre si jamais
-    return f'<span class="ukr" data-info="{lemma}">{lemma}</span>'
+        return f'<span class="ukr" data-info="{lemma};pos=adj;case=nom;gender=m">{lemma}</span>'
+    # Invariables et autres
+    return f'<span class="ukr" data-info="{lemma};pos={pos}">{lemma}</span>'
 
 def build_entry_from_table(
     pos: str,

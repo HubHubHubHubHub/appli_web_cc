@@ -5,6 +5,7 @@ from ukr_morph_parser import (
     parse_ukrainian_word_accent_policy,
     parse_table_adj,
     parse_table_nom,
+    parse_table_pron,
     parse_verb_imperfective_table,
     parse_verb_perfective_table,
 )
@@ -127,57 +128,55 @@ class TestUkrMorphParser(unittest.TestCase):
         # deux accents → duplication (positions 1-based)
         self.assertEqual(pairs, [("висіти", 2), ("висіти", 4)])
 
+    # --- Adjectif ---
     def test_parse_table_adj_basic(self):
         data = parse_table_adj(HTML_ADJ)
         self.assertIn("cas", data)
-        nomi = data["cas"]["nomi"]
-        # masculin nominatif : première forme = "більший" avec accent sur 2
-        self.assertEqual(nomi["m"][0], ["більший", 2])
+        nom = data["cas"]["nom"]
+        self.assertEqual(nom["m"][0], ["більший", 2])
 
+    # --- Nom ---
     def test_parse_table_nom_basic(self):
         data = parse_table_nom(HTML_NOUN)
-        nomi = data["cas"]["nomi"]
+        nom = data["cas"]["nom"]
         # singulier absent (tiret)
-        self.assertEqual(nomi["s"], [[None, -2]])
+        self.assertEqual(nom["sg"], [[None, -2]])
         # pluriel « двері » accent sur « е » → position 3
-        self.assertEqual(nomi["pl"][0], ["двері", 3])
+        self.assertEqual(nom["pl"][0], ["двері", 3])
 
+    # --- Verbe imperfectif ---
     def test_parse_verb_imperfective(self):
         data = parse_verb_imperfective_table(HTML_V_IMP, "висіти")
-        self.assertEqual(data["asp"], "imperfectif")
-        # infinitif : première forme = "висіти" accent 2 (double accent -> variantes)
+        self.assertEqual(data["asp"], "impf")
         self.assertEqual(data["inf"][0], ["висіти", 2])
-        # présent 3p sing/plur
         self.assertIn("pres", data["conj"])
-        self.assertIn("3p", data["conj"]["pres"])
-        self.assertTrue(len(data["conj"]["pres"]["3p"]["s"]) >= 1)
-        self.assertTrue(len(data["conj"]["pres"]["3p"]["pl"]) >= 1)
+        self.assertIn("3", data["conj"]["pres"])
+        self.assertTrue(len(data["conj"]["pres"]["3"]["sg"]) >= 1)
+        self.assertTrue(len(data["conj"]["pres"]["3"]["pl"]) >= 1)
 
+    # --- Verbe perfectif ---
     def test_parse_verb_perfective(self):
         data = parse_verb_perfective_table(HTML_V_PERF, "відбутися")
-        self.assertEqual(data["asp"], "perfectif")
-        # infin « відбу́тися » → accent sur « у », position 5 (+ variante відбутись)
+        self.assertEqual(data["asp"], "perf")
         self.assertEqual(data["inf"][0], ["відбутися", 5])
-        # futur 2p sing doit être renseigné
         self.assertIn("fut", data["conj"])
-        self.assertIn("2p", data["conj"]["fut"])
-        self.assertTrue(len(data["conj"]["fut"]["2p"]["s"]) >= 1)
-        # passé masculin sing/plur
-        self.assertIn("pass", data["conj"])
-        self.assertIn("m", data["conj"]["pass"])
-        self.assertTrue(len(data["conj"]["pass"]["m"]["s"]) >= 1)
-        self.assertTrue(len(data["conj"]["pass"]["m"]["pl"]) >= 1)
+        self.assertIn("2", data["conj"]["fut"])
+        self.assertTrue(len(data["conj"]["fut"]["2"]["sg"]) >= 1)
+        # passé
+        self.assertIn("past", data["conj"])
+        self.assertIn("m", data["conj"]["past"])
+        self.assertTrue(len(data["conj"]["past"]["m"]["sg"]) >= 1)
+        self.assertTrue(len(data["conj"]["past"]["m"]["pl"]) >= 1)
 
     def test_parse_verb_perfective_3p_not_5p(self):
-        """Regression test for #43: 3 особа must map to '3p', not '5p'."""
+        """Regression test for #43: 3 особа must map to '3', not '5p'."""
         data = parse_verb_perfective_table(HTML_V_PERF, "відбутися")
         fut = data["conj"]["fut"]
-        # "3p" must exist
-        self.assertIn("3p", fut)
-        self.assertTrue(len(fut["3p"]["s"]) >= 1)
-        self.assertTrue(len(fut["3p"]["pl"]) >= 1)
-        # "5p" must NOT exist
+        self.assertIn("3", fut)
+        self.assertTrue(len(fut["3"]["sg"]) >= 1)
+        self.assertTrue(len(fut["3"]["pl"]) >= 1)
         self.assertNotIn("5p", fut)
+        self.assertNotIn("3p", fut)
 
 
 if __name__ == "__main__":

@@ -35,15 +35,15 @@ Structures de sortie (schémas simplifiés)
 * Verbe imperfectif :
     {"inf": [[lemma_no_accent, pos]],
      "conj": {
-        "imp":  {"1p":{"s":[[...]],"pl":[[...]]}, ...},
+        "imp":  {"1":{"sg":[[...]],"pl":[[...]]}, ...},
         "fut":  {...},
         "pres": {...},
-        "pass": {"m":{"s":[[...]],"pl":[[...]]},
+        "past": {"m":{"sg":[[...]],"pl":[[...]]},
                  "f":{...},"n":{...}}
      },
-     "asp": "imperfectif"}
+     "asp": "impf"}
 
-* Verbe perfectif : idem (sans "pres"), "asp": "perfectif".
+* Verbe perfectif : idem (sans "pres"), "asp": "perf".
 
 Remarques
 ---------
@@ -66,9 +66,9 @@ from bs4 import BeautifulSoup
 # Constantes et petits outils
 # ----------------------------
 
-# Correspondance des cas (ukr → clé courte JSON)
+# Correspondance des cas (ukr → clé V2)
 CASE_MAP: Dict[str, str] = {
-    "називний": "nomi",
+    "називний": "nom",
     "родовий": "gen",
     "давальний": "dat",
     "знахідний": "acc",
@@ -337,7 +337,7 @@ def parse_table_nom(html_table: str, lemma: Optional[str] = None) -> Dict[str, o
         if not case_key:
             continue
 
-        cas_dict.setdefault(case_key, {"s": [], "pl": []})  # type: ignore[index]
+        cas_dict.setdefault(case_key, {"sg": [], "pl": []})  # type: ignore[index]
 
         # Singulier
         cell_s, cell_pl = tds[1], tds[2]
@@ -352,7 +352,7 @@ def parse_table_nom(html_table: str, lemma: Optional[str] = None) -> Dict[str, o
         else:
             forms_p = _collect_span_pairs(cell_pl) or [[None, -2]]
 
-        cas_dict[case_key]["s"] = forms_s  # type: ignore[index]
+        cas_dict[case_key]["sg"] = forms_s  # type: ignore[index]
         cas_dict[case_key]["pl"] = forms_p  # type: ignore[index]
 
     return root
@@ -398,8 +398,8 @@ def parse_verb_imperfective_table(html_content: str, main_infinitive: str):
 
     out = {
         "inf": [],
-        "conj": {"imp": {}, "fut": {}, "pres": {}, "pass": {}},
-        "asp": "imperfectif",
+        "conj": {"imp": {}, "fut": {}, "pres": {}, "past": {}},
+        "asp": "impf",
     }
 
     # 1) Cellule des infinitifs (robuste)
@@ -418,18 +418,18 @@ def parse_verb_imperfective_table(html_content: str, main_infinitive: str):
     else:
         out["inf"] = [[remove_all_accents(main_infinitive), -1]]
 
-    # 2) Cartographie des blocs
+    # 2) Cartographie des blocs (V2)
     mode_map = {
         "Наказовий спосіб": "imp",
         "Майбутній час": "fut",
         "Теперішній час": "pres",
-        "Минулий час": "pass",
+        "Минулий час": "past",
     }
 
     person_map = {
-        "1 особа": "1p",
-        "2 особа": "2p",
-        "3 особа": "3p",
+        "1 особа": "1",
+        "2 особа": "2",
+        "3 особа": "3",
         "чол. р.": "m",
         "жін. р.": "f",
         "сер. р.": "n",
@@ -437,12 +437,12 @@ def parse_verb_imperfective_table(html_content: str, main_infinitive: str):
 
     def ensure_sp(dct, key):
         if key not in dct:
-            dct[key] = {"s": [], "pl": []}
+            dct[key] = {"sg": [], "pl": []}
         return dct[key]
 
     def ensure_mfn(dct, key):
         if key not in dct:
-            dct[key] = {"s": [], "pl": []}
+            dct[key] = {"sg": [], "pl": []}
         return dct[key]
 
     cur = None
@@ -464,17 +464,17 @@ def parse_verb_imperfective_table(html_content: str, main_infinitive: str):
             if not key:
                 continue
             slot = ensure_sp(out["conj"][cur], key)
-            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
+            slot["sg"] = _collect_span_pairs(tds[1]) or [[None, -2]]
             slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
-        elif cur == "pass":
+        elif cur == "past":
             if len(tds) < 2:
                 continue
             g = person_map.get(hdr)
             if not g:
                 continue
-            slot = ensure_mfn(out["conj"]["pass"], g)
-            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
+            slot = ensure_mfn(out["conj"]["past"], g)
+            slot["sg"] = _collect_span_pairs(tds[1]) or [[None, -2]]
             if len(tds) == 3:
                 slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
@@ -493,8 +493,8 @@ def parse_verb_perfective_table(html_content: str, main_infinitive: str):
 
     out = {
         "inf": [],
-        "conj": {"imp": {}, "fut": {}, "pass": {}},
-        "asp": "perfectif",
+        "conj": {"imp": {}, "fut": {}, "past": {}},
+        "asp": "perf",
     }
 
     # 1) Cellule des infinitifs (robuste)
@@ -510,17 +510,17 @@ def parse_verb_perfective_table(html_content: str, main_infinitive: str):
     else:
         out["inf"] = [[remove_all_accents(main_infinitive), -1]]
 
-    # 2) Cartographie des blocs
+    # 2) Cartographie des blocs (V2)
     mode_map = {
         "Наказовий спосіб": "imp",
         "Майбутній час": "fut",
-        "Минулий час": "pass",
+        "Минулий час": "past",
     }
 
     person_map = {
-        "1 особа": "1p",
-        "2 особа": "2p",
-        "3 особа": "3p",
+        "1 особа": "1",
+        "2 особа": "2",
+        "3 особа": "3",
         "чол. р.": "m",
         "жін. р.": "f",
         "сер. р.": "n",
@@ -528,12 +528,12 @@ def parse_verb_perfective_table(html_content: str, main_infinitive: str):
 
     def ensure_sp(dct, key):
         if key not in dct:
-            dct[key] = {"s": [], "pl": []}
+            dct[key] = {"sg": [], "pl": []}
         return dct[key]
 
     def ensure_mfn(dct, key):
         if key not in dct:
-            dct[key] = {"s": [], "pl": []}
+            dct[key] = {"sg": [], "pl": []}
         return dct[key]
 
     cur = None
@@ -555,17 +555,17 @@ def parse_verb_perfective_table(html_content: str, main_infinitive: str):
             if not key:
                 continue
             slot = ensure_sp(out["conj"][cur], key)
-            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
+            slot["sg"] = _collect_span_pairs(tds[1]) or [[None, -2]]
             slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 
-        elif cur == "pass":
+        elif cur == "past":
             if len(tds) < 2:
                 continue
             g = person_map.get(hdr)
             if not g:
                 continue
-            slot = ensure_mfn(out["conj"]["pass"], g)
-            slot["s"] = _collect_span_pairs(tds[1]) or [[None, -2]]
+            slot = ensure_mfn(out["conj"]["past"], g)
+            slot["sg"] = _collect_span_pairs(tds[1]) or [[None, -2]]
             if len(tds) == 3:
                 slot["pl"] = _collect_span_pairs(tds[2]) or [[None, -2]]
 

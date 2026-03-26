@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Tests pour les fonctions utilitaires de build_entries_from_phrases.py"""
+"""Tests pour les fonctions utilitaires de build_entries_from_phrases.py (V2)"""
 import unittest
-import importlib
 import sys
 import os
 
-# Le nom du fichier contient des parenthèses, on importe les deux modules
 sys.path.insert(0, os.path.dirname(__file__))
 
 from build_entries_from_phrases import (
@@ -18,15 +16,20 @@ from build_entries_from_phrases import (
 
 
 class TestParseDataInfo(unittest.TestCase):
-    def test_basic_nom(self):
+    def test_v2_noun(self):
+        lemma, pos = parse_data_info("машина;pos=noun;case=acc;number=sg")
+        self.assertEqual(lemma, "машина")
+        self.assertEqual(pos, "noun")
+
+    def test_v2_verb(self):
+        lemma, pos = parse_data_info("читати;pos=verb;verbForm=inf")
+        self.assertEqual(lemma, "читати")
+        self.assertEqual(pos, "verb")
+
+    def test_v1_fallback(self):
         lemma, pos = parse_data_info("машина;nom;cas;acc;s")
         self.assertEqual(lemma, "машина")
         self.assertEqual(pos, "nom")
-
-    def test_basic_verb(self):
-        lemma, pos = parse_data_info("читати;verb;inf")
-        self.assertEqual(lemma, "читати")
-        self.assertEqual(pos, "verb")
 
     def test_empty(self):
         lemma, pos = parse_data_info("")
@@ -45,30 +48,44 @@ class TestParseDataInfo(unittest.TestCase):
 
 
 class TestIsTargetPos(unittest.TestCase):
-    def test_accepted(self):
+    def test_main_pos_accepted(self):
         self.assertTrue(is_target_pos("adj"))
-        self.assertTrue(is_target_pos("nom"))
+        self.assertTrue(is_target_pos("noun"))
         self.assertTrue(is_target_pos("verb"))
 
-    def test_rejected(self):
-        self.assertFalse(is_target_pos("prep"))
-        self.assertFalse(is_target_pos("adv"))
-        self.assertFalse(is_target_pos("conj"))
-        self.assertFalse(is_target_pos("part"))
+    def test_invariables_accepted(self):
+        self.assertTrue(is_target_pos("prep"))
+        self.assertTrue(is_target_pos("adv"))
+        self.assertTrue(is_target_pos("conj"))
+        self.assertTrue(is_target_pos("part"))
+        self.assertTrue(is_target_pos("intj"))
+        self.assertTrue(is_target_pos("pred"))
+        self.assertTrue(is_target_pos("insert"))
+
+    def test_empty_rejected(self):
         self.assertFalse(is_target_pos(""))
+
+    def test_unknown_rejected(self):
+        self.assertFalse(is_target_pos("xyz"))
 
 
 class TestDetectAspect(unittest.TestCase):
     def test_perfectif(self):
         self.assertEqual(
             detect_aspect_from_tags(["доконаний вид", "дієслово"]),
-            "perfectif",
+            "perf",
         )
 
     def test_imperfectif(self):
         self.assertEqual(
             detect_aspect_from_tags(["недоконаний вид", "дієслово"]),
-            "imperfectif",
+            "impf",
+        )
+
+    def test_biaspect(self):
+        self.assertEqual(
+            detect_aspect_from_tags(["двовидове", "дієслово"]),
+            "biaspect",
         )
 
     def test_none(self):
@@ -96,20 +113,24 @@ class TestDetectGender(unittest.TestCase):
 class TestMakeBaseHtml(unittest.TestCase):
     def test_verb(self):
         html = make_base_html("verb", "читати")
-        self.assertIn('data-info="читати;verb;inf"', html)
+        self.assertIn('data-info="читати;pos=verb;verbForm=inf"', html)
         self.assertIn(">читати</span>", html)
 
-    def test_nom(self):
-        html = make_base_html("nom", "стіл")
-        self.assertIn('data-info="стіл;nom;cas;nomi;s"', html)
+    def test_noun(self):
+        html = make_base_html("noun", "стіл")
+        self.assertIn('data-info="стіл;pos=noun;case=nom;number=sg"', html)
 
     def test_adj(self):
         html = make_base_html("adj", "великий")
-        self.assertIn('data-info="великий;adj;cas;nomi;m"', html)
+        self.assertIn('data-info="великий;pos=adj;case=nom;gender=m"', html)
 
-    def test_unknown_pos(self):
+    def test_invariable(self):
         html = make_base_html("prep", "у")
-        self.assertIn('data-info="у"', html)
+        self.assertIn('data-info="у;pos=prep"', html)
+
+    def test_pred(self):
+        html = make_base_html("pred", "можна")
+        self.assertIn('data-info="можна;pos=pred"', html)
 
 
 if __name__ == "__main__":
