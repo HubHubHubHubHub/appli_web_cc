@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import {
-  parseInfo,
   toPairs,
   firstPair,
   firstText,
@@ -8,17 +7,6 @@ import {
   getVariantIndex,
   renderCellSimple,
 } from "../../src/lib/utils/parsing.js";
-
-// ─── parseInfo ───────────────────────────────────────────────────────────────
-describe("parseInfo", () => {
-  it("splits a semicolon-separated string", () => {
-    expect(parseInfo("я;proper;cas;nomi")).toEqual(["я", "proper", "cas", "nomi"]);
-  });
-
-  it("returns a single-element array for a lone token", () => {
-    expect(parseInfo("mot")).toEqual(["mot"]);
-  });
-});
 
 // ─── toPairs ─────────────────────────────────────────────────────────────────
 describe("toPairs", () => {

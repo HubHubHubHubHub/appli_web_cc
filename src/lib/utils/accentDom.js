@@ -1,5 +1,5 @@
 import { firstPair } from "./parsing.js";
-import { parseDataInfo, getDataFromJson } from "./dataAccess.js";
+import { parseDataInfo, resolveEntry } from "./dataAccess.js";
 import { highlightLetter } from "./accent.js";
 
 /**
@@ -26,13 +26,8 @@ export function applyAccents(el, wordData, enabled) {
         word.innerHTML = word.dataset.original;
         return;
       }
-      // Rebuild infos array for getDataFromJson
-      const infos = [tag.lemma];
-      for (const [k, v] of Object.entries(tag)) {
-        if (k !== "lemma") infos.push(`${k}=${v}`);
-      }
       const variantIndex = tag.var ? parseInt(tag.var, 10) : 0;
-      const entry = getDataFromJson(wordData, tag.pos, infos);
+      const entry = resolveEntry(wordData, tag);
 
       if (entry) {
         const pair = firstPair(entry, variantIndex);

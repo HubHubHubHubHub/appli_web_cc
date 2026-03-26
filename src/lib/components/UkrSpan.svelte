@@ -2,7 +2,7 @@
   import { uiStore, nextPinId } from "$lib/stores/uiStore.svelte.js";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import { firstPair } from "$lib/utils/parsing.js";
-  import { parseDataInfo, getDataFromJson } from "$lib/utils/dataAccess.js";
+  import { parseDataInfo, resolveEntry } from "$lib/utils/dataAccess.js";
   import { highlightLetter } from "$lib/utils/accent.js";
   import {
     buildBubbleHTML,
@@ -28,9 +28,8 @@
     if (!uiStore.accentEnabled) return text;
 
     const wd = dataStore.wordData;
-    const infos = [word, ...tokens.slice(1)];
     const variantIndex = tag.var ? parseInt(tag.var, 10) : 0;
-    const entry = getDataFromJson(wd, category, infos);
+    const entry = resolveEntry(wd, tag);
 
     if (entry) {
       const pair = firstPair(entry, variantIndex);

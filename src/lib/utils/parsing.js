@@ -1,15 +1,6 @@
 import { addAccentHTML } from "./accent.js";
 
 /**
- * Découpe une chaîne data-info en tokens séparés par des points-virgules.
- * @param {string} info - Chaîne data-info (ex: "балкон;nom;cas;nomi;s")
- * @returns {string[]} Tableau de tokens
- */
-export function parseInfo(info) {
-  return info.split(";");
-}
-
-/**
  * Normalise une entrée de données en tableau de paires [texte, positionAccent].
  * En V2, toutes les formes sont déjà au format [["forme", accent], ...].
  * @param {Array|null} entry - Entrée du JSON (liste de paires)

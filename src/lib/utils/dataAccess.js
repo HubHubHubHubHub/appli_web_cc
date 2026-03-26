@@ -2,9 +2,22 @@ import { addAccentHTML } from "./accent.js";
 import { firstPair } from "./parsing.js";
 
 /**
- * Parse un data-info V2 en objet clé=valeur.
+ * @typedef {Object} MorphoTag
+ * @property {string} lemma - Forme de citation
+ * @property {string} [pos] - Catégorie (noun, verb, adj, pron, num, adv, prep, conj, part, intj, pred, insert)
+ * @property {string} [case] - Cas (nom, gen, dat, acc, ins, loc, voc)
+ * @property {string} [number] - Nombre (sg, pl)
+ * @property {string} [gender] - Genre (m, f, n)
+ * @property {string} [person] - Personne (1, 2, 3)
+ * @property {string} [verbForm] - Forme verbale (fin, inf, imp, conv)
+ * @property {string} [tense] - Temps (pres, past, fut)
+ * @property {string} [var] - Index de variante (0-based)
+ */
+
+/**
+ * Parse un data-info V2 en objet MorphoTag.
  * @param {string} raw - Chaîne data-info (ex: "машина;pos=noun;case=acc;number=sg")
- * @returns {{ lemma: string, pos?: string, [key: string]: string }}
+ * @returns {MorphoTag}
  */
 export function parseDataInfo(raw) {
   const [lemma, ...parts] = raw.split(";");
@@ -19,37 +32,22 @@ export function parseDataInfo(raw) {
 }
 
 /**
- * Récupère les données depuis le JSON V2 pour un mot donné.
- * Résout le chemin dans data.json selon le pos et les traits du tag.
- * @param {object} wordData - L'objet wordData complet (V2)
- * @param {string} pos - La catégorie pos (noun, verb, adj, pron, num, adv, prep, conj, part)
- * @param {string[]} infos - Les tokens restants du data-info V2 (clé=valeur parsés ou bruts)
+ * Résout une forme fléchie dans data.json V2 à partir d'un MorphoTag.
+ * @param {object} dataV2 - L'objet wordData complet (V2)
+ * @param {MorphoTag} tag - Tag morphologique parsé
+ * @returns {Array<[string, number]>|null} Liste de paires [forme, accent] ou null
  */
-export function getDataFromJson(wordData, pos, infos) {
-  // Accepter à la fois l'ancien format (tableau de tokens positionnels)
-  // et le nouveau format (objet tag V2 via parseDataInfo)
-  const tag = {};
-  const word = infos[0];
-
-  // Parser les tokens clé=valeur
-  for (let i = 1; i < infos.length; i++) {
-    const t = infos[i];
-    const eq = t.indexOf("=");
-    if (eq > 0) {
-      tag[t.slice(0, eq)] = t.slice(eq + 1);
-    }
-  }
-
-  const entry = wordData?.[pos]?.[word];
+export function resolveEntry(dataV2, tag) {
+  const entry = dataV2?.[tag.pos]?.[tag.lemma];
   if (!entry) return null;
 
   // Invariables
-  if (["adv", "prep", "conj", "part", "intj", "pred", "insert"].includes(pos)) {
+  if (["adv", "prep", "conj", "part", "intj", "pred", "insert"].includes(tag.pos)) {
     return entry?.base || null;
   }
 
   // Verbe
-  if (pos === "verb") {
+  if (tag.pos === "verb") {
     if (tag.verbForm === "inf") return entry?.inf || null;
     if (tag.tense === "past") return entry?.conj?.past?.[tag.gender]?.[tag.number] || null;
     if (tag.tense) return entry?.conj?.[tag.tense]?.[tag.person]?.[tag.number] || null;
@@ -57,12 +55,12 @@ export function getDataFromJson(wordData, pos, infos) {
   }
 
   // Pronom (paradigme idiosyncratique — pas de sous-niveau genre)
-  if (pos === "pron") {
+  if (tag.pos === "pron") {
     return entry?.cas?.[tag.case] || null;
   }
 
   // Nom (cas > case > number)
-  if (pos === "noun") {
+  if (tag.pos === "noun") {
     return entry?.cas?.[tag.case]?.[tag.number] || null;
   }
 
