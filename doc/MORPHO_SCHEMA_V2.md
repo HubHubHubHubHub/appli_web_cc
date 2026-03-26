@@ -663,16 +663,21 @@ interface MorphoTag {
   verbForm?: "fin" | "inf" | "imp" | "conv";
   tense?: "pres" | "past" | "fut";
   aspect?: "impf" | "perf" | "biaspect";
+  group?: number; // groupe de conjugaison (1 ou 2)
   motionType?: "det" | "indet";
+
+  // --- Champs meta-only (jamais dans le data-info serialise) ---
+  // Remplis depuis meta dans data.json, pas depuis les balises HTML.
+  // Un contributeur ne doit PAS les mettre dans les data-info des phrases.
   motionPair?: string; // partenaire de mouvement (det <-> indet), ex. "бігати" pour бігти
   couple?: string; // couple aspectuel (impf <-> perf), ex. "побачити" pour бачити
 
-  // Nominal
+  // Nominal (meta-only)
   animacy?: "anim" | "inan";
   plurTantum?: true;
   diminutive?: true;
 
-  // Prepositions
+  // Prepositions (meta-only)
   governs?: ("nom" | "gen" | "dat" | "acc" | "ins" | "loc")[]; // cas regis
 
   // Notation

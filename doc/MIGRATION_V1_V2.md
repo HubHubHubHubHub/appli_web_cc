@@ -111,18 +111,21 @@ Découvertes lors de la phase 1 (corpus réduit) :
 
 ### Clés internes
 
-| V1                   | V2                        | Contexte           |
-| -------------------- | ------------------------- | ------------------ |
-| `nomi`               | `nom`                     | Cas nominatif      |
-| `s`                  | `sg`                      | Nombre singulier   |
-| `1p`/`2p`/`3p`       | `1`/`2`/`3`               | Personne           |
-| `pass`               | `past`                    | Temps passé        |
-| `genre`              | `meta.gender`             | Genre nominal      |
-| `asp: "imperfectif"` | `meta.aspect: "impf"`     | Aspect             |
-| `asp: "perfectif"`   | `meta.aspect: "perf"`     |                    |
-| `asp: "biaspectuel"` | `meta.aspect: "biaspect"` |                    |
-| `coupl`              | `meta.couple`             | Couple aspectuel   |
-| `gramm`              | `meta.motionType`         | Verbe de mouvement |
+| V1                   | V2                        | Contexte                       |
+| -------------------- | ------------------------- | ------------------------------ |
+| `nomi`               | `nom`                     | Cas nominatif                  |
+| `s`                  | `sg`                      | Nombre singulier               |
+| `1p`/`2p`/`3p`       | `1`/`2`/`3`               | Personne                       |
+| `pass`               | `past`                    | Temps passé                    |
+| `genre`              | `meta.gender`             | Genre nominal                  |
+| `asp: "imperfectif"` | `meta.aspect: "impf"`     | Aspect                         |
+| `asp: "perfectif"`   | `meta.aspect: "perf"`     |                                |
+| `asp: "biaspectuel"` | `meta.aspect: "biaspect"` |                                |
+| `coupl`              | `meta.couple`             | Couple aspectuel               |
+| `gramm`              | `meta.motionType`         | Verbe de mouvement             |
+| `group`              | `meta.group`              | Groupe de conjugaison (1 ou 2) |
+
+> **Note** : le champ `group` (51 verbes) avait été silencieusement perdu lors de la migration initiale (`entry.pop("group", None)` sans injection dans `meta`). Restauré depuis le commit V1 dans `a119d7a`. Le script `migrate_v1_to_v2.py` a été corrigé pour ne plus perdre ce champ.
 
 ### Format des formes fléchies
 

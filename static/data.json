@@ -35435,7 +35435,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "побачити"
+        "couple": "побачити",
+        "group": 2
       },
       "inf": [
         [
@@ -35642,7 +35643,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "бігти"
+        "motionPair": "бігти",
+        "group": 1
       },
       "inf": [
         [
@@ -35826,7 +35828,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "бігати"
+        "motionPair": "бігати",
+        "group": 2
       },
       "inf": [
         [
@@ -36231,7 +36234,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "возити"
+        "motionPair": "возити",
+        "group": 1
       },
       "inf": [
         [
@@ -36416,7 +36420,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "водити"
+        "motionPair": "водити",
+        "group": 1
       },
       "inf": [
         [
@@ -37319,7 +37324,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "завісити"
+        "couple": "завісити",
+        "group": 2
       },
       "inf": [
         [
@@ -38248,7 +38254,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "повісити"
+        "couple": "повісити",
+        "group": 1
       },
       "inf": [
         [
@@ -38446,7 +38453,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "вести"
+        "motionPair": "вести",
+        "group": 2
       },
       "inf": [
         [
@@ -38631,7 +38639,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "везти"
+        "motionPair": "везти",
+        "group": 2
       },
       "inf": [
         [
@@ -39193,7 +39202,8 @@
     "вчитися": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 2
       },
       "inf": [
         [
@@ -39454,7 +39464,8 @@
     "гавкати": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 1
       },
       "inf": [
         [
@@ -39656,7 +39667,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "сказати"
+        "couple": "сказати",
+        "group": 2
       },
       "inf": [
         [
@@ -40083,7 +40095,8 @@
     "гуляти": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 2
       },
       "inf": [
         [
@@ -41010,7 +41023,8 @@
     "зайти": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -41155,7 +41169,8 @@
     "запитати": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -42355,7 +42370,8 @@
     "зустрічатися": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 1
       },
       "inf": [
         [
@@ -42777,7 +42793,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "ходити"
+        "motionPair": "ходити",
+        "group": 1
       },
       "inf": [
         [
@@ -43009,7 +43026,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "їхати"
+        "motionPair": "їхати",
+        "group": 2
       },
       "inf": [
         [
@@ -43198,7 +43216,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "їздити"
+        "motionPair": "їздити",
+        "group": 1
       },
       "inf": [
         [
@@ -43384,7 +43403,8 @@
     "йти": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 1
       },
       "inf": [
         [
@@ -43782,7 +43802,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "покласти"
+        "couple": "покласти",
+        "group": 1
       },
       "inf": [
         [
@@ -43981,7 +44002,8 @@
     "купити": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -44127,7 +44149,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "полежати"
+        "couple": "полежати",
+        "group": 2
       },
       "inf": [
         [
@@ -44325,7 +44348,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "літати"
+        "motionPair": "літати",
+        "group": 2
       },
       "inf": [
         [
@@ -44514,7 +44538,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "летіти"
+        "motionPair": "летіти",
+        "group": 1
       },
       "inf": [
         [
@@ -44700,7 +44725,8 @@
     "любити": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 2
       },
       "inf": [
         [
@@ -44891,7 +44917,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "лягти"
+        "couple": "лягти",
+        "group": 1
       },
       "inf": [
         [
@@ -45082,7 +45109,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "perf",
-        "couple": "лягати"
+        "couple": "лягати",
+        "group": 1
       },
       "inf": [
         [
@@ -45420,7 +45448,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "змогти"
+        "couple": "змогти",
+        "group": 1
       },
       "inf": [
         [
@@ -46006,7 +46035,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "носити"
+        "motionPair": "носити",
+        "group": 1
       },
       "inf": [
         [
@@ -46195,7 +46225,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "нести"
+        "motionPair": "нести",
+        "group": 2
       },
       "inf": [
         [
@@ -46576,7 +46607,8 @@
     "пам'ятати": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 1
       },
       "inf": [
         [
@@ -46777,7 +46809,8 @@
     "підвищитися": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -47070,7 +47103,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "плисти,пливти"
+        "motionPair": "плисти,пливти",
+        "group": 1
       },
       "inf": [
         [
@@ -47258,7 +47292,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "det",
-        "motionPair": "плавати"
+        "motionPair": "плавати",
+        "group": 1
       },
       "inf": [
         [
@@ -47445,7 +47480,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "perf",
-        "couple": "вішати"
+        "couple": "вішати",
+        "group": 2
       },
       "inf": [
         [
@@ -47595,7 +47631,8 @@
     "погіршати": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -47932,7 +47969,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "perf",
-        "couple": "класти"
+        "couple": "класти",
+        "group": 1
       },
       "inf": [
         [
@@ -48131,7 +48169,8 @@
     "попасти": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -48271,7 +48310,8 @@
     "послухати": {
       "meta": {
         "pos": "verb",
-        "aspect": "perf"
+        "aspect": "perf",
+        "group": 1
       },
       "inf": [
         [
@@ -48421,7 +48461,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "perf",
-        "couple": "ставити"
+        "couple": "ставити",
+        "group": 2
       },
       "inf": [
         [
@@ -49700,7 +49741,8 @@
     "розраховувати": {
       "meta": {
         "pos": "verb",
-        "aspect": "impf"
+        "aspect": "impf",
+        "group": 1
       },
       "inf": [
         [
@@ -49898,7 +49940,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "сісти"
+        "couple": "сісти",
+        "group": 1
       },
       "inf": [
         [
@@ -50094,7 +50137,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "сісти"
+        "couple": "сісти",
+        "group": 1
       },
       "inf": [
         [
@@ -50290,7 +50334,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "perf",
-        "couple": "сідати"
+        "couple": "сідати",
+        "group": 1
       },
       "inf": [
         [
@@ -50864,7 +50909,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "стати"
+        "couple": "стати",
+        "group": 1
       },
       "inf": [
         [
@@ -51055,7 +51101,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "поставити"
+        "couple": "поставити",
+        "group": 2
       },
       "inf": [
         [
@@ -51259,7 +51306,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "perf",
-        "couple": "ставати"
+        "couple": "ставати",
+        "group": 1
       },
       "inf": [
         [
@@ -51771,7 +51819,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "постояти"
+        "couple": "постояти",
+        "group": 2
       },
       "inf": [
         [
@@ -52169,7 +52218,8 @@
         "pos": "verb",
         "aspect": "impf",
         "motionType": "indet",
-        "motionPair": "іти"
+        "motionPair": "іти",
+        "group": 2
       },
       "inf": [
         [
@@ -52564,7 +52614,8 @@
       "meta": {
         "pos": "verb",
         "aspect": "impf",
-        "couple": "прочитати"
+        "couple": "прочитати",
+        "group": 1
       },
       "inf": [
         [

@@ -212,6 +212,10 @@ def build_meta_verb(entry):
     elif existing_meta.get("motionPair"):
         meta["motionPair"] = existing_meta["motionPair"]
 
+    # Groupe de conjugaison
+    if existing_meta.get("group"):
+        meta["group"] = existing_meta["group"]
+
     return meta
 
 
@@ -312,9 +316,13 @@ def migrate_entry(entry, v1_cat, lemma):
     entry.pop("asp", None)
     entry.pop("coupl", None)
     entry.pop("gramm", None)
-    entry.pop("group", None)
     entry.pop("couple déterminé", None)
     entry.pop("couple indéterminé", None)
+
+    # group (groupe de conjugaison) → meta.group
+    group = entry.pop("group", None)
+    if group is not None:
+        meta["group"] = int(group) if str(group).isdigit() else group
 
     # 4. Renommer les clés internes
     entry = rename_internal_keys(entry)
