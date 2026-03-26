@@ -2,7 +2,11 @@
   "prep": {
     "в": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "loc",
+          "acc"
+        ]
       },
       "base": [
         [
@@ -19,7 +23,11 @@
     },
     "на": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "loc",
+          "acc"
+        ]
       },
       "base": [
         [
@@ -36,7 +44,11 @@
     },
     "під": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "ins",
+          "acc"
+        ]
       },
       "base": [
         [
@@ -53,7 +65,11 @@
     },
     "у": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "loc",
+          "acc"
+        ]
       },
       "base": [
         [
@@ -70,7 +86,11 @@
     },
     "за": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "acc",
+          "ins"
+        ]
       },
       "base": [
         [
@@ -87,7 +107,11 @@
     },
     "з": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "gen",
+          "ins"
+        ]
       },
       "base": [
         [
@@ -104,7 +128,10 @@
     },
     "про": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "acc"
+        ]
       },
       "base": [
         [
@@ -121,7 +148,10 @@
     },
     "від": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
       },
       "base": [
         [
@@ -138,7 +168,11 @@
     },
     "із": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "gen",
+          "ins"
+        ]
       },
       "base": [
         [
@@ -155,7 +189,11 @@
     },
     "зі": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "gen",
+          "ins"
+        ]
       },
       "base": [
         [
@@ -172,7 +210,10 @@
     },
     "до": {
       "meta": {
-        "pos": "prep"
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
       },
       "base": [
         [
@@ -186,6 +227,346 @@
         "status": null,
         "flx": null
       }
+    },
+    "для": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "для",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"для;pos=prep\">для</span>"
+    },
+    "без": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "без",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"без;pos=prep\">без</span>"
+    },
+    "після": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "після",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"після;pos=prep\">після</span>"
+    },
+    "перед": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "ins"
+        ]
+      },
+      "base": [
+        [
+          "перед",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"перед;pos=prep\">перед</span>"
+    },
+    "між": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "ins"
+        ]
+      },
+      "base": [
+        [
+          "між",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"між;pos=prep\">між</span>"
+    },
+    "через": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "acc"
+        ]
+      },
+      "base": [
+        [
+          "через",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"через;pos=prep\">через</span>"
+    },
+    "над": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "ins"
+        ]
+      },
+      "base": [
+        [
+          "над",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"над;pos=prep\">над</span>"
+    },
+    "біля": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "біля",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"біля;pos=prep\">біля</span>"
+    },
+    "серед": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "серед",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"серед;pos=prep\">серед</span>"
+    },
+    "замість": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "замість",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"замість;pos=prep\">замість</span>"
+    },
+    "крім": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "крім",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"крім;pos=prep\">крім</span>"
+    },
+    "окрім": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "окрім",
+          3
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"окрім;pos=prep\">окрім</span>"
+    },
+    "щодо": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "щодо",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"щодо;pos=prep\">щодо</span>"
+    },
+    "крізь": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "acc"
+        ]
+      },
+      "base": [
+        [
+          "крізь",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"крізь;pos=prep\">крізь</span>"
+    },
+    "вздовж": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "gen"
+        ]
+      },
+      "base": [
+        [
+          "вздовж",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"вздовж;pos=prep\">вздовж</span>"
+    },
+    "поза": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "ins"
+        ]
+      },
+      "base": [
+        [
+          "поза",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"поза;pos=prep\">поза</span>"
+    },
+    "при": {
+      "meta": {
+        "pos": "prep",
+        "governs": [
+          "loc"
+        ]
+      },
+      "base": [
+        [
+          "при",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"при;pos=prep\">при</span>"
     }
   },
   "num": {
@@ -54732,7 +55113,8 @@
   "adv": {
     "багато": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "quantity"
       },
       "base": [
         [
@@ -54769,7 +55151,8 @@
     },
     "дуже": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "intensity"
       },
       "base": [
         [
@@ -54789,7 +55172,8 @@
     },
     "завжди": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -54826,7 +55210,8 @@
     },
     "зараз": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -54929,7 +55314,8 @@
     },
     "спочатку": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -54949,7 +55335,8 @@
     },
     "сьогодні": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -54990,7 +55377,8 @@
     },
     "тоді": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -55027,7 +55415,8 @@
     },
     "тут": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "place"
       },
       "base": [
         [
@@ -55044,7 +55433,8 @@
     },
     "ще": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -55078,7 +55468,8 @@
     },
     "де": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "inter"
       },
       "base": [
         [
@@ -55095,7 +55486,8 @@
     },
     "завтра": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -55112,7 +55504,8 @@
     },
     "занадто": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "quantity"
       },
       "base": [
         [
@@ -55129,7 +55522,8 @@
     },
     "там": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "place"
       },
       "base": [
         [
@@ -55146,7 +55540,8 @@
     },
     "потім": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -55163,7 +55558,8 @@
     },
     "вже": {
       "meta": {
-        "pos": "adv"
+        "pos": "adv",
+        "advType": "time"
       },
       "base": [
         [
@@ -55177,6 +55573,366 @@
         "status": null,
         "flx": null
       }
+    },
+    "швидко": {
+      "meta": {
+        "pos": "adv",
+        "advType": "manner"
+      },
+      "base": [
+        [
+          "швидко",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"швидко;pos=adv\">швидко</span>"
+    },
+    "повільно": {
+      "meta": {
+        "pos": "adv",
+        "advType": "manner"
+      },
+      "base": [
+        [
+          "повільно",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"повільно;pos=adv\">повільно</span>"
+    },
+    "добре": {
+      "meta": {
+        "pos": "adv",
+        "advType": "manner"
+      },
+      "base": [
+        [
+          "добре",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"добре;pos=adv\">добре</span>"
+    },
+    "погано": {
+      "meta": {
+        "pos": "adv",
+        "advType": "manner"
+      },
+      "base": [
+        [
+          "погано",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"погано;pos=adv\">погано</span>"
+    },
+    "вчора": {
+      "meta": {
+        "pos": "adv",
+        "advType": "time"
+      },
+      "base": [
+        [
+          "вчора",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"вчора;pos=adv\">вчора</span>"
+    },
+    "ніколи": {
+      "meta": {
+        "pos": "adv",
+        "advType": "neg"
+      },
+      "base": [
+        [
+          "ніколи",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ніколи;pos=adv\">ніколи</span>"
+    },
+    "ніде": {
+      "meta": {
+        "pos": "adv",
+        "advType": "neg"
+      },
+      "base": [
+        [
+          "ніде",
+          3
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ніде;pos=adv\">ніде</span>"
+    },
+    "скрізь": {
+      "meta": {
+        "pos": "adv",
+        "advType": "place"
+      },
+      "base": [
+        [
+          "скрізь",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"скрізь;pos=adv\">скрізь</span>"
+    },
+    "куди": {
+      "meta": {
+        "pos": "adv",
+        "advType": "inter"
+      },
+      "base": [
+        [
+          "куди",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"куди;pos=adv\">куди</span>"
+    },
+    "чому": {
+      "meta": {
+        "pos": "adv",
+        "advType": "inter"
+      },
+      "base": [
+        [
+          "чому",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"чому;pos=adv\">чому</span>"
+    },
+    "звідки": {
+      "meta": {
+        "pos": "adv",
+        "advType": "inter"
+      },
+      "base": [
+        [
+          "звідки",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"звідки;pos=adv\">звідки</span>"
+    },
+    "далеко": {
+      "meta": {
+        "pos": "adv",
+        "advType": "place"
+      },
+      "base": [
+        [
+          "далеко",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"далеко;pos=adv\">далеко</span>"
+    },
+    "близько": {
+      "meta": {
+        "pos": "adv",
+        "advType": "place"
+      },
+      "base": [
+        [
+          "близько",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"близько;pos=adv\">близько</span>"
+    },
+    "разом": {
+      "meta": {
+        "pos": "adv",
+        "advType": "manner"
+      },
+      "base": [
+        [
+          "разом",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"разом;pos=adv\">разом</span>"
+    },
+    "навіть": {
+      "meta": {
+        "pos": "adv",
+        "advType": "intensity"
+      },
+      "base": [
+        [
+          "навіть",
+          3
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"навіть;pos=adv\">навіть</span>"
+    },
+    "досить": {
+      "meta": {
+        "pos": "adv",
+        "advType": "quantity"
+      },
+      "base": [
+        [
+          "досить",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"досить;pos=adv\">досить</span>"
+    },
+    "майже": {
+      "meta": {
+        "pos": "adv",
+        "advType": "quantity"
+      },
+      "base": [
+        [
+          "майже",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"майже;pos=adv\">майже</span>"
+    },
+    "інколи": {
+      "meta": {
+        "pos": "adv",
+        "advType": "time"
+      },
+      "base": [
+        [
+          "інколи",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"інколи;pos=adv\">інколи</span>"
+    },
+    "часто": {
+      "meta": {
+        "pos": "adv",
+        "advType": "time"
+      },
+      "base": [
+        [
+          "часто",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"часто;pos=adv\">часто</span>"
+    },
+    "рідко": {
+      "meta": {
+        "pos": "adv",
+        "advType": "time"
+      },
+      "base": [
+        [
+          "рідко",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"рідко;pos=adv\">рідко</span>"
     }
   },
   "adj": {
@@ -96265,7 +97021,8 @@
   "conj": {
     "а": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "coord"
       },
       "base": [
         [
@@ -96285,7 +97042,8 @@
     },
     "або": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "coord"
       },
       "base": [
         [
@@ -96305,7 +97063,8 @@
     },
     "але": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "coord"
       },
       "base": [
         [
@@ -96345,7 +97104,8 @@
     },
     "і": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "coord"
       },
       "base": [
         [
@@ -96365,7 +97125,8 @@
     },
     "також": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "coord"
       },
       "base": [
         [
@@ -96386,7 +97147,8 @@
     },
     "ніж": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "subord"
       },
       "base": [
         [
@@ -96403,7 +97165,8 @@
     },
     "та": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "coord"
       },
       "base": [
         [
@@ -96420,7 +97183,8 @@
     },
     "як": {
       "meta": {
-        "pos": "conj"
+        "pos": "conj",
+        "conjType": "subord"
       },
       "base": [
         [
@@ -96434,6 +97198,222 @@
         "status": null,
         "flx": null
       }
+    },
+    "що": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "що",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"що;pos=conj\">що</span>"
+    },
+    "щоб": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "щоб",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"щоб;pos=conj\">щоб</span>"
+    },
+    "коли": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "коли",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"коли;pos=conj\">коли</span>"
+    },
+    "якщо": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "якщо",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"якщо;pos=conj\">якщо</span>"
+    },
+    "бо": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "бо",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"бо;pos=conj\">бо</span>"
+    },
+    "проте": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "coord"
+      },
+      "base": [
+        [
+          "проте",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"проте;pos=conj\">проте</span>"
+    },
+    "хоча": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "хоча",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"хоча;pos=conj\">хоча</span>"
+    },
+    "поки": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "поки",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"поки;pos=conj\">поки</span>"
+    },
+    "тому що": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "тому що",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"тому що;pos=conj\">тому що</span>"
+    },
+    "адже": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "subord"
+      },
+      "base": [
+        [
+          "адже",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"адже;pos=conj\">адже</span>"
+    },
+    "однак": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "coord"
+      },
+      "base": [
+        [
+          "однак",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"однак;pos=conj\">однак</span>"
+    },
+    "чи": {
+      "meta": {
+        "pos": "conj",
+        "conjType": "coord"
+      },
+      "base": [
+        [
+          "чи",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"чи;pos=conj\">чи</span>"
     }
   },
   "part": {
@@ -96547,6 +97527,668 @@
         "status": null,
         "flx": null
       }
+    },
+    "хай": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "хай",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"хай;pos=part\">хай</span>"
+    },
+    "нехай": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "нехай",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"нехай;pos=part\">нехай</span>"
+    },
+    "лише": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "лише",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"лише;pos=part\">лише</span>"
+    },
+    "тільки": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "тільки",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"тільки;pos=part\">тільки</span>"
+    },
+    "ж": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "ж",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ж;pos=part\">ж</span>"
+    },
+    "же": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "же",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"же;pos=part\">же</span>"
+    },
+    "навіть": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "навіть",
+          3
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"навіть;pos=part\">навіть</span>"
+    },
+    "от": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "от",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"от;pos=part\">от</span>"
+    },
+    "ну": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "ну",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ну;pos=part\">ну</span>"
+    },
+    "саме": {
+      "meta": {
+        "pos": "part"
+      },
+      "base": [
+        [
+          "саме",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"саме;pos=part\">саме</span>"
+    }
+  },
+  "pred": {
+    "можна": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "можна",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"можна;pos=pred\">можна</span>"
+    },
+    "треба": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "треба",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"треба;pos=pred\">треба</span>"
+    },
+    "потрібно": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "потрібно",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"потрібно;pos=pred\">потрібно</span>"
+    },
+    "варто": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "варто",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"варто;pos=pred\">варто</span>"
+    },
+    "слід": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "слід",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"слід;pos=pred\">слід</span>"
+    },
+    "шкода": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "шкода",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"шкода;pos=pred\">шкода</span>"
+    },
+    "годі": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "годі",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"годі;pos=pred\">годі</span>"
+    },
+    "нема": {
+      "meta": {
+        "pos": "pred",
+        "construction": "gen"
+      },
+      "base": [
+        [
+          "нема",
+          4
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"нема;pos=pred\">нема</span>"
+    },
+    "необхідно": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "необхідно",
+          6
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"необхідно;pos=pred\">необхідно</span>"
+    },
+    "доцільно": {
+      "meta": {
+        "pos": "pred",
+        "construction": "inf"
+      },
+      "base": [
+        [
+          "доцільно",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"доцільно;pos=pred\">доцільно</span>"
+    }
+  },
+  "insert": {
+    "мабуть": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "мабуть",
+          3
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"мабуть;pos=insert\">мабуть</span>"
+    },
+    "напевно": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "напевно",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"напевно;pos=insert\">напевно</span>"
+    },
+    "наприклад": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "наприклад",
+          7
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"наприклад;pos=insert\">наприклад</span>"
+    },
+    "значить": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "значить",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"значить;pos=insert\">значить</span>"
+    },
+    "мовляв": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "мовляв",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"мовляв;pos=insert\">мовляв</span>"
+    },
+    "може": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "може",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"може;pos=insert\">може</span>"
+    },
+    "здається": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "здається",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"здається;pos=insert\">здається</span>"
+    },
+    "правда": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "правда",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"правда;pos=insert\">правда</span>"
+    },
+    "звичайно": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "звичайно",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"звичайно;pos=insert\">звичайно</span>"
+    },
+    "очевидно": {
+      "meta": {
+        "pos": "insert"
+      },
+      "base": [
+        [
+          "очевидно",
+          5
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"очевидно;pos=insert\">очевидно</span>"
+    }
+  },
+  "intj": {
+    "ой": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "ой",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ой;pos=intj\">ой</span>"
+    },
+    "ах": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "ах",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ах;pos=intj\">ах</span>"
+    },
+    "ох": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "ох",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ох;pos=intj\">ох</span>"
+    },
+    "ех": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "ех",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ех;pos=intj\">ех</span>"
+    },
+    "гей": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "гей",
+          -1
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"гей;pos=intj\">гей</span>"
+    },
+    "ура": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "ура",
+          3
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ура;pos=intj\">ура</span>"
+    },
+    "браво": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "браво",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"браво;pos=intj\">браво</span>"
+    },
+    "овва": {
+      "meta": {
+        "pos": "intj"
+      },
+      "base": [
+        [
+          "овва",
+          2
+        ]
+      ],
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"овва;pos=intj\">овва</span>"
     }
   }
 }

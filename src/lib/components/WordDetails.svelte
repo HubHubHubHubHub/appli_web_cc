@@ -8,6 +8,8 @@
   import AdjectiveDetails from "./AdjectiveDetails.svelte";
   import PronDetails from "./PronDetails.svelte";
   import VerbDetails from "./VerbDetails.svelte";
+  import PrepDetails from "./PrepDetails.svelte";
+  import PredDetails from "./PredDetails.svelte";
   import BaseDetails from "./BaseDetails.svelte";
   import ExamplePhrases from "./ExamplePhrases.svelte";
 
@@ -102,7 +104,11 @@
       <PronDetails {details} />
     {:else if uiStore.selectedCategory === "verb"}
       <VerbDetails {details} />
-    {:else if ["conj", "part", "prep", "adv", "intj", "pred", "insert"].includes(uiStore.selectedCategory)}
+    {:else if uiStore.selectedCategory === "prep"}
+      <PrepDetails {details} />
+    {:else if uiStore.selectedCategory === "pred"}
+      <PredDetails {details} />
+    {:else if ["conj", "part", "adv", "intj", "insert"].includes(uiStore.selectedCategory)}
       <BaseDetails {details} />
     {:else}
       <p>Catégorie non prise en charge.</p>
