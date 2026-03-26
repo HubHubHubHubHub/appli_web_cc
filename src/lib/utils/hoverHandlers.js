@@ -32,11 +32,7 @@ export function applyHoverHandlers(el, deps) {
 
     const pinId = nextPinId();
     const tag = parseDataInfo(raw);
-    const w = tag.lemma;
-    const category = tag.pos || "";
-    // Rebuild tokens array for bubble/table (lemma + clé=valeur)
     const dataInfo = raw.split(";");
-    const infos = dataInfo.slice(1);
     const hoverColor = getHoverColor(dataInfo);
 
     function onMouseEnter() {
@@ -44,10 +40,10 @@ export function applyHoverHandlers(el, deps) {
       word.style.color = hoverColor;
 
       const wd = deps.getWordData();
-      deps.setGrammarTableData({ word: w, category, infos });
+      deps.setGrammarTableData(tag);
 
       const bubble = getOrCreateBubble();
-      const bHTML = buildBubbleHTML(wd, w, category, dataInfo);
+      const bHTML = buildBubbleHTML(wd, tag.lemma, tag.pos, dataInfo);
       if (bHTML && bHTML.trim()) {
         bubble.innerHTML = bHTML;
         bubble.style.display = "block";
@@ -70,7 +66,7 @@ export function applyHoverHandlers(el, deps) {
         deps.setGrammarTableData(null);
         return;
       }
-      deps.setGrammarTableData({ word: w, category, infos });
+      deps.setGrammarTableData(tag);
       deps.setPinnedElement(pinId);
     }
 

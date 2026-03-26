@@ -15,8 +15,10 @@
   }
 
   const headerHTML = $derived.by(() => {
-    if (!uiStore.grammarTableData) return "";
-    const { word, category } = uiStore.grammarTableData;
+    const tag = uiStore.grammarTableData;
+    if (!tag) return "";
+    const word = tag.lemma;
+    const category = tag.pos;
     const wd = dataStore.wordData;
     let meta = labelCategory(category);
     const entryMeta = wd?.[category]?.[word]?.meta;

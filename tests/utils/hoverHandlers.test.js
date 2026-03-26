@@ -83,9 +83,10 @@ describe("applyHoverHandlers", () => {
     span.click();
     expect(deps.setPinnedElement).toHaveBeenCalledOnce();
     expect(deps.setGrammarTableData).toHaveBeenCalledWith({
-      word: "дім",
-      category: "noun",
-      infos: ["pos=noun", "case=nom", "number=sg"],
+      lemma: "дім",
+      pos: "noun",
+      case: "nom",
+      number: "sg",
     });
   });
 

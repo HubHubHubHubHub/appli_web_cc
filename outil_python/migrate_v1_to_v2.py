@@ -337,15 +337,13 @@ def migrate_entry(entry, v1_cat, lemma):
     if "base" in entry:
         entry["base"] = normalize_pairs(entry["base"])
 
-    # 6. Reconstruire base_html en V2
-    base_html = entry.get("base_html", "")
-    if base_html:
-        entry["base_html"] = migrate_data_info_in_html(base_html)
+    # 6. Supprimer base_html (plus utilisé côté frontend)
+    entry.pop("base_html", None)
 
     # 7. Assembler l'entrée V2
     entry_v2 = {"meta": meta}
     # Champs de données (dans un ordre logique)
-    for key in ("cas", "inf", "conj", "base", "nooj", "base_html", "phrases"):
+    for key in ("cas", "inf", "conj", "base", "nooj", "phrases"):
         if key in entry:
             entry_v2[key] = entry[key]
     if "nooj" not in entry_v2:

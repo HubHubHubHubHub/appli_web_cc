@@ -41,11 +41,6 @@
     return text;
   });
 
-  function buildGrammarData() {
-    const infos = tokens.slice(1);
-    return { word, category, infos };
-  }
-
   function handleMouseEnter() {
     if (uiStore.pinnedElement) return;
     const wd = dataStore.wordData;
@@ -56,7 +51,7 @@
       bubble.style.display = "block";
       positionBubble(bubble, spanEl);
     }
-    uiStore.grammarTableData = buildGrammarData();
+    uiStore.grammarTableData = tag;
   }
 
   function handleMouseLeave() {
@@ -81,7 +76,7 @@
       return;
     }
 
-    uiStore.grammarTableData = buildGrammarData();
+    uiStore.grammarTableData = tag;
     uiStore.pinnedElement = pinId;
   }
 </script>

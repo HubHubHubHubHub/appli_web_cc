@@ -7,23 +7,13 @@
   } from "$lib/utils/tableGeneration.js";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
 
-  let { data } = $props();
-
-  // Parse V2 infos (clé=valeur tokens) into a tag object
-  function parseInfos(infos) {
-    const t = {};
-    for (const s of infos || []) {
-      const eq = s.indexOf("=");
-      if (eq > 0) t[s.slice(0, eq)] = s.slice(eq + 1);
-    }
-    return t;
-  }
+  let { data: tag } = $props();
 
   const tableHTML = $derived.by(() => {
-    if (!data) return "";
-    const { word, category, infos } = data;
+    if (!tag || !tag.pos || !tag.lemma) return "";
     const wd = dataStore.wordData;
-    const tag = parseInfos(infos);
+    const word = tag.lemma;
+    const category = tag.pos;
 
     try {
       if (category === "noun") {
@@ -35,7 +25,6 @@
       } else if (category === "num") {
         const d = wd?.num?.[word]?.cas;
         if (d) {
-          // Detect format: pron-like (direct list), noun-like (sg/pl), adj-like (m/f/n/pl)
           const sample = d.nom || d.gen || Object.values(d)[0];
           if (Array.isArray(sample)) return generateTablePron(d, tag.case);
           if (sample?.sg !== undefined) return generateTableNoun(d, tag.case, tag.number);

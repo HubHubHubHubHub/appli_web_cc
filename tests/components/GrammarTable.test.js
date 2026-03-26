@@ -57,7 +57,7 @@ beforeEach(() => {
 describe("GrammarTable", () => {
   it("rend un tableau de nom", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "дім", category: "noun", infos: ["case=nom", "number=sg"] } },
+      props: { data: { lemma: "дім", pos: "noun", case: "nom", number: "sg" } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
@@ -66,7 +66,7 @@ describe("GrammarTable", () => {
 
   it("rend un tableau de verbe", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "читати", category: "verb", infos: [] } },
+      props: { data: { lemma: "читати", pos: "verb" } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
@@ -74,7 +74,7 @@ describe("GrammarTable", () => {
 
   it("rend un tableau d'adjectif", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "великий", category: "adj", infos: ["case=nom", "gender=m"] } },
+      props: { data: { lemma: "великий", pos: "adj", case: "nom", gender: "m" } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
@@ -82,7 +82,7 @@ describe("GrammarTable", () => {
 
   it("rend un tableau de pronom", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "Київ", category: "pron", infos: ["case=gen"] } },
+      props: { data: { lemma: "Київ", pos: "pron", case: "gen" } },
     });
     const table = container.querySelector("table");
     expect(table).toBeTruthy();
@@ -97,7 +97,7 @@ describe("GrammarTable", () => {
 
   it("ne rend rien pour un mot inconnu", () => {
     const { container } = render(GrammarTable, {
-      props: { data: { word: "inconnu", category: "noun", infos: ["case=nom", "number=sg"] } },
+      props: { data: { lemma: "inconnu", pos: "noun", case: "nom", number: "sg" } },
     });
     expect(container.querySelector("table")).toBeNull();
   });
