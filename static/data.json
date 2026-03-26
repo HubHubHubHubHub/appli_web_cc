@@ -1082,6 +1082,26 @@
         "status": null,
         "flx": null
       }
+    },
+    "скільки": {
+      "meta": {
+        "pos": "num",
+        "syntax": "pron_inter"
+      },
+      "cas": {
+        "nom": [
+          [
+            "скільки",
+            2
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"скільки;pos=num;case=nom\">скільки</span>"
     }
   },
   "noun": {
@@ -34372,6 +34392,363 @@
         "status": "pending",
         "flx": "ВОНИ"
       }
+    },
+    "хто": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "inter",
+        "syntax": "pron_inter"
+      },
+      "cas": {
+        "nom": [
+          [
+            "хто",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"хто;pos=pron;pronType=inter;case=nom\">хто</span>"
+    },
+    "що": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "inter",
+        "syntax": "pron_inter"
+      },
+      "cas": {
+        "nom": [
+          [
+            "що",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"що;pos=pron;pronType=inter;case=nom\">що</span>"
+    },
+    "себе": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "refl",
+        "syntax": "pron_refl"
+      },
+      "cas": {
+        "gen": [
+          [
+            "себе",
+            4
+          ]
+        ],
+        "dat": [
+          [
+            "собі",
+            3
+          ]
+        ],
+        "acc": [
+          [
+            "себе",
+            4
+          ]
+        ],
+        "ins": [
+          [
+            "собою",
+            3
+          ]
+        ],
+        "loc": [
+          [
+            "собі",
+            3
+          ]
+        ]
+      },
+      "nooj": {
+        "line": "себе,PRONOUN+Reflexive+FLX=СЕБЕ",
+        "status": "pending",
+        "flx": "СЕБЕ"
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"себе;pos=pron;pronType=refl;case=acc\">себе</span>"
+    },
+    "хтось": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "хтось",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"хтось;pos=pron;pronType=indef;case=nom\">хтось</span>"
+    },
+    "щось": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "щось",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"щось;pos=pron;pronType=indef;case=nom\">щось</span>"
+    },
+    "будь-хто": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "будь-хто",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"будь-хто;pos=pron;pronType=indef;case=nom\">будь-хто</span>"
+    },
+    "будь-що": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "будь-що",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"будь-що;pos=pron;pronType=indef;case=nom\">будь-що</span>"
+    },
+    "дехто": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "дехто",
+            3
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"дехто;pos=pron;pronType=indef;case=nom\">дехто</span>"
+    },
+    "дещо": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "дещо",
+            2
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"дещо;pos=pron;pronType=indef;case=nom\">дещо</span>"
+    },
+    "хто-небудь": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "хто-небудь",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"хто-небудь;pos=pron;pronType=indef;case=nom\">хто-небудь</span>"
+    },
+    "що-небудь": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "що-небудь",
+            -1
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"що-небудь;pos=pron;pronType=indef;case=nom\">що-небудь</span>"
+    },
+    "абихто": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "абихто",
+            4
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"абихто;pos=pron;pronType=indef;case=nom\">абихто</span>"
+    },
+    "абищо": {
+      "meta": {
+        "pos": "pron",
+        "pronType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": [
+          [
+            "абищо",
+            4
+          ]
+        ],
+        "gen": [],
+        "dat": [],
+        "acc": [],
+        "ins": [],
+        "loc": []
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"абищо;pos=pron;pronType=indef;case=nom\">абищо</span>"
     }
   },
   "verb": {
@@ -83488,8 +83865,8 @@
     "який": {
       "meta": {
         "pos": "adj",
-        "adjType": "dem",
-        "syntax": "pron_dem"
+        "adjType": "rel",
+        "syntax": "pron_inter"
       },
       "cas": {
         "nom": {
@@ -83722,6 +84099,2364 @@
         "status": null,
         "flx": null
       }
+    },
+    "ваш": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "poss",
+        "syntax": "pron_poss"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "ваш",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "ваша",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "ваше",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "ваші",
+              2
+            ]
+          ]
+        },
+        "gen": {
+          "m": [
+            [
+              "вашого",
+              2
+            ]
+          ],
+          "f": [
+            [
+              "вашої",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "вашого",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "ваших",
+              2
+            ]
+          ]
+        },
+        "dat": {
+          "m": [
+            [
+              "вашому",
+              2
+            ]
+          ],
+          "f": [
+            [
+              "вашій",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "вашому",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "вашим",
+              2
+            ]
+          ]
+        },
+        "acc": {
+          "m": [
+            [
+              "вашого",
+              2
+            ],
+            [
+              "ваш",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "вашу",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "ваше",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "ваші",
+              2
+            ],
+            [
+              "ваших",
+              2
+            ]
+          ]
+        },
+        "ins": {
+          "m": [
+            [
+              "вашим",
+              2
+            ]
+          ],
+          "f": [
+            [
+              "вашою",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "вашим",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "вашими",
+              2
+            ]
+          ]
+        },
+        "loc": {
+          "m": [
+            [
+              "вашому",
+              2
+            ],
+            [
+              "вашім",
+              2
+            ]
+          ],
+          "f": [
+            [
+              "вашій",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "вашому",
+              2
+            ],
+            [
+              "вашім",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "ваших",
+              2
+            ]
+          ]
+        },
+        "voc": {
+          "m": [
+            [
+              "ваш",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "ваша",
+              2
+            ]
+          ],
+          "n": [
+            [
+              "ваше",
+              2
+            ]
+          ],
+          "pl": [
+            [
+              "ваші",
+              2
+            ]
+          ]
+        }
+      },
+      "nooj": {
+        "line": "ваш,PRONOUN+Possessive+FLX=ВАШ",
+        "status": "pending",
+        "flx": "ВАШ"
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ваш;pos=adj;adjType=poss;case=nom;gender=m\">ваш</span>"
+    },
+    "їхній": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "poss",
+        "syntax": "pron_poss"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "їхній",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхня",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхнє",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхні",
+              1
+            ]
+          ]
+        },
+        "gen": {
+          "m": [
+            [
+              "їхнього",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхньої",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхнього",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхніх",
+              1
+            ]
+          ]
+        },
+        "dat": {
+          "m": [
+            [
+              "їхньому",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхній",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхньому",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхнім",
+              1
+            ]
+          ]
+        },
+        "acc": {
+          "m": [
+            [
+              "їхнього",
+              1
+            ],
+            [
+              "їхній",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхню",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхнє",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхні",
+              1
+            ],
+            [
+              "їхніх",
+              1
+            ]
+          ]
+        },
+        "ins": {
+          "m": [
+            [
+              "їхнім",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхньою",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхнім",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхніми",
+              1
+            ]
+          ]
+        },
+        "loc": {
+          "m": [
+            [
+              "їхньому",
+              1
+            ],
+            [
+              "їхнім",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхній",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхньому",
+              1
+            ],
+            [
+              "їхнім",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхніх",
+              1
+            ]
+          ]
+        },
+        "voc": {
+          "m": [
+            [
+              "їхній",
+              1
+            ]
+          ],
+          "f": [
+            [
+              "їхня",
+              1
+            ]
+          ],
+          "n": [
+            [
+              "їхнє",
+              1
+            ]
+          ],
+          "pl": [
+            [
+              "їхні",
+              1
+            ]
+          ]
+        }
+      },
+      "nooj": {
+        "line": "їхній,PRONOUN+Possessive+FLX=ЇХНІЙ",
+        "status": "pending",
+        "flx": "ЇХНІЙ"
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"їхній;pos=adj;adjType=poss;case=nom;gender=m\">їхній</span>"
+    },
+    "їх": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "poss",
+        "syntax": "pron_poss",
+        "indecl": true
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        },
+        "gen": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        },
+        "dat": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        },
+        "acc": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        },
+        "ins": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        },
+        "loc": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        },
+        "voc": {
+          "m": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "f": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "n": [
+            [
+              "їх",
+              -1
+            ]
+          ],
+          "pl": [
+            [
+              "їх",
+              -1
+            ]
+          ]
+        }
+      },
+      "nooj": {
+        "line": "їх,PRONOUN+Possessive",
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"їх;pos=adj;adjType=poss;case=nom;gender=m\">їх</span>"
+    },
+    "такий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "такий",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"такий;pos=adj;adjType=dem;case=nom;gender=m\">такий</span>"
+    },
+    "отакий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "отакий",
+              6
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"отакий;pos=adj;adjType=dem;case=nom;gender=m\">отакий</span>"
+    },
+    "отой": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "отой",
+              3
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"отой;pos=adj;adjType=dem;case=nom;gender=m\">отой</span>"
+    },
+    "оцей": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "оцей",
+              3
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"оцей;pos=adj;adjType=dem;case=nom;gender=m\">оцей</span>"
+    },
+    "сей": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "сей",
+              -1
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"сей;pos=adj;adjType=dem;case=nom;gender=m\">сей</span>"
+    },
+    "такенний": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "такенний",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"такенний;pos=adj;adjType=dem;case=nom;gender=m\">такенний</span>"
+    },
+    "такісінький": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "такісінький",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"такісінький;pos=adj;adjType=dem;case=nom;gender=m\">такісінький</span>"
+    },
+    "тотой": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "тотой",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"тотой;pos=adj;adjType=dem;case=nom;gender=m\">тотой</span>"
+    },
+    "оний": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "dem",
+        "syntax": "pron_dem"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "оний",
+              3
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"оний;pos=adj;adjType=dem;case=nom;gender=m\">оний</span>"
+    },
+    "чий": {
+      "meta": {
+        "pos": "adj",
+        "syntax": "pron_inter"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "чий",
+              -1
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"чий;pos=adj;case=nom;gender=m\">чий</span>"
+    },
+    "котрий": {
+      "meta": {
+        "pos": "adj",
+        "syntax": "pron_inter"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "котрий",
+              5
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"котрий;pos=adj;case=nom;gender=m\">котрий</span>"
+    },
+    "жодний": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "neg",
+        "syntax": "pron_neg"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "жодний",
+              2
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"жодний;pos=adj;adjType=neg;case=nom;gender=m\">жодний</span>"
+    },
+    "ніякий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "neg",
+        "syntax": "pron_neg"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "ніякий",
+              5
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ніякий;pos=adj;adjType=neg;case=nom;gender=m\">ніякий</span>"
+    },
+    "нічий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "neg",
+        "syntax": "pron_neg"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "нічий",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"нічий;pos=adj;adjType=neg;case=nom;gender=m\">нічий</span>"
+    },
+    "нікотрий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "neg",
+        "syntax": "pron_neg"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "нікотрий",
+              7
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"нікотрий;pos=adj;adjType=neg;case=nom;gender=m\">нікотрий</span>"
+    },
+    "аніякий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "neg",
+        "syntax": "pron_neg"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "аніякий",
+              7
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"аніякий;pos=adj;adjType=neg;case=nom;gender=m\">аніякий</span>"
+    },
+    "ніякісінький": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "neg",
+        "syntax": "pron_neg"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "ніякісінький",
+              5
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"ніякісінький;pos=adj;adjType=neg;case=nom;gender=m\">ніякісінький</span>"
+    },
+    "якийсь": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "якийсь",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"якийсь;pos=adj;adjType=indef;case=nom;gender=m\">якийсь</span>"
+    },
+    "будь-який": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "будь-який",
+              7
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"будь-який;pos=adj;adjType=indef;case=nom;gender=m\">будь-який</span>"
+    },
+    "деякий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "деякий",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"деякий;pos=adj;adjType=indef;case=nom;gender=m\">деякий</span>"
+    },
+    "який-небудь": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "який-небудь",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"який-небудь;pos=adj;adjType=indef;case=nom;gender=m\">який-небудь</span>"
+    },
+    "хтозна-який": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "хтозна-який",
+              7
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"хтозна-який;pos=adj;adjType=indef;case=nom;gender=m\">хтозна-який</span>"
+    },
+    "казна-який": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "казна-який",
+              5
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"казна-який;pos=adj;adjType=indef;case=nom;gender=m\">казна-який</span>"
+    },
+    "абиякий": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "абиякий",
+              5
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"абиякий;pos=adj;adjType=indef;case=nom;gender=m\">абиякий</span>"
+    },
+    "чийсь": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "чийсь",
+              -1
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"чийсь;pos=adj;adjType=indef;case=nom;gender=m\">чийсь</span>"
+    },
+    "котрийсь": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "котрийсь",
+              6
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"котрийсь;pos=adj;adjType=indef;case=nom;gender=m\">котрийсь</span>"
+    },
+    "кілька": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "кілька",
+              2
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"кілька;pos=adj;adjType=indef;case=nom;gender=m\">кілька</span>"
+    },
+    "декілька": {
+      "meta": {
+        "pos": "adj",
+        "adjType": "indef",
+        "syntax": "pron_indef"
+      },
+      "cas": {
+        "nom": {
+          "m": [
+            [
+              "декілька",
+              4
+            ]
+          ],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "gen": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "dat": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "acc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "ins": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "loc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        },
+        "voc": {
+          "m": [],
+          "f": [],
+          "n": [],
+          "pl": []
+        }
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"декілька;pos=adj;adjType=indef;case=nom;gender=m\">декілька</span>"
     }
   },
   "conj": {
