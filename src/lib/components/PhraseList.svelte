@@ -28,7 +28,6 @@
       {totalCount} phrases
     {/if}
   </p>
-  {/if}
 </div>
 
 {#if resultCount === 0}
