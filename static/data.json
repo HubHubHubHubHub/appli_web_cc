@@ -1505,6 +1505,508 @@
         "flx": null
       },
       "base_html": "<span class=\"ukr\" data-info=\"скільки;pos=num;case=nom\">скільки</span>"
+    },
+    "двоє": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "двоє",
+            3
+          ]
+        ],
+        "gen": [
+          [
+            "двох",
+            -1
+          ]
+        ],
+        "dat": [
+          [
+            "двом",
+            -1
+          ]
+        ],
+        "acc": [
+          [
+            "двоє",
+            3
+          ],
+          [
+            "двох",
+            -1
+          ]
+        ],
+        "ins": [
+          [
+            "двома",
+            5
+          ]
+        ],
+        "loc": [
+          [
+            "двох",
+            -1
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"двоє;pos=num;numType=coll\">двоє</span>"
+    },
+    "троє": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "троє",
+            3
+          ]
+        ],
+        "gen": [
+          [
+            "трьох",
+            -1
+          ]
+        ],
+        "dat": [
+          [
+            "трьом",
+            -1
+          ]
+        ],
+        "acc": [
+          [
+            "троє",
+            3
+          ],
+          [
+            "трьох",
+            -1
+          ]
+        ],
+        "ins": [
+          [
+            "трьома",
+            6
+          ]
+        ],
+        "loc": [
+          [
+            "трьох",
+            -1
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"троє;pos=num;numType=coll\">троє</span>"
+    },
+    "четверо": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "четверо",
+            2
+          ]
+        ],
+        "gen": [
+          [
+            "чотирьох",
+            7
+          ]
+        ],
+        "dat": [
+          [
+            "чотирьом",
+            7
+          ]
+        ],
+        "acc": [
+          [
+            "четверо",
+            2
+          ],
+          [
+            "чотирьох",
+            7
+          ]
+        ],
+        "ins": [
+          [
+            "чотирма",
+            7
+          ]
+        ],
+        "loc": [
+          [
+            "чотирьох",
+            7
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"четверо;pos=num;numType=coll\">четверо</span>"
+    },
+    "п'ятеро": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "п'ятеро",
+            3
+          ]
+        ],
+        "gen": [
+          [
+            "п'ятьох",
+            6
+          ]
+        ],
+        "dat": [
+          [
+            "п'ятьом",
+            6
+          ]
+        ],
+        "acc": [
+          [
+            "п'ятеро",
+            3
+          ],
+          [
+            "п'ятьох",
+            6
+          ]
+        ],
+        "ins": [
+          [
+            "п'ятьма",
+            7
+          ],
+          [
+            "п'ятьома",
+            8
+          ]
+        ],
+        "loc": [
+          [
+            "п'ятьох",
+            6
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"п'ятеро;pos=num;numType=coll\">п'ятеро</span>"
+    },
+    "шестеро": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "шестеро",
+            2
+          ]
+        ],
+        "gen": [
+          [
+            "шістьох",
+            6
+          ]
+        ],
+        "dat": [
+          [
+            "шістьом",
+            6
+          ]
+        ],
+        "acc": [
+          [
+            "шестеро",
+            2
+          ],
+          [
+            "шістьох",
+            6
+          ]
+        ],
+        "ins": [
+          [
+            "шістьма",
+            7
+          ],
+          [
+            "шістьома",
+            8
+          ]
+        ],
+        "loc": [
+          [
+            "шістьох",
+            6
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"шестеро;pos=num;numType=coll\">шестеро</span>"
+    },
+    "семеро": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "семеро",
+            2
+          ]
+        ],
+        "gen": [
+          [
+            "сімох",
+            4
+          ]
+        ],
+        "dat": [
+          [
+            "сімом",
+            4
+          ]
+        ],
+        "acc": [
+          [
+            "семеро",
+            2
+          ],
+          [
+            "сімох",
+            4
+          ]
+        ],
+        "ins": [
+          [
+            "сімома",
+            6
+          ]
+        ],
+        "loc": [
+          [
+            "сімох",
+            4
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"семеро;pos=num;numType=coll\">семеро</span>"
+    },
+    "восьмеро": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "восьмеро",
+            2
+          ]
+        ],
+        "gen": [
+          [
+            "вісьмох",
+            6
+          ]
+        ],
+        "dat": [
+          [
+            "вісьмом",
+            6
+          ]
+        ],
+        "acc": [
+          [
+            "восьмеро",
+            2
+          ],
+          [
+            "вісьмох",
+            6
+          ]
+        ],
+        "ins": [
+          [
+            "вісьмома",
+            8
+          ]
+        ],
+        "loc": [
+          [
+            "вісьмох",
+            6
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"восьмеро;pos=num;numType=coll\">восьмеро</span>"
+    },
+    "дев'ятеро": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "дев'ятеро",
+            2
+          ]
+        ],
+        "gen": [
+          [
+            "дев'ятьох",
+            8
+          ]
+        ],
+        "dat": [
+          [
+            "дев'ятьом",
+            8
+          ]
+        ],
+        "acc": [
+          [
+            "дев'ятеро",
+            2
+          ],
+          [
+            "дев'ятьох",
+            8
+          ]
+        ],
+        "ins": [
+          [
+            "дев'ятьма",
+            9
+          ],
+          [
+            "дев'ятьома",
+            10
+          ]
+        ],
+        "loc": [
+          [
+            "дев'ятьох",
+            8
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"дев'ятеро;pos=num;numType=coll\">дев'ятеро</span>"
+    },
+    "десятеро": {
+      "meta": {
+        "pos": "num",
+        "numType": "coll"
+      },
+      "cas": {
+        "nom": [
+          [
+            "десятеро",
+            2
+          ]
+        ],
+        "gen": [
+          [
+            "десятьох",
+            7
+          ]
+        ],
+        "dat": [
+          [
+            "десятьом",
+            7
+          ]
+        ],
+        "acc": [
+          [
+            "десятеро",
+            2
+          ],
+          [
+            "десятьох",
+            7
+          ]
+        ],
+        "ins": [
+          [
+            "десятьма",
+            8
+          ],
+          [
+            "десятьома",
+            9
+          ]
+        ],
+        "loc": [
+          [
+            "десятьох",
+            7
+          ]
+        ]
+      },
+      "nooj": {
+        "line": null,
+        "status": "pending",
+        "flx": null
+      },
+      "base_html": "<span class=\"ukr\" data-info=\"десятеро;pos=num;numType=coll\">десятеро</span>"
     }
   },
   "noun": {
