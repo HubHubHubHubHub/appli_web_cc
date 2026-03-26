@@ -6,6 +6,7 @@
   import { firstPair } from "$lib/utils/parsing.js";
   import NounDetails from "./NounDetails.svelte";
   import AdjectiveDetails from "./AdjectiveDetails.svelte";
+  import PronDetails from "./PronDetails.svelte";
   import VerbDetails from "./VerbDetails.svelte";
   import BaseDetails from "./BaseDetails.svelte";
   import ExamplePhrases from "./ExamplePhrases.svelte";
@@ -83,7 +84,7 @@
     {:else if ["adj", "num"].includes(uiStore.selectedCategory)}
       <AdjectiveDetails {details} />
     {:else if uiStore.selectedCategory === "pron"}
-      <NounDetails {details} />
+      <PronDetails {details} />
     {:else if uiStore.selectedCategory === "verb"}
       <VerbDetails {details} />
     {:else if ["conj", "part", "prep", "adv", "intj", "pred", "insert"].includes(uiStore.selectedCategory)}
