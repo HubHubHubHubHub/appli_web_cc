@@ -181,6 +181,7 @@ body {
   border-collapse: collapse;
   line-height: 1.35;
   width: auto;
+  table-layout: auto;
 }
 
 /* Cell padding & Ukrainian word styling */
