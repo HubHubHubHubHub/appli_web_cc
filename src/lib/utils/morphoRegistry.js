@@ -28,6 +28,8 @@ export const sidebarGroups = [
         key: "pron_pers",
         label: "Personnels",
         filter: (meta) => meta.syntax === "pron_pers",
+        flat: true,
+        order: ["я", "ти", "він", "вона", "воно", "ми", "ви", "вони"],
       },
       {
         key: "pron_poss",

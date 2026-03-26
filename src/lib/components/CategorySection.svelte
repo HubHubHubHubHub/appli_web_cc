@@ -1,17 +1,27 @@
 <script>
+  import HtmlContent from "./HtmlContent.svelte";
   import LetterGroup from "./LetterGroup.svelte";
+  import { dataStore } from "$lib/stores/dataStore.svelte.js";
+  import { uiStore } from "$lib/stores/uiStore.svelte.js";
 
   let {
     catKey,
     catLabel,
     isOpen,
-    letterGroups,
-    letterOpenState,
+    letterGroups = null,
+    letterOpenState = {},
     posLookup = {},
+    flat = false,
+    words = [],
     onToggleCategory,
-    onToggleAllLetters,
-    onToggleLetter,
+    onToggleAllLetters = () => {},
+    onToggleLetter = () => {},
   } = $props();
+
+  function handleWordClick(word) {
+    uiStore.selectedWord = word;
+    uiStore.selectedCategory = posLookup[word] || catKey;
+  }
 </script>
 
 <div class="pt-2.5">
@@ -29,7 +39,7 @@
       >
       <h2 class="m-0 text-lg">{catLabel}</h2>
     </button>
-    {#if isOpen}
+    {#if isOpen && !flat}
       <button
         type="button"
         class="bg-transparent border border-base-300 rounded-sm px-1.5 py-px text-sm cursor-pointer text-neutral leading-none hover:bg-base-300 hover:text-base-content"
@@ -41,15 +51,35 @@
     {/if}
   </div>
   {#if isOpen}
-    {#each [...letterGroups] as [letter, words]}
-      <LetterGroup
-        {letter}
-        {words}
-        isOpen={letterOpenState[`${catKey}:${letter}`] ?? false}
-        {catKey}
-        {posLookup}
-        onToggle={() => onToggleLetter(letter)}
-      />
-    {/each}
+    {#if flat}
+      <!-- Flat list: no letter grouping, ordered directly -->
+      <ul class="list-none p-0 m-0">
+        {#each words as word}
+          <li class="py-1.5 px-2 pl-5 cursor-pointer border-b border-base-200 hover:bg-base-200">
+            <button
+              type="button"
+              class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full"
+              onclick={() => handleWordClick(word)}
+            >
+              <HtmlContent
+                html={dataStore.wordData[posLookup[word] || catKey]?.[word]?.base_html}
+                disableHover={true}
+              />
+            </button>
+          </li>
+        {/each}
+      </ul>
+    {:else if letterGroups}
+      {#each [...letterGroups] as [letter, letterWords]}
+        <LetterGroup
+          {letter}
+          words={letterWords}
+          isOpen={letterOpenState[`${catKey}:${letter}`] ?? false}
+          {catKey}
+          {posLookup}
+          onToggle={() => onToggleLetter(letter)}
+        />
+      {/each}
+    {/if}
   {/if}
 </div>

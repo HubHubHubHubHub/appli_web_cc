@@ -42,10 +42,13 @@
           const words = collectWords(wd, sub.filter);
           if (words.length > 0) {
             const posLookup = buildPosLookup(words, sub.filter);
+            const ordered = sub.order ? sub.order.filter((w) => words.includes(w)) : words;
             subs.push({
               key: sub.key,
               label: sub.label,
-              letterGroups: groupByFirstLetter(words),
+              flat: sub.flat || false,
+              words: ordered,
+              letterGroups: sub.flat ? null : groupByFirstLetter(words),
               posLookup,
             });
           }
@@ -196,6 +199,8 @@
               letterGroups={sub.letterGroups}
               letterOpenState={letterOpen}
               posLookup={sub.posLookup}
+              flat={sub.flat}
+              words={sub.words}
               onToggleCategory={() => toggleCategory(sub.key)}
               onToggleAllLetters={() => toggleAllLetters(sub.key)}
               onToggleLetter={(letter) => toggleLetter(sub.key, letter)}
