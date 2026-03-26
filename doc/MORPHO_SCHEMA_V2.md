@@ -95,13 +95,15 @@ V2: Василь;pos=noun;nounType=proper;nounSubtype=fname;case=gen;number=sg
 
 ### `adjType`
 
-`qual` | `poss` | `dem` | `rel` | `tot` | `emph` | `ord` | `indef` | `neg` | `belong`
+`poss` | `dem` | `rel` | `tot` | `emph` | `ord` | `indef` | `neg` | `belong`
+
+> **Convention** : `adjType` absent = qualificatif ordinaire. On ne met pas `adjType=qual` explicitement (coherent avec le principe : absent = valeur par defaut).
 
 ```
-V1: великий;adj;cas;nomi;m;s    ->  великий;pos=adj;adjType=qual;case=nom;gender=m;number=sg
+V1: великий;adj;cas;nomi;m      ->  великий;pos=adj;case=nom;gender=m;number=sg
 V1: ця;adj;cas;nomi;f           ->  цей;pos=adj;adjType=dem;case=nom;gender=f;number=sg
-V1: його;proposs;cas;gen;m;s    ->  його;pos=adj;adjType=poss;case=gen;gender=m;number=sg
-V1: п'ятий;adj;cas;nomi;m;s    ->  п'ятий;pos=adj;adjType=ord;case=nom;gender=m;number=sg
+V1: його;proposs;cas;gen;m      ->  його;pos=adj;adjType=poss;case=gen;gender=m;number=sg
+V1: п'ятий;adj;cas;nomi;m      ->  п'ятий;pos=adj;adjType=ord;case=nom;gender=m;number=sg
 ```
 
 ### `pronType`
@@ -152,7 +154,7 @@ V1: дуже;adv;base          ->  дуже;pos=adv;advType=intensity
 `comp` | `super`
 
 ```
-V1: більший;adj;cas;nomi;m;s   ->  більший;pos=adj;adjType=qual;adjDegree=comp;case=nom;gender=m;number=sg
+V1: більший;adj;cas;nomi;m     ->  більший;pos=adj;adjDegree=comp;case=nom;gender=m;number=sg
 ```
 
 ---
@@ -180,7 +182,7 @@ L'aspect est renseigne dans `meta.aspect` sur l'entree du verbe dans `data.json`
 | `biaspect` | Biaspectuel                          | атакувати, ігнорувати          |
 | _(absent)_ | Non tranche -- verification en cours |                                |
 
-Le champ `meta.pair` indique le couple aspectuel : pour un verbe imperfectif, le perfectif correspondant, et vice versa. Pour un biaspectuel, `pair` est absent ou pointe vers lui-meme.
+Le champ `meta.couple` indique le couple aspectuel : pour un verbe imperfectif, le perfectif correspondant, et vice versa. Pour un biaspectuel, `couple` est absent.
 
 ### Biaspectualite et verbes `Pair="X/X"` dans NooJ
 
@@ -228,6 +230,31 @@ Les verbes de mouvement ukrainiens forment des paires determine/indetermine :
 
 Source NooJ : `+Motion+Determinate` / `+Motion+Indeterminate`.
 
+Le champ `meta.motionPair` indique le lemme du partenaire de mouvement (determine <-> indetermine). A ne pas confondre avec `meta.couple` (couple aspectuel impf <-> perf).
+
+```json
+"бігати": {
+  "meta": {
+    "pos": "verb", "aspect": "impf",
+    "motionType": "indet", "motionPair": "бігти",
+    "couple": "побігати"
+  }
+}
+
+"бігти": {
+  "meta": {
+    "pos": "verb", "aspect": "impf",
+    "motionType": "det", "motionPair": "бігати",
+    "couple": "побігти"
+  }
+}
+```
+
+| Champ `meta` | Lien                                | Exemple             |
+| ------------ | ----------------------------------- | ------------------- |
+| `couple`     | couple aspectuel (impf <-> perf)    | бачити <-> побачити |
+| `motionPair` | couple de mouvement (det <-> indet) | бігти <-> бігати    |
+
 ### Exemples V1 -> V2
 
 ```
@@ -255,18 +282,23 @@ V2: meta.motionType = "indet"
 | `plurTantum` | `true`            | `+Pl` -- гроші, штани, двері...      |
 | `diminutive` | `true`            | `+Dim`                               |
 
-Ces traits sont dans `meta` sur l'entree de `data.json`, pas dans le `data-info` des phrases.
+`animacy`, `plurTantum` et `diminutive` sont dans `meta` sur l'entree de `data.json` uniquement.
+
+`gender` est present **a la fois** dans `meta` (sur l'entree) et dans le `data-info` des phrases. Raison : la bulle de survol peut afficher « nom feminin » directement sans lookup dans `data.json`.
 
 ### Exemples V1 -> V2
 
 ```
 V1: гроші;nom;cas;nomi;pl
-V2: гроші;pos=noun;case=nom;number=pl
+V2: гроші;pos=noun;case=nom;number=pl;gender=f
     meta: { pos: "noun", gender: "f", plurTantum: true }
 
 V1: кошеня;nom;cas;nomi;s
-V2: кошеня;pos=noun;case=nom;number=sg
+V2: кошеня;pos=noun;case=nom;number=sg;gender=n
     meta: { pos: "noun", gender: "n", animacy: "anim" }
+
+V1: машина;nom;cas;acc;s
+V2: машина;pos=noun;case=acc;number=sg;gender=f
 ```
 
 ---
@@ -324,20 +356,82 @@ V1: цей;pron;cas;...      ->  pos=adj, adjType=dem, syntax=pron_dem
 
 ---
 
-## 7. Champ `nooj`
+## 7. Traits des invariables
+
+### `governs` (prepositions)
+
+Le champ `meta.governs` liste les cas regis par une preposition. Il est affiche dans la bulle de survol et le panneau de details.
+
+```json
+"до": {
+  "meta": { "pos": "prep", "governs": ["gen"] },
+  "base": ["до", -1]
+}
+
+"за": {
+  "meta": { "pos": "prep", "governs": ["acc", "ins"] },
+  "base": ["за", -1]
+}
+
+"з": {
+  "meta": { "pos": "prep", "governs": ["gen", "ins"] },
+  "base": ["з", -1]
+}
+```
+
+`governs` est dans `meta`, pas dans le `data-info` des phrases.
+
+---
+
+## 8. Champs metadonnees
+
+| Champ     | Type      | Description                                                                  |
+| --------- | --------- | ---------------------------------------------------------------------------- |
+| `variant` | `number`  | Variante d'accent (V1 `var=N`). Index 0-based parmi les formes alternatives. |
+| `foreign` | `boolean` | Mot etranger (Rafale, Gripen, combat...). Pas de paradigme ukrainien.        |
+| `indecl`  | `boolean` | Indeclinable. Forme identique a tous les cas.                                |
+| `unamb`   | `boolean` | NooJ `+UNAMB` -- entree non ambigue dans le dictionnaire.                    |
+
+### `indecl` -- indeclinables
+
+Concerne :
+
+- **Possessifs invariables** : його, її, їхній (formes identiques a tous les cas et genres)
+- **Noms propres etrangers** : Rafale, Gripen, Paris (pas de declinaison ukrainienne)
+- **Emprunts recents** : метро, кафе, таксі
+
+```
+його;pos=adj;adjType=poss;indecl=yes;case=acc;gender=f;number=sg
+Rafale;pos=noun;nounType=proper;foreign=yes;indecl=yes;case=loc;number=sg
+метро;pos=noun;indecl=yes;case=loc;number=sg
+```
+
+### `foreign`
+
+Les mots etrangers non adaptes a la morphologie ukrainienne. Ils sont toujours `indecl=yes`. Ils peuvent apparaitre dans des phrases annotees (contexte militaire, technique...) mais n'ont pas de paradigme dans `data.json`.
+
+---
+
+## 9. Champ `nooj`
 
 Objet tracant la source NooJ de chaque entree.
 
 ```typescript
 nooj?: {
-  line: number | null;      // ligne dans le .dic NooJ
+  line: string | null;      // ligne brute du .dic NooJ (ex. "стіл,NOUN+Masculine+Common+Inanimate+FLX=СТІЛ")
   status: "reviewed" | "pending" | null;
   flx: string | null;       // paradigme flexionnel (ex. "СИН", "ВЕЛИКИЙ", "Я")
-  drv?: string;              // derivation (ex. "0:ПЛАКАТИ_PF")
+  drv?: string[];            // derivations (tableau — 362 verbes NooJ ont plusieurs DRV)
   pair?: string;             // paire aspectuelle (ex. "поставити")
   biaspect?: true;           // true si Pair="X/X" dans NooJ
 }
 ```
+
+> **Pourquoi `line` est un string, pas un numero ?** Un numero de ligne serait fragile (il change si le dico NooJ est retrie). La ligne brute assure la tracabilite et permet le cross-check direct.
+
+> **Pourquoi `drv` est un tableau ?** 362 verbes NooJ ont plusieurs DRV (plusieurs perfectifs possibles). Exemple :
+> `батожити,VERB+Pair="батожити/вибатожити,відбатожити"+FLX=БАЧИТИ+DRV=ВИ:БАЧИТИ_PF+DRV=ВІД:БАЧИТИ_PF`
+> → `"drv": ["ВИ:БАЧИТИ_PF", "ВІД:БАЧИТИ_PF"]`
 
 ### Workflow `status`
 
@@ -353,25 +447,42 @@ nooj?: {
 // Nom avec correspondance NooJ
 "артист": {
   "meta": { "pos": "noun", "gender": "m", "animacy": "anim" },
-  "nooj": { "line": null, "status": "pending", "flx": "СИН" }
+  "nooj": { "line": "артист,NOUN+Masculine+Common+Animate+FLX=СИН", "status": "pending", "flx": "СИН" }
 }
 
 // Verbe biaspectuel
 "атакувати": {
   "meta": { "pos": "verb", "aspect": "biaspect" },
-  "nooj": { "line": null, "status": "pending", "flx": "РИСУВАТИ", "pair": "атакувати", "biaspect": true }
+  "nooj": {
+    "line": "атакувати,VERB+Pair=\"атакувати/атакувати\"+FLX=РИСУВАТИ+DRV=0:РИСУВАТИ_PF",
+    "status": "pending", "flx": "РИСУВАТИ", "drv": ["0:РИСУВАТИ_PF"],
+    "pair": "атакувати", "biaspect": true
+  }
+}
+
+// Verbe avec plusieurs DRV
+"грати": {
+  "meta": { "pos": "verb", "aspect": "impf", "couple": "зіграти" },
+  "nooj": {
+    "line": "грати,VERB+Pair=\"грати/зіграти\"+FLX=ЧИТАТИ+DRV=ЗІ:ЧИТАТИ_PF",
+    "status": "reviewed", "flx": "ЧИТАТИ", "drv": ["ЗІ:ЧИТАТИ_PF"],
+    "pair": "зіграти"
+  }
 }
 
 // Verbe avec couple aspectuel
 "поставити": {
-  "meta": { "pos": "verb", "aspect": "perf", "pair": "ставити" },
-  "nooj": { "line": null, "status": "reviewed", "flx": "ПОСТАВИТИ", "pair": "ставити" }
+  "meta": { "pos": "verb", "aspect": "perf", "couple": "ставити" },
+  "nooj": {
+    "line": "поставити,VERB+Perfective+Pair=\"поставити/ставити\"+FLX=ПОСТАВИТИ",
+    "status": "reviewed", "flx": "ПОСТАВИТИ", "pair": "ставити"
+  }
 }
 
 // Pronom personnel
 "він": {
   "meta": { "pos": "pron", "pronType": "pers", "syntax": "pron_pers" },
-  "nooj": { "line": null, "status": "pending", "flx": "ВІН" }
+  "nooj": { "line": "він,PRONOUN+Personal+FLX=ВІН", "status": "pending", "flx": "ВІН" }
 }
 ```
 
@@ -381,7 +492,7 @@ Le champ `nooj.biaspect: true` indique que NooJ a `Pair="X/X"` pour ce verbe. Ce
 
 ---
 
-## 8. Cas (`case`)
+## 10. Cas (`case`)
 
 7 cas ukrainiens. Renommage unique par rapport a V1 : `nomi` -> `nom`.
 
@@ -405,22 +516,22 @@ Le champ `nooj.biaspect: true` indique que NooJ a `Pair="X/X"` pour ce verbe. Ce
 
 ---
 
-## 9. Table de migration V1 -> V2 (23 exemples)
+## 11. Table de migration V1 -> V2 (23 exemples)
 
 | V1 `data-info`                 | V2 `data-info`                                                         |
 | ------------------------------ | ---------------------------------------------------------------------- |
-| `машина;nom;cas;acc;s`         | `машина;pos=noun;case=acc;number=sg`                                   |
+| `машина;nom;cas;acc;s`         | `машина;pos=noun;case=acc;number=sg;gender=f`                          |
 | `Василь;nom;cas;gen;s`         | `Василь;pos=noun;nounType=proper;nounSubtype=fname;case=gen;number=sg` |
-| `гроші;nom;cas;nomi;pl`        | `гроші;pos=noun;case=nom;number=pl`                                    |
+| `гроші;nom;cas;nomi;pl`        | `гроші;pos=noun;case=nom;number=pl;gender=f`                           |
 | `ставити;verb;conj;pres;1p;s`  | `ставити;pos=verb;verbForm=fin;tense=pres;person=1;number=sg`          |
 | `поставити;verb;conj;pass;m;s` | `поставити;pos=verb;verbForm=fin;tense=past;gender=m;number=sg`        |
 | `атакувати;verb;inf`           | `атакувати;pos=verb;verbForm=inf`                                      |
 | `читати;verb;conj;pres;3p;pl`  | `читати;pos=verb;verbForm=fin;tense=pres;person=3;number=pl`           |
 | `вішати;verb;conj;fut;1p;s`    | `вішати;pos=verb;verbForm=fin;tense=fut;person=1;number=sg`            |
 | `купити;verb;conj;pass;f;s`    | `купити;pos=verb;verbForm=fin;tense=past;gender=f;number=sg`           |
-| `великий;adj;cas;nomi;m;s`     | `великий;pos=adj;adjType=qual;case=nom;gender=m;number=sg`             |
+| `великий;adj;cas;nomi;m`       | `великий;pos=adj;case=nom;gender=m;number=sg`                          |
 | `ця;adj;cas;nomi;f`            | `цей;pos=adj;adjType=dem;case=nom;gender=f;number=sg`                  |
-| `його;proposs;cas;gen;m;s`     | `його;pos=adj;adjType=poss;case=gen;gender=m;number=sg`                |
+| `його;proposs;cas;gen;m`       | `його;pos=adj;adjType=poss;case=gen;gender=m;number=sg`                |
 | `я;proper;cas;dat`             | `я;pos=pron;pronType=pers;case=dat`                                    |
 | `він;proper;cas;nomi`          | `він;pos=pron;pronType=pers;case=nom`                                  |
 | `себе;pron;cas;acc`            | `себе;pos=pron;pronType=refl;case=acc`                                 |
@@ -435,7 +546,7 @@ Le champ `nooj.biaspect: true` indique que NooJ a `Pair="X/X"` pour ce verbe. Ce
 
 ---
 
-## 10. Type `MorphoTag` (TypeScript)
+## 12. Type `MorphoTag` (TypeScript)
 
 ```typescript
 interface MorphoTag {
@@ -468,7 +579,8 @@ interface MorphoTag {
     | "language"
     | "animal"
     | "abbr";
-  adjType?: "qual" | "poss" | "dem" | "rel" | "tot" | "emph" | "ord" | "indef" | "neg" | "belong";
+  adjType?: "poss" | "dem" | "rel" | "tot" | "emph" | "ord" | "indef" | "neg" | "belong";
+  // adjType absent = qualificatif ordinaire (pas de "qual" explicite)
   pronType?: "pers" | "refl" | "inter" | "indef";
   numType?: "card" | "coll" | "quant";
   conjType?: "coord" | "subord";
@@ -497,25 +609,36 @@ interface MorphoTag {
   tense?: "pres" | "past" | "fut";
   aspect?: "impf" | "perf" | "biaspect";
   motionType?: "det" | "indet";
+  motionPair?: string; // partenaire de mouvement (det <-> indet), ex. "бігати" pour бігти
+  couple?: string; // couple aspectuel (impf <-> perf), ex. "побачити" pour бачити
 
   // Nominal
   animacy?: "anim" | "inan";
   plurTantum?: true;
   diminutive?: true;
 
+  // Prepositions
+  governs?: ("nom" | "gen" | "dat" | "acc" | "ins" | "loc")[]; // cas regis
+
   // Notation
   notation?: "digit" | "roman" | "abbr" | "date" | "time";
+
+  // Metadonnees
+  variant?: number; // variante d'accent (V1 var=N), index 0-based
+  foreign?: boolean; // mot etranger (Rafale, Gripen, combat...)
+  indecl?: boolean; // indeclinable (його/її comme possessifs, noms etrangers)
+  unamb?: boolean; // NooJ +UNAMB (entree non ambigue)
 
   // UI
   syntax?: string;
 
   // Tracabilite NooJ
   nooj?: {
-    line: number | null;
+    line: string | null; // ligne brute du .dic NooJ
     status: "reviewed" | "pending" | null;
     flx: string | null;
-    drv?: string;
-    pair?: string;
+    drv?: string[]; // tableau — certains verbes ont plusieurs DRV
+    pair?: string; // paire NooJ (peut differer de meta.couple)
     biaspect?: true;
   };
 }
@@ -524,8 +647,8 @@ interface MorphoTag {
 ### Exemples d'objets `MorphoTag` instancies
 
 ```typescript
-// Nom commun feminin
-{ lemma: "машина", pos: "noun", case: "acc", number: "sg" }
+// Nom commun feminin (gender dans le tag pour la bulle de survol)
+{ lemma: "машина", pos: "noun", case: "acc", number: "sg", gender: "f" }
 
 // Verbe imperfectif au present
 { lemma: "читати", pos: "verb", verbForm: "fin", tense: "pres", person: "3", number: "pl" }
@@ -533,20 +656,29 @@ interface MorphoTag {
 // Verbe biaspectuel a l'infinitif
 { lemma: "атакувати", pos: "verb", verbForm: "inf" }
 
+// Verbe de mouvement indetermine
+{ lemma: "бігати", pos: "verb", verbForm: "inf", motionType: "indet", motionPair: "бігти", couple: "побігати" }
+
 // Pronom personnel au datif
 { lemma: "я", pos: "pron", pronType: "pers", case: "dat" }
 
-// Possessif (morphologiquement adj, syntaxiquement pronom)
-{ lemma: "мій", pos: "adj", adjType: "poss", case: "nom", gender: "m", number: "sg" }
+// Possessif indeclinable
+{ lemma: "його", pos: "adj", adjType: "poss", indecl: true, case: "acc", gender: "f", number: "sg" }
+
+// Adjectif qualificatif (pas de adjType — absent = qual par defaut)
+{ lemma: "великий", pos: "adj", case: "nom", gender: "m", number: "sg" }
 
 // Numeral avec notation chiffree
 { lemma: "сімнадцять", pos: "num", numType: "card", notation: "digit", case: "gen" }
 
+// Preposition avec regime casuel
+{ lemma: "за", pos: "prep", governs: ["acc", "ins"] }
+
+// Mot etranger indeclinable
+{ lemma: "Rafale", pos: "noun", nounType: "proper", foreign: true, indecl: true, case: "loc", number: "sg" }
+
 // Predicatif
 { lemma: "можна", pos: "pred" }
-
-// Preposition avec regime
-{ lemma: "до", pos: "prep" }
 ```
 
 ---
@@ -556,7 +688,7 @@ interface MorphoTag {
 1. **Le lemme** est toujours a l'infinitif pour les verbes, au nominatif singulier masculin pour les adjectifs, au nominatif singulier pour les noms.
 2. **`class="ukr"`** est constant sur toutes les balises annotees.
 3. **Aucune valeur hors schema** ne doit apparaitre dans `data-info`.
-4. **Les mots non annotables** (ponctuation, tirets, mots etrangers non flechis) restent hors balise.
+4. **Les mots non annotables** (ponctuation, tirets) restent hors balise. Les mots etrangers peuvent etre annotes avec `foreign=yes;indecl=yes`.
 5. **`meta.aspect` absent** = verification en cours (pas "inconnu" ni "biaspectuel presume"). Pour les 338 verbes NooJ `Pair="X/X"`, il faut verifier les accents sur goroh avant de renseigner ce champ.
 6. **`notation` absent** = mot en toutes lettres, le bouton Epeler ne s'applique pas.
 7. **`syntax`** pilote le regroupement UI et peut diverger de `pos` (ex. `pos=adj` + `syntax=pron_poss`).
