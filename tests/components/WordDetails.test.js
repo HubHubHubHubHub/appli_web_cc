@@ -51,7 +51,7 @@ beforeEach(() => {
 describe("WordDetails", () => {
   it("affiche le message par défaut sans sélection", () => {
     const { container } = render(WordDetails);
-    expect(container.textContent).toContain("Sélectionnez un mot");
+    expect(container.textContent).toContain("Choisissez un mot");
   });
 
   it("affiche un nom avec son genre", () => {

@@ -605,3 +605,38 @@ body {
 .verb-forms-container.active {
   display: block;
 }
+
+/* ── Empty state (no word selected) ───────────────────────────────── */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.empty-state-tryzub {
+  width: 80px;
+  height: auto;
+  color: var(--color-primary);
+  margin: 0 0 1.5rem;
+  opacity: 0.6;
+}
+
+.empty-state-welcome {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-base-content);
+  margin: 0 0 0.5rem;
+}
+
+.empty-state-hint {
+  font-size: 0.95rem;
+  color: var(--color-neutral);
+  margin: 0;
+  line-height: 1.5;
+}
