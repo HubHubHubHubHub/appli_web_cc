@@ -11,47 +11,18 @@ export function parseInfo(info) {
 
 /**
  * Normalise une entrée de données en tableau de paires [texte, positionAccent].
- * Gère 3 formats : paire unique, tableau plat de paires, et ancien format verbe.
- * @param {Array|null} entry - Entrée brute du JSON
+ * En V2, toutes les formes sont déjà au format [["forme", accent], ...].
+ * @param {Array|null} entry - Entrée du JSON (liste de paires)
  * @returns {Array<[string, number]>} Tableau de paires normalisées
  */
 export function toPairs(entry) {
-  if (!entry) return [];
-  if (Array.isArray(entry) && Array.isArray(entry[0])) return entry;
-
-  if (
-    Array.isArray(entry) &&
-    entry.length === 2 &&
-    typeof entry[0] === "string" &&
-    Number.isInteger(entry[1])
-  ) {
+  if (!entry || !Array.isArray(entry) || entry.length === 0) return [];
+  // V2 : toujours [["forme", accent], ...]
+  if (Array.isArray(entry[0])) return entry;
+  // Fallback V1 : paire plate ["forme", accent] → [["forme", accent]]
+  if (typeof entry[0] === "string" && Number.isInteger(entry[1])) {
     return [entry];
   }
-
-  if (
-    Array.isArray(entry) &&
-    entry.length >= 2 &&
-    typeof entry[0] === "string" &&
-    Number.isInteger(entry[1])
-  ) {
-    const out = [];
-    for (let i = 0; i + 1 < entry.length; i += 2) {
-      const f = entry[i],
-        p = entry[i + 1];
-      if (typeof f === "string" && Number.isInteger(p)) out.push([f, p]);
-    }
-    if (out.length) return out;
-  }
-
-  // ancien format verbe (ex: ["читаєм","читаємо",4]) → partager même accent
-  if (Array.isArray(entry)) {
-    const lastNum = [...entry].reverse().find((v) => Number.isInteger(v));
-    const forms = entry.filter((v) => typeof v === "string");
-    if (Number.isInteger(lastNum) && forms.length) {
-      return forms.map((f) => [f, lastNum]);
-    }
-  }
-
   return [];
 }
 

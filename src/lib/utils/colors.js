@@ -1,5 +1,5 @@
 export const classesToColors = {
-  nomi: "inherit",
+  nom: "inherit",
   gen: "rgb(19, 132, 46)",
   acc: "rgb(57, 4, 248)",
   loc: "rgb(132, 93, 19)",
