@@ -15,10 +15,10 @@
 </script>
 
 <header class="app-header">
-  <div class="app-header-brand">
+  <a href="/" class="app-header-brand">
     <span class="app-header-title">Слов<span class="app-header-o">о</span>скарб</span>
     <span class="app-header-subtitle">Trésor lexical ukrainien</span>
-  </div>
+  </a>
   <nav class="app-nav">
     <a href="/" class="app-nav-tab" class:active={$page.url.pathname === "/"}>Lexique</a>
     <a href="/phrases" class="app-nav-tab" class:active={$page.url.pathname === "/phrases"}

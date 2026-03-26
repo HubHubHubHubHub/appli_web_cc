@@ -7,6 +7,7 @@
 
   const filteredPhrases = $derived(filterPhrases(dataStore.phraseData, searchQuery.trim()));
   const resultCount = $derived(Object.keys(filteredPhrases).length);
+  const totalCount = $derived(dataStore.phraseData ? Object.keys(dataStore.phraseData).length : 0);
 </script>
 
 <div
@@ -19,11 +20,14 @@
     bind:value={searchQuery}
     placeholder="Rechercher une phrase (mots séparés par des espaces)..."
   />
-  {#if searchQuery.trim()}
-    <p class="text-sm text-neutral mt-1.5 mb-0">
-      {resultCount}
+  <p class="text-sm text-neutral mt-1.5 mb-0">
+    {#if searchQuery.trim()}
+      {resultCount} / {totalCount}
       {resultCount === 1 ? "phrase trouvée" : "phrases trouvées"}
-    </p>
+    {:else}
+      {totalCount} phrases
+    {/if}
+  </p>
   {/if}
 </div>
 

@@ -7,6 +7,13 @@
 
   const visible = $derived(uiStore.grammarTableData !== null);
 
+  function handleKeydown(ev) {
+    if (ev.key === "Escape" && uiStore.pinnedElement !== null) {
+      uiStore.pinnedElement = null;
+      uiStore.grammarTableData = null;
+    }
+  }
+
   const headerHTML = $derived.by(() => {
     if (!uiStore.grammarTableData) return "";
     const { word, category } = uiStore.grammarTableData;
@@ -25,6 +32,8 @@
   });
 </script>
 
+<svelte:window onkeydown={handleKeydown} />
+
 {#if visible}
   <aside
     class="grammar-sidebar card card-sm fixed right-2.5 top-1/2 -translate-y-1/2 z-grammar-sidebar bg-base-100 w-auto max-w-sm max-h-[85vh] overflow-y-auto text-sm leading-snug max-md:hidden {uiStore.pinnedElement !==
@@ -34,8 +43,21 @@
     aria-label="Grammaire"
   >
     <div class="card-body p-3">
-      <div class="px-2 py-1.5 mb-1 border-b border-base-300 text-sm">
-        {@html headerHTML}
+      <div
+        class="flex items-start justify-between gap-2 px-2 py-1.5 mb-1 border-b border-base-300 text-sm"
+      >
+        <span>{@html headerHTML}</span>
+        {#if uiStore.pinnedElement !== null}
+          <button
+            type="button"
+            class="bg-transparent border-none p-0 m-0 cursor-pointer text-neutral hover:text-base-content text-lg leading-none"
+            title="Dépingler"
+            onclick={() => {
+              uiStore.pinnedElement = null;
+              uiStore.grammarTableData = null;
+            }}>×</button
+          >
+        {/if}
       </div>
       <GrammarTable data={uiStore.grammarTableData} />
     </div>

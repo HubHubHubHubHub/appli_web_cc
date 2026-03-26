@@ -63,7 +63,12 @@
       <!-- Flat list: no letter grouping, ordered directly -->
       <ul class="list-none p-0 m-0">
         {#each words as word}
-          <li class="py-1.5 px-2 pl-5 cursor-pointer border-b border-base-200 hover:bg-base-200">
+          <li
+            class="py-1.5 px-2 pl-5 cursor-pointer border-b border-base-200 hover:bg-base-200 {uiStore.selectedWord ===
+              word && (posLookup[word] || catKey) === uiStore.selectedCategory
+              ? 'bg-primary/15 rounded'
+              : ''}"
+          >
             <button
               type="button"
               class="bg-transparent border-none p-0 m-0 font-[inherit] text-inherit cursor-pointer text-left w-full"

@@ -76,7 +76,14 @@
       {@html displayWord}
       <span class="badge badge-ghost text-xs font-normal align-middle ml-2">{displayMeta}</span
       >{#if couplDisplay}
-        <span class="text-sm font-normal ml-2">— couple asp. : {@html couplDisplay}</span>{/if}
+        <button
+          type="button"
+          class="text-sm font-normal ml-2 bg-transparent border-none p-0 m-0 cursor-pointer text-primary hover:underline"
+          onclick={() => {
+            uiStore.selectedWord = details.meta.couple;
+            uiStore.selectedCategory = "verb";
+          }}>— couple asp. : {@html couplDisplay}</button
+        >{/if}
     </h2>
 
     {#if uiStore.selectedCategory === "noun"}

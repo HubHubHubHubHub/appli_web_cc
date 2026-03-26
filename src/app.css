@@ -95,6 +95,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
+  text-decoration: none;
+  color: inherit;
 }
 
 .app-header-title {
