@@ -61,10 +61,25 @@ export function buildBubbleHTML(wd, word, pos, dataInfo) {
 export function positionBubble(bubble, anchor) {
   const rect = anchor.getBoundingClientRect();
   const bubbleRect = bubble.getBoundingClientRect();
-  const top = rect.top - bubbleRect.height - 8;
-  const left = rect.left + (rect.width - bubbleRect.width) / 2;
-  bubble.style.top = `${Math.max(4, top)}px`;
-  bubble.style.left = `${Math.max(4, left)}px`;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  // Préférer au-dessus ; si ça dépasse en haut, placer en dessous
+  let top = rect.top - bubbleRect.height - 8;
+  if (top < 4) {
+    top = rect.bottom + 8;
+  }
+  // Clamper en bas du viewport
+  top = Math.min(top, vh - bubbleRect.height - 4);
+  top = Math.max(4, top);
+
+  // Centrer horizontalement, clamper aux bords gauche/droit
+  let left = rect.left + (rect.width - bubbleRect.width) / 2;
+  left = Math.min(left, vw - bubbleRect.width - 4);
+  left = Math.max(4, left);
+
+  bubble.style.top = `${top}px`;
+  bubble.style.left = `${left}px`;
 }
 
 /**
