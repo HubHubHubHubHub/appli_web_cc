@@ -1,4 +1,4 @@
-export { i18n, labelCategory, labelTense, labelNumber } from "./i18n.js";
+export { i18n, labelCategory, labelTense, labelTenseLabel, labelNumber, labelCase, labelGender, labelPerson } from "./i18n.js";
 export { addAccent, addAccentHTML, highlightLetter } from "./accent.js";
 export { toPairs, firstPair, firstText, firstAccent, getVariantIndex } from "./parsing.js";
 export { parseDataInfo, resolveEntry, getLemmaEntry, getPrincipalForm } from "./dataAccess.js";
