@@ -24,6 +24,7 @@
     type="button"
     class="flex items-center gap-1.5 bg-transparent border-none py-1 pl-3 pr-0 m-0 font-[inherit] cursor-pointer w-full text-left text-neutral hover:text-base-content"
     onclick={onToggle}
+    aria-expanded={isOpen}
   >
     <span
       class="inline-block text-2xs transition-transform duration-150 ease-in-out"

@@ -38,7 +38,7 @@
         if (v) return generateTableVerb(v, wd);
       }
     } catch (err) {
-      console.warn(`GrammarTable: erreur pour "${word}" (${category}) :`, err);
+      if (import.meta.env.DEV) console.warn(`GrammarTable: erreur pour "${word}" (${category}) :`, err);
     }
     return "";
   });

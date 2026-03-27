@@ -24,7 +24,7 @@ export function addAccent(word, accentPosition) {
   if (accentPosition > 0 && accentPosition <= chars.length) {
     const target = chars[accentPosition - 1];
     if (!isUkrainianVowel(target)) {
-      console.warn(
+      if (import.meta.env.DEV) console.warn(
         `addAccent: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
       );
     }
@@ -46,7 +46,7 @@ export function addAccentHTML(word, accentPosition) {
   if (accentPosition > 0 && accentPosition <= chars.length) {
     const target = chars[accentPosition - 1];
     if (!isUkrainianVowel(target)) {
-      console.warn(
+      if (import.meta.env.DEV) console.warn(
         `addAccentHTML: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
       );
     }

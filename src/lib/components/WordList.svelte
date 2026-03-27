@@ -229,6 +229,7 @@
         type="button"
         class="block w-full bg-base-200 border border-base-300 rounded px-2.5 py-1 mt-1 font-[inherit] text-sm cursor-pointer text-neutral text-left hover:bg-base-300 hover:text-base-content"
         onclick={toggleAll}
+        aria-expanded={anyExpanded}
       >
         {anyExpanded ? "▼ Tout replier" : "▶ Tout déplier"}
       </button>

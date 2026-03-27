@@ -40,6 +40,7 @@
       type="button"
       class="flex items-center gap-1.5 bg-transparent border-none p-0 m-0 font-[inherit] cursor-pointer text-left text-inherit"
       onclick={onToggleCategory}
+      aria-expanded={isOpen}
     >
       <span
         class="inline-block text-2xs transition-transform duration-150 ease-in-out"
