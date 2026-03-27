@@ -1,4 +1,5 @@
 <script>
+  import { fly } from "svelte/transition";
   import { uiStore } from "$lib/stores/uiStore.svelte.js";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import GrammarTable from "./GrammarTable.svelte";
@@ -38,6 +39,7 @@
 
 {#if visible}
   <aside
+    transition:fly={{ x: 300, duration: 250 }}
     class="grammar-sidebar card card-sm fixed right-2.5 top-1/2 -translate-y-1/2 z-[2000] bg-base-100 w-auto max-w-sm max-h-[85vh] overflow-y-auto scrollbar-thin text-sm leading-snug max-md:hidden {uiStore.pinnedElement !==
     null
       ? 'border-primary shadow-grammar-pinned'
