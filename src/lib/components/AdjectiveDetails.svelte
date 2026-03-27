@@ -12,16 +12,16 @@
     <table class="table gram-table font-body">
       <thead>
         <tr>
-          <th></th>
+          <th scope="col"></th>
           {#each genders as g}
-            <th class="text-center">{labelGender(g)}</th>
+            <th scope="col" class="text-center">{labelGender(g)}</th>
           {/each}
         </tr>
       </thead>
       <tbody>
         {#each Object.entries(details.cas) as [caseKey, forms]}
           <tr>
-            <th>{labelCase(caseKey)}</th>
+            <th scope="row">{labelCase(caseKey)}</th>
             {#each genders as gender}
               <td class="text-center">
                 <span class="font-bold">{@html renderCell(forms[gender])}</span>

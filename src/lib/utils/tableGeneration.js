@@ -28,7 +28,7 @@ export function generateTableNoun(casData, cas, gender) {
   if (!casData) return "<table></table>";
   let html = "<table>";
   for (const [caseName, forms] of Object.entries(casData)) {
-    html += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="2"><em>${caseName}.</em></th></tr>`;
     for (const [formKey, entry] of Object.entries(forms)) {
       const cell = renderCell(entry);
       const numLbl = labelNumber(formKey) + ".";
@@ -50,7 +50,7 @@ export function generateTablePron(casData, currentCase) {
   let html = "<table>";
   for (const [caseName, entry] of Object.entries(casData)) {
     const cell = renderCell(entry);
-    html += `<tr><th><em>${caseName}.</em></th></tr>`;
+    html += `<tr><th scope="row"><em>${caseName}.</em></th></tr>`;
     html += `<tr><td>${caseName === currentCase ? "<strong>" + cell + "</strong>" : cell}</td></tr>`;
   }
   html += "</table>";
@@ -71,7 +71,7 @@ export function generateTableAdj(casData, cas, gender) {
   let html = "<table>";
   for (const [caseName, formsByGender] of Object.entries(casData)) {
     if (caseName === "voc") continue;
-    html += `<tr><th colspan="2"><em>${caseName}.</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="2"><em>${caseName}.</em></th></tr>`;
     for (const g of gendersOrder) {
       const entry = formsByGender[g];
       if (!entry) continue;
@@ -95,14 +95,14 @@ export function generateTableVerb(verbDetails, wd) {
   if (!verbDetails) return "<table></table>";
   let html = "<table>";
 
-  html += `<tr><th colspan="3"><em>${labelTense("inf")}</em></th></tr>`;
+  html += `<tr><th scope="colgroup" colspan="3"><em>${labelTense("inf")}</em></th></tr>`;
   html += `<tr><td colspan="3">${renderCell(verbDetails.inf)}</td></tr>`;
 
   const persons = ["1", "2", "3"];
   const hasPres = !!verbDetails.conj?.pres;
 
   if (hasPres) {
-    html += `<tr><th colspan="3"><em>${labelTense("pres")}</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="3"><em>${labelTense("pres")}</em></th></tr>`;
     for (const p of persons) {
       const pd = verbDetails.conj.pres?.[p];
       if (!pd) continue;
@@ -111,7 +111,7 @@ export function generateTableVerb(verbDetails, wd) {
   }
 
   if (verbDetails.conj?.fut) {
-    html += `<tr><th colspan="3"><em>${labelTense("fut")}</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="3"><em>${labelTense("fut")}</em></th></tr>`;
     for (const p of persons) {
       const pd = verbDetails.conj.fut?.[p];
       if (!pd) continue;
@@ -120,7 +120,7 @@ export function generateTableVerb(verbDetails, wd) {
   }
 
   if (verbDetails.conj?.past) {
-    html += `<tr><th colspan="3"><em>${labelTense("past")}</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="3"><em>${labelTense("past")}</em></th></tr>`;
     for (const g of ["m", "f", "n"]) {
       const gd = verbDetails.conj.past?.[g];
       if (!gd) continue;
@@ -129,7 +129,7 @@ export function generateTableVerb(verbDetails, wd) {
   }
 
   if (verbDetails.conj?.imp) {
-    html += `<tr><th colspan="3"><em>${labelTense("imp")}</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="3"><em>${labelTense("imp")}</em></th></tr>`;
     for (const p of ["1", "2"]) {
       const pd = verbDetails.conj.imp?.[p];
       if (!pd) continue;
@@ -138,7 +138,7 @@ export function generateTableVerb(verbDetails, wd) {
   }
 
   if (verbDetails.conj?.impers) {
-    html += `<tr><th colspan="3"><em>impers.</em></th></tr>`;
+    html += `<tr><th scope="colgroup" colspan="3"><em>impers.</em></th></tr>`;
     html += `<tr><td colspan="3">${renderCell(verbDetails.conj.impers)}</td></tr>`;
   }
 

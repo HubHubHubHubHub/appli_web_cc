@@ -10,15 +10,15 @@
     <table class="table gram-table font-body">
       <thead>
         <tr>
-          <th></th>
-          <th class="text-center">sg.</th>
-          <th class="text-center">pl.</th>
+          <th scope="col"></th>
+          <th scope="col" class="text-center">sg.</th>
+          <th scope="col" class="text-center">pl.</th>
         </tr>
       </thead>
       <tbody>
         {#each Object.entries(details.cas) as [caseKey, forms]}
           <tr>
-            <th>{labelCase(caseKey)}</th>
+            <th scope="row">{labelCase(caseKey)}</th>
             <td class="text-center"><span class="font-bold">{@html renderCell(forms.sg)}</span></td>
             <td class="text-center"><span class="font-bold">{@html renderCell(forms.pl)}</span></td>
           </tr>

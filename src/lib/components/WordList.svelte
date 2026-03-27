@@ -13,6 +13,17 @@
   let initialized = false;
   let searchQuery = $state("");
 
+  // Replier les catégories quand on clique sur le brand (resetHome)
+  $effect(() => {
+    uiStore.resetCounter; // track
+    if (initialized) {
+      const closed = {};
+      for (const key of allSectionKeys) closed[key] = false;
+      categoryOpen = closed;
+      searchQuery = "";
+    }
+  });
+
   /**
    * Build flat list of displayable sections from sidebarGroups.
    * Each section has: key, label, words (grouped by letter), posLookup (map word→pos).

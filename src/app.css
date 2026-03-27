@@ -350,9 +350,6 @@ body {
   border-bottom-color: #2e343a;
 }
 
-[data-theme="ukrvocab-dark"] .gram-table tbody tr:hover {
-  background-color: rgba(91, 163, 245, 0.06);
-}
 
 /* ── Table design system ───────────────────────────────────────────── */
 
@@ -386,16 +383,12 @@ body {
 
 .gram-table tbody tr {
   border-bottom: 0.5px solid var(--color-base-300);
-  transition: background-color 0.15s;
 }
 
 .gram-table tbody tr:last-child {
   border-bottom: none;
 }
 
-.gram-table tbody tr:hover {
-  background-color: rgba(37, 99, 235, 0.04);
-}
 
 /* Column headers (sg., pl., m., f., etc.) */
 .gram-table thead th {
@@ -557,8 +550,15 @@ body {
 
 /* Active / current form — the <strong> wrapping the hovered form */
 .grammar-sidebar strong {
-  color: var(--color-ukr-blue);
+  color: var(--color-base-content);
   font-weight: 700;
+  background: oklch(52% 0.18 250 / 0.15);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+[data-theme="ukrvocab-dark"] .grammar-sidebar strong {
+  background: oklch(65% 0.18 250 / 0.2);
 }
 
 /* Footer note inside sidebar (couple aspectuel) */

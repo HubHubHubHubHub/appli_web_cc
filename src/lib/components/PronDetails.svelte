@@ -11,7 +11,7 @@
       <tbody>
         {#each Object.entries(details.cas) as [caseKey, forms]}
           <tr>
-            <th>{labelCase(caseKey)}</th>
+            <th scope="row">{labelCase(caseKey)}</th>
             <td class="text-center"><span class="font-bold">{@html renderCell(forms)}</span></td>
           </tr>
         {/each}

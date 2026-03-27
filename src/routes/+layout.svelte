@@ -27,7 +27,7 @@
 </script>
 
 <header class="app-header">
-  <a href="/" class="app-header-brand">
+  <a href="/" class="app-header-brand" onclick={() => uiStore.resetHome()}>
     <span class="app-header-title">Слов<span class="app-header-o">о</span>скарб</span>
     <span class="app-header-subtitle">Trésor lexical ukrainien</span>
   </a>

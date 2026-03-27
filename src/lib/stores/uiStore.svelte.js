@@ -16,6 +16,7 @@ function createUIStore() {
   let selectedCategory = $state(null);
   let grammarTableData = $state(null);
   let fontSizeIndex = $state(DEFAULT_SCALE_INDEX);
+  let resetCounter = $state(0);
 
   return {
     get pinnedElement() {
@@ -64,6 +65,16 @@ function createUIStore() {
     },
     get canDecrease() {
       return fontSizeIndex > 0;
+    },
+    get resetCounter() {
+      return resetCounter;
+    },
+    resetHome() {
+      selectedWord = null;
+      selectedCategory = null;
+      pinnedElement = null;
+      grammarTableData = null;
+      resetCounter++;
     },
     increase() {
       if (this.canIncrease) fontSizeIndex++;
