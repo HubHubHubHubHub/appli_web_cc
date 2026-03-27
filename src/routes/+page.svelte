@@ -14,7 +14,7 @@
   >
     <WordList />
   </nav>
-  <main class="grow min-w-0 p-6 max-md:w-full bg-base-100 mr-[400px] max-md:mr-0">
+  <main class="grow min-w-0 p-6 max-md:w-full bg-base-100 mr-[var(--grammar-sidebar-gap)] max-md:mr-0">
     <WordDetails />
   </main>
 </div>
