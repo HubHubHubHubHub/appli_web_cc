@@ -20,6 +20,10 @@ prompts/
 Nooj/
 Olena_L1/
 Evolutions/
+Traitement_database/
+
+#legacy
+static/phrases_old.json
 
 # Python
 __pycache__/
