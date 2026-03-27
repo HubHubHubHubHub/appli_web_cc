@@ -22,6 +22,7 @@
   const word = $derived(tag.lemma);
   const category = $derived(tag.pos || "");
   const hoverColor = $derived(getHoverColor(tokens));
+  const isPinned = $derived(uiStore.pinnedElement === pinId);
 
   // Compute displayed text (with or without accent)
   const displayHTML = $derived.by(() => {
@@ -76,6 +77,8 @@
       return;
     }
 
+    // Reset l'ancien mot pinné (éléments DOM de HtmlContent)
+    document.querySelectorAll(".ukr").forEach((el) => { el.style.color = ""; el.style.textDecorationColor = ""; });
     uiStore.grammarTableData = tag;
     uiStore.pinnedElement = pinId;
   }
@@ -87,6 +90,8 @@
   role="button"
   tabindex="0"
   data-info={dataInfo}
+  style:color={isPinned ? hoverColor : null}
+  style:text-decoration-color={isPinned ? hoverColor : null}
   onmouseenter={handleMouseEnter}
   onmouseleave={handleMouseLeave}
   onclick={handleClick}

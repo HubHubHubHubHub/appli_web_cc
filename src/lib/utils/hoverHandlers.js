@@ -38,6 +38,7 @@ export function applyHoverHandlers(el, deps) {
     function onMouseEnter() {
       if (deps.getPinnedElement()) return;
       word.style.color = hoverColor;
+      word.style.textDecorationColor = hoverColor;
 
       const wd = deps.getWordData();
       deps.setGrammarTableData(tag);
@@ -52,7 +53,10 @@ export function applyHoverHandlers(el, deps) {
     }
 
     function onMouseLeave() {
-      word.style.color = "";
+      if (deps.getPinnedElement() !== pinId) {
+        word.style.color = "";
+        word.style.textDecorationColor = "";
+      }
       hideBubble();
       if (!deps.getPinnedElement()) {
         deps.setGrammarTableData(null);
@@ -62,10 +66,16 @@ export function applyHoverHandlers(el, deps) {
     function onClick(ev) {
       ev.preventDefault();
       if (deps.getPinnedElement() === pinId) {
+        word.style.color = "";
+        word.style.textDecorationColor = "";
         deps.setPinnedElement(null);
         deps.setGrammarTableData(null);
         return;
       }
+      // Reset l'ancien mot pinné
+      document.querySelectorAll(".ukr").forEach((el) => { el.style.color = ""; el.style.textDecorationColor = ""; });
+      word.style.color = hoverColor;
+      word.style.textDecorationColor = hoverColor;
       deps.setGrammarTableData(tag);
       deps.setPinnedElement(pinId);
     }

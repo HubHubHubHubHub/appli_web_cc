@@ -10,6 +10,7 @@
 
   function handleKeydown(ev) {
     if (ev.key === "Escape" && uiStore.pinnedElement !== null) {
+      document.querySelectorAll(".ukr").forEach((el) => { el.style.color = ""; el.style.textDecorationColor = ""; });
       uiStore.pinnedElement = null;
       uiStore.grammarTableData = null;
     }
@@ -58,6 +59,7 @@
             class="bg-transparent border-none p-0 m-0 cursor-pointer text-neutral hover:text-base-content text-lg leading-none"
             title="Dépingler"
             onclick={() => {
+              document.querySelectorAll(".ukr").forEach((el) => { el.style.color = ""; el.style.textDecorationColor = ""; });
               uiStore.pinnedElement = null;
               uiStore.grammarTableData = null;
             }}>×</button
