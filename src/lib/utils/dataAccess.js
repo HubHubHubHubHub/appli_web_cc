@@ -93,11 +93,17 @@ export function getLemmaEntry(wordData, pos, word) {
   if (!entry) return null;
 
   switch (pos) {
-    case "noun":
-      return entry?.cas?.nom?.sg;
+    case "noun": {
+      const sg = entry?.cas?.nom?.sg;
+      if (sg && firstPair(sg)?.[0] !== null) return sg;
+      return entry?.cas?.nom?.pl || sg;
+    }
     case "adj":
-    case "num":
-      return entry?.cas?.nom?.m;
+    case "num": {
+      const m = entry?.cas?.nom?.m;
+      if (m && firstPair(m)?.[0] !== null) return m;
+      return entry?.cas?.nom?.pl || m;
+    }
     case "pron":
       return entry?.cas?.nom;
     case "verb":

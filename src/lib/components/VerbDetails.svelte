@@ -1,19 +1,11 @@
 <script>
   import { addAccentHTML } from "$lib/utils/accent.js";
-  import { toPairs, firstPair } from "$lib/utils/parsing.js";
+  import { firstPair } from "$lib/utils/parsing.js";
+  import { renderCell } from "$lib/utils/tableGeneration.js";
   import { dataStore } from "$lib/stores/dataStore.svelte.js";
   import { labelTenseLabel, labelPerson } from "$lib/utils/i18n.js";
 
   let { details } = $props();
-
-  function renderCell(entry) {
-    const pairs = toPairs(entry);
-    if (!pairs.length) return "";
-    return pairs
-      .filter(([t]) => t)
-      .map(([t, p]) => `<span class="font-bold">${addAccentHTML(t, p)}</span>`)
-      .join(", ");
-  }
 
   const infPair = $derived(firstPair(details.inf));
   const infDisplay = $derived(infPair ? addAccentHTML(infPair[0], infPair[1]) : "");
