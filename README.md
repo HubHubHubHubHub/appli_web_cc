@@ -2,7 +2,7 @@
 
 Application web d'apprentissage du vocabulaire ukrainien : déclinaisons, conjugaisons, phrases d'exemple avec mise en évidence grammaticale interactive.
 
-**742 entrées** couvrant 13 catégories grammaticales, **255 phrases** annotées, format morphologique V2 aligné avec le dictionnaire NooJ ukrainien.
+**764 entrées** couvrant 12 catégories grammaticales, **255 phrases** annotées, format morphologique V2 aligné avec le dictionnaire NooJ ukrainien.
 
 ## Fonctionnalités
 
@@ -11,6 +11,7 @@ Application web d'apprentissage du vocabulaire ukrainien : déclinaisons, conjug
 - **Tables de grammaire** : déclinaisons et conjugaisons complètes, sidebar épinglable
 - **Dark mode** : thème clair/sombre
 - **Accents** : toggle global pour afficher/masquer les accents sur tous les mots ukrainiens
+- **Taille de police** : boutons A+/A- pour ajuster le zoom du contenu
 
 ## Stack technique
 
@@ -59,7 +60,7 @@ src/
 │   ├── +page.svelte   # Page Lexique (sidebar + détails)
 │   └── phrases/       # Page Phrases (recherche)
 static/
-├── data.json          # Base de données vocabulaire (742 entrées, format V2)
+├── data.json          # Base de données vocabulaire (764 entrées, format V2)
 └── phrases.json       # Base de données phrases (255 phrases annotées)
 outil_python/          # Scripts Python (parseur goroh, migration, validation)
 doc/                   # Documentation (schéma V2, migration, raccourcis)

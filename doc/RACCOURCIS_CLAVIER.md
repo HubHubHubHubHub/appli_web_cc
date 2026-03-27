@@ -25,5 +25,5 @@
 
 | Touche | Action prévue                                        | Issue |
 | ------ | ---------------------------------------------------- | ----- |
-| `/`    | Focus sur le champ de recherche (sidebar ou phrases) | #54   |
-| `?`    | Afficher l'aide des raccourcis                       | #54   |
+| `/`    | Focus sur le champ de recherche (sidebar ou phrases) | #59   |
+| `?`    | Afficher l'aide des raccourcis                       | #59   |
