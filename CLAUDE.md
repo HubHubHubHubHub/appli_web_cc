@@ -16,7 +16,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format
 - `npm run format:check` — Prettier check (used in CI)
-- `cd outil_python && python3 -m unittest discover` — run all Python tests (87 tests)
+- `cd outil_python && python3 -m unittest discover` — run all Python tests (99 tests)
 
 ## Architecture
 
@@ -28,7 +28,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 
 Data uses the V2 format (key=value). See `doc/MORPHO_SCHEMA_V2.md` for the full specification. Migration log in `doc/MIGRATION_V1_V2.md`.
 
-**data.json** — 9 top-level categories (742 entries): `noun` (280), `verb` (98), `adj` (188), `pron` (21), `num` (18), `adv` (44), `prep` (28), `conj` (21), `part` (16), `pred` (10), `insert` (10), `intj` (8).
+**data.json** — 12 top-level categories (764 entries): `noun` (289), `verb` (108), `adj` (191), `pron` (21), `num` (18), `adv` (44), `prep` (28), `conj` (21), `part` (16), `pred` (10), `insert` (10), `intj` (8).
 
 Each entry has a `meta` block with morphological traits:
 
@@ -55,7 +55,7 @@ Forms are always `[["text", accentPosition], ...]` (list of pairs). Accent posit
 
 ### Component Hierarchy
 
-`+layout.svelte` renders header (tabs Lexique/Phrases, accent toggle, dark mode toggle), `GrammarSidebar` (fixed right panel), and page content. Page components compose detail components based on `meta.pos`:
+`+layout.svelte` renders header (tabs Lexique/Phrases, A+/A- font size buttons, accent toggle, dark mode toggle), `GrammarSidebar` (fixed right panel with slide-in transition), and page content. Page components compose detail components based on `meta.pos`:
 
 - `noun` → `NounDetails` (cas × sg/pl)
 - `adj` → `AdjectiveDetails` (cas × m/f/n/pl)
@@ -84,13 +84,13 @@ The sidebar uses `morphoRegistry.js` for syntactic grouping (not morphological).
 - `gramFunc.js` — `generateVerbForms` — verb conjugation HTML with pronouns
 - `tableGeneration.js` — `generateTableNoun`, `generateTablePron`, `generateTableAdj`, `generateTableVerb`
 - `i18n.js` — French labels (V2 keys: noun, past, sg, 1/2/3)
-- `colors.js` — grammatical case → RGB color mapping (V2 key: `nom`)
+- `colors.js` — grammatical case → RGB color mapping (V2 key: `nom`), `classesToColorsDark` for dark theme
 - `ukrainianSort.js` — Ukrainian alphabet ordering and letter grouping
 - `phrases.js` — phrase filtering logic
 
 ### Stores (Svelte 5 runes)
 
-- `uiStore.svelte.js` — `selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement`
+- `uiStore.svelte.js` — `selectedWord`, `selectedCategory`, `accentEnabled`, `grammarTableData`, `pinnedElement`, `contentScale`, `resetCounter`, `resetHome()`
 - `dataStore.svelte.js` — `wordData`, `phraseData`
 
 Access pattern: `uiStore.selectedWord` (read) / `uiStore.selectedWord = value` (write).
@@ -103,12 +103,12 @@ Components use runes (`$state`, `$derived`, `$effect`, `$props`). In `$effect` b
 
 Tailwind CSS v4 + daisyUI (themes `ukrvocab` light + `ukrvocab-dark` dark in `app.css`). Dark mode toggled via `data-theme` attribute on `<html>`. Font: Playfair Display for Ukrainian text, Source Sans 3 for labels.
 
-Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`, `.grammar-sidebar table`, `.hover-bubble`, `.gram-table`.
+Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`, `.grammar-sidebar table`, `.hover-bubble`, `.gram-table`, `.scrollbar-thin`, `.empty-state`, `[data-theme="ukrvocab-dark"]` overrides.
 
 ### Tests
 
 - **JS**: Vitest with jsdom. 160 tests in `tests/utils/` and `tests/components/`.
-- **Python**: unittest. 87 tests in `outil_python/test_*.py`.
+- **Python**: unittest. 99 tests in `outil_python/test_*.py`.
 
 ### CI
 
