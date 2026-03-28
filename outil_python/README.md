@@ -46,6 +46,16 @@ python3 outil_python/build_entries_from_phrases.py --limit 5          # Debug (5
 python3 outil_python/build_entries_from_phrases.py --data path.json   # Chemin data.json custom
 ```
 
+### `merge_entries.py` — Insertion dans data.json
+
+Insère les entrées de `out.json` dans `data.json` en respectant l'ordre alphabétique ukrainien au sein de chaque catégorie POS.
+
+```bash
+python3 outil_python/merge_entries.py              # insertion effective
+python3 outil_python/merge_entries.py --dry-run     # prévisualisation sans écriture
+python3 outil_python/merge_entries.py --input x.json # fichier d'entrée custom
+```
+
 ### `verify_phrases.py` — Vérification cohérence data-info
 
 Cross-référence des balises `data-info` dans `phrases.json` avec les paradigmes de `data.json`. Détecte les incohérences paradigmatiques et contextuelles (régime des prépositions).

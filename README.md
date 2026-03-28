@@ -45,6 +45,7 @@ npm install
 | `npm run format`                                  | Formatage Prettier                |
 | `cd outil_python && python3 -m unittest discover` | 112 tests Python                  |
 | `python3 outil_python/build_entries_from_phrases.py` | Génération d'entrées depuis goroh (batch) |
+| `python3 outil_python/merge_entries.py`              | Insertion de out.json dans data.json (tri ukrainien) |
 | `python3 outil_python/verify_phrases.py`           | Vérification cohérence data-info / paradigmes |
 | `python3 outil_python/validate_v2.py`             | Validateur de schéma V2           |
 

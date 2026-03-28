@@ -72,12 +72,16 @@ phrases_a_traiter.json   →   build_entries_from_phrases.py   →   out.json + 
 ```
 
 1. Mettre les phrases annotées dans `outil_python/phrases_a_traiter.json`
-2. Lancer le script :
+2. Générer les entrées :
    ```bash
    python3 outil_python/build_entries_from_phrases.py
    ```
-3. Examiner `outil_python/out.json` et `outil_python/entries_report.html`
-4. Intégrer les entrées validées dans `static/data.json`
+3. Examiner `outil_python/out.json` et `outil_python/entries_report.html` (relecture humaine)
+4. Insérer dans data.json (tri alphabétique ukrainien automatique) :
+   ```bash
+   python3 outil_python/merge_entries.py --dry-run   # prévisualisation
+   python3 outil_python/merge_entries.py              # insertion effective
+   ```
 5. Lancer les vérifications (même que protocole 1)
 
 ### Marquage
@@ -124,6 +128,7 @@ Exemple : `бути;pos=verb;verbForm=fin;tense=past;gender=m;number=pl`
 | `validate_v2.py` | Validation structurelle du schéma V2 |
 | `test_verify_phrases.py` | Test automatisé (échoue si corrections auto détectées) |
 | `test_build_entries.py` | Tests des fonctions de build_entries |
+| `merge_entries.py` | Insertion ordonnée de out.json dans data.json (tri ukrainien) |
 
 ---
 
