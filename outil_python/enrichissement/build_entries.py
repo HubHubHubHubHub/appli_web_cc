@@ -331,7 +331,7 @@ def build_entry_from_table(
 # --------------------------
 
 MIN_CSS = """
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Noto Sans',sans-serif;margin:0;padding:24px;background:#fafafa;color:#222;}
+body{font-family:'Source Sans 3',system-ui,-apple-system,sans-serif;margin:0;padding:24px;background:#fafafa;color:#222;}
 .container{max-width:1100px;margin:0 auto;}
 h1{font-size:22px;margin:0 0 16px;}
 .summary{background:#fff;padding:12px 16px;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:24px;}
@@ -405,6 +405,7 @@ def render_report_html(cards_html: str, counts: Dict[str, int], errors: List[str
   <meta charset="utf-8">
   <title>Entrées à créer — Rapport</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
   <style>{MIN_CSS}</style>
 </head>
 <body>
