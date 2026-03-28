@@ -43,6 +43,7 @@ from ukr_morph_parser import (
     parse_verb_imperfective_table,
     parse_verb_perfective_table,
     parse_ukrainian_word_accent_policy,
+    count_vowels,
 )
 from nooj_lookup import (
     load_nooj_dict,
@@ -109,19 +110,47 @@ def is_target_pos(pos: str) -> bool:
 
 def pick_article_block_for_pos(articles: Iterable[Dict[str, Any]], pos: str) -> Optional[Dict[str, Any]]:
     want_tag = UKR_POS_TAG.get(pos)
-    if not want_tag:
+    candidates = list(articles)
+    if not candidates:
         return None
+
+    # 1. Chercher un block avec le tag exact
     chosen = None
-    for block in articles:
-        tags = block.get("tags", [])
-        if any(t == want_tag for t in tags):
-            chosen = block
-            break
-    if chosen is None:
-        for block in articles:
+    if want_tag:
+        for block in candidates:
+            tags = block.get("tags", [])
+            if any(t == want_tag for t in tags):
+                chosen = block
+                break
+
+    # 2. Si pas trouvé ou si le block n'a pas de table, prendre le premier avec table
+    if chosen is None or not chosen.get("table"):
+        for block in candidates:
             if block.get("table"):
                 chosen = block
                 break
+
+    # 3. Si le block choisi a des accents douteux (-1/-2 sur polysyllabe),
+    #    essayer les autres blocks avec table (ex: числівник vs прикметник)
+    if chosen and chosen.get("table"):
+        from bs4 import BeautifulSoup as _BS
+        test_soup = _BS(chosen["table"], "html.parser")
+        first_word = test_soup.find("span", class_="word")
+        if first_word:
+            pairs = parse_ukrainian_word_accent_policy(first_word.get_text())
+            if pairs and pairs[0][1] <= 0 and count_vowels(pairs[0][0]) > 1:
+                # Accent douteux — chercher un meilleur block
+                for block in candidates:
+                    if block is chosen or not block.get("table"):
+                        continue
+                    alt_soup = _BS(block["table"], "html.parser")
+                    alt_word = alt_soup.find("span", class_="word")
+                    if alt_word:
+                        alt_pairs = parse_ukrainian_word_accent_policy(alt_word.get_text())
+                        if alt_pairs and alt_pairs[0][1] > 0:
+                            chosen = block
+                            break
+
     return chosen
 
 def detect_aspect_from_tags(tags: Iterable[str]) -> Optional[str]:

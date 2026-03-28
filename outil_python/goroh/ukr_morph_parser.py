@@ -123,7 +123,8 @@ def parse_ukrainian_word_accent_policy(raw_word: str):  # -> List[Tuple[str, int
     clean = unicodedata.normalize("NFC", nfd.replace(COMBINING_ACUTE, ""))
 
     if not idxs:
-        return [(clean, -1)]
+        # -1 = monosyllabe, -2 = accent inconnu (polysyllabe sans accent marqué)
+        return [(clean, -1 if count_vowels(clean) <= 1 else -2)]
 
     # positions 1-based en comptant les lettres (cat != 'Mn')
     pairs: List[Tuple[str, int]] = []

@@ -123,9 +123,15 @@ class TestUkrMorphParser(unittest.TestCase):
         pairs = parse_ukrainian_word_accent_policy("бі́льший")
         self.assertEqual(pairs, [("більший", 2)])
 
-    def test_accent_policy_none(self):
+    def test_accent_policy_none_polysyllable(self):
+        # Polysyllabe sans accent → -2 (inconnu), pas -1 (monosyllabe)
         pairs = parse_ukrainian_word_accent_policy("більший")
-        self.assertEqual(pairs, [("більший", -1)])
+        self.assertEqual(pairs, [("більший", -2)])
+
+    def test_accent_policy_none_monosyllable(self):
+        # Monosyllabe sans accent → -1
+        pairs = parse_ukrainian_word_accent_policy("він")
+        self.assertEqual(pairs, [("він", -1)])
 
     def test_accent_policy_multiple(self):
         pairs = parse_ukrainian_word_accent_policy("ви́сі́ти")
