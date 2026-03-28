@@ -69,10 +69,6 @@ python3 outil_python/verify_phrases.py --fix      # Appliquer les corrections au
 
 Vérifie la structure de `data.json` et `phrases.json` (clés V2, meta, nooj, data-info).
 
-### `extract.py` — Utilitaire
-
-Extrait les phrases de data.json vers phrases.json.
-
 ## Tests
 
 ```bash
