@@ -445,7 +445,7 @@ Objet tracant la source NooJ de chaque entree.
 ```typescript
 nooj?: {
   line: string | null;      // ligne brute du .dic NooJ (ex. "стіл,NOUN+Masculine+Common+Inanimate+FLX=СТІЛ")
-  status: "reviewed" | "pending" | null;
+  status: "pending" | "validated" | "divergent" | null;
   flx: string | null;       // paradigme flexionnel (ex. "СИН", "ВЕЛИКИЙ", "Я")
   drv?: string[];            // derivations (tableau — 362 verbes NooJ ont plusieurs DRV)
   pair?: string;             // paire aspectuelle (ex. "поставити")
@@ -461,11 +461,14 @@ nooj?: {
 
 ### Workflow `status`
 
-| Valeur       | Signification                                 |
-| ------------ | --------------------------------------------- |
-| `"reviewed"` | Entree verifiee par un humain                 |
-| `"pending"`  | Entree importee automatiquement, non verifiee |
-| `null`       | Pas de correspondance NooJ                    |
+| Valeur        | Signification                                                        |
+| ------------- | -------------------------------------------------------------------- |
+| `null`        | Non traité (entrée générée, pas encore comparée à NooJ)              |
+| `"pending"`   | Ligne NooJ identifiée, relecture en cours                            |
+| `"validated"` | Paradigme vérifié conforme au dictionnaire NooJ                      |
+| `"divergent"` | Paradigme volontairement différent de NooJ (correction, choix éditorial) |
+
+> **Impact sur `build_entries.py`** : toute valeur non-null de `status` (ou de `line`/`flx`) fait que l'entrée est considérée « relue » et ignorée lors de la régénération batch. Voir `has_reviewed_nooj()` dans `outil_python/enrichissement/build_entries.py`.
 
 ### Exemples
 
@@ -695,7 +698,7 @@ interface MorphoTag {
   // Tracabilite NooJ
   nooj?: {
     line: string | null; // ligne brute du .dic NooJ
-    status: "reviewed" | "pending" | null;
+    status: "pending" | "validated" | "divergent" | null;
     flx: string | null;
     drv?: string[]; // tableau — certains verbes ont plusieurs DRV
     pair?: string; // paire NooJ (peut differer de meta.couple)

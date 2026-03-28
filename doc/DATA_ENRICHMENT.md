@@ -135,12 +135,40 @@ Exemple : `бути;pos=verb;verbForm=fin;tense=past;gender=m;number=pl`
 
 ## Champ `nooj` — signification
 
-Le champ `nooj` dans chaque entrée sert de marqueur de relecture humaine :
+Le champ `nooj` dans chaque entrée assure la traçabilité vers le dictionnaire NooJ et sert de marqueur de relecture :
+
+```json
+"nooj": {
+  "line": "машина,NOUN+Feminine+Inanimate+FLX=ГРУПА_МАМА",
+  "status": "pending",
+  "flx": "ГРУПА_МАМА"
+}
+```
+
+### Valeurs de `status`
 
 | Valeur | Signification |
 |---|---|
-| `{"line": null, "status": null, "flx": null}` | Entrée non relue (éligible à régénération) |
-| `{"line": "NOUN+FLX=X", "status": "pending", ...}` | Entrée en cours de relecture |
-| `{"line": "...", "status": "ok", "flx": "..."}` | Entrée validée (ignorée par build_entries) |
-| `""` (string vide, legacy) | Non relue |
-| `"contenu"` (string non-vide, legacy) | Relue |
+| `null` | Non traité (entrée générée, pas encore comparée à NooJ) |
+| `"pending"` | Ligne NooJ identifiée, relecture en cours |
+| `"validated"` | Paradigme vérifié conforme au dictionnaire NooJ |
+| `"divergent"` | Paradigme volontairement différent de NooJ (correction, choix éditorial) |
+
+### Impact sur `build_entries.py`
+
+Toute valeur non-null de `status`, `line` ou `flx` fait que l'entrée est considérée « relue » et **ignorée** lors de la régénération batch (fonction `has_reviewed_nooj()`).
+
+| Contenu nooj | Éligible à régénération ? |
+|---|---|
+| `{"line": null, "status": null, "flx": null}` | Oui |
+| `{"line": "...", "status": "pending", ...}` | Non (ignorée) |
+| `{"line": "...", "status": "validated", ...}` | Non (ignorée) |
+| `""` (string vide, legacy) | Oui |
+| `"contenu"` (string non-vide, legacy) | Non (ignorée) |
+
+### Référence NooJ
+
+Les dictionnaires source sont dans `perso/Nooj/` (voir `perso/Nooj/README.md`) :
+- `Ukr_dictionnary_V.1.3.txt` — dictionnaire complet (157 595 entrées, tous POS)
+- `ukr_verbes_flexions.dic` — formes conjuguées des verbes (378 738 formes)
+- `ukr_verbes_paires_aspectuelles.txt` — paires aspectuelles (6 193 verbes)
