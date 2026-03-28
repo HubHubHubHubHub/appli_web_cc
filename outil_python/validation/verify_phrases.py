@@ -419,9 +419,9 @@ def apply_fixes(phrases_path, issues):
 
 
 def _get_paths():
-    """Resolve paths relative to this script's location (outil_python/)."""
+    """Resolve paths relative to this script's location (outil_python/validation/)."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(script_dir)
+    project_root = os.path.dirname(os.path.dirname(script_dir))
     return (
         os.path.join(project_root, "static", "phrases.json"),
         os.path.join(project_root, "static", "data.json"),

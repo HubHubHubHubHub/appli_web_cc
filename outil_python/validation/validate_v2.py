@@ -7,12 +7,14 @@ Usage:
     python3 validate_v2.py [--data PATH] [--phrases PATH] [--report PATH] [--strict] [--quiet]
 """
 import json
+import os
 import re
 import sys
 import argparse
 from typing import List, Tuple
 
-# Import existing validators
+# Import goroh validators
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "goroh"))
 from ukr_morph_parser import validate_accent, validate_entry_accents
 
 # ---------------------------------------------------------------------------

@@ -32,6 +32,9 @@ from typing import Dict, Any, Optional, Tuple, Iterable, List
 
 from bs4 import BeautifulSoup
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "goroh"))
+
 from ukr_morph_parser import (
     fetch_html,
     extract_article_blocks,
@@ -440,15 +443,15 @@ def main():
     except NameError:
         script_dir = os.getcwd()
 
-    phrases_path = os.path.join(script_dir, "phrases_a_traiter.json")
+    phrases_path = os.path.join(script_dir, "input", "phrases_a_traiter.json")
 
     ap = argparse.ArgumentParser(description="Rapport HTML ordonné + out.json {lemma: entry} (ordonné).")
-    ap.add_argument("--data", default=os.path.join(script_dir, "..", "static", "data.json"),
-                    help="Chemin du data.json (lecture seule). Défaut: ../static/data.json")
-    ap.add_argument("--out", default=os.path.join(script_dir, "entries_report.html"),
-                    help="Chemin du HTML de sortie. Défaut: entries_report.html")
-    ap.add_argument("--json-out", default=os.path.join(script_dir, "out.json"),
-                    help="Chemin du JSON des entrées générées (ordonné). Défaut: out.json")
+    ap.add_argument("--data", default=os.path.join(script_dir, "..", "..", "static", "data.json"),
+                    help="Chemin du data.json (lecture seule). Défaut: ../../static/data.json")
+    ap.add_argument("--out", default=os.path.join(script_dir, "output", "entries_report.html"),
+                    help="Chemin du HTML de sortie. Défaut: output/entries_report.html")
+    ap.add_argument("--json-out", default=os.path.join(script_dir, "output", "out.json"),
+                    help="Chemin du JSON des entrées générées. Défaut: output/out.json")
     ap.add_argument("--limit", type=int, default=None,
                     help="Limiter le nombre de lemmes *uniques* traités (debug).")
     args = ap.parse_args()

@@ -57,11 +57,11 @@ def infer_pos(key, entry):
 
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(script_dir)
+    project_root = os.path.dirname(os.path.dirname(script_dir))
 
     ap = argparse.ArgumentParser(description="Insère les entrées de out.json dans data.json (ordre alphabétique ukrainien).")
-    ap.add_argument("--input", default=os.path.join(script_dir, "out.json"),
-                    help="Fichier d'entrées à fusionner (défaut: outil_python/out.json)")
+    ap.add_argument("--input", default=os.path.join(script_dir, "output", "out.json"),
+                    help="Fichier d'entrées à fusionner (défaut: output/out.json)")
     ap.add_argument("--data", default=os.path.join(project_root, "static", "data.json"),
                     help="Fichier data.json cible (défaut: static/data.json)")
     ap.add_argument("--dry-run", action="store_true",

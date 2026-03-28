@@ -11,7 +11,7 @@ class TestVerifyPhrases(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(script_dir)
+        project_root = os.path.dirname(os.path.dirname(script_dir))
         cls.phrases_path = os.path.join(project_root, "static", "phrases.json")
         cls.data_path = os.path.join(project_root, "static", "data.json")
         cls.issues, cls.stats = verify(cls.phrases_path, cls.data_path)

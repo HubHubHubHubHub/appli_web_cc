@@ -29,4 +29,4 @@ jobs:
           python-version: "3.12"
       - run: pip install beautifulsoup4
       - name: Validate V2 schema
-        run: cd outil_python && python3 validate_v2.py --data ../static/data.json --phrases ../static/phrases.json
+        run: python3 outil_python/validation/validate_v2.py --data static/data.json --phrases static/phrases.json

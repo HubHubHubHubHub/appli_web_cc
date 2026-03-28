@@ -41,19 +41,21 @@ Quand Claude Code ajoute ou modifie directement des entrées dans `data.json`.
 node -e "const d=JSON.parse(require('fs').readFileSync('static/data.json','utf8')); console.log(d['noun']['LEMME']?.cas?.nom?.sg);"
 
 # 2. Cohérence data-info ↔ paradigmes
-python3 outil_python/verify_phrases.py
+python3 outil_python/validation/verify_phrases.py
 
 # 3. Schéma V2
-python3 outil_python/validate_v2.py
+python3 outil_python/validation/validate_v2.py
 
-# 4. Tous les tests
+# 4. Tests
 npm run test
-cd outil_python && python3 -m unittest discover
+cd outil_python/goroh && python3 -m unittest discover
+cd outil_python/enrichissement && python3 -m unittest discover
+cd outil_python/validation && python3 -m unittest discover
 ```
 
 ---
 
-## Protocole 2 : Batch via `build_entries_from_phrases.py`
+## Protocole 2 : Batch via `outil_python/enrichissement/`
 
 Pour ajouter plusieurs mots d'un coup depuis des phrases annotées, avec **relecture humaine garantie**.
 
@@ -71,16 +73,16 @@ phrases_a_traiter.json   →   build_entries_from_phrases.py   →   out.json + 
                                                               intégration dans data.json
 ```
 
-1. Mettre les phrases annotées dans `outil_python/phrases_a_traiter.json`
+1. Mettre les phrases annotées dans `outil_python/enrichissement/input/phrases_a_traiter.json`
 2. Générer les entrées :
    ```bash
-   python3 outil_python/build_entries_from_phrases.py
+   python3 outil_python/enrichissement/build_entries.py
    ```
-3. Examiner `outil_python/out.json` et `outil_python/entries_report.html` (relecture humaine)
+3. Examiner `outil_python/enrichissement/output/out.json` et `output/entries_report.html` (relecture humaine)
 4. Insérer dans data.json (tri alphabétique ukrainien automatique) :
    ```bash
-   python3 outil_python/merge_entries.py --dry-run   # prévisualisation
-   python3 outil_python/merge_entries.py              # insertion effective
+   python3 outil_python/enrichissement/merge_entries.py --dry-run   # prévisualisation
+   python3 outil_python/enrichissement/merge_entries.py              # insertion effective
    ```
 5. Lancer les vérifications (même que protocole 1)
 
@@ -124,11 +126,10 @@ Exemple : `бути;pos=verb;verbForm=fin;tense=past;gender=m;number=pl`
 
 | Script | Rôle |
 |---|---|
-| `verify_phrases.py` | Cross-référence data-info ↔ paradigmes (0 auto-correction attendu) |
-| `validate_v2.py` | Validation structurelle du schéma V2 |
-| `test_verify_phrases.py` | Test automatisé (échoue si corrections auto détectées) |
-| `test_build_entries.py` | Tests des fonctions de build_entries |
-| `merge_entries.py` | Insertion ordonnée de out.json dans data.json (tri ukrainien) |
+| `validation/verify_phrases.py` | Cross-référence data-info ↔ paradigmes (0 auto-correction attendu) |
+| `validation/validate_v2.py` | Validation structurelle du schéma V2 |
+| `enrichissement/build_entries.py` | Génération d'entrées depuis goroh (batch) |
+| `enrichissement/merge_entries.py` | Insertion ordonnée de out.json dans data.json (tri ukrainien) |
 
 ---
 

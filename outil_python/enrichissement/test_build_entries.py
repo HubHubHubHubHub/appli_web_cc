@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Tests pour les fonctions utilitaires de build_entries_from_phrases.py (V2)"""
+"""Tests pour les fonctions utilitaires de build_entries.py (V2)"""
 import unittest
 import sys
 import os
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from build_entries_from_phrases import (
+from build_entries import (
     parse_data_info,
     is_target_pos,
     detect_aspect_from_tags,

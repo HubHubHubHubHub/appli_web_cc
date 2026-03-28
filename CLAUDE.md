@@ -16,7 +16,9 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format
 - `npm run format:check` — Prettier check (used in CI)
-- `cd outil_python && python3 -m unittest discover` — run all Python tests (71 tests)
+- `cd outil_python/goroh && python3 -m unittest discover` — goroh parser tests (22)
+- `cd outil_python/enrichissement && python3 -m unittest discover` — enrichissement tests (35)
+- `cd outil_python/validation && python3 -m unittest discover` — validation tests (14)
 
 ## Architecture
 
@@ -24,7 +26,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 
 `outil_python/` scripts ADD entries to `static/data.json` and `static/phrases.json` — they don't regenerate these files. Both can be edited directly. These JSON files are the app's entire dataset — there is no backend or API.
 
-`build_entries_from_phrases.py` reads `phrases_a_traiter.json`, scrapes goroh.pp.ua for each new lemma, and produces `out.json` (V2 entries for human review) + an HTML report. Entries with a validated `nooj` field in `data.json` are skipped. When regenerating an existing entry, non-paradigm data (phrases, meta, traduction) is preserved.
+`enrichissement/build_entries.py` reads `enrichissement/input/phrases_a_traiter.json`, scrapes goroh.pp.ua for each new lemma, and produces `enrichissement/output/out.json` (V2 entries for human review) + an HTML report. `enrichissement/merge_entries.py` inserts validated entries into `data.json` with Ukrainian alphabetical ordering. Entries with a validated `nooj` field are skipped. When regenerating, non-paradigm data (phrases, meta, traduction) is preserved.
 
 ### Data Format (V2)
 
@@ -89,7 +91,11 @@ The sidebar uses `morphoRegistry.js` for syntactic grouping (not morphological).
 - `colors.js` — grammatical case → RGB color mapping (V2 key: `nom`), `classesToColorsDark` for dark theme
 - `ukrainianSort.js` — Ukrainian alphabet ordering and letter grouping
 - `phrases.js` — phrase filtering logic
-- `verify_phrases.py` — cross-reference verification of data-info tags in phrases.json against paradigms in data.json
+- `validation/verify_phrases.py` — cross-reference verification of data-info tags in phrases.json against paradigms in data.json
+- `validation/validate_v2.py` — V2 schema validator for data.json and phrases.json
+- `goroh/ukr_morph_parser.py` — goroh.pp.ua scraping library (parsers, accent extraction)
+- `enrichissement/build_entries.py` — batch entry generation from annotated phrases via goroh
+- `enrichissement/merge_entries.py` — insert out.json entries into data.json (Ukrainian sort)
 
 ### Stores (Svelte 5 runes)
 
@@ -111,7 +117,7 @@ Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`,
 ### Tests
 
 - **JS**: Vitest with jsdom. 160 tests in `tests/utils/` and `tests/components/`.
-- **Python**: unittest. 71 tests in `outil_python/test_*.py`.
+- **Python**: unittest. 71 tests in `outil_python/*/test_*.py` (goroh: 22, enrichissement: 35, validation: 14).
 
 ### CI
 
