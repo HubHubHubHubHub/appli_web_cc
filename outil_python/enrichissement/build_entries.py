@@ -348,6 +348,8 @@ h1{font-size:22px;margin:0 0 16px;}
 .footer-note{margin-top:20px;font-size:12px;color:#666;}
 .err{color:#b91c1c;}
 .merged{color:#2563eb;font-size:12px;margin-top:4px;}
+@page{margin:20mm;}
+@media print{body{background:#fff;}}
 """
 
 def html_escape(s: str) -> str:
@@ -728,7 +730,8 @@ def main():
         try:
             html_url = f"file://{os.path.abspath(html_path)}"
             subprocess.run(
-                [chrome_bin, "--headless", "--disable-gpu", "--no-margins",
+                [chrome_bin, "--headless", "--disable-gpu",
+                 "--no-pdf-header-footer",
                  f"--print-to-pdf={pdf_path}", html_url],
                 check=True, capture_output=True,
             )
