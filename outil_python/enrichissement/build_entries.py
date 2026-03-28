@@ -506,21 +506,44 @@ def process_phrases_ordered(
     return entries_in_order, cards_in_order, errors
 
 
+def _next_batch_suffix(output_dir: str, date_str: str) -> str:
+    """Détermine la prochaine lettre de paquet pour une date donnée.
+
+    Scanne output_dir pour les fichiers existants au format {date_str}_X_*.
+    Retourne la prochaine lettre disponible (a, b, c, ...).
+    """
+    import glob
+    existing = glob.glob(os.path.join(output_dir, f"{date_str}_*_out.json"))
+    used = set()
+    for path in existing:
+        base = os.path.basename(path)
+        parts = base.split("_")
+        if len(parts) >= 2:
+            used.add(parts[1])
+    letter = "a"
+    while letter in used:
+        letter = chr(ord(letter) + 1)
+    return letter
+
+
 def main():
+    from datetime import date
+    import shutil
+    import subprocess
+
     try:
         script_dir = os.path.abspath(os.path.dirname(__file__))
     except NameError:
         script_dir = os.getcwd()
 
+    output_dir = os.path.join(script_dir, "output")
+    os.makedirs(output_dir, exist_ok=True)
+
     phrases_path = os.path.join(script_dir, "input", "phrases_a_traiter.json")
 
-    ap = argparse.ArgumentParser(description="Rapport HTML ordonné + out.json {lemma: entry} (ordonné).")
+    ap = argparse.ArgumentParser(description="Rapport HTML/DOCX + out.json numérotés par paquet (date + lettre).")
     ap.add_argument("--data", default=os.path.join(script_dir, "..", "..", "static", "data.json"),
                     help="Chemin du data.json (lecture seule). Défaut: ../../static/data.json")
-    ap.add_argument("--out", default=os.path.join(script_dir, "output", "entries_report.html"),
-                    help="Chemin du HTML de sortie. Défaut: output/entries_report.html")
-    ap.add_argument("--json-out", default=os.path.join(script_dir, "output", "out.json"),
-                    help="Chemin du JSON des entrées générées. Défaut: output/out.json")
     ap.add_argument("--limit", type=int, default=None,
                     help="Limiter le nombre de lemmes *uniques* traités (debug).")
     args = ap.parse_args()
@@ -530,13 +553,24 @@ def main():
         print(f"Le fichier attendu {phrases_path} doit contenir un dict {{phrase: meta}}.", file=sys.stderr)
         sys.exit(1)
 
+    # Calculer le nom du paquet : YY/MM/JJ_lettre
+    date_str = date.today().strftime("%y%m%d")
+    batch_letter = _next_batch_suffix(output_dir, date_str)
+    batch_prefix = f"{date_str}_{batch_letter}"
+
+    json_path = os.path.join(output_dir, f"{batch_prefix}_out.json")
+    html_path = os.path.join(output_dir, f"{batch_prefix}_rapport.html")
+    docx_path = os.path.join(output_dir, f"{batch_prefix}_rapport.docx")
+
+    print(f"📦 Paquet : {batch_prefix}")
+
     entries_ordered, cards_ordered, errors = process_phrases_ordered(
         phrases_dict=phrases_dict,
         data_path=args.data,
         limit=args.limit,
     )
 
-    # 1) Construire le dict {lemma: entry} en préservant l'ordre d'apparition
+    # 1) Construire le dict {lemma: entry}
     out_dict: Dict[str, Any] = {}
     for item in entries_ordered:
         lemma = item["lemma"]
@@ -556,10 +590,10 @@ def main():
 
     # 2) Écrire out.json
     try:
-        save_json(args.json_out, out_dict)
-        print(f"✅ JSON ordonné écrit dans {args.json_out}")
+        save_json(json_path, out_dict)
+        print(f"✅ {json_path}")
     except Exception as e:
-        print(f"❌ Échec d'écriture de {args.json_out} : {e}", file=sys.stderr)
+        print(f"❌ Échec d'écriture JSON : {e}", file=sys.stderr)
         sys.exit(2)
 
     # 3) Écrire le HTML
@@ -569,30 +603,33 @@ def main():
 
     html = render_report_html("".join(cards_ordered), counts, errors)
     try:
-        with open(args.out, "w", encoding="utf-8") as f:
+        with open(html_path, "w", encoding="utf-8") as f:
             f.write(html)
-        print(f"✅ Rapport HTML écrit dans {args.out}")
+        print(f"✅ {html_path}")
     except Exception as e:
-        print(f"❌ Échec d'écriture de {args.out} : {e}", file=sys.stderr)
+        print(f"❌ Échec d'écriture HTML : {e}", file=sys.stderr)
         sys.exit(3)
 
     # 4) Convertir en DOCX via pandoc
-    import shutil
-    docx_path = args.out.rsplit(".", 1)[0] + ".docx"
     if shutil.which("pandoc"):
         try:
-            import subprocess
-            subprocess.run(["pandoc", args.out, "-o", docx_path], check=True, capture_output=True)
-            print(f"✅ Rapport DOCX écrit dans {docx_path}")
+            subprocess.run(["pandoc", html_path, "-o", docx_path], check=True, capture_output=True)
+            print(f"✅ {docx_path}")
         except Exception as e:
             print(f"⚠ Conversion DOCX échouée : {e}", file=sys.stderr)
     else:
         print("⚠ pandoc non installé — rapport DOCX non généré")
 
-    # 5) Résumé des fusions
+    # 5) Résumé
     merged_count = sum(1 for item in entries_ordered if item.get("merged"))
+    review_count = sum(1 for item in entries_ordered if item.get("review_only"))
+    print(f"\n  Entrées totales : {len(out_dict)}")
     if merged_count:
-        print(f"⟳ {merged_count} entrée(s) fusionnée(s) avec des données existantes")
+        print(f"  ⟳ {merged_count} fusionnée(s) avec des données existantes")
+    if review_count:
+        print(f"  👁 {review_count} présentée(s) pour relecture (sans re-scraping)")
+    print(f"\n  → Après validation humaine :")
+    print(f"    python3 outil_python/enrichissement/merge_entries.py --input {json_path}")
 
 
 if __name__ == "__main__":
