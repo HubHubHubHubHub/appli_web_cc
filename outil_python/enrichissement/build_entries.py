@@ -717,24 +717,43 @@ def main():
         print(f"❌ Échec d'écriture HTML : {e}", file=sys.stderr)
         sys.exit(3)
 
-    # 4) Convertir en DOCX — textutil (macOS, respecte le CSS) ou pandoc (fallback)
+    # 4) Convertir en DOCX — textutil (macOS) avec CSS inliné, ou pandoc (fallback)
+    docx_ok = False
     if sys.platform == "darwin" and shutil.which("textutil"):
         try:
+            # Inliner le CSS pour que textutil le respecte
+            from premailer import transform as inline_css
+            import logging
+            logging.getLogger("premailer").setLevel(logging.CRITICAL)
+            logging.getLogger("cssutils").setLevel(logging.CRITICAL)
+            try:
+                import cssutils
+                cssutils.log.setLevel(logging.CRITICAL)
+            except ImportError:
+                pass
+            inlined_html = inline_css(html, disable_validation=True)
+            inlined_path = html_path + ".inlined.html"
+            with open(inlined_path, "w", encoding="utf-8") as f:
+                f.write(inlined_html)
             subprocess.run(
-                ["textutil", "-convert", "docx", "-output", docx_path, html_path],
+                ["textutil", "-convert", "docx", "-output", docx_path, inlined_path],
                 check=True, capture_output=True,
             )
+            os.remove(inlined_path)
             print(f"✅ {docx_path}")
+            docx_ok = True
+        except ImportError:
+            print("⚠ premailer non installé (pip install premailer) — essai pandoc", file=sys.stderr)
         except Exception as e:
             print(f"⚠ Conversion DOCX échouée (textutil) : {e}", file=sys.stderr)
-    elif shutil.which("pandoc"):
+    if not docx_ok and shutil.which("pandoc"):
         try:
             subprocess.run(["pandoc", html_path, "-o", docx_path], check=True, capture_output=True)
             print(f"✅ {docx_path} (pandoc — style basique)")
         except Exception as e:
             print(f"⚠ Conversion DOCX échouée (pandoc) : {e}", file=sys.stderr)
-    else:
-        print("⚠ Ni textutil ni pandoc disponible — rapport DOCX non généré")
+    elif not docx_ok:
+        print("⚠ Aucun outil de conversion DOCX disponible")
 
     # 5) Résumé
     merged_count = sum(1 for item in entries_ordered if item.get("merged"))
