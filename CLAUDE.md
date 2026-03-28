@@ -16,7 +16,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format
 - `npm run format:check` — Prettier check (used in CI)
-- `cd outil_python && python3 -m unittest discover` — run all Python tests (112 tests)
+- `cd outil_python && python3 -m unittest discover` — run all Python tests (71 tests)
 
 ## Architecture
 
@@ -111,7 +111,7 @@ Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`,
 ### Tests
 
 - **JS**: Vitest with jsdom. 160 tests in `tests/utils/` and `tests/components/`.
-- **Python**: unittest. 112 tests in `outil_python/test_*.py`.
+- **Python**: unittest. 71 tests in `outil_python/test_*.py`.
 
 ### CI
 
@@ -121,7 +121,7 @@ GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to main: li
 
 - `doc/MORPHO_SCHEMA_V2.md` — full V2 schema specification (13 sections)
 - `doc/MORPHO_SCHEMA.md` — V1 schema (legacy reference)
-- `doc/MIGRATION_V1_V2.md` — migration journal (bugs, decisions, file changes)
+- `doc/MIGRATION_V1_V2.md` — migration journal V1→V2 (référence historique)
 - `doc/RACCOURCIS_CLAVIER.md` — keyboard shortcuts
 - `doc/DATA_ENRICHMENT.md` — double protocol for data enrichment (direct IA vs batch goroh)
 - `doc/verification_report.md` — phrase verification report and history

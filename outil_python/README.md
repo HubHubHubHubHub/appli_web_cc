@@ -69,14 +69,6 @@ python3 outil_python/verify_phrases.py --fix      # Appliquer les corrections au
 
 Vérifie la structure de `data.json` et `phrases.json` (clés V2, meta, nooj, data-info).
 
-### `migrate_v1_to_v2.py` — Script de migration (historique)
-
-Migration complète data.json V1 → V2. **Idempotent**.
-
-### `webscrapp_goroh.py` — Legacy
-
-Script historique. À nettoyer.
-
 ### `extract.py` — Utilitaire
 
 Extrait les phrases de data.json vers phrases.json.
@@ -85,9 +77,8 @@ Extrait les phrases de data.json vers phrases.json.
 
 ```bash
 cd outil_python
-python3 -m unittest discover -v               # Tous les tests (112)
+python3 -m unittest discover -v               # Tous les tests (71)
 python3 -m unittest test_ukr_morph_parser -v   # Parseur goroh (22 tests)
-python3 -m unittest test_migrate_v1_to_v2 -v   # Migration (41 tests)
 python3 -m unittest test_build_entries -v       # Build entries (35 tests)
 python3 -m unittest test_verify_phrases -v      # Vérification phrases (2 tests)
 python3 -m unittest test_validate_v2 -v         # Validation V2 (12 tests)

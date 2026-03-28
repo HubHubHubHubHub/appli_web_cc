@@ -17,7 +17,7 @@ Application web d'apprentissage du vocabulaire ukrainien : déclinaisons, conjug
 
 - **SvelteKit 2** + **Svelte 5** (runes)
 - **Tailwind CSS v4** + **daisyUI** (thèmes `ukrvocab` / `ukrvocab-dark`)
-- **Vitest** (160 tests JS) + **unittest** Python (112 tests)
+- **Vitest** (160 tests JS) + **unittest** Python (71 tests)
 - Site statique (pas de backend)
 - Interface en français
 - Scripts Python pour le scraping goroh.pp.ua et la validation du schéma
@@ -43,7 +43,7 @@ npm install
 | `npm run test`                                    | Lancer les 160 tests JS           |
 | `npm run lint`                                    | Vérification ESLint               |
 | `npm run format`                                  | Formatage Prettier                |
-| `cd outil_python && python3 -m unittest discover` | 112 tests Python                  |
+| `cd outil_python && python3 -m unittest discover` | 71 tests Python                  |
 | `python3 outil_python/build_entries_from_phrases.py` | Génération d'entrées depuis goroh (batch) |
 | `python3 outil_python/merge_entries.py`              | Insertion de out.json dans data.json (tri ukrainien) |
 | `python3 outil_python/verify_phrases.py`           | Vérification cohérence data-info / paradigmes |
