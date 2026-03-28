@@ -349,7 +349,7 @@ h1{font-size:22px;margin:0 0 16px;}
 .err{color:#b91c1c;}
 .merged{color:#2563eb;font-size:12px;margin-top:4px;}
 @page{margin:20mm;}
-@media print{body{background:#fff;}}
+@media print{body{background:#fff;}button{display:none !important;}}
 """
 
 def html_escape(s: str) -> str:
@@ -410,7 +410,9 @@ def render_report_html(cards_html: str, counts: Dict[str, int], errors: List[str
 </head>
 <body>
   <div class="container">
-    <h1>Entrées "type data" à créer</h1>
+    <h1>Entrées "type data" à créer
+      <button onclick="window.print()" style="float:right;font-size:14px;padding:6px 16px;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer;">⎙ Imprimer / PDF</button>
+    </h1>
     <div class="summary">
       <div><strong>Total</strong>: {n_total} &nbsp;|&nbsp;
            <strong>adj</strong>: {counts.get('adj',0)} &nbsp;|&nbsp;
@@ -638,8 +640,6 @@ def _next_batch_suffix(output_dir: str, date_str: str) -> str:
 
 def main():
     from datetime import date
-    import shutil
-    import subprocess
 
     try:
         script_dir = os.path.abspath(os.path.dirname(__file__))
@@ -670,7 +670,6 @@ def main():
 
     json_path = os.path.join(output_dir, f"{batch_prefix}_out.json")
     html_path = os.path.join(output_dir, f"{batch_prefix}_rapport.html")
-    pdf_path = os.path.join(output_dir, f"{batch_prefix}_rapport.pdf")
 
     print(f"📦 Paquet : {batch_prefix}")
 
@@ -720,27 +719,8 @@ def main():
         print(f"❌ Échec d'écriture HTML : {e}", file=sys.stderr)
         sys.exit(3)
 
-    # 4) Convertir en PDF via Chrome headless (rendu identique au navigateur)
-    chrome_paths = [
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-        shutil.which("google-chrome") or "",
-        shutil.which("chromium") or "",
-    ]
-    chrome_bin = next((p for p in chrome_paths if p and os.path.exists(p)), None)
-    if chrome_bin:
-        try:
-            html_url = f"file://{os.path.abspath(html_path)}"
-            subprocess.run(
-                [chrome_bin, "--headless", "--disable-gpu",
-                 "--no-pdf-header-footer",
-                 f"--print-to-pdf={pdf_path}", html_url],
-                check=True, capture_output=True,
-            )
-            print(f"✅ {pdf_path}")
-        except Exception as e:
-            print(f"⚠ Conversion PDF échouée (Chrome) : {e}", file=sys.stderr)
-    else:
-        print("⚠ Chrome non trouvé — rapport PDF non généré")
+    # 4) Le PDF est généré par l'utilisateur via le bouton "Imprimer / PDF" dans le HTML
+    print(f"  💡 Pour le PDF : ouvrir {html_path} dans le navigateur → bouton ⎙")
 
     # 5) Résumé
     merged_count = sum(1 for item in entries_ordered if item.get("merged"))
