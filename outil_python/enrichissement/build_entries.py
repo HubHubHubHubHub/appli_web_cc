@@ -667,7 +667,7 @@ def main():
 
     json_path = os.path.join(output_dir, f"{batch_prefix}_out.json")
     html_path = os.path.join(output_dir, f"{batch_prefix}_rapport.html")
-    docx_path = os.path.join(output_dir, f"{batch_prefix}_rapport.docx")
+    pdf_path = os.path.join(output_dir, f"{batch_prefix}_rapport.pdf")
 
     print(f"📦 Paquet : {batch_prefix}")
 
@@ -717,43 +717,26 @@ def main():
         print(f"❌ Échec d'écriture HTML : {e}", file=sys.stderr)
         sys.exit(3)
 
-    # 4) Convertir en DOCX — textutil (macOS) avec CSS inliné, ou pandoc (fallback)
-    docx_ok = False
-    if sys.platform == "darwin" and shutil.which("textutil"):
+    # 4) Convertir en PDF via Chrome headless (rendu identique au navigateur)
+    chrome_paths = [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        shutil.which("google-chrome") or "",
+        shutil.which("chromium") or "",
+    ]
+    chrome_bin = next((p for p in chrome_paths if p and os.path.exists(p)), None)
+    if chrome_bin:
         try:
-            # Inliner le CSS pour que textutil le respecte
-            from premailer import transform as inline_css
-            import logging
-            logging.getLogger("premailer").setLevel(logging.CRITICAL)
-            logging.getLogger("cssutils").setLevel(logging.CRITICAL)
-            try:
-                import cssutils
-                cssutils.log.setLevel(logging.CRITICAL)
-            except ImportError:
-                pass
-            inlined_html = inline_css(html, disable_validation=True)
-            inlined_path = html_path + ".inlined.html"
-            with open(inlined_path, "w", encoding="utf-8") as f:
-                f.write(inlined_html)
+            html_url = f"file://{os.path.abspath(html_path)}"
             subprocess.run(
-                ["textutil", "-convert", "docx", "-output", docx_path, inlined_path],
+                [chrome_bin, "--headless", "--disable-gpu", "--no-margins",
+                 f"--print-to-pdf={pdf_path}", html_url],
                 check=True, capture_output=True,
             )
-            os.remove(inlined_path)
-            print(f"✅ {docx_path}")
-            docx_ok = True
-        except ImportError:
-            print("⚠ premailer non installé (pip install premailer) — essai pandoc", file=sys.stderr)
+            print(f"✅ {pdf_path}")
         except Exception as e:
-            print(f"⚠ Conversion DOCX échouée (textutil) : {e}", file=sys.stderr)
-    if not docx_ok and shutil.which("pandoc"):
-        try:
-            subprocess.run(["pandoc", html_path, "-o", docx_path], check=True, capture_output=True)
-            print(f"✅ {docx_path} (pandoc — style basique)")
-        except Exception as e:
-            print(f"⚠ Conversion DOCX échouée (pandoc) : {e}", file=sys.stderr)
-    elif not docx_ok:
-        print("⚠ Aucun outil de conversion DOCX disponible")
+            print(f"⚠ Conversion PDF échouée (Chrome) : {e}", file=sys.stderr)
+    else:
+        print("⚠ Chrome non trouvé — rapport PDF non généré")
 
     # 5) Résumé
     merged_count = sum(1 for item in entries_ordered if item.get("merged"))
