@@ -16,7 +16,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format
 - `npm run format:check` — Prettier check (used in CI)
-- `cd outil_python && python3 -m unittest discover` — run all Python tests (99 tests)
+- `cd outil_python && python3 -m unittest discover` — run all Python tests (101 tests)
 
 ## Architecture
 
@@ -30,7 +30,7 @@ Data uses the V2 format (key=value). See `doc/MORPHO_SCHEMA_V2.md` for the full 
 
 **data.json** — 12 top-level categories (764 entries): `noun` (289), `verb` (108), `adj` (191), `pron` (21), `num` (18), `adv` (44), `prep` (28), `conj` (21), `part` (16), `pred` (10), `insert` (10), `intj` (8).
 
-Each entry has a `meta` block with morphological traits:
+Each entry has a `meta` block with morphological traits. Entries enriched by AI have `"automate": true` in meta.
 
 ```json
 "машина": {
@@ -40,7 +40,7 @@ Each entry has a `meta` block with morphological traits:
 }
 ```
 
-Forms are always `[["text", accentPosition], ...]` (list of pairs). Accent position is 1-based on the letter. Special values: `-1` (monosyllable), `-2` (unknown).
+Forms are always `[["text", accentPosition], ...]` (list of pairs). Accent position is 1-based on the letter. Special values: `-1` (monosyllable), `-2` (unknown). Adjective entries may have optional `comp` and `super` blocks (same structure as `cas`) for comparative and superlative forms.
 
 **data-info** attributes use key=value format: `"lemma;pos=noun;case=acc;number=sg"`. Valid cases: `nom`, `gen`, `dat`, `acc`, `ins`, `loc`, `voc`. Valid tenses: `pres`, `fut`, `imp`, `past`.
 
@@ -87,6 +87,7 @@ The sidebar uses `morphoRegistry.js` for syntactic grouping (not morphological).
 - `colors.js` — grammatical case → RGB color mapping (V2 key: `nom`), `classesToColorsDark` for dark theme
 - `ukrainianSort.js` — Ukrainian alphabet ordering and letter grouping
 - `phrases.js` — phrase filtering logic
+- `verify_phrases.py` — cross-reference verification of data-info tags in phrases.json against paradigms in data.json
 
 ### Stores (Svelte 5 runes)
 
@@ -108,7 +109,7 @@ Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`,
 ### Tests
 
 - **JS**: Vitest with jsdom. 160 tests in `tests/utils/` and `tests/components/`.
-- **Python**: unittest. 99 tests in `outil_python/test_*.py`.
+- **Python**: unittest. 101 tests in `outil_python/test_*.py`.
 
 ### CI
 
