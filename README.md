@@ -17,7 +17,7 @@ Application web d'apprentissage du vocabulaire ukrainien : déclinaisons, conjug
 
 - **SvelteKit 2** + **Svelte 5** (runes)
 - **Tailwind CSS v4** + **daisyUI** (thèmes `ukrvocab` / `ukrvocab-dark`)
-- **Vitest** (160 tests JS) + **unittest** Python (101 tests)
+- **Vitest** (160 tests JS) + **unittest** Python (112 tests)
 - Site statique (pas de backend)
 - Interface en français
 - Scripts Python pour le scraping goroh.pp.ua et la validation du schéma
@@ -43,7 +43,8 @@ npm install
 | `npm run test`                                    | Lancer les 160 tests JS           |
 | `npm run lint`                                    | Vérification ESLint               |
 | `npm run format`                                  | Formatage Prettier                |
-| `cd outil_python && python3 -m unittest discover` | 101 tests Python                  |
+| `cd outil_python && python3 -m unittest discover` | 112 tests Python                  |
+| `python3 outil_python/build_entries_from_phrases.py` | Génération d'entrées depuis goroh (batch) |
 | `python3 outil_python/verify_phrases.py`           | Vérification cohérence data-info / paradigmes |
 | `python3 outil_python/validate_v2.py`             | Validateur de schéma V2           |
 
@@ -83,4 +84,6 @@ Voir `doc/MORPHO_SCHEMA_V2.md` pour la spécification complète et `doc/MIGRATIO
 | `doc/MORPHO_SCHEMA.md`      | Schéma V1 (référence historique)         |
 | `doc/MIGRATION_V1_V2.md`    | Journal de migration V1 → V2             |
 | `doc/RACCOURCIS_CLAVIER.md` | Raccourcis clavier                       |
+| `doc/DATA_ENRICHMENT.md`   | Double protocole d'enrichissement des données |
+| `doc/verification_report.md`| Rapport de vérification phrases/paradigmes |
 | `outil_python/README.md`    | Documentation des scripts Python         |

@@ -2,6 +2,8 @@
 
 Scripts Python pour l'enrichissement de la base de données ukrainienne.
 
+Voir `doc/DATA_ENRICHMENT.md` pour le double protocole d'enrichissement.
+
 ## Scripts
 
 ### `ukr_morph_parser.py` — Parseur goroh.pp.ua
@@ -26,34 +28,44 @@ Parseur de tables morphologiques depuis [goroh.pp.ua](https://goroh.pp.ua/Сло
 | `remove_all_accents(text)`                 | Retire les combinant aigus                                                |
 | `extract_article_blocks(html)`             | Extrait les blocs article d'une page goroh                                |
 | `fetch_html(word)`                         | Récupère le HTML d'une page goroh                                         |
-| `should_skip_goroh(lemma, pos, data_v2)`   | Décide si le scraping est inutile (monosyllabe, invariable, déjà complet) |
-| `validate_accent(word, pos)`               | Vérifie qu'un accent pointe sur une voyelle ukrainienne                   |
-| `validate_entry_accents(entry, lemma)`     | Valide tous les accents d'une entrée                                      |
-| `count_vowels(word)`                       | Compte les voyelles ukrainiennes                                          |
 
-**Clés produites (V2)** : `nom` (pas `nomi`), `sg` (pas `s`), `1/2/3` (pas `1p/2p/3p`), `past` (pas `pass`), `impf/perf` (pas `imperfectif/perfectif`).
+### `build_entries_from_phrases.py` — Enrichissement batch (Protocole 2)
 
-### `migrate_v1_to_v2.py` — Script de migration
+Lit `phrases_a_traiter.json`, scrape goroh.pp.ua pour chaque lemme nouveau, et produit :
+- `out.json` — entrées V2 pour relecture humaine
+- `entries_report.html` — rapport visuel
 
-Migration complète data.json V1 → V2. **Idempotent** (relancer ne change rien).
+**Comportement clé :**
+- Les entrées avec un `nooj` validé sont ignorées (déjà relues)
+- Si une entrée existe sans nooj validé : paradigme régénéré, données annexes préservées (phrases, meta, traduction)
+- Pas de marqueur `automate: true` — la relecture humaine est garantie par le workflow
 
 ```bash
-python3 migrate_v1_to_v2.py                     # Migration réelle
-python3 migrate_v1_to_v2.py --dry-run            # Prévisualisation
-python3 migrate_v1_to_v2.py --data path --phrases path  # Chemins custom
+python3 outil_python/build_entries_from_phrases.py                    # Génère out.json + rapport
+python3 outil_python/build_entries_from_phrases.py --limit 5          # Debug (5 premiers lemmes)
+python3 outil_python/build_entries_from_phrases.py --data path.json   # Chemin data.json custom
 ```
 
-Transformations : renommage clés top-level, ajout meta, structuration nooj, renommage clés internes, normalisation paires, migration data-info phrases.
+### `verify_phrases.py` — Vérification cohérence data-info
 
-### `build_entries_from_phrases.py` — Enrichissement depuis les phrases
+Cross-référence des balises `data-info` dans `phrases.json` avec les paradigmes de `data.json`. Détecte les incohérences paradigmatiques et contextuelles (régime des prépositions).
 
-Lit les phrases annotées et enrichit data.json avec de nouvelles entrées via goroh.
+```bash
+python3 outil_python/verify_phrases.py           # Rapport
+python3 outil_python/verify_phrases.py --fix      # Appliquer les corrections auto
+```
 
-Accepte les 13 POS V2. Produit des data-info V2 (clé=valeur). Détecte l'aspect (impf/perf/biaspect) depuis les tags goroh.
+### `validate_v2.py` — Validateur de schéma V2
+
+Vérifie la structure de `data.json` et `phrases.json` (clés V2, meta, nooj, data-info).
+
+### `migrate_v1_to_v2.py` — Script de migration (historique)
+
+Migration complète data.json V1 → V2. **Idempotent**.
 
 ### `webscrapp_goroh.py` — Legacy
 
-Script historique avec du code dupliqué de `ukr_morph_parser.py`. À nettoyer (importer depuis `ukr_morph_parser` au lieu de dupliquer).
+Script historique. À nettoyer.
 
 ### `extract.py` — Utilitaire
 
@@ -63,10 +75,12 @@ Extrait les phrases de data.json vers phrases.json.
 
 ```bash
 cd outil_python
-python3 -m unittest discover -v        # Tous les tests (87)
-python3 -m unittest test_ukr_morph_parser -v   # Parseur (22 tests)
+python3 -m unittest discover -v               # Tous les tests (112)
+python3 -m unittest test_ukr_morph_parser -v   # Parseur goroh (22 tests)
 python3 -m unittest test_migrate_v1_to_v2 -v   # Migration (41 tests)
-python3 -m unittest test_build_entries -v       # Build entries (24 tests)
+python3 -m unittest test_build_entries -v       # Build entries (35 tests)
+python3 -m unittest test_verify_phrases -v      # Vérification phrases (2 tests)
+python3 -m unittest test_validate_v2 -v         # Validation V2 (12 tests)
 ```
 
 ## Dépendances

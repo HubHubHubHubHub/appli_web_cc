@@ -123,3 +123,5 @@ GitHub Actions workflow (`.github/workflows/ci.yml`) runs on push/PR to main: li
 - `doc/MORPHO_SCHEMA.md` — V1 schema (legacy reference)
 - `doc/MIGRATION_V1_V2.md` — migration journal (bugs, decisions, file changes)
 - `doc/RACCOURCIS_CLAVIER.md` — keyboard shortcuts
+- `doc/DATA_ENRICHMENT.md` — double protocol for data enrichment (direct IA vs batch goroh)
+- `doc/verification_report.md` — phrase verification report and history
