@@ -778,7 +778,7 @@ Definit les groupes de la sidebar via `sidebarGroups`. Chaque groupe a un `filte
 
 `getSidebarGroup(meta)` retourne la cle du groupe sidebar pour un meta donne.
 
-### Parseur Python (`outil_python/ukr_morph_parser.py`)
+### Parseur Python (`outil_python/goroh/ukr_morph_parser.py`)
 
 4 parseurs pour les tables goroh.pp.ua :
 

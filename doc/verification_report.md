@@ -63,11 +63,11 @@ Le **converbe** (gérondif ukrainien, ex: `сподіваючись`) n'est pas 
 
 ## Script de vérification
 
-`outil_python/verify_phrases.py` — exécuter depuis la racine du projet :
+`outil_python/validation/verify_phrases.py` — exécuter depuis la racine du projet :
 
 ```bash
-python3 outil_python/verify_phrases.py          # rapport
-python3 outil_python/verify_phrases.py --fix     # appliquer les corrections
+python3 outil_python/validation/verify_phrases.py          # rapport
+python3 outil_python/validation/verify_phrases.py --fix     # appliquer les corrections
 ```
 
-Test automatisé : `cd outil_python && python3 -m unittest test_verify_phrases`
+Test automatisé : `cd outil_python/validation && python3 -m unittest test_verify_phrases`
