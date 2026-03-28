@@ -6,19 +6,14 @@ build/
 # Claude Code (config locale)
 .claude/
 
-# Doc LaTeX (déplacée dans perso/manuel/)
 # Doc V1 (référence historique, plus maintenue)
 doc/V1/
 
-# Dossiers perso
+# Dossier personnel (non suivi)
+# Contient : manuel LaTeX, notes Evolutions, dictionnaires NooJ, prompts IA, guides
 perso/
-prompts/
-Nooj/
-Olena_L1/
-Evolutions/
-Traitement_database/
 
-#legacy
+# Legacy
 static/phrases_old.json
 
 # Python
