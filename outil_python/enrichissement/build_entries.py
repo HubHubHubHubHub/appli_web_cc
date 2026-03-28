@@ -43,6 +43,12 @@ from ukr_morph_parser import (
     parse_verb_imperfective_table,
     parse_verb_perfective_table,
 )
+from nooj_lookup import (
+    load_nooj_dict,
+    lookup_nooj_line,
+    load_aspect_pairs,
+    lookup_aspect_pair,
+)
 
 UKR_POS_TAG = {
     "adj": "прикметник",
@@ -357,13 +363,94 @@ def process_phrases_ordered(
         if top not in data or not isinstance(data[top], dict):
             data[top] = {}
 
+    # Charger les dictionnaires NooJ (une seule fois)
+    nooj_dir = os.path.join(os.path.dirname(os.path.abspath(data_path)), "..", "perso", "Nooj")
+    nooj_dict = {}
+    pairs_dict = {}
+    nooj_dict_path = os.path.join(nooj_dir, "Ukr_dictionnary_V.1.3.txt")
+    pairs_path = os.path.join(nooj_dir, "ukr_verbes_paires_aspectuelles.txt")
+    if os.path.exists(nooj_dict_path):
+        nooj_dict = load_nooj_dict(nooj_dict_path)
+    if os.path.exists(pairs_path):
+        pairs_dict = load_aspect_pairs(pairs_path)
+
     processed = set()  # (pos, lemma)
     entries_in_order: List[Dict[str, Any]] = []
     cards_in_order: List[str] = []
     errors: List[str] = []
+    pending_verbs: List[Tuple[str, str]] = []  # (lemma, phrase) pour les couples à ajouter
 
     remaining = limit
 
+    def _process_lemma(lemma, pos, phrase, existing):
+        """Traite un lemme : scrape goroh ou présente l'existant."""
+        nonlocal remaining
+
+        # Cas 3 : entry existe avec nooj rempli mais status=null → présenter sans scraping
+        if existing and isinstance(existing, dict):
+            nooj = existing.get("nooj")
+            if isinstance(nooj, dict) and (nooj.get("line") or nooj.get("flx")) and not nooj.get("status"):
+                entries_in_order.append({
+                    "lemma": lemma, "entry": existing, "pos": pos,
+                    "table_html": "<em>Entrée existante — pas de re-scraping goroh</em>",
+                    "phrase": phrase, "merged": False, "review_only": True,
+                })
+                cards_in_order.append(render_entry_card(
+                    lemma, pos, existing,
+                    "<em>Entrée existante — pas de re-scraping goroh</em>",
+                    phrase, merged=False,
+                ))
+                return True
+
+        # Cas 1 & 2 : scrape goroh
+        try:
+            html = fetch_html(lemma)
+            articles = extract_article_blocks(html)
+            block = pick_article_block_for_pos(articles, pos)
+            if not block or not block.get("table"):
+                raise RuntimeError("Aucun tableau pertinent trouvé sur la page goroh.")
+            table_html = block["table"]
+            goroh_tags = block.get("tags", [])
+
+            entry = build_entry_from_table(
+                pos=pos, lemma=lemma, table_html=table_html,
+                goroh_tags=goroh_tags, phrase_text=phrase,
+            )
+
+            # Enrichir avec NooJ : ligne dictionnaire + FLX
+            nooj_info = lookup_nooj_line(nooj_dict, lemma, pos)
+            if nooj_info:
+                entry["nooj"] = nooj_info
+
+            # Paire aspectuelle pour les verbes
+            if pos == "verb":
+                couple = lookup_aspect_pair(pairs_dict, lemma)
+                if couple:
+                    entry["meta"]["couple"] = couple
+                    # Planifier l'ajout du verbe pairé
+                    pending_verbs.append((couple, phrase))
+
+            # Fusionner avec l'existant si présent
+            merged = False
+            if existing and isinstance(existing, dict):
+                entry = merge_with_existing(entry, existing)
+                merged = True
+
+            entries_in_order.append({
+                "lemma": lemma, "entry": entry, "pos": pos,
+                "table_html": table_html, "phrase": phrase, "merged": merged,
+            })
+            cards_in_order.append(render_entry_card(lemma, pos, entry, table_html, phrase, merged=merged))
+
+            if remaining is not None:
+                remaining -= 1
+            return True
+
+        except Exception as e:
+            errors.append(f"{pos}:{lemma} — {e}")
+            return False
+
+    # Passe principale : traiter les phrases
     for phrase, meta in phrases_dict.items():
         if remaining is not None and remaining <= 0:
             break
@@ -382,57 +469,39 @@ def process_phrases_ordered(
             if key in processed:
                 continue
 
-            # Ignore si déjà dans data.json avec nooj validé (entrée relue)
             existing = data.get(pos, {}).get(lemma)
-            if existing and isinstance(existing, dict) and has_reviewed_nooj(existing):
-                processed.add(key)
-                continue
 
-            try:
-                html = fetch_html(lemma)
-                articles = extract_article_blocks(html)
-                block = pick_article_block_for_pos(articles, pos)
-                if not block or not block.get("table"):
-                    raise RuntimeError("Aucun tableau pertinent trouvé sur la page goroh.")
-                table_html = block["table"]
-                goroh_tags = block.get("tags", [])
+            # Ignorer si nooj.status non-null (déjà validé/pending/divergent)
+            if existing and isinstance(existing, dict):
+                nooj = existing.get("nooj")
+                if isinstance(nooj, dict) and nooj.get("status"):
+                    processed.add(key)
+                    continue
+                # Legacy string non-vide
+                if isinstance(nooj, str) and nooj:
+                    processed.add(key)
+                    continue
 
-                entry = build_entry_from_table(
-                    pos=pos,
-                    lemma=lemma,
-                    table_html=table_html,
-                    goroh_tags=goroh_tags,
-                    phrase_text=phrase,
-                )
+            _process_lemma(lemma, pos, phrase, existing)
+            processed.add(key)
 
-                # Fusionner avec l'existant si présent (préserve phrases, meta, etc.)
-                merged = False
-                if existing and isinstance(existing, dict):
-                    entry = merge_with_existing(entry, existing)
-                    merged = True
-
-                entries_in_order.append({
-                    "lemma": lemma,
-                    "entry": entry,
-                    "pos": pos,
-                    "table_html": table_html,
-                    "phrase": phrase,
-                    "merged": merged,
-                })
-                cards_in_order.append(render_entry_card(lemma, pos, entry, table_html, phrase, merged=merged))
-                processed.add(key)
-
-                if remaining is not None:
-                    remaining -= 1
-                    if remaining <= 0:
-                        break
-
-            except Exception as e:
-                errors.append(f"{pos}:{lemma} — {e}")
-                processed.add(key)
+            if remaining is not None and remaining <= 0:
+                break
 
         if remaining is not None and remaining <= 0:
             break
+
+    # Passe secondaire : ajouter les verbes pairés
+    for couple_lemma, phrase in pending_verbs:
+        key = ("verb", couple_lemma)
+        if key in processed:
+            continue
+        existing = data.get("verb", {}).get(couple_lemma)
+        if existing and isinstance(existing, dict) and has_reviewed_nooj(existing):
+            processed.add(key)
+            continue
+        _process_lemma(couple_lemma, "verb", phrase, existing)
+        processed.add(key)
 
     return entries_in_order, cards_in_order, errors
 

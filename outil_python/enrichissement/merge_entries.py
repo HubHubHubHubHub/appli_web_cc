@@ -99,6 +99,10 @@ def main():
         else:
             added.append((pos, lemma))
 
+        # Marquer comme validé (merge = validation humaine)
+        if isinstance(entry.get("nooj"), dict):
+            entry["nooj"]["status"] = "validated"
+
         data[pos][lemma] = entry
 
     # Trier chaque catégorie
