@@ -44,7 +44,7 @@ npm install
 | `npm run lint`                                    | Vérification ESLint               |
 | `npm run format`                                  | Formatage Prettier                |
 | `python3 outil_python/enrichissement/build_entries.py` | Génération d'entrées depuis goroh (batch) |
-| `python3 outil_python/enrichissement/merge_entries.py` | Insertion dans data.json (tri ukrainien) |
+| `python3 outil_python/enrichissement/merge_entries.py --input <paquet>` | Insertion dans data.json (tri ukrainien) |
 | `python3 outil_python/validation/verify_phrases.py` | Vérification cohérence data-info / paradigmes |
 | `python3 outil_python/validation/validate_v2.py` | Validateur de schéma V2 |
 

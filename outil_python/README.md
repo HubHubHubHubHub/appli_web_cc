@@ -16,7 +16,7 @@ outil_python/
 │   ├── merge_entries.py          ← Insère out.json dans data.json (tri ukrainien)
 │   ├── test_build_entries.py     ← 35 tests
 │   ├── input/                    ← (gitignored) phrases_a_traiter.json
-│   └── output/                   ← (gitignored) out.json, entries_report.html
+│   └── output/                   ← (gitignored) paquets numérotés : YYMMDD_x_out.json, _rapport.html, .docx
 ├── validation/                   ← Vérification (les 2 protocoles)
 │   ├── validate_v2.py            ← Validateur de schéma V2
 │   ├── verify_phrases.py         ← Cross-référence data-info ↔ paradigmes
@@ -31,13 +31,14 @@ outil_python/
 
 ```bash
 # 1. Mettre les phrases dans enrichissement/input/phrases_a_traiter.json
-# 2. Générer les entrées
+# 2. Générer un paquet numéroté (date + lettre incrémentale)
 python3 outil_python/enrichissement/build_entries.py
+# → output/260328_a_out.json + 260328_a_rapport.html + .docx
 
-# 3. Relire output/out.json + output/entries_report.html
-# 4. Insérer dans data.json
-python3 outil_python/enrichissement/merge_entries.py --dry-run   # prévisualisation
-python3 outil_python/enrichissement/merge_entries.py              # insertion
+# 3. Relire le rapport + out.json (validation humaine)
+# 4. Insérer dans data.json (nooj.status → "validated")
+python3 outil_python/enrichissement/merge_entries.py --input output/260328_a_out.json
+# 5. Supprimer les fichiers du paquet validé
 ```
 
 ### Validation (les 2 protocoles)

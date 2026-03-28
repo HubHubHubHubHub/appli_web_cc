@@ -74,17 +74,21 @@ phrases_a_traiter.json   →   build_entries_from_phrases.py   →   out.json + 
 ```
 
 1. Mettre les phrases annotées dans `outil_python/enrichissement/input/phrases_a_traiter.json`
-2. Générer les entrées :
+2. Générer les entrées (un paquet numéroté par date + lettre) :
    ```bash
    python3 outil_python/enrichissement/build_entries.py
+   # → output/260328_a_out.json + 260328_a_rapport.html + .docx
    ```
-3. Examiner `outil_python/enrichissement/output/out.json` et `output/entries_report.html` (relecture humaine)
-4. Insérer dans data.json (tri alphabétique ukrainien automatique) :
+   Chaque run crée un nouveau paquet (a, b, c...) si lancé le même jour. Les paquets sont conservés dans `output/` pour relecture.
+3. Examiner le rapport HTML/DOCX et `out.json` (relecture humaine)
+4. Après validation, insérer dans data.json :
    ```bash
-   python3 outil_python/enrichissement/merge_entries.py --dry-run   # prévisualisation
-   python3 outil_python/enrichissement/merge_entries.py              # insertion effective
+   python3 outil_python/enrichissement/merge_entries.py --input output/260328_a_out.json --dry-run
+   python3 outil_python/enrichissement/merge_entries.py --input output/260328_a_out.json
    ```
-5. Lancer les vérifications (même que protocole 1)
+   Le merge passe automatiquement `nooj.status` à `"validated"`.
+5. Supprimer les fichiers du paquet validé (`260328_a_*`)
+6. Lancer les vérifications (même que protocole 1)
 
 ### Marquage
 - **Pas de `automate: true`** — la relecture humaine est garantie par le workflow (out.json → validation → intégration)
