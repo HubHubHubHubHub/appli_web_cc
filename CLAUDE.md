@@ -16,13 +16,15 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format
 - `npm run format:check` — Prettier check (used in CI)
-- `cd outil_python && python3 -m unittest discover` — run all Python tests (101 tests)
+- `cd outil_python && python3 -m unittest discover` — run all Python tests (112 tests)
 
 ## Architecture
 
 ### Data Pipeline
 
 `outil_python/` scripts ADD entries to `static/data.json` and `static/phrases.json` — they don't regenerate these files. Both can be edited directly. These JSON files are the app's entire dataset — there is no backend or API.
+
+`build_entries_from_phrases.py` reads `phrases_a_traiter.json`, scrapes goroh.pp.ua for each new lemma, and produces `out.json` (V2 entries for human review) + an HTML report. Entries with a validated `nooj` field in `data.json` are skipped. When regenerating an existing entry, non-paradigm data (phrases, meta, traduction) is preserved.
 
 ### Data Format (V2)
 
@@ -109,7 +111,7 @@ Global CSS rules that must stay in `app.css`: `.ukr`, `.accent`, `.with-accent`,
 ### Tests
 
 - **JS**: Vitest with jsdom. 160 tests in `tests/utils/` and `tests/components/`.
-- **Python**: unittest. 101 tests in `outil_python/test_*.py`.
+- **Python**: unittest. 112 tests in `outil_python/test_*.py`.
 
 ### CI
 

@@ -12,6 +12,8 @@ from build_entries_from_phrases import (
     detect_aspect_from_tags,
     detect_gender_from_tags,
     make_base_html,
+    has_reviewed_nooj,
+    merge_with_existing,
 )
 
 
@@ -131,6 +133,72 @@ class TestMakeBaseHtml(unittest.TestCase):
     def test_pred(self):
         html = make_base_html("pred", "можна")
         self.assertIn('data-info="можна;pos=pred"', html)
+
+
+class TestHasReviewedNooj(unittest.TestCase):
+    def test_empty_string(self):
+        self.assertFalse(has_reviewed_nooj({"nooj": ""}))
+
+    def test_nonempty_string(self):
+        self.assertTrue(has_reviewed_nooj({"nooj": "some content"}))
+
+    def test_dict_all_null(self):
+        self.assertFalse(has_reviewed_nooj({"nooj": {"line": None, "status": None, "flx": None}}))
+
+    def test_dict_with_line(self):
+        self.assertTrue(has_reviewed_nooj({"nooj": {"line": "NOUN+FLX=X", "status": None, "flx": None}}))
+
+    def test_dict_with_status(self):
+        self.assertTrue(has_reviewed_nooj({"nooj": {"line": None, "status": "pending", "flx": None}}))
+
+    def test_dict_with_flx(self):
+        self.assertTrue(has_reviewed_nooj({"nooj": {"line": None, "status": None, "flx": "МАШИНА"}}))
+
+    def test_missing_nooj(self):
+        self.assertFalse(has_reviewed_nooj({"meta": {"pos": "noun"}}))
+
+    def test_none_nooj(self):
+        self.assertFalse(has_reviewed_nooj({"nooj": None}))
+
+
+class TestMergeWithExisting(unittest.TestCase):
+    def test_paradigm_replaced(self):
+        existing = {
+            "meta": {"pos": "noun", "gender": "f"},
+            "cas": {"nom": {"sg": [["старе", 1]]}},
+            "phrases": {"old phrase": ""},
+            "traduction": "old translation",
+        }
+        new_entry = {
+            "meta": {"pos": "noun", "automate": True},
+            "cas": {"nom": {"sg": [["нове", 1]]}},
+            "phrases": {"new phrase": ""},
+        }
+        result = merge_with_existing(new_entry, existing)
+        # Paradigme remplacé
+        self.assertEqual(result["cas"]["nom"]["sg"], [["нове", 1]])
+        # Phrases fusionnées
+        self.assertIn("old phrase", result["phrases"])
+        self.assertIn("new phrase", result["phrases"])
+        # Meta fusionnée (gender préservé)
+        self.assertEqual(result["meta"]["gender"], "f")
+        self.assertTrue(result["meta"]["automate"])
+        # Champs custom préservés
+        self.assertEqual(result["traduction"], "old translation")
+
+    def test_meta_merge_priority(self):
+        existing = {"meta": {"pos": "noun", "gender": "m", "custom": "keep"}}
+        new_entry = {"meta": {"pos": "noun", "automate": True}}
+        result = merge_with_existing(new_entry, existing)
+        self.assertEqual(result["meta"]["gender"], "m")
+        self.assertEqual(result["meta"]["custom"], "keep")
+        self.assertTrue(result["meta"]["automate"])
+
+    def test_empty_existing(self):
+        new_entry = {"meta": {"pos": "adj"}, "cas": {"nom": {}}, "phrases": {"p": ""}}
+        result = merge_with_existing(new_entry, {})
+        self.assertEqual(result["cas"]["nom"], {})
+        self.assertTrue(result["meta"]["automate"])
 
 
 if __name__ == "__main__":

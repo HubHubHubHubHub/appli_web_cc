@@ -6,24 +6,20 @@ build_entries_from_phrases
 Lit automatiquement `phrases_a_traiter.json` (même dossier que ce script),
 puis génère :
 - un **rapport HTML** (sans JSON embarqué) qui affiche, dans l'ordre d'apparition,
-  la phrase, le span source et la table goroh des **lemmes nouveaux** (adj/nom/verb) ;
+  la phrase, le span source et la table goroh des **lemmes nouveaux** ;
 - un **out.json** ordonné, au format **{ "lemma": {entry}, ... }**, prêt à consommer.
 
 Règles :
-- On **ignore** totalement tout (pos, lemma) déjà présent avec un champ `nooj` dans `data.json`.
+- On **ignore** tout (pos, lemma) dont le champ `nooj` dans `data.json` a du contenu
+  (line, status ou flx non-null = entrée relue par un humain).
+- Si une entrée existe SANS nooj validé, le paradigme (cas/conj/inf) est régénéré
+  depuis goroh, mais les données annexes (phrases, meta, traduction...) sont **préservées**.
 - **Dédup stricte** par exécution : un (pos, lemma) n'est traité qu'une fois.
-- En cas de **collision** (même lemma mais **POS différent**), la clé JSON devient
-  `lemma__<pos>` pour éviter d’écraser (ex.: "замок__nom" vs "замок__verb").
 
-Entrées JSON (ordre des clés) :
-- **adj**  : {"cas","nooj","base_html","phrases"}
-- **nom**  : {"cas","genre"(si dispo),"nooj","base_html","phrases"}  ← genre juste après cas
-- **verb** : {"inf","conj","asp","nooj","base_html","phrases"}
-
-Note : `base_html` est **toujours canonique** :
-- verb  → `<span class="ukr" data-info="LEMMA;verb;inf">LEMMA</span>`
-- nom   → `<span class="ukr" data-info="LEMMA;nom;cas;nomi;s">LEMMA</span>`
-- adj   → `<span class="ukr" data-info="LEMMA;adj;cas;nomi;m">LEMMA</span>`
+Entrées JSON (format V2) :
+- **adj**  : {"meta", "cas", "nooj", "phrases"}
+- **noun** : {"meta", "cas", "nooj", "phrases"}
+- **verb** : {"meta", "inf", "conj", "nooj", "phrases"}
 """
 
 from __future__ import annotations
@@ -61,8 +57,10 @@ GENDER_TAG_MAP = {
     "чоловічий рід": "m",
     "жіночий рід": "f",
     "середній рід": "n",
-    # "спільний рід": "c",
 }
+
+# Clés paradigmatiques (remplacées par goroh, tout le reste est préservé)
+PARADIGM_KEYS = {"cas", "conj", "inf", "base", "comp", "super"}
 
 # --------------------------
 # I/O utils
@@ -144,6 +142,39 @@ def make_base_html(pos: str, lemma: str) -> str:
     # Invariables et autres
     return f'<span class="ukr" data-info="{lemma};pos={pos}">{lemma}</span>'
 
+def has_reviewed_nooj(entry: Dict[str, Any]) -> bool:
+    """True si l'entrée a un nooj avec du contenu (= relue par un humain)."""
+    nooj = entry.get("nooj")
+    if isinstance(nooj, str):
+        return bool(nooj)
+    if isinstance(nooj, dict):
+        return bool(nooj.get("line") or nooj.get("status") or nooj.get("flx"))
+    return False
+
+def merge_with_existing(new_entry: Dict[str, Any], existing_entry: Dict[str, Any]) -> Dict[str, Any]:
+    """Fusionne une entrée régénérée avec l'existante : paradigme remplacé, reste préservé."""
+    result = dict(new_entry)
+
+    # Meta : fusion (existant + nouveau, automate=True)
+    existing_meta = existing_entry.get("meta", {})
+    new_meta = result.get("meta", {})
+    result["meta"] = {**existing_meta, **new_meta}
+    result["meta"]["automate"] = True
+
+    # Phrases : union des deux dicts
+    existing_phrases = existing_entry.get("phrases", {})
+    new_phrases = result.get("phrases", {})
+    result["phrases"] = {**existing_phrases, **new_phrases}
+
+    # Tout le reste non-paradigme : conserver l'existant
+    for key, value in existing_entry.items():
+        if key not in PARADIGM_KEYS and key not in result:
+            result[key] = value
+
+    return result
+
+_NOOJ_EMPTY = {"line": None, "status": None, "flx": None}
+
 def build_entry_from_table(
     pos: str,
     lemma: str,
@@ -152,58 +183,55 @@ def build_entry_from_table(
     phrase_text: str,
 ) -> Dict[str, Any]:
     """
-    Construit l’entrée “type data” au nouveau format (sans table_html) :
-      - adj : {"cas","nooj","base_html","phrases"}
-      - nom : {"cas","genre"(si dispo),"nooj","base_html","phrases"}
-      - verb: {"inf","conj","asp","nooj","base_html","phrases"}
-    `base_html` est canonique (voir make_base_html).
+    Construit l'entrée au format V2 :
+      - adj  : {"meta", "cas", "nooj", "phrases"}
+      - noun : {"meta", "cas", "nooj", "phrases"}
+      - verb : {"meta", "inf", "conj", "nooj", "phrases"}
     """
-    base_html = make_base_html(pos, lemma)
+    meta: Dict[str, Any] = {"pos": pos, "automate": True}
 
     if pos == "adj":
-        parsed = parse_table_adj(table_html)  # {"cas": {...}}
-        entry: Dict[str, Any] = {
+        parsed = parse_table_adj(table_html)
+        return {
+            "meta": meta,
             "cas": parsed.get("cas", {}),
-            "nooj": "",
-            "base_html": base_html,
+            "nooj": dict(_NOOJ_EMPTY),
             "phrases": {phrase_text: ""},
         }
-        return entry
 
-    if pos == "nom":
-        parsed = parse_table_nom(table_html)  # {"cas": {...}} (ou {lemma:{"cas":...}})
+    if pos == "noun":
+        parsed = parse_table_nom(table_html)
         cas = parsed.get("cas") or parsed.get(lemma, {}).get("cas", {})
         gender = detect_gender_from_tags(goroh_tags)
-        entry: Dict[str, Any] = {
-            "cas": cas,
-        }
         if gender:
-            entry["genre"] = gender  # juste après "cas"
-        entry["nooj"] = ""
-        entry["base_html"] = base_html
-        entry["phrases"] = {phrase_text: ""}
-        return entry
+            meta["gender"] = gender
+        return {
+            "meta": meta,
+            "cas": cas,
+            "nooj": dict(_NOOJ_EMPTY),
+            "phrases": {phrase_text: ""},
+        }
 
     if pos == "verb":
-        aspect = detect_aspect_from_tags(goroh_tags) or "imperfectif"
-        if aspect == "perfectif":
+        aspect = detect_aspect_from_tags(goroh_tags)
+        if aspect:
+            meta["aspect"] = aspect
+        if aspect == "perf":
             parsed = parse_verb_perfective_table(table_html, lemma)
         else:
             parsed = parse_verb_imperfective_table(table_html, lemma)
-        entry: Dict[str, Any] = {
+        return {
+            "meta": meta,
             "inf": parsed.get("inf", []),
             "conj": parsed.get("conj", {}),
-            "asp": parsed.get("asp", aspect),
-            "nooj": "",
-            "base_html": base_html,
+            "nooj": dict(_NOOJ_EMPTY),
             "phrases": {phrase_text: ""},
         }
-        return entry
 
-    # fallback
+    # fallback (invariables, etc.)
     return {
-        "nooj": "",
-        "base_html": base_html,
+        "meta": meta,
+        "nooj": dict(_NOOJ_EMPTY),
         "phrases": {phrase_text: ""},
     }
 
@@ -228,6 +256,7 @@ h1{font-size:22px;margin:0 0 16px;}
 .table-wrap td,.table-wrap th{border:1px solid #e5e7eb;padding:6px;}
 .footer-note{margin-top:20px;font-size:12px;color:#666;}
 .err{color:#b91c1c;}
+.merged{color:#2563eb;font-size:12px;margin-top:4px;}
 """
 
 def html_escape(s: str) -> str:
@@ -235,19 +264,22 @@ def html_escape(s: str) -> str:
              .replace("<", "&lt;")
              .replace(">", "&gt;"))
 
-def render_entry_card(lemma: str, pos: str, entry: Dict[str, Any], table_html: str, phrase_text: str) -> str:
+def render_entry_card(lemma: str, pos: str, entry: Dict[str, Any], table_html: str, phrase_text: str, merged: bool = False) -> str:
+    meta = entry.get("meta", {})
     badges = [f"<span class='badge'>POS: {pos}</span>"]
-    if pos == "verb":
-        badges.append(f"<span class='badge'>Aspect: {entry.get('asp','-')}</span>")
-    if pos == "nom" and entry.get("genre"):
-        badges.append(f"<span class='badge'>Genre: {entry.get('genre')}</span>")
+    if pos == "verb" and meta.get("aspect"):
+        badges.append(f"<span class='badge'>Aspect: {meta['aspect']}</span>")
+    if pos == "noun" and meta.get("gender"):
+        badges.append(f"<span class='badge'>Genre: {meta['gender']}</span>")
 
-    base_html = entry.get("base_html", "")
+    base_html = make_base_html(pos, lemma)
+    merged_note = "<div class='merged'>⟳ Fusionné avec entrée existante (données annexes préservées)</div>" if merged else ""
 
     return f"""
     <div class="card">
       <h2>{html_escape(lemma)}</h2>
       <div class="meta">{''.join(badges)}</div>
+      {merged_note}
       <div class="section">
         <h3>Base (span canonique)</h3>
         <div>{base_html}</div>
@@ -284,13 +316,13 @@ def render_report_html(cards_html: str, counts: Dict[str, int], errors: List[str
 </head>
 <body>
   <div class="container">
-    <h1>Entrées “type data” à créer</h1>
+    <h1>Entrées "type data" à créer</h1>
     <div class="summary">
       <div><strong>Total</strong>: {n_total} &nbsp;|&nbsp;
            <strong>adj</strong>: {counts.get('adj',0)} &nbsp;|&nbsp;
-           <strong>nom</strong>: {counts.get('nom',0)} &nbsp;|&nbsp;
+           <strong>noun</strong>: {counts.get('noun',0)} &nbsp;|&nbsp;
            <strong>verb</strong>: {counts.get('verb',0)}</div>
-      <div class="footer-note">Les lemmes avec un champ <code>nooj</code> existent déjà et sont ignorés.</div>
+      <div class="footer-note">Les lemmes avec un champ <code>nooj</code> validé sont ignorés.</div>
     </div>
 
     <div class="list">
@@ -314,12 +346,12 @@ def process_phrases_ordered(
     """
     Retourne (entries_in_order, cards_in_order, errors) où :
       - entries_in_order : liste ordonnée d'items:
-            { "lemma": str, "entry": dict (sans pos), "pos": str, "table_html": str, "phrase": str }
+            { "lemma": str, "entry": dict (sans pos), "pos": str, "table_html": str, "phrase": str, "merged": bool }
       - cards_in_order   : liste de fragments HTML (ordre d'apparition)
       - errors           : liste de messages
     """
     data = load_json(data_path)
-    for top in ("adj", "nom", "verb"):
+    for top in ("adj", "noun", "verb"):
         if top not in data or not isinstance(data[top], dict):
             data[top] = {}
 
@@ -348,9 +380,9 @@ def process_phrases_ordered(
             if key in processed:
                 continue
 
-            # Ignore si déjà dans data.json avec nooj
-            existing = data[pos].get(lemma)
-            if existing and isinstance(existing, dict) and existing.get("nooj"):
+            # Ignore si déjà dans data.json avec nooj validé (entrée relue)
+            existing = data.get(pos, {}).get(lemma)
+            if existing and isinstance(existing, dict) and has_reviewed_nooj(existing):
                 processed.add(key)
                 continue
 
@@ -371,14 +403,21 @@ def process_phrases_ordered(
                     phrase_text=phrase,
                 )
 
+                # Fusionner avec l'existant si présent (préserve phrases, meta, etc.)
+                merged = False
+                if existing and isinstance(existing, dict):
+                    entry = merge_with_existing(entry, existing)
+                    merged = True
+
                 entries_in_order.append({
                     "lemma": lemma,
-                    "entry": entry,     # sans "pos"
-                    "pos": pos,         # conservé seulement pour l'HTML / dédup / stats
+                    "entry": entry,
+                    "pos": pos,
                     "table_html": table_html,
                     "phrase": phrase,
+                    "merged": merged,
                 })
-                cards_in_order.append(render_entry_card(lemma, pos, entry, table_html, phrase))
+                cards_in_order.append(render_entry_card(lemma, pos, entry, table_html, phrase, merged=merged))
                 processed.add(key)
 
                 if remaining is not None:
@@ -405,12 +444,12 @@ def main():
     phrases_path = os.path.join(script_dir, "phrases_a_traiter.json")
 
     ap = argparse.ArgumentParser(description="Rapport HTML ordonné + out.json {lemma: entry} (ordonné).")
-    ap.add_argument("--data", default=os.path.join(script_dir, "..", "data.json"),
-                    help="Chemin du data.json (lecture seule). Défaut: ../data.json (relatif au script).")
+    ap.add_argument("--data", default=os.path.join(script_dir, "..", "static", "data.json"),
+                    help="Chemin du data.json (lecture seule). Défaut: ../static/data.json")
     ap.add_argument("--out", default=os.path.join(script_dir, "entries_report.html"),
-                    help="Chemin du HTML de sortie. Défaut: entries_report.html (même dossier).")
+                    help="Chemin du HTML de sortie. Défaut: entries_report.html")
     ap.add_argument("--json-out", default=os.path.join(script_dir, "out.json"),
-                    help="Chemin du JSON des entrées générées (ordonné). Défaut: out.json (même dossier).")
+                    help="Chemin du JSON des entrées générées (ordonné). Défaut: out.json")
     ap.add_argument("--limit", type=int, default=None,
                     help="Limiter le nombre de lemmes *uniques* traités (debug).")
     args = ap.parse_args()
@@ -430,10 +469,9 @@ def main():
     out_dict: Dict[str, Any] = {}
     for item in entries_ordered:
         lemma = item["lemma"]
-        entry = item["entry"]  # sans "pos"
+        entry = item["entry"]
         pos = item["pos"]
 
-        # collision si un autre POS a déjà mis le même lemma :
         if lemma in out_dict:
             base_key = f"{lemma}__{pos}"
             k = base_key
@@ -445,7 +483,7 @@ def main():
         else:
             out_dict[lemma] = entry
 
-    # 2) Écrire out.json (dict ordonné par insertion)
+    # 2) Écrire out.json
     try:
         save_json(args.json_out, out_dict)
         print(f"✅ JSON ordonné écrit dans {args.json_out}")
@@ -453,8 +491,8 @@ def main():
         print(f"❌ Échec d'écriture de {args.json_out} : {e}", file=sys.stderr)
         sys.exit(2)
 
-    # 3) Écrire le HTML (même ordre)
-    counts = {"adj": 0, "nom": 0, "verb": 0}
+    # 3) Écrire le HTML
+    counts: Dict[str, int] = {}
     for item in entries_ordered:
         counts[item["pos"]] = counts.get(item["pos"], 0) + 1
 
@@ -466,6 +504,11 @@ def main():
     except Exception as e:
         print(f"❌ Échec d'écriture de {args.out} : {e}", file=sys.stderr)
         sys.exit(3)
+
+    # 4) Résumé des fusions
+    merged_count = sum(1 for item in entries_ordered if item.get("merged"))
+    if merged_count:
+        print(f"⟳ {merged_count} entrée(s) fusionnée(s) avec des données existantes")
 
 
 if __name__ == "__main__":
