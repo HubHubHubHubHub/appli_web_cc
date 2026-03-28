@@ -348,8 +348,8 @@ h1{font-size:22px;margin:0 0 16px;}
 .footer-note{margin-top:20px;font-size:12px;color:#666;}
 .err{color:#b91c1c;}
 .merged{color:#2563eb;font-size:12px;margin-top:4px;}
-@page{margin:20mm;}
-@media print{body{background:#fff;}button{display:none !important;}}
+@page{margin:0;}
+@media print{body{background:#fff;margin:15mm;padding:0;}button{display:none !important;}}
 """
 
 def html_escape(s: str) -> str:
