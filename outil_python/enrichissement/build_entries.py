@@ -236,7 +236,25 @@ def _extract_accent_from_goroh_html(goroh_html: str, lemma: str) -> List:
             for form, pos in pairs:
                 if form.lower() == lemma_lower:
                     return [[form, pos]]
-    return [[lemma, -2]]
+    # Pas d'accent trouvé : -1 si monosyllabe, -2 si polysyllabe
+    return [[lemma, -1 if count_vowels(lemma) <= 1 else -2]]
+
+
+def _format_accent_for_display(accent_pairs: List) -> str:
+    """Formate les paires accent pour affichage humain (mot accentué)."""
+    import unicodedata
+    results = []
+    for form, pos in accent_pairs:
+        if pos > 0:
+            chars = list(form)
+            if pos <= len(chars):
+                chars[pos - 1] = chars[pos - 1] + "\u0301"
+            results.append(unicodedata.normalize("NFC", "".join(chars)))
+        elif pos == -1:
+            results.append(f"{form} (monosyllabe)")
+        else:
+            results.append(f"{form} (accent inconnu)")
+    return ", ".join(results)
 
 
 def build_invariable_entry(pos: str, lemma: str, accent_pairs: List, phrase_text: str) -> Dict[str, Any]:
@@ -485,7 +503,7 @@ def process_phrases_ordered(
                 # Invariable : extraire l'accent depuis la page goroh
                 accent_pairs = _extract_accent_from_goroh_html(goroh_html, lemma)
                 entry = build_invariable_entry(pos, lemma, accent_pairs, phrase)
-                table_html = f"<em>Invariable — accent : {accent_pairs}</em>"
+                table_html = f"<em>Invariable — {_format_accent_for_display(accent_pairs)}</em>"
             else:
                 raise RuntimeError("Aucun tableau pertinent trouvé sur la page goroh.")
 
