@@ -507,7 +507,20 @@ def main():
         print(f"❌ Échec d'écriture de {args.out} : {e}", file=sys.stderr)
         sys.exit(3)
 
-    # 4) Résumé des fusions
+    # 4) Convertir en DOCX via pandoc
+    import shutil
+    docx_path = args.out.rsplit(".", 1)[0] + ".docx"
+    if shutil.which("pandoc"):
+        try:
+            import subprocess
+            subprocess.run(["pandoc", args.out, "-o", docx_path], check=True, capture_output=True)
+            print(f"✅ Rapport DOCX écrit dans {docx_path}")
+        except Exception as e:
+            print(f"⚠ Conversion DOCX échouée : {e}", file=sys.stderr)
+    else:
+        print("⚠ pandoc non installé — rapport DOCX non généré")
+
+    # 5) Résumé des fusions
     merged_count = sum(1 for item in entries_ordered if item.get("merged"))
     if merged_count:
         print(f"⟳ {merged_count} entrée(s) fusionnée(s) avec des données existantes")
