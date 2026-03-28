@@ -42,6 +42,7 @@ from ukr_morph_parser import (
     parse_table_nom,
     parse_verb_imperfective_table,
     parse_verb_perfective_table,
+    parse_ukrainian_word_accent_policy,
 )
 from nooj_lookup import (
     load_nooj_dict,
@@ -182,6 +183,41 @@ def merge_with_existing(new_entry: Dict[str, Any], existing_entry: Dict[str, Any
     return result
 
 _NOOJ_EMPTY = {"line": None, "status": None, "flx": None}
+
+# POS invariables (pas de table de déclinaison/conjugaison)
+_INVARIABLE_POS = {"adv", "prep", "conj", "part", "intj", "pred", "insert"}
+
+
+def _extract_accent_from_goroh_html(goroh_html: str, lemma: str) -> List:
+    """Extrait l'accent d'un mot depuis le HTML brut de goroh (pour les invariables sans table).
+
+    Cherche un texte contenant U+0301 (combining acute) dans la page.
+    Retourne une liste de paires [[forme, accent_pos], ...] ou [[lemma, -2]] si non trouvé.
+    """
+    soup = BeautifulSoup(goroh_html, "html.parser")
+    lemma_lower = lemma.lower()
+    for text_node in soup.find_all(string=True):
+        text = str(text_node)
+        if "\u0301" not in text:
+            continue
+        for word in text.split():
+            if "\u0301" not in word:
+                continue
+            pairs = parse_ukrainian_word_accent_policy(word)
+            for form, pos in pairs:
+                if form.lower() == lemma_lower:
+                    return [[form, pos]]
+    return [[lemma, -2]]
+
+
+def build_invariable_entry(pos: str, lemma: str, accent_pairs: List, phrase_text: str) -> Dict[str, Any]:
+    """Construit une entrée V2 pour un mot invariable (adv, prep, conj, part, etc.)."""
+    return {
+        "meta": {"pos": pos},
+        "base": accent_pairs,
+        "nooj": dict(_NOOJ_EMPTY),
+        "phrases": {phrase_text: ""},
+    }
 
 def build_entry_from_table(
     pos: str,
@@ -404,18 +440,25 @@ def process_phrases_ordered(
 
         # Cas 1 & 2 : scrape goroh
         try:
-            html = fetch_html(lemma)
-            articles = extract_article_blocks(html)
+            goroh_html = fetch_html(lemma)
+            articles = extract_article_blocks(goroh_html)
             block = pick_article_block_for_pos(articles, pos)
-            if not block or not block.get("table"):
-                raise RuntimeError("Aucun tableau pertinent trouvé sur la page goroh.")
-            table_html = block["table"]
-            goroh_tags = block.get("tags", [])
 
-            entry = build_entry_from_table(
-                pos=pos, lemma=lemma, table_html=table_html,
-                goroh_tags=goroh_tags, phrase_text=phrase,
-            )
+            if block and block.get("table"):
+                # POS avec table (noun, adj, verb)
+                table_html = block["table"]
+                goroh_tags = block.get("tags", [])
+                entry = build_entry_from_table(
+                    pos=pos, lemma=lemma, table_html=table_html,
+                    goroh_tags=goroh_tags, phrase_text=phrase,
+                )
+            elif pos in _INVARIABLE_POS:
+                # Invariable : extraire l'accent depuis la page goroh
+                accent_pairs = _extract_accent_from_goroh_html(goroh_html, lemma)
+                entry = build_invariable_entry(pos, lemma, accent_pairs, phrase)
+                table_html = f"<em>Invariable — accent : {accent_pairs}</em>"
+            else:
+                raise RuntimeError("Aucun tableau pertinent trouvé sur la page goroh.")
 
             # Enrichir avec NooJ : ligne dictionnaire + FLX
             nooj_info = lookup_nooj_line(nooj_dict, lemma, pos)
@@ -447,8 +490,25 @@ def process_phrases_ordered(
             return True
 
         except Exception as e:
-            errors.append(f"{pos}:{lemma} — {e}")
-            return False
+            # Fallback : goroh a échoué — créer une entrée avec accent -2
+            nooj_info = lookup_nooj_line(nooj_dict, lemma, pos)
+            if pos in _INVARIABLE_POS:
+                entry = build_invariable_entry(pos, lemma, [[lemma, -2]], phrase)
+                if nooj_info:
+                    entry["nooj"] = nooj_info
+                if existing and isinstance(existing, dict):
+                    entry = merge_with_existing(entry, existing)
+                table_html = f"<em>⚠ Goroh indisponible — accent à vérifier manuellement</em>"
+                entries_in_order.append({
+                    "lemma": lemma, "entry": entry, "pos": pos,
+                    "table_html": table_html, "phrase": phrase, "merged": bool(existing),
+                })
+                cards_in_order.append(render_entry_card(lemma, pos, entry, table_html, phrase, merged=bool(existing)))
+                errors.append(f"{pos}:{lemma} — goroh échoué, entrée créée avec accent -2")
+                return True
+            else:
+                errors.append(f"{pos}:{lemma} — {e}")
+                return False
 
     # Passe principale : traiter les phrases
     for phrase, meta in phrases_dict.items():
