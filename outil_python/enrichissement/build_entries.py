@@ -717,15 +717,24 @@ def main():
         print(f"❌ Échec d'écriture HTML : {e}", file=sys.stderr)
         sys.exit(3)
 
-    # 4) Convertir en DOCX via pandoc
-    if shutil.which("pandoc"):
+    # 4) Convertir en DOCX — textutil (macOS, respecte le CSS) ou pandoc (fallback)
+    if sys.platform == "darwin" and shutil.which("textutil"):
         try:
-            subprocess.run(["pandoc", html_path, "-o", docx_path], check=True, capture_output=True)
+            subprocess.run(
+                ["textutil", "-convert", "docx", "-output", docx_path, html_path],
+                check=True, capture_output=True,
+            )
             print(f"✅ {docx_path}")
         except Exception as e:
-            print(f"⚠ Conversion DOCX échouée : {e}", file=sys.stderr)
+            print(f"⚠ Conversion DOCX échouée (textutil) : {e}", file=sys.stderr)
+    elif shutil.which("pandoc"):
+        try:
+            subprocess.run(["pandoc", html_path, "-o", docx_path], check=True, capture_output=True)
+            print(f"✅ {docx_path} (pandoc — style basique)")
+        except Exception as e:
+            print(f"⚠ Conversion DOCX échouée (pandoc) : {e}", file=sys.stderr)
     else:
-        print("⚠ pandoc non installé — rapport DOCX non généré")
+        print("⚠ Ni textutil ni pandoc disponible — rapport DOCX non généré")
 
     # 5) Résumé
     merged_count = sum(1 for item in entries_ordered if item.get("merged"))
