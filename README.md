@@ -82,8 +82,8 @@ Voir `doc/MORPHO_SCHEMA_V2.md` pour la spécification complète et `doc/MIGRATIO
 | --------------------------- | ---------------------------------------- |
 | `CLAUDE.md`                 | Instructions pour Claude Code            |
 | `doc/MORPHO_SCHEMA_V2.md`   | Spécification du schéma V2 (13 sections) |
-| `doc/MORPHO_SCHEMA.md`      | Schéma V1 (référence historique)         |
-| `doc/MIGRATION_V1_V2.md`    | Journal de migration V1 → V2             |
+| `doc/V1/MORPHO_SCHEMA.md`   | Schéma V1 (référence historique)         |
+| `doc/V1/MIGRATION_V1_V2.md` | Journal de migration V1 → V2             |
 | `doc/RACCOURCIS_CLAVIER.md` | Raccourcis clavier                       |
 | `doc/DATA_ENRICHMENT.md`   | Double protocole d'enrichissement des données |
 | `doc/verification_report.md`| Rapport de vérification phrases/paradigmes |
