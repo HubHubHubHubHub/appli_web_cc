@@ -155,11 +155,10 @@ def merge_with_existing(new_entry: Dict[str, Any], existing_entry: Dict[str, Any
     """Fusionne une entrée régénérée avec l'existante : paradigme remplacé, reste préservé."""
     result = dict(new_entry)
 
-    # Meta : fusion (existant + nouveau, automate=True)
+    # Meta : fusion (existant préservé, nouveau ajouté)
     existing_meta = existing_entry.get("meta", {})
     new_meta = result.get("meta", {})
     result["meta"] = {**existing_meta, **new_meta}
-    result["meta"]["automate"] = True
 
     # Phrases : union des deux dicts
     existing_phrases = existing_entry.get("phrases", {})
@@ -188,7 +187,7 @@ def build_entry_from_table(
       - noun : {"meta", "cas", "nooj", "phrases"}
       - verb : {"meta", "inf", "conj", "nooj", "phrases"}
     """
-    meta: Dict[str, Any] = {"pos": pos, "automate": True}
+    meta: Dict[str, Any] = {"pos": pos}
 
     if pos == "adj":
         parsed = parse_table_adj(table_html)

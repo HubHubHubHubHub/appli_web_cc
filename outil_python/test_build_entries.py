@@ -170,7 +170,7 @@ class TestMergeWithExisting(unittest.TestCase):
             "traduction": "old translation",
         }
         new_entry = {
-            "meta": {"pos": "noun", "automate": True},
+            "meta": {"pos": "noun"},
             "cas": {"nom": {"sg": [["нове", 1]]}},
             "phrases": {"new phrase": ""},
         }
@@ -182,23 +182,21 @@ class TestMergeWithExisting(unittest.TestCase):
         self.assertIn("new phrase", result["phrases"])
         # Meta fusionnée (gender préservé)
         self.assertEqual(result["meta"]["gender"], "f")
-        self.assertTrue(result["meta"]["automate"])
         # Champs custom préservés
         self.assertEqual(result["traduction"], "old translation")
 
     def test_meta_merge_priority(self):
         existing = {"meta": {"pos": "noun", "gender": "m", "custom": "keep"}}
-        new_entry = {"meta": {"pos": "noun", "automate": True}}
+        new_entry = {"meta": {"pos": "noun"}}
         result = merge_with_existing(new_entry, existing)
         self.assertEqual(result["meta"]["gender"], "m")
         self.assertEqual(result["meta"]["custom"], "keep")
-        self.assertTrue(result["meta"]["automate"])
 
     def test_empty_existing(self):
         new_entry = {"meta": {"pos": "adj"}, "cas": {"nom": {}}, "phrases": {"p": ""}}
         result = merge_with_existing(new_entry, {})
         self.assertEqual(result["cas"]["nom"], {})
-        self.assertTrue(result["meta"]["automate"])
+        self.assertEqual(result["meta"]["pos"], "adj")
 
 
 if __name__ == "__main__":
