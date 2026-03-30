@@ -24,9 +24,10 @@ export function addAccent(word, accentPosition) {
   if (accentPosition > 0 && accentPosition <= chars.length) {
     const target = chars[accentPosition - 1];
     if (!isUkrainianVowel(target)) {
-      if (import.meta.env.DEV) console.warn(
-        `addAccent: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
-      );
+      if (import.meta.env.DEV)
+        console.warn(
+          `addAccent: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
+        );
     }
     chars[accentPosition - 1] += COMBINING_ACUTE;
   }
@@ -46,9 +47,10 @@ export function addAccentHTML(word, accentPosition) {
   if (accentPosition > 0 && accentPosition <= chars.length) {
     const target = chars[accentPosition - 1];
     if (!isUkrainianVowel(target)) {
-      if (import.meta.env.DEV) console.warn(
-        `addAccentHTML: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
-      );
+      if (import.meta.env.DEV)
+        console.warn(
+          `addAccentHTML: position ${accentPosition} dans "${word}" pointe sur "${target}", pas une voyelle ukrainienne`,
+        );
     }
     const dot = DOTTED_VOWELS.has(target) ? " data-dot" : "";
     chars[accentPosition - 1] = `<span class="with-accent"${dot}>${target}</span>`;

@@ -350,7 +350,6 @@ body {
   border-bottom-color: #2e343a;
 }
 
-
 /* ── Table design system ───────────────────────────────────────────── */
 
 /* Base editorial table — used alongside daisyUI `table` on main tables.
@@ -388,7 +387,6 @@ body {
 .gram-table tbody tr:last-child {
   border-bottom: none;
 }
-
 
 /* Column headers (sg., pl., m., f., etc.) */
 .gram-table thead th {

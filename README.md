@@ -38,19 +38,19 @@ npm install
 
 ## Commandes
 
-| Commande                                          | Description                       |
-| ------------------------------------------------- | --------------------------------- |
-| `npm run dev`                                     | Serveur de développement avec HMR |
-| `npm run build`                                   | Build statique dans `build/`      |
-| `npm run preview`                                 | Prévisualisation du build         |
-| `npm run test`                                    | Lancer les 160 tests JS           |
-| `npm run test:coverage`                           | Tests + rapport de couverture     |
-| `npm run lint`                                    | Vérification ESLint               |
-| `npm run format`                                  | Formatage Prettier                |
-| `python3 outil_python/enrichissement/build_entries.py` | Génération d'entrées depuis goroh (batch) |
-| `python3 outil_python/enrichissement/merge_entries.py --input <paquet>` | Insertion dans data.json (tri ukrainien) |
-| `python3 outil_python/validation/verify_phrases.py` | Vérification cohérence data-info / paradigmes |
-| `python3 outil_python/validation/validate_v2.py` | Validateur de schéma V2 |
+| Commande                                                                | Description                                   |
+| ----------------------------------------------------------------------- | --------------------------------------------- |
+| `npm run dev`                                                           | Serveur de développement avec HMR             |
+| `npm run build`                                                         | Build statique dans `build/`                  |
+| `npm run preview`                                                       | Prévisualisation du build                     |
+| `npm run test`                                                          | Lancer les 160 tests JS                       |
+| `npm run test:coverage`                                                 | Tests + rapport de couverture                 |
+| `npm run lint`                                                          | Vérification ESLint                           |
+| `npm run format`                                                        | Formatage Prettier                            |
+| `python3 outil_python/enrichissement/build_entries.py`                  | Génération d'entrées depuis goroh (batch)     |
+| `python3 outil_python/enrichissement/merge_entries.py --input <paquet>` | Insertion dans data.json (tri ukrainien)      |
+| `python3 outil_python/validation/verify_phrases.py`                     | Vérification cohérence data-info / paradigmes |
+| `python3 outil_python/validation/validate_v2.py`                        | Validateur de schéma V2                       |
 
 ## Structure du projet
 
@@ -81,13 +81,13 @@ Voir `doc/MORPHO_SCHEMA_V2.md` pour la spécification complète et `doc/MIGRATIO
 
 ## Documentation
 
-| Fichier                     | Description                              |
-| --------------------------- | ---------------------------------------- |
-| `CLAUDE.md`                 | Instructions pour Claude Code            |
-| `doc/MORPHO_SCHEMA_V2.md`   | Spécification du schéma V2 (13 sections) |
-| `doc/V1/MORPHO_SCHEMA.md`   | Schéma V1 (référence historique)         |
-| `doc/V1/MIGRATION_V1_V2.md` | Journal de migration V1 → V2             |
-| `doc/RACCOURCIS_CLAVIER.md` | Raccourcis clavier                       |
-| `doc/DATA_ENRICHMENT.md`   | Double protocole d'enrichissement des données |
-| `doc/verification_report.md`| Rapport de vérification phrases/paradigmes |
-| `outil_python/README.md`    | Documentation des scripts Python         |
+| Fichier                      | Description                                   |
+| ---------------------------- | --------------------------------------------- |
+| `CLAUDE.md`                  | Instructions pour Claude Code                 |
+| `doc/MORPHO_SCHEMA_V2.md`    | Spécification du schéma V2 (13 sections)      |
+| `doc/V1/MORPHO_SCHEMA.md`    | Schéma V1 (référence historique)              |
+| `doc/V1/MIGRATION_V1_V2.md`  | Journal de migration V1 → V2                  |
+| `doc/RACCOURCIS_CLAVIER.md`  | Raccourcis clavier                            |
+| `doc/DATA_ENRICHMENT.md`     | Double protocole d'enrichissement des données |
+| `doc/verification_report.md` | Rapport de vérification phrases/paradigmes    |
+| `outil_python/README.md`     | Documentation des scripts Python              |

@@ -11,18 +11,22 @@ L'enrichissement de `static/data.json` suit deux protocoles distincts selon le c
 Quand Claude Code ajoute ou modifie directement des entrées dans `data.json`.
 
 ### Quand l'utiliser
+
 - Ajout ponctuel d'un mot
 - Correction d'un paradigme existant
 - Enrichissement (comparatifs, superlatifs, formes manquantes)
 
 ### Marquage
+
 - **`"automate": true`** dans le bloc `meta` — ces entrées ne passent pas par relecture humaine et doivent être identifiables
 
 ### Source
+
 - Paradigmes et accents **depuis goroh.pp.ua** (`https://goroh.pp.ua/Словник/<mot>`)
 - Ne PAS inventer les accents (ils sont souvent irréguliers et mobiles en ukrainien)
 
 ### Structure de l'entrée
+
 ```json
 {
   "meta": { "pos": "noun", "gender": "f", "automate": true },
@@ -36,6 +40,7 @@ Quand Claude Code ajoute ou modifie directement des entrées dans `data.json`.
 - Comparatifs/superlatifs : blocs optionnels `comp` et `super` (même structure que `cas`)
 
 ### Vérifications obligatoires
+
 ```bash
 # 1. getLemmaEntry retourne une forme non-null
 node -e "const d=JSON.parse(require('fs').readFileSync('static/data.json','utf8')); console.log(d['noun']['LEMME']?.cas?.nom?.sg);"
@@ -60,6 +65,7 @@ cd outil_python/validation && python3 -m unittest discover
 Pour ajouter plusieurs mots d'un coup depuis des phrases annotées, avec **relecture humaine garantie**.
 
 ### Quand l'utiliser
+
 - Ajout d'un lot de phrases avec des mots nouveaux
 - Régénération de paradigmes depuis goroh pour des entrées non validées
 
@@ -91,21 +97,23 @@ phrases_a_traiter.json   →   build_entries_from_phrases.py   →   out.json + 
 6. Lancer les vérifications (même que protocole 1)
 
 ### Marquage
+
 - **Pas de `automate: true`** — la relecture humaine est garantie par le workflow (out.json → validation → intégration)
 
 ### Comportement du script
 
-| Situation | Action |
-|---|---|
-| Lemme absent de data.json | Scrape goroh, crée une nouvelle entrée |
-| Lemme présent, `nooj` validé (line/status/flx non-null) | **Ignoré** (entrée déjà relue) |
-| Lemme présent, `nooj` vide | Paradigme **régénéré** depuis goroh, données annexes **préservées** |
+| Situation                                               | Action                                                              |
+| ------------------------------------------------------- | ------------------------------------------------------------------- |
+| Lemme absent de data.json                               | Scrape goroh, crée une nouvelle entrée                              |
+| Lemme présent, `nooj` validé (line/status/flx non-null) | **Ignoré** (entrée déjà relue)                                      |
+| Lemme présent, `nooj` vide                              | Paradigme **régénéré** depuis goroh, données annexes **préservées** |
 
 **Données préservées** lors de la régénération : `phrases`, `meta` (fusionné), `traduction`, tout champ non-paradigmatique.
 
 **Données remplacées** : `cas`, `conj`, `inf`, `base`, `comp`, `super` (paradigme pur).
 
 ### Format de `phrases_a_traiter.json`
+
 ```json
 {
   "Phrase en ukrainien": {
@@ -128,12 +136,12 @@ Exemple : `бути;pos=verb;verbForm=fin;tense=past;gender=m;number=pl`
 
 ## Scripts de vérification
 
-| Script | Rôle |
-|---|---|
-| `validation/verify_phrases.py` | Cross-référence data-info ↔ paradigmes (0 auto-correction attendu) |
-| `validation/validate_v2.py` | Validation structurelle du schéma V2 |
-| `enrichissement/build_entries.py` | Génération d'entrées depuis goroh (batch) |
-| `enrichissement/merge_entries.py` | Insertion ordonnée de out.json dans data.json (tri ukrainien) |
+| Script                            | Rôle                                                               |
+| --------------------------------- | ------------------------------------------------------------------ |
+| `validation/verify_phrases.py`    | Cross-référence data-info ↔ paradigmes (0 auto-correction attendu) |
+| `validation/validate_v2.py`       | Validation structurelle du schéma V2                               |
+| `enrichissement/build_entries.py` | Génération d'entrées depuis goroh (batch)                          |
+| `enrichissement/merge_entries.py` | Insertion ordonnée de out.json dans data.json (tri ukrainien)      |
 
 ---
 
@@ -151,28 +159,29 @@ Le champ `nooj` dans chaque entrée assure la traçabilité vers le dictionnaire
 
 ### Valeurs de `status`
 
-| Valeur | Signification |
-|---|---|
-| `null` | Non traité (entrée générée, pas encore comparée à NooJ) |
-| `"pending"` | Ligne NooJ identifiée, relecture en cours |
-| `"validated"` | Paradigme vérifié conforme au dictionnaire NooJ |
+| Valeur        | Signification                                                            |
+| ------------- | ------------------------------------------------------------------------ |
+| `null`        | Non traité (entrée générée, pas encore comparée à NooJ)                  |
+| `"pending"`   | Ligne NooJ identifiée, relecture en cours                                |
+| `"validated"` | Paradigme vérifié conforme au dictionnaire NooJ                          |
 | `"divergent"` | Paradigme volontairement différent de NooJ (correction, choix éditorial) |
 
 ### Impact sur `build_entries.py`
 
 Toute valeur non-null de `status`, `line` ou `flx` fait que l'entrée est considérée « relue » et **ignorée** lors de la régénération batch (fonction `has_reviewed_nooj()`).
 
-| Contenu nooj | Éligible à régénération ? |
-|---|---|
-| `{"line": null, "status": null, "flx": null}` | Oui |
-| `{"line": "...", "status": "pending", ...}` | Non (ignorée) |
-| `{"line": "...", "status": "validated", ...}` | Non (ignorée) |
-| `""` (string vide, legacy) | Oui |
-| `"contenu"` (string non-vide, legacy) | Non (ignorée) |
+| Contenu nooj                                  | Éligible à régénération ? |
+| --------------------------------------------- | ------------------------- |
+| `{"line": null, "status": null, "flx": null}` | Oui                       |
+| `{"line": "...", "status": "pending", ...}`   | Non (ignorée)             |
+| `{"line": "...", "status": "validated", ...}` | Non (ignorée)             |
+| `""` (string vide, legacy)                    | Oui                       |
+| `"contenu"` (string non-vide, legacy)         | Non (ignorée)             |
 
 ### Référence NooJ
 
 Les dictionnaires source sont dans `perso/Nooj/` (voir `perso/Nooj/README.md`) :
+
 - `Ukr_dictionnary_V.1.3.txt` — dictionnaire complet (157 595 entrées, tous POS)
 - `ukr_verbes_flexions.dic` — formes conjuguées des verbes (378 738 formes)
 - `ukr_verbes_paires_aspectuelles.txt` — paires aspectuelles (6 193 verbes)

@@ -78,7 +78,10 @@
     }
 
     // Reset l'ancien mot pinné (éléments DOM de HtmlContent)
-    document.querySelectorAll(".ukr").forEach((el) => { el.style.color = ""; el.style.textDecorationColor = ""; });
+    document.querySelectorAll(".ukr").forEach((el) => {
+      el.style.color = "";
+      el.style.textDecorationColor = "";
+    });
     uiStore.grammarTableData = tag;
     uiStore.pinnedElement = pinId;
   }

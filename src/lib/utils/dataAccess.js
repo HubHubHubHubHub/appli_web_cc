@@ -130,7 +130,8 @@ export function getPrincipalForm(wordData, word, category) {
     const p = firstPair(entry);
     if (p) return addAccentHTML(p[0], p[1]);
   } catch (err) {
-    if (import.meta.env.DEV) console.warn(`getPrincipalForm: erreur pour "${word}" (${category}) :`, err);
+    if (import.meta.env.DEV)
+      console.warn(`getPrincipalForm: erreur pour "${word}" (${category}) :`, err);
   }
   return word || "";
 }

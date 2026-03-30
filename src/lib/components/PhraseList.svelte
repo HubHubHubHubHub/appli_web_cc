@@ -12,9 +12,7 @@
   const totalCount = $derived(dataStore.phraseData ? Object.keys(dataStore.phraseData).length : 0);
 </script>
 
-<div
-  class="sticky top-[var(--header-height)] bg-base-100 py-3 z-10 border-b border-base-300 mb-4"
->
+<div class="sticky top-[var(--header-height)] bg-base-100 py-3 z-10 border-b border-base-300 mb-4">
   <input
     id="phrase-search"
     type="text"

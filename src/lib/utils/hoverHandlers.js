@@ -73,7 +73,10 @@ export function applyHoverHandlers(el, deps) {
         return;
       }
       // Reset l'ancien mot pinné
-      document.querySelectorAll(".ukr").forEach((el) => { el.style.color = ""; el.style.textDecorationColor = ""; });
+      document.querySelectorAll(".ukr").forEach((el) => {
+        el.style.color = "";
+        el.style.textDecorationColor = "";
+      });
       word.style.color = hoverColor;
       word.style.textDecorationColor = hoverColor;
       deps.setGrammarTableData(tag);

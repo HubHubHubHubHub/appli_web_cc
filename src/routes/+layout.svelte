@@ -43,14 +43,14 @@
         class="font-size-btn"
         onclick={() => uiStore.decrease()}
         disabled={!uiStore.canDecrease}
-        title="Réduire la taille de police"
-      >A−</button>
+        title="Réduire la taille de police">A−</button
+      >
       <button
         class="font-size-btn"
         onclick={() => uiStore.increase()}
         disabled={!uiStore.canIncrease}
-        title="Augmenter la taille de police"
-      >A+</button>
+        title="Augmenter la taille de police">A+</button
+      >
     </div>
     <AccentCheckbox />
     <label class="flex items-center gap-1.5 cursor-pointer text-sm">

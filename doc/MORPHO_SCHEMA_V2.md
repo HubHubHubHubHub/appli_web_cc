@@ -461,11 +461,11 @@ nooj?: {
 
 ### Workflow `status`
 
-| Valeur        | Signification                                                        |
-| ------------- | -------------------------------------------------------------------- |
-| `null`        | Non traité (entrée générée, pas encore comparée à NooJ)              |
-| `"pending"`   | Ligne NooJ identifiée, relecture en cours                            |
-| `"validated"` | Paradigme vérifié conforme au dictionnaire NooJ                      |
+| Valeur        | Signification                                                            |
+| ------------- | ------------------------------------------------------------------------ |
+| `null`        | Non traité (entrée générée, pas encore comparée à NooJ)                  |
+| `"pending"`   | Ligne NooJ identifiée, relecture en cours                                |
+| `"validated"` | Paradigme vérifié conforme au dictionnaire NooJ                          |
 | `"divergent"` | Paradigme volontairement différent de NooJ (correction, choix éditorial) |
 
 > **Impact sur `build_entries.py`** : toute valeur non-null de `status` (ou de `line`/`flx`) fait que l'entrée est considérée « relue » et ignorée lors de la régénération batch. Voir `has_reviewed_nooj()` dans `outil_python/enrichissement/build_entries.py`.
