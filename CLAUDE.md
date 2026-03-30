@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes), deployed as a static site. UI language is French. Requires Node >= 20 (Tailwind v4 native binding).
+Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes), deployed as a static site. UI language is French. Node version pinned in `.nvmrc` (currently 22). Requires Node >= 20 (Tailwind v4 native binding).
 
 ## Commands
 
@@ -12,6 +12,7 @@ Ukrainian vocabulary learning web app built with SvelteKit 2 + Svelte 5 (runes),
 - `npm run build` — static build to `build/`
 - `npm run preview` — preview the static build
 - `npm run test` — run all Vitest tests (160 tests)
+- `npm run test:coverage` — run tests with coverage report (text + HTML in `coverage/`)
 - `npx vitest tests/utils/accent.test.js` — run a single test file
 - `npm run lint` — ESLint check
 - `npm run format` — Prettier auto-format

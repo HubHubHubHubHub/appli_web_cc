@@ -14,6 +14,12 @@ export default defineConfig({
     alias: {
       $lib: path.resolve(__dirname, "./src/lib"),
     },
+    coverage: {
+      provider: "v8",
+      reportsDirectory: "coverage",
+      reporter: ["text", "json-summary", "html"],
+      include: ["src/lib/**/*.{js,svelte}"],
+    },
   },
   resolve: {
     conditions: process.env.VITEST ? ["browser"] : [],

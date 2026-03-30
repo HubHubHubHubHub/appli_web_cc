@@ -1,5 +1,8 @@
 # Словоскарб — Trésor lexical ukrainien
 
+![CI](https://github.com/HubHubHubHubHub/appli_web_cc/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://img.shields.io/badge/coverage-55.9%25-yellow)
+
 Application web d'apprentissage du vocabulaire ukrainien : déclinaisons, conjugaisons, phrases d'exemple avec mise en évidence grammaticale interactive.
 
 **764 entrées** couvrant 12 catégories grammaticales, **255 phrases** annotées, format morphologique V2 aligné avec le dictionnaire NooJ ukrainien.
@@ -24,7 +27,7 @@ Application web d'apprentissage du vocabulaire ukrainien : déclinaisons, conjug
 
 ## Prérequis
 
-- Node.js >= 20
+- Node.js (version dans `.nvmrc`, actuellement 22)
 - Python 3.11+ (pour les scripts d'enrichissement)
 
 ## Installation
@@ -41,6 +44,7 @@ npm install
 | `npm run build`                                   | Build statique dans `build/`      |
 | `npm run preview`                                 | Prévisualisation du build         |
 | `npm run test`                                    | Lancer les 160 tests JS           |
+| `npm run test:coverage`                           | Tests + rapport de couverture     |
 | `npm run lint`                                    | Vérification ESLint               |
 | `npm run format`                                  | Formatage Prettier                |
 | `python3 outil_python/enrichissement/build_entries.py` | Génération d'entrées depuis goroh (batch) |
